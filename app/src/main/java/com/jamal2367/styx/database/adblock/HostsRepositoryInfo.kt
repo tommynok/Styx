@@ -1,0 +1,23 @@
+package com.jamal2367.styx.database.adblock
+
+import com.jamal2367.styx.di.AdBlockPrefs
+import com.jamal2367.styx.preference.delegates.nullableStringPreference
+import android.content.SharedPreferences
+import javax.inject.Inject
+
+/**
+ * Information about the contents of the hosts repository.
+ */
+class HostsRepositoryInfo @Inject constructor(@AdBlockPrefs preferences: SharedPreferences) {
+
+    /**
+     * The identity of the contents of the hosts repository as a [String] or `null`.
+     */
+    var identity: String? by preferences.nullableStringPreference(IDENTITY)
+
+    companion object {
+        private const val IDENTITY = "identity"
+    }
+
+}
+

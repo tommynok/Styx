@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/bookmark_settings" app:iconSpaceReserved="false">
+        <Preference
+            android:key="export_bookmark"
+            android:title="@string/export_bookmarks"
+            app:icon="@drawable/ic_save"/>
+        <Preference
+            android:key="import_bookmark"
+            android:title="@string/import_backup"
+            app:icon="@drawable/ic_restore_page"/>
+        <Preference
+            android:key="delete_bookmarks"
+            android:title="@string/action_delete_all_bookmarks"
+            app:icon="@drawable/ic_baseline_delete_24"/>
+    </PreferenceCategory>
+</PreferenceScreen>
