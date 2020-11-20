@@ -190,8 +190,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     private lateinit var popupMenu: BrowserPopupMenu
 
     // Settings
-    private var crashReport = true
-    private var analytics = true
     private var showCloseTabButton = false
 
     private val longPressBackRunnable = Runnable {
