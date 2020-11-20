@@ -83,8 +83,6 @@
     <string name="color_mode">Enable color mode</string>
     <string name="cookies">Enable cookies</string>
     <string name="dark_theme">Dark</string>
-    <string name="debug_leak_canary">LeakCanary</string>
-    <string name="debug_title">Debug</string>
     <string name="developer">Developer</string>
     <string name="dialog_adblock_disable_for_site">Disable ad block for site</string>
     <string name="dialog_adblock_enable_for_site">Enable ad block for site</string>
