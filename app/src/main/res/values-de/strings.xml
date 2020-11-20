@@ -54,7 +54,7 @@
     <string name="block_ad_refresh_now">Hosts aktualisieren</string>
     <string name="block_ad_remote_refresh_frequency_description">Für Online-Hosts Datei</string>
     <string name="block_ad_source">Hosts-Datei Quelle</string>
-    <string name="block_ads">Werbung blockieren</string>
+    <string name="block_ads">Werbeblocker</string>
     <string name="block_remote_frequency_daily">Täglich</string>
     <string name="block_remote_frequency_monthly">Monatlich</string>
     <string name="block_remote_frequency_weekly">Wöchentlich</string>
@@ -127,7 +127,7 @@
     <string name="download">Download-Verzeichnis</string>
     <string name="downloads_notification_description">Auslöser bei Abschluss des Downloads</string>
     <string name="downloads">Downloads</string>
-    <string name="export_bookmarks">Exportiere Lesezeichen</string>
+    <string name="export_bookmarks">Lesezeichen exportieren</string>
     <string name="faq_description">Häufig gestellte Fragen</string>
     <string name="faq">FAQ</string>
     <string name="flash_not_supported">Flash Player wird von Ihrem System nicht unterstützt!</string>
@@ -148,7 +148,7 @@
     <string name="http_proxy">HTTP Proxy</string>
     <string name="i2p_not_running">I2P ist nicht gestartet.</string>
     <string name="i2p_tunnels_not_ready">I2P Tunnel sind noch nicht bereit.</string>
-    <string name="import_backup">Importiere Lesezeichen</string>
+    <string name="import_backup">Lesezeichen importieren</string>
     <string name="import_bookmark_error">Lesezeichen konnten nicht importiert werden</string>
     <string name="incognito_cookies_pie">Der Inkognito-Modus läuft in einem separaten Prozess, der nach jeder Sitzung zurückgesetzt wird. Die Incognito-Cookie-Einstellungen werden jetzt durch die regulären Cookie-Einstellungen gesteuert.</string>
     <string name="incognito_cookies">Cookies im Inkognito-Modus aktivieren</string>
@@ -284,7 +284,7 @@
     <string name="stock_browser">Standardbrowser</string>
     <string name="suggestion">Suche nach</string>
     <string name="supported_browsers_title">Unterstützte Browser</string>
-    <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer wechseln</string>
+    <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer tauschen</string>
     <string name="sync_history">Verlauf mit Google synchronisieren</string>
     <string name="tab_frozen">Eingefroren…</string>
     <string name="tabs_in_drawer">Tabs in Drawer anzeigen</string>
@@ -311,7 +311,7 @@
     <string name="title_warning">Warnung</string>
     <string name="unknown_size">Unbekannte Größe</string>
     <string name="untitled">Ohne Titel</string>
-    <string name="url_app_home_page">https://github.com/jamal2362/</string>
+    <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>
     <string name="url_contents">URL-Box Inhalt</string>
     <string name="url_in_new_tab">URL in neuem Tab</string>
     <string name="use_i2p_prompt">I2P ist installiert. Soll I2P verwendet werden?</string>
