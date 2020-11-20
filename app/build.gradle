@@ -18,10 +18,6 @@ android {
         archivesBaseName = "Styx-v$versionName"
     }
 
-    dexOptions {
-        javaMaxHeapSize "8g"
-    }
-
     buildTypes {
         debug {
             minifyEnabled true
