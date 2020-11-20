@@ -52,7 +52,7 @@
     <string name="app_restart">Bitte schließen Sie die App um die Änderungen anzuwenden.</string>
     <string name="black_theme">Schwarzes Design (AMOLED)</string>
     <string name="block_ad_refresh_now">Hosts aktualisieren</string>
-    <string name="block_ad_remote_refresh_frequency_description">Für Online-Hosts Datei</string>
+    <string name="block_ad_remote_refresh_frequency_description">(Online-Hosts Datei)</string>
     <string name="block_ad_source">Hosts-Datei Quelle</string>
     <string name="block_ads">Werbeblocker</string>
     <string name="block_remote_frequency_daily">Täglich</string>
