@@ -15,6 +15,8 @@ import com.jamal2367.styx.utils.ThemeUtils
 import android.app.Application
 import android.graphics.Bitmap
 import androidx.core.net.toUri
+import com.jamal2367.styx.BrowserApp
+import com.jamal2367.styx.utils.htmlColor
 import dagger.Reusable
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -82,7 +84,9 @@ class BookmarkPageFactory @Inject constructor(
     }
 
     private fun construct(list: List<BookmarkViewModel>): String {
-        return parse(bookmarkPageReader.provideHtml()) andBuild {
+        return parse(bookmarkPageReader.provideHtml()
+                .replace("\${backgroundColor}", htmlColor(ThemeUtils.getPrimaryColor(BrowserApp.currentContext())))
+        ) andBuild {
             title { title }
             body {
                 val repeatableElement = id("repeated").removeElement()
