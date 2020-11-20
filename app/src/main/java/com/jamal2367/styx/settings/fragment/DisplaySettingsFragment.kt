@@ -164,7 +164,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
             }
             setPositiveButton(resources.getString(R.string.action_ok)) { _, _ ->
                 if (currentTheme != userPreferences.useTheme) {
-                    (activity as Activity).onBackPressed()
+                    (activity as Activity).finish()
                 }
             }
             setOnCancelListener {
@@ -207,7 +207,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
         const val MIN_BROWSER_TEXT_SIZE = 50
 
         private fun getTextSize(size: Int): Float {
-            var ratio : Float = (XX_LARGE - X_SMALL) / (MAX_BROWSER_TEXT_SIZE - MIN_BROWSER_TEXT_SIZE)
+            val ratio : Float = (XX_LARGE - X_SMALL) / (MAX_BROWSER_TEXT_SIZE - MIN_BROWSER_TEXT_SIZE)
             return X_SMALL + size * ratio
         }
 
