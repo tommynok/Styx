@@ -24,16 +24,16 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
-            shrinkResources false
-            multiDexEnabled true
+            minifyEnabled true
+            shrinkResources true
+            multiDexEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
-            minifyEnabled false
-            shrinkResources false
-            multiDexEnabled true
+            minifyEnabled true
+            shrinkResources true
+            multiDexEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             ndk {
@@ -46,9 +46,17 @@ android {
         disable 'MissingTranslation'
     }
 
+    packagingOptions {
+        exclude 'META-INF/*'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     buildFeatures {
@@ -59,13 +67,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // MultiDex //
-    debugImplementation 'androidx.multidex:multidex:2.0.1'
-
     // Kotlin //
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
 
     // Google Stuff //
     implementation "com.google.android.material:material:1.2.1"
@@ -122,18 +125,5 @@ dependencies {
 kapt {
     arguments {
         arg("mezzanine.projectPath", project.rootDir)
-    }
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-        kotlinOptions {
-            freeCompilerArgs += ['-XXLanguage:+InlineClasses']
-            freeCompilerArgs += ['-progressive']
-        }
     }
 }
