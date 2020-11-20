@@ -33,6 +33,7 @@ class HomePageFactory @Inject constructor(
         .map { (iconUrl, queryUrl, _) ->
             parse(homePageReader.provideHtml()
                     .replace("\${backgroundColor}", htmlColor(ThemeUtils.getPrimaryColor(BrowserApp.currentContext())))
+                    .replace("\${search}", application.getString(R.string.search_homepage))
             ) andBuild {
                 title { title }
                 charset { UTF8 }

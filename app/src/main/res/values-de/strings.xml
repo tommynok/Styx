@@ -245,6 +245,7 @@
     <string name="search_engine_yahoo">Yahoo</string>
     <string name="search_engine_yandex">Yandex</string>
     <string name="search_hint">Suche</string>
+    <string name="search_homepage">Suchen</string>
     <string name="search_in_new_tab">Suche im neuen Tab</string>
     <string name="search_in_page_query">\'%1$s\'</string>
     <string name="search_insert_suggestion">Vorschlag einfügen</string>
