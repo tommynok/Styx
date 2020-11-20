@@ -50,8 +50,6 @@ interface AppComponent {
 
     fun inject(activity: ThemableBrowserActivity)
 
-    fun inject(advancedSettingsFragment: AdvancedSettingsFragment)
-
     fun inject(app: BrowserApp)
 
     fun inject(activity: ReadingActivity)
