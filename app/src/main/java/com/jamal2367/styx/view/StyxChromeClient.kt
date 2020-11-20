@@ -30,9 +30,9 @@ import com.anthonycr.grant.PermissionsResultAction
 import io.reactivex.Scheduler
 import javax.inject.Inject
 
-class LightningChromeClient(
+class StyxChromeClient(
     private val activity: Activity,
-    private val lightningView: LightningView
+    private val styxView: StyxView
 ) : WebChromeClient(), WebRtcPermissionsView {
 
     private val geoLocationPermissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -48,34 +48,34 @@ class LightningChromeClient(
     }
 
     override fun onProgressChanged(view: WebView, newProgress: Int) {
-        if (lightningView.isShown) {
+        if (styxView.isShown) {
             uiController.updateProgress(newProgress)
         }
 
-        if (newProgress > 10 && lightningView.fetchMetaThemeColorTries > 0)
+        if (newProgress > 10 && styxView.fetchMetaThemeColorTries > 0)
         {
-            val triesLeft = lightningView.fetchMetaThemeColorTries - 1
-            lightningView.fetchMetaThemeColorTries = 0
+            val triesLeft = styxView.fetchMetaThemeColorTries - 1
+            styxView.fetchMetaThemeColorTries = 0
 
             // Extract meta theme-color
             view?.evaluateJavascript("(function() { return document.querySelector('meta[name=\"theme-color\"]').content; })();") { themeColor ->
                 try {
-                    lightningView.htmlMetaThemeColor = Color.parseColor(themeColor.trim('\'').trim('"'));
+                    styxView.htmlMetaThemeColor = Color.parseColor(themeColor.trim('\'').trim('"'));
                     // We did find a valid theme-color, tell our controller about it
-                    uiController.tabChanged(lightningView)
+                    uiController.tabChanged(styxView)
                 }
                 catch (e: Exception) {
                     if (triesLeft==0 || newProgress==100)
                     {
                         // Exhausted all our tries or the page finished loading before we did
                         // Just give up then and reset our theme color
-                        lightningView.htmlMetaThemeColor = LightningView.KHtmlMetaThemeColorInvalid
-                        uiController.tabChanged(lightningView)
+                        styxView.htmlMetaThemeColor = StyxView.KHtmlMetaThemeColorInvalid
+                        uiController.tabChanged(styxView)
                     }
                     else
                     {
                         // Try it again next time around
-                        lightningView.fetchMetaThemeColorTries = triesLeft
+                        styxView.fetchMetaThemeColorTries = triesLeft
                     }
                 }
             }
@@ -84,8 +84,8 @@ class LightningChromeClient(
     }
 
     override fun onReceivedIcon(view: WebView, icon: Bitmap) {
-        lightningView.titleInfo.setFavicon(icon)
-        uiController.tabChanged(lightningView)
+        styxView.titleInfo.setFavicon(icon)
+        uiController.tabChanged(styxView)
         cacheFavicon(view.url, icon)
     }
 
@@ -107,11 +107,11 @@ class LightningChromeClient(
 
     override fun onReceivedTitle(view: WebView?, title: String?) {
         if (title?.isNotEmpty() == true) {
-            lightningView.titleInfo.setTitle(title)
+            styxView.titleInfo.setTitle(title)
         } else {
-            lightningView.titleInfo.setTitle(activity.getString(R.string.untitled))
+            styxView.titleInfo.setTitle(activity.getString(R.string.untitled))
         }
-        uiController.tabChanged(lightningView)
+        uiController.tabChanged(styxView)
         if (view != null && view.url != null) {
             uiController.updateHistory(title, view.url!!)
         }
@@ -196,7 +196,7 @@ class LightningChromeClient(
         return true
     }
 
-    override fun onCloseWindow(window: WebView) = uiController.onCloseWindow(lightningView)
+    override fun onCloseWindow(window: WebView) = uiController.onCloseWindow(styxView)
 
     @Suppress("unused", "UNUSED_PARAMETER")
     fun openFileChooser(uploadMsg: ValueCallback<Uri>) = uiController.openFileChooser(uploadMsg)
@@ -227,7 +227,7 @@ class LightningChromeClient(
     }
 
     /**
-     * Inflate a view to send to a LightningView when it needs to display a video and has to
+     * Inflate a view to send to a StyxView when it needs to display a video and has to
      * show a loading dialog. Inflates a progress view and returns it.
      *
      * @return A view that should be used to display the state

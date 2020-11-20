@@ -12,7 +12,7 @@ import com.jamal2367.styx.extensions.snackbar
 import com.jamal2367.styx.isSupported
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.WebUtils
-import com.jamal2367.styx.view.LightningView
+import com.jamal2367.styx.view.StyxView
 import android.app.Activity
 import android.os.Bundle
 import android.webkit.WebView
@@ -98,7 +98,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
         checkBoxPreference(
             preference = SETTINGS_IDENTIFYINGHEADERS,
             isChecked = userPreferences.removeIdentifyingHeadersEnabled,
-            summary = "${LightningView.HEADER_REQUESTED_WITH}, ${LightningView.HEADER_WAP_PROFILE}",
+            summary = "${StyxView.HEADER_REQUESTED_WITH}, ${StyxView.HEADER_WAP_PROFILE}",
             onCheckChange = { userPreferences.removeIdentifyingHeadersEnabled = it }
         )
 

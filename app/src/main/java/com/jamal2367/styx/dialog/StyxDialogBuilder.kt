@@ -36,7 +36,7 @@ import javax.inject.Inject
  * A builder of various dialogs.
  */
 @Reusable
-class LightningDialogBuilder @Inject constructor(
+class StyxDialogBuilder @Inject constructor(
     private val bookmarkManager: BookmarkRepository,
     private val downloadsModel: DownloadsRepository,
     private val historyModel: HistoryRepository,

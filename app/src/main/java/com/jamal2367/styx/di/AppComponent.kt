@@ -9,16 +9,16 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.browser.activity.ThemableBrowserActivity
 import com.jamal2367.styx.browser.bookmarks.BookmarksDrawerView
 import com.jamal2367.styx.device.BuildInfo
-import com.jamal2367.styx.dialog.LightningDialogBuilder
-import com.jamal2367.styx.download.LightningDownloadListener
+import com.jamal2367.styx.dialog.StyxDialogBuilder
+import com.jamal2367.styx.download.StyxDownloadListener
 import com.jamal2367.styx.reading.activity.ReadingActivity
 import com.jamal2367.styx.search.SuggestionsAdapter
 import com.jamal2367.styx.settings.activity.SettingsActivity
 import com.jamal2367.styx.settings.activity.ThemableSettingsActivity
 import com.jamal2367.styx.settings.fragment.*
-import com.jamal2367.styx.view.LightningChromeClient
-import com.jamal2367.styx.view.LightningView
-import com.jamal2367.styx.view.LightningWebClient
+import com.jamal2367.styx.view.StyxChromeClient
+import com.jamal2367.styx.view.StyxView
+import com.jamal2367.styx.view.StyxWebClient
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
@@ -44,9 +44,9 @@ interface AppComponent {
 
     fun inject(fragment: BookmarkSettingsFragment)
 
-    fun inject(builder: LightningDialogBuilder)
+    fun inject(builder: StyxDialogBuilder)
 
-    fun inject(lightningView: LightningView)
+    fun inject(styxView: StyxView)
 
     fun inject(activity: ThemableBrowserActivity)
 
@@ -56,13 +56,13 @@ interface AppComponent {
 
     fun inject(activity: ReadingActivity)
 
-    fun inject(webClient: LightningWebClient)
+    fun inject(webClient: StyxWebClient)
 
     fun inject(activity: SettingsActivity)
 
     fun inject(activity: ThemableSettingsActivity)
 
-    fun inject(listener: LightningDownloadListener)
+    fun inject(listener: StyxDownloadListener)
 
     fun inject(fragment: PrivacySettingsFragment)
 
@@ -70,7 +70,7 @@ interface AppComponent {
 
     fun inject(suggestionsAdapter: SuggestionsAdapter)
 
-    fun inject(chromeClient: LightningChromeClient)
+    fun inject(chromeClient: StyxChromeClient)
 
     fun inject(searchBoxModel: SearchBoxModel)
 

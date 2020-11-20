@@ -1,6 +1,6 @@
 package com.jamal2367.styx.browser.tabs
 
-import com.jamal2367.styx.view.LightningView
+import com.jamal2367.styx.view.StyxView
 import android.graphics.Bitmap
 
 /**
@@ -18,9 +18,9 @@ data class TabViewState(
 )
 
 /**
- * Converts a [LightningView] to a [TabViewState].
+ * Converts a [StyxView] to a [TabViewState].
  */
-fun LightningView.asTabViewState() = TabViewState(
+fun StyxView.asTabViewState() = TabViewState(
     id = id,
     title = title,
     favicon = favicon,

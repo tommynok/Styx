@@ -41,7 +41,7 @@ class BrowserPresenter(
         private val logger: Logger
 ) {
 
-    private var currentTab: LightningView? = null
+    private var currentTab: StyxView? = null
     private var shouldClose: Boolean = false
     private var sslStateSubscription: Disposable? = null
 
@@ -80,11 +80,11 @@ class BrowserPresenter(
      *
      * @param tab the tab that changed, may be null.
      */
-    fun tabChangeOccurred(tab: LightningView?) = tab?.let {
+    fun tabChangeOccurred(tab: StyxView?) = tab?.let {
         view.notifyTabViewChanged(tabsModel.indexOfTab(it))
     }
 
-    private fun onTabChanged(newTab: LightningView?) {
+    private fun onTabChanged(newTab: StyxView?) {
         logger.log(TAG, "On tab changed")
         view.updateSslState(newTab?.currentSslState() ?: SslState.None)
 

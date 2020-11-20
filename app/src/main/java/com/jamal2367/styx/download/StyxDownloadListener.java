@@ -44,9 +44,9 @@ import java.util.Objects;
 
 import static com.jamal2367.styx.utils.UrlUtils.guessFileName;
 
-public class LightningDownloadListener extends BroadcastReceiver implements DownloadListener {
+public class StyxDownloadListener extends BroadcastReceiver implements DownloadListener {
 
-    private static final String TAG = "LightningDownloader";
+    private static final String TAG = "StyxDownloader";
 
     private final Activity mActivity;
 
@@ -56,7 +56,7 @@ public class LightningDownloadListener extends BroadcastReceiver implements Down
     @Inject DownloadsRepository downloadsRepository;
     @Inject Logger logger;
 
-    public LightningDownloadListener(Activity context) {
+    public StyxDownloadListener(Activity context) {
         Injector.getInjector(context).inject(this);
         mActivity = context;
     }

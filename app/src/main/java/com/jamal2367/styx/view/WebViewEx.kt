@@ -8,7 +8,7 @@ import android.webkit.WebView
 
 /**
  * Specialising  WebView could be useful at some point.
- * We may want to get rid of LightningView.
+ * We may want to get rid of StyxView.
  *
  * We used that to try debug our issue with ALT + TAB scrolling back to the top of the page.
  * We could not figure out that issue though.

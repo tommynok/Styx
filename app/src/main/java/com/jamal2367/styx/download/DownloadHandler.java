@@ -39,7 +39,7 @@ import com.jamal2367.styx.log.Logger;
 import com.jamal2367.styx.preference.UserPreferences;
 import com.jamal2367.styx.utils.FileUtils;
 import com.jamal2367.styx.utils.Utils;
-import com.jamal2367.styx.view.LightningView;
+import com.jamal2367.styx.view.StyxView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -301,7 +301,7 @@ public class DownloadHandler {
 
         // save download in database
         UIController browserActivity = (UIController) context;
-        LightningView view = browserActivity.getTabModel().getCurrentTab();
+        StyxView view = browserActivity.getTabModel().getCurrentTab();
 
         if (view != null && !view.isIncognito()) {
             downloadsRepository.addDownloadIfNotExists(new DownloadEntry(url, iFilename, contentSize))

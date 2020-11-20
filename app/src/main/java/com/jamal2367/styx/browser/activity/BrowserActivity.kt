@@ -24,7 +24,7 @@ import com.jamal2367.styx.databinding.ToolbarContentBinding
 import com.jamal2367.styx.di.*
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.dialog.DialogItem
-import com.jamal2367.styx.dialog.LightningDialogBuilder
+import com.jamal2367.styx.dialog.StyxDialogBuilder
 import com.jamal2367.styx.extensions.*
 import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.html.history.HistoryPageFactory
@@ -174,7 +174,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     @Inject @field:MainHandler lateinit var mainHandler: Handler
     @Inject lateinit var proxyUtils: ProxyUtils
     @Inject lateinit var logger: Logger
-    @Inject lateinit var bookmarksDialogBuilder: LightningDialogBuilder
+    @Inject lateinit var bookmarksDialogBuilder: StyxDialogBuilder
     @Inject lateinit var exitCleanup: ExitCleanup
 
     // Image
@@ -195,8 +195,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     private var showCloseTabButton = false
 
     private val longPressBackRunnable = Runnable {
-        // Disable this for now as it is popping up when exiting full screen video mode.
-        // See: https://github.com/Slion/Fulguris/issues/81
         //showCloseDialog(tabsManager.positionOf(tabsManager.currentTab))
     }
 
@@ -782,7 +780,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
     // For CTRL+TAB implementation
     var iRecentTabIndex = -1;
-    var iCapturedRecentTabsIndices : Set<LightningView>? = null
+    var iCapturedRecentTabsIndices : Set<StyxView>? = null
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
 
@@ -796,8 +794,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         if (event.action == KeyEvent.ACTION_UP && (event.keyCode==KeyEvent.KEYCODE_CTRL_LEFT||event.keyCode==KeyEvent.KEYCODE_CTRL_RIGHT)) {
             // Exiting CTRL+TAB mode
             iCapturedRecentTabsIndices?.let {
-                // Replace our recent tabs list by putting our captured one back in place making sure the selected tab is going back on top
-                // See: https://github.com/Slion/Fulguris/issues/56
                 tabsManager.iRecentTabs = it.toMutableSet()
                 val tab = tabsManager.iRecentTabs.elementAt(iRecentTabIndex)
                 tabsManager.iRecentTabs.remove(tab)
@@ -1210,11 +1206,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
             button_reload.visibility = View.VISIBLE
             return
         }
-
-        // Disable pull to refresh if no vertical scroll as it bugs with frame internal scroll
-        // See: https://github.com/Slion/Lightning-Browser/projects/1
         content_frame.isEnabled = currentTabView?.canScrollVertically()?:false
-        // Don't show reload button if pull-to-refresh is enabled and once we are not loading
         button_reload.visibility = if (content_frame.isEnabled && !isLoading()) View.GONE else View.VISIBLE
     }
 
@@ -1274,7 +1266,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         drawable?.let { visibility = VISIBLE } ?: run { visibility = GONE }
     }
 
-    override fun tabChanged(tab: LightningView) {
+    override fun tabChanged(tab: StyxView) {
         // SL: Is this being called way too many times?
         presenter?.tabChangeOccurred(tab)
         // SL: Putting this here to update toolbar background color was a bad idea
@@ -2286,14 +2278,14 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     }
 
     /**
-     * Closes the specified [LightningView]. This implements
+     * Closes the specified [StyxView]. This implements
      * the JavaScript callback that asks the tab to close itself and
      * is especially helpful when a page creates a redirect and does
      * not need the tab to stay open any longer.
      *
-     * @param tab the LightningView to close, delete it.
+     * @param tab the StyxView to close, delete it.
      */
-    override fun onCloseWindow(tab: LightningView) {
+    override fun onCloseWindow(tab: StyxView) {
         presenter?.deleteTab(tabsManager.positionOf(tab))
     }
 
@@ -2357,12 +2349,12 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         handleBookmarksChange()
     }
 
-    override fun handleNewTab(newTabType: LightningDialogBuilder.NewTab, url: String) {
+    override fun handleNewTab(newTabType: StyxDialogBuilder.NewTab, url: String) {
         val urlInitializer = UrlInitializer(url)
         when (newTabType) {
-            LightningDialogBuilder.NewTab.FOREGROUND -> presenter?.newTab(urlInitializer, true)
-            LightningDialogBuilder.NewTab.BACKGROUND -> presenter?.newTab(urlInitializer, false)
-            LightningDialogBuilder.NewTab.INCOGNITO -> {
+            StyxDialogBuilder.NewTab.FOREGROUND -> presenter?.newTab(urlInitializer, true)
+            StyxDialogBuilder.NewTab.BACKGROUND -> presenter?.newTab(urlInitializer, false)
+            StyxDialogBuilder.NewTab.INCOGNITO -> {
                 drawer_layout.closeDrawers()
                 val intent = IncognitoActivity.createIntent(this, url.toUri())
                 startActivity(intent)

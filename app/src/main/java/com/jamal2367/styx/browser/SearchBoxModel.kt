@@ -24,7 +24,7 @@ class SearchBoxModel @Inject constructor(
      *
      *  - The user's preference to show either the URL, domain, or page title
      *  - Whether or not the current page is loading
-     *  - Whether or not the current page is a Lightning generated page.
+     *  - Whether or not the current page is a Styx generated page.
      *
      * This method uses the URL, title, and loading information to determine what
      * should be displayed by the search box.

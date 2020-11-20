@@ -17,7 +17,7 @@ import com.jamal2367.styx.di.NetworkScheduler
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.dialog.DialogItem
-import com.jamal2367.styx.dialog.LightningDialogBuilder
+import com.jamal2367.styx.dialog.StyxDialogBuilder
 import com.jamal2367.styx.extensions.color
 import com.jamal2367.styx.extensions.drawable
 import com.jamal2367.styx.extensions.inflater
@@ -56,7 +56,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
     @Inject internal lateinit var bookmarkModel: BookmarkRepository
     @Inject internal lateinit var allowListModel: AllowListModel
-    @Inject internal lateinit var bookmarksDialogBuilder: LightningDialogBuilder
+    @Inject internal lateinit var bookmarksDialogBuilder: StyxDialogBuilder
     @Inject internal lateinit var faviconModel: FaviconModel
     @Inject @field:DatabaseScheduler internal lateinit var databaseScheduler: Scheduler
     @Inject @field:NetworkScheduler internal lateinit var networkScheduler: Scheduler

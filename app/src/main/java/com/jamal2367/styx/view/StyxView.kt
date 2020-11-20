@@ -12,8 +12,8 @@ import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.di.injector
-import com.jamal2367.styx.dialog.LightningDialogBuilder
-import com.jamal2367.styx.download.LightningDownloadListener
+import com.jamal2367.styx.dialog.StyxDialogBuilder
+import com.jamal2367.styx.download.StyxDownloadListener
 import com.jamal2367.styx.extensions.canScrollVertically
 import com.jamal2367.styx.isSupported
 import com.jamal2367.styx.log.Logger
@@ -53,11 +53,11 @@ import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 /**
- * [LightningView] acts as a tab for the browser, handling WebView creation and handling logic, as
+ * [StyxView] acts as a tab for the browser, handling WebView creation and handling logic, as
  * well as properly initialing it. All interactions with the WebView should be made through this
  * class.
  */
-class LightningView(
+class StyxView(
     private val activity: Activity,
     tabInitializer: TabInitializer,
     val isIncognito: Boolean,
@@ -73,12 +73,12 @@ class LightningView(
     val id = View.generateViewId()
 
     /**
-     * Getter for the [LightningViewTitle] of the current LightningView instance.
+     * Getter for the [StyxViewTitle] of the current StyxView instance.
      *
-     * @return a NonNull instance of LightningViewTitle
-     * @return a NonNull instance of LightningViewTitle
+     * @return a NonNull instance of StyxViewTitle
+     * @return a NonNull instance of StyxViewTitle
      */
-    val titleInfo: LightningViewTitle
+    val titleInfo: StyxViewTitle
 
     /**
      * Meta theme-color content value as extracted from page HTML
@@ -149,13 +149,13 @@ class LightningView(
     private val maxFling: Float
 
     @Inject internal lateinit var userPreferences: UserPreferences
-    @Inject internal lateinit var dialogBuilder: LightningDialogBuilder
+    @Inject internal lateinit var dialogBuilder: StyxDialogBuilder
     @Inject internal lateinit var proxyUtils: ProxyUtils
     @Inject @field:DatabaseScheduler internal lateinit var databaseScheduler: Scheduler
     @Inject @field:MainScheduler internal lateinit var mainScheduler: Scheduler
     @Inject lateinit var networkConnectivityModel: NetworkConnectivityModel
 
-    private val lightningWebClient: LightningWebClient
+    private val styxWebClient: StyxWebClient
 
     private val networkDisposable: Disposable
 
@@ -221,14 +221,14 @@ class LightningView(
         activity.injector.inject(this)
         uiController = activity as UIController
 
-        titleInfo = LightningViewTitle(activity)
+        titleInfo = StyxViewTitle(activity)
 
         maxFling = ViewConfiguration.get(activity).scaledMaximumFlingVelocity.toFloat()
-        lightningWebClient = LightningWebClient(activity, this)
+        styxWebClient = StyxWebClient(activity, this)
         // Inflate our WebView as loading it from XML layout is needed to be able to set scrollbars color
         val tab = activity.layoutInflater.inflate(R.layout.webview, null) as WebView;
         tab.also { webView = it }.apply {
-            //id = this@LightningView.id
+            //id = this@StyxView.id
             gestureDetector = GestureDetector(activity, CustomGestureListener(this))
 
             isFocusableInTouchMode = true
@@ -245,10 +245,10 @@ class LightningView(
 
             isSaveEnabled = true
             setNetworkAvailable(true)
-            webChromeClient = LightningChromeClient(activity, this@LightningView)
-            webViewClient = lightningWebClient
+            webChromeClient = StyxChromeClient(activity, this@StyxView)
+            webViewClient = styxWebClient
             // We want to receive download complete notifications
-            setDownloadListener(LightningDownloadListener(activity).also { activity.registerReceiver(it, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) })
+            setDownloadListener(StyxDownloadListener(activity).also { activity.registerReceiver(it, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) })
             val tl = TouchListener()
             setOnTouchListener(tl)
             // For older devices show Tool Bar On Page Top won't work after fling to top.
@@ -283,9 +283,9 @@ class LightningView(
             .subscribe(::setNetworkAvailable)
     }
 
-    fun currentSslState(): SslState = lightningWebClient.sslState
+    fun currentSslState(): SslState = styxWebClient.sslState
 
-    fun sslStateObservable(): Observable<SslState> = lightningWebClient.sslStateObservable()
+    fun sslStateObservable(): Observable<SslState> = styxWebClient.sslStateObservable()
 
     /**
      * This method loads the homepage for the browser. Either it loads the URL stored as the
@@ -321,7 +321,7 @@ class LightningView(
     fun initializePreferences() {
         val settings = webView?.settings ?: return
 
-        lightningWebClient.updatePreferences()
+        styxWebClient.updatePreferences()
 
         val modifiesHeaders = userPreferences.doNotTrackEnabled
             || userPreferences.saveDataEnabled
@@ -397,7 +397,7 @@ class LightningView(
     }
 
     /**
-     * Initialize the settings of the WebView that are intrinsic to Lightning and cannot be altered
+     * Initialize the settings of the WebView that are intrinsic to Styx and cannot be altered
      * by the user. Distinguish between Incognito and Regular tabs here.
      */
     @SuppressLint("NewApi")
@@ -431,8 +431,6 @@ class LightningView(
             allowFileAccess = true
             allowFileAccessFromFileURLs = false
             allowUniversalAccessFromFileURLs = false
-            // Needed to prevent CTRL+TAB to scroll back to top of the page
-            // See: https://github.com/Slion/Fulguris/issues/82
             setNeedInitialFocus(false)
 
             getPathObservable("appcache")
@@ -524,7 +522,7 @@ class LightningView(
     /**
      * This method forces the layer type to hardware, which
      * enables hardware rendering on the WebView instance
-     * of the current LightningView.
+     * of the current StyxView.
      */
     private fun setHardwareRendering() {
         webView?.setLayerType(View.LAYER_TYPE_HARDWARE, paint)
@@ -542,7 +540,7 @@ class LightningView(
     /**
      * This method forces the layer type to software, which
      * disables hardware rendering on the WebView instance
-     * of the current LightningView and makes the CPU render
+     * of the current StyxView and makes the CPU render
      * the view.
      */
     fun setSoftwareRendering() {
@@ -551,7 +549,7 @@ class LightningView(
 
     /**
      * Sets the current rendering color of the WebView instance
-     * of the current LightningView. The for modes are normal
+     * of the current StyxView. The for modes are normal
      * rendering, inverted rendering, grayscale rendering,
      * and inverted grayscale rendering
      *
@@ -698,7 +696,7 @@ class LightningView(
      * Notify the tab to shutdown and destroy
      * its WebView instance and to remove the reference
      * to it. After this method is called, the current
-     * instance of the LightningView is useless as
+     * instance of the StyxView is useless as
      * the WebView cannot be recreated using the public
      * api.
      */
@@ -988,9 +986,9 @@ class LightningView(
      * reference to the WebView and therefore will not
      * leak it if the WebView is garbage collected.
      */
-    private class WebViewHandler(view: LightningView) : Handler() {
+    private class WebViewHandler(view: StyxView) : Handler() {
 
-        private val reference: WeakReference<LightningView> = WeakReference(view)
+        private val reference: WeakReference<StyxView> = WeakReference(view)
 
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
@@ -1005,7 +1003,7 @@ class LightningView(
         public const val KHtmlMetaThemeColorInvalid: Int = Color.TRANSPARENT
         public const val KFetchMetaThemeColorTries: Int = 6
 
-        private const val TAG = "LightningView"
+        private const val TAG = "StyxView"
 
         const val HEADER_REQUESTED_WITH = "X-Requested-With"
         const val HEADER_WAP_PROFILE = "X-Wap-Profile"

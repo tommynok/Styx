@@ -6,12 +6,12 @@ import android.content.Context
 import android.graphics.Bitmap
 
 /**
- * [LightningViewTitle] acts as a container class
+ * [StyxViewTitle] acts as a container class
  * for the favicon and page title, the information used
  * by the tab adapters to show the tabs to the user.
  * TODO: Add HTML meta theme color?
  */
-class LightningViewTitle(context: Context) {
+class StyxViewTitle(context: Context) {
 
     private var favicon: Bitmap? = null
     private var title = context.getString(R.string.action_new_tab)

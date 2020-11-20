@@ -7,7 +7,7 @@ import com.jamal2367.styx.list.HorizontalItemAnimator
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.TabDesktopViewBinding
 import com.jamal2367.styx.extensions.inflater
-import com.jamal2367.styx.view.LightningView
+import com.jamal2367.styx.view.StyxView
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -91,7 +91,7 @@ class TabsDesktopView @JvmOverloads constructor(
     }
 
     private fun displayTabs() {
-        tabsAdapter.showTabs(uiController.getTabModel().allTabs.map(LightningView::asTabViewState))
+        tabsAdapter.showTabs(uiController.getTabModel().allTabs.map(StyxView::asTabViewState))
     }
 
     override fun tabsInitialized() {

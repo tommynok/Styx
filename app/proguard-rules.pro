@@ -24,7 +24,7 @@
 }
 
 # Without this rule, openFileChooser does not get called on KitKat
--keep class com.jamal2367.styx.view.LightningView$LightningChromeClient {
+-keep class com.jamal2367.styx.view.StyxView$StyxChromeClient {
     void openFileChooser(android.webkit.ValueCallback);
     void openFileChooser(android.webkit.ValueCallback, java.lang.String);
     void openFileChooser(android.webkit.ValueCallback, java.lang.String, java.lang.String);

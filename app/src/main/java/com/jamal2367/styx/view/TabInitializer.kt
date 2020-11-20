@@ -24,12 +24,12 @@ import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 /**
- * An initializer that is run on a [LightningView] after it is created.
+ * An initializer that is run on a [StyxView] after it is created.
  */
 interface TabInitializer {
 
     /**
-     * Initialize the [WebView] instance held by the [LightningView]. If a url is loaded, the
+     * Initialize the [WebView] instance held by the [StyxView]. If a url is loaded, the
      * provided [headers] should be used to load the url.
      */
     fun initialize(webView: WebView, headers: Map<String, String>)

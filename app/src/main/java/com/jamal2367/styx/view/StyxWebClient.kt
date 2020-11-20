@@ -22,7 +22,7 @@ import com.jamal2367.styx.utils.IntentUtils
 import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
-import com.jamal2367.styx.view.LightningView.Companion.KFetchMetaThemeColorTries
+import com.jamal2367.styx.view.StyxView.Companion.KFetchMetaThemeColorTries
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -54,9 +54,9 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.math.abs
 
-class LightningWebClient(
+class StyxWebClient(
     private val activity: Activity,
-    private val lightningView: LightningView
+    private val styxView: StyxView
 ) : WebViewClient() {
 
     private val uiController: UIController
@@ -132,7 +132,7 @@ class LightningWebClient(
 
     override fun onLoadResource(view: WebView, url: String?) {
         super.onLoadResource(view, url)
-        if (lightningView.toggleDesktop) {
+        if (styxView.toggleDesktop) {
             // That's needed for desktop mode support
             // See: https://stackoverflow.com/a/60621350/3969362
             // See: https://stackoverflow.com/a/39642318/3969362
@@ -153,15 +153,15 @@ class LightningWebClient(
             view.postInvalidate()
         }
         if (view.title == null || view.title!!.isEmpty()) {
-            lightningView.titleInfo.setTitle(activity.getString(R.string.untitled))
+            styxView.titleInfo.setTitle(activity.getString(R.string.untitled))
         } else {
-            lightningView.titleInfo.setTitle(view.title)
+            styxView.titleInfo.setTitle(view.title)
         }
-        if (lightningView.invertPage) {
+        if (styxView.invertPage) {
             view.evaluateJavascript(invertPageJs.provideJs(), null)
         }
 
-        uiController.tabChanged(lightningView)
+        uiController.tabChanged(styxView)
     }
 
     override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
@@ -174,16 +174,16 @@ class LightningWebClient(
                 SslState.None
             }
         }
-        lightningView.titleInfo.setFavicon(null)
-        if (lightningView.isShown) {
+        styxView.titleInfo.setFavicon(null)
+        if (styxView.isShown) {
             uiController.updateUrl(url, true)
             uiController.showActionBar()
         }
 
         // Try to fetch meta theme color a few times
-        lightningView.fetchMetaThemeColorTries = KFetchMetaThemeColorTries;
+        styxView.fetchMetaThemeColorTries = KFetchMetaThemeColorTries;
 
-        uiController.tabChanged(lightningView)
+        uiController.tabChanged(styxView)
     }
 
     override fun onReceivedHttpAuthRequest(
@@ -217,7 +217,7 @@ class LightningWebClient(
     }
 
     override fun onScaleChanged(view: WebView, oldScale: Float, newScale: Float) {
-        if (view.isShown && lightningView.userPreferences.textReflowEnabled) {
+        if (view.isShown && styxView.userPreferences.textReflowEnabled) {
             if (isRunning)
                 return
             val changeInPercent = abs(100 - 100 / zoomScale * newScale)
@@ -304,9 +304,9 @@ class LightningWebClient(
             return true
         }
 
-        val headers = lightningView.requestHeaders
+        val headers = styxView.requestHeaders
 
-        if (lightningView.isIncognito) {
+        if (styxView.isIncognito) {
             // If we are in incognito, immediately load, we don't want the url to leave the app
             return continueLoadingUrl(view, url, headers)
         }
@@ -423,7 +423,7 @@ class LightningWebClient(
                 try {
                     activity.startActivity(intent)
                 } catch (e: Exception) {
-                    println("LightningWebClient: cannot open downloaded file")
+                    println("StyxWebClient: cannot open downloaded file")
                 }
 
             } else {
@@ -461,7 +461,7 @@ class LightningWebClient(
 
     companion object {
 
-        private const val TAG = "LightningWebClient"
+        private const val TAG = "StyxWebClient"
 
     }
 }

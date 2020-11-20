@@ -5,8 +5,8 @@ package com.jamal2367.styx.controller
 
 import com.jamal2367.styx.browser.TabsManager
 import com.jamal2367.styx.database.Bookmark
-import com.jamal2367.styx.dialog.LightningDialogBuilder
-import com.jamal2367.styx.view.LightningView
+import com.jamal2367.styx.dialog.StyxDialogBuilder
+import com.jamal2367.styx.view.StyxView
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -109,7 +109,7 @@ interface UIController {
      * Notify the browser that the website currently being displayed by the [tab] wants to be
      * closed.
      */
-    fun onCloseWindow(tab: LightningView)
+    fun onCloseWindow(tab: StyxView)
 
     /**
      * Hide the search bar from view via animation.
@@ -169,7 +169,7 @@ interface UIController {
     /**
      * Notify the UI that the [tab] should be displayed.
      */
-    fun tabChanged(tab: LightningView)
+    fun tabChanged(tab: StyxView)
 
     /**
      * Notify the browser that the user pressed the back button.
@@ -210,7 +210,7 @@ interface UIController {
      * Notify the controller that a new tab action has originated from a dialog with the [url] and
      * the provided [newTabType].
      */
-    fun handleNewTab(newTabType: LightningDialogBuilder.NewTab, url: String)
+    fun handleNewTab(newTabType: StyxDialogBuilder.NewTab, url: String)
 
     /**
      *
