@@ -33,11 +33,6 @@
         app:title="@string/settings_advanced"/>
 
     <Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.DebugSettingsFragment"
-        app:title="@string/debug_title"
-        app:icon="@drawable/ic_bug" />
-
-    <Preference
         app:fragment="com.jamal2367.styx.settings.fragment.AppsSettingsFragment"
         app:summary="@string/settings_summary_apps"
         app:title="@string/settings_title_apps"

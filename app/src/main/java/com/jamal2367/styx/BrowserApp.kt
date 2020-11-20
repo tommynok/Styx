@@ -17,7 +17,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Build
-import android.os.Debug
 import android.os.StrictMode
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatDelegate
@@ -40,7 +39,7 @@ class BrowserApp : Application() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        if (BuildConfig.DEBUG && Build.VERSION.SDK_INT < 21) {
+        if (Build.VERSION.SDK_INT < 21) {
             installMultiDex(context = base)
         }
     }
@@ -83,7 +82,7 @@ class BrowserApp : Application() {
         }
 
         RxJavaPlugins.setErrorHandler { throwable: Throwable? ->
-            if (BuildConfig.DEBUG && throwable != null) {
+            if (throwable != null) {
                 FileUtils.writeCrashToStorage(throwable)
                 throw throwable
             }
@@ -103,10 +102,6 @@ class BrowserApp : Application() {
             }
             .subscribeOn(databaseScheduler)
             .subscribe()
-
-        if (buildInfo.buildType == BuildType.DEBUG) {
-            WebView.setWebContentsDebuggingEnabled(true)
-        }
 
         registerActivityLifecycleCallbacks(object : MemoryLeakUtils.LifecycleAdapter() {
             override fun onActivityDestroyed(activity: Activity) {
