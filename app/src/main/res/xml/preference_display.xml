@@ -2,11 +2,11 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/settings_display" app:iconSpaceReserved="false">
+    <PreferenceCategory android:title="@string/settings_display">
     <Preference
         android:key="@string/pref_key_theme"
         android:title="@string/theme"
-        app:icon="@drawable/ic_palette" />
+        app:icon="@drawable/ic_brush" />
 
     <Preference
         android:key="@string/pref_key_browser_text_size"
@@ -24,7 +24,7 @@
         app:icon="@drawable/ic_short_text" />
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/pref_category_portrait" app:iconSpaceReserved="false">
+    <PreferenceCategory android:title="@string/pref_category_portrait">
 
         <SwitchPreferenceCompat
             android:defaultValue="@bool/pref_default_portrait_pull_to_refresh"
@@ -56,7 +56,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_landscape" app:iconSpaceReserved="false">
+    <PreferenceCategory android:title="@string/pref_category_landscape">
 
         <SwitchPreferenceCompat
             android:defaultValue="@bool/pref_default_landscape_pull_to_refresh"
@@ -88,7 +88,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_general" app:iconSpaceReserved="false">
+    <PreferenceCategory android:title="@string/pref_category_general">
 
         <SwitchPreferenceCompat
             android:defaultValue="true"

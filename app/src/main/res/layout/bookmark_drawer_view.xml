@@ -31,7 +31,7 @@
                 android:background="?attr/actionBarItemBackground"
                 android:contentDescription="@string/action_back"
                 android:scaleType="center"
-                app:srcCompat="@drawable/ic_bookmarks" />
+                app:srcCompat="@drawable/ic_bookmark_border" />
 
             <TextView
                 android:layout_width="match_parent"

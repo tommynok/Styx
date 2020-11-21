@@ -10,30 +10,7 @@
     android:layout_marginRight="5dp"
     android:animateLayoutChanges="true">
 
-
     <include layout="@layout/search" />
-
-    <!--
-
-        android:layout_width="?attr/actionBarSize"
-            Not using this anymore for now
-
-        android:background="?attr/actionBarItemBackground"
-            Background is needed to have nice round focus highlight and tap animation
-
-        style="?android:attr/actionButtonStyle"
-            Interesting style for our toolbar buttons it includes the above background
-    -->
-
-
-    <!--
-    // Can't get data binding to work just duplicate code for now
-    <include layout="@layout/toolbar_button"
-        android:id="@+id/button_more"
-        app:mySrc="@{@drawable/ic_more_vertical}"
-        app:myText="@{`my text`}"
-        />
--->
 
     <ImageButton
         android:id="@+id/button_reload"
