@@ -59,10 +59,6 @@ class TabsDesktopView @JvmOverloads constructor(
      * Enable tool bar buttons according to current state of things
      */
     private fun updateTabActionButtons() {
-        // If more than one tab, enable close all tabs button
-        action_close_all_tabs.isEnabled = uiController.getTabModel().allTabs.count()>1
-        // If we have more than one tab in our closed tabs list enable restore all pages button
-        action_restore_all_pages.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>1
         // If we have at least one tab in our closed tabs list enable restore page button
         action_restore_page.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>0
     }
