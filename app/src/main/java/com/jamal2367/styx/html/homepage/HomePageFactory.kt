@@ -26,16 +26,14 @@ class HomePageFactory @Inject constructor(
     private val homePageReader: HomePageReader
 ) : HtmlPageFactory {
 
-    private val title = application.getString(R.string.home)
-
     override fun buildPage(): Single<String> = Single
         .just(searchEngineProvider.provideSearchEngine())
         .map { (iconUrl, queryUrl, _) ->
             parse(homePageReader.provideHtml()
+                    .replace("\${TITLE}", application.getString(R.string.home))
                     .replace("\${backgroundColor}", htmlColor(ThemeUtils.getPrimaryColor(BrowserApp.currentContext())))
                     .replace("\${search}", application.getString(R.string.search_homepage))
             ) andBuild {
-                title { title }
                 charset { UTF8 }
                 body {
                     id("image_url") { attr("src", iconUrl) }
