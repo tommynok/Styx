@@ -4,9 +4,9 @@
     package="com.jamal2367.styx">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -89,10 +89,6 @@
                 <data android:scheme="about"/>
                 <data android:scheme="javascript"/>
             </intent-filter>
-            <!--
-                  For these schemes where any of these particular MIME types
-                  have been supplied, we are a good candidate.
-            -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -107,7 +103,6 @@
                 <data android:mimeType="application/xhtml+xml"/>
                 <data android:mimeType="application/vnd.wap.xhtml+xml"/>
             </intent-filter>
-            <!-- For viewing saved web archives. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
