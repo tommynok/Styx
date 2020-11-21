@@ -12,14 +12,12 @@ import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.DeveloperPreferences
 import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.MemoryLeakUtils
-import com.jamal2367.styx.utils.installMultiDex
 import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Build
 import android.os.StrictMode
 import android.webkit.WebView
-import androidx.appcompat.app.AppCompatDelegate
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.plugins.RxJavaPlugins
@@ -35,14 +33,6 @@ class BrowserApp : Application() {
     @Inject internal lateinit var buildInfo: BuildInfo
 
     lateinit var applicationComponent: AppComponent
-
-
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-        if (Build.VERSION.SDK_INT < 21) {
-            installMultiDex(context = base)
-        }
-    }
 
     override fun onCreate() {
         // SL: Use this to debug when launched from another app for instance
@@ -148,10 +138,6 @@ class BrowserApp : Application() {
             {
                 return instance.applicationContext
             }
-        }
-
-        init {
-            AppCompatDelegate.setCompatVectorFromResourcesEnabled(Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT)
         }
     }
 

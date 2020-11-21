@@ -3,10 +3,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,15 +69,8 @@
                 android:contentDescription="@string/action_show_homepage"
                 app:tooltipText="@{@string/action_show_homepage}"
                 app:srcCompat="@drawable/ic_action_home" />
-
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:layout_constraintBottom_toBottomOf="@id/header" />
-
-        <!-- paddingBottom to make sure fading edge is working with our fancy background -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,13 +91,6 @@
                     android:drawableStart="@drawable/ic_action_plus"
                     android:text="@string/action_new_tab" />
 
-                <!--
-                            <Button
-                                android:id="@+id/menuItemBookmarks"
-                                style="@style/BrowserTextMenuItem"
-                                android:drawableStart="@drawable/ic_action_star"
-                                android:text="@string/action_bookmarks" />
-                -->
                 <Button
                     android:id="@+id/menuItemAddBookmark"
                     style="@style/BrowserTextMenuItem"
@@ -175,12 +157,8 @@
                     style="@style/BrowserTextMenuItem"
                     android:drawableStart="@drawable/ic_settings"
                     android:text="@string/settings" />
-
-
             </LinearLayout>
 
         </ScrollView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

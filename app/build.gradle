@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.jamal2367.stxy"
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 16
         versionName "1.6.0"

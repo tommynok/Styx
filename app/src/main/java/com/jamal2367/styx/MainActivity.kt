@@ -2,11 +2,8 @@ package com.jamal2367.styx
 
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import android.content.Intent
-import android.os.Build
 import android.view.KeyEvent
-import android.view.Menu
 import android.webkit.CookieManager
-import android.webkit.CookieSyncManager
 import io.reactivex.Completable
 
 class MainActivity : BrowserActivity() {
@@ -14,12 +11,8 @@ class MainActivity : BrowserActivity() {
     @Suppress("DEPRECATION")
     public override fun updateCookiePreference(): Completable = Completable.fromAction {
         val cookieManager = CookieManager.getInstance()
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            CookieSyncManager.createInstance(this@MainActivity)
-        }
         cookieManager.setAcceptCookie(userPreferences.cookiesEnabled)
     }
-
 
     override fun onNewIntent(intent: Intent) =
         if (intent.action == INTENT_PANIC_TRIGGER) {
@@ -57,6 +50,5 @@ class MainActivity : BrowserActivity() {
         }
         return super.dispatchKeyEvent(event)
     }
-
 
 }

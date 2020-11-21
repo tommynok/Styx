@@ -7,7 +7,6 @@ import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.ThemeUtils
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.annotation.StyleRes
@@ -61,12 +60,10 @@ abstract class ThemableBrowserActivity : AppCompatActivity() {
     }
 
     private fun resetPreferences() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (userPreferences.useBlackStatusBar) {
-                window.statusBarColor = Color.BLACK
-            } else {
-                window.statusBarColor = ThemeUtils.getStatusBarColor(this)
-            }
+        if (userPreferences.useBlackStatusBar) {
+            window.statusBarColor = Color.BLACK
+        } else {
+            window.statusBarColor = ThemeUtils.getStatusBarColor(this)
         }
     }
 

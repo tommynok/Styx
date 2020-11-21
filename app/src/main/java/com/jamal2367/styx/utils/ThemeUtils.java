@@ -130,9 +130,6 @@ public final class ThemeUtils {
 
         Preconditions.checkNonNull(drawable);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            drawable = (DrawableCompat.wrap(drawable)).mutate();
-        }
         return drawable;
     }
 

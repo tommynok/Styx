@@ -665,10 +665,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
         override fun onDrawerStateChanged(arg: Int) {
 
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                return;
-            }
-
             // Make sure status bar icons have the proper color set when we start opening and closing a drawer
             // We set status bar icon color according to current theme
             if (arg == ViewDragHelper.STATE_SETTLING) {
@@ -1615,10 +1611,8 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
     private fun setStatusBarColor(color: Int, darkIcons: Boolean) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // You don't want this as it somehow prevents smooth transition of tool bar when opening drawer
-            //window.statusBarColor = R.color.transparent
-        }
+        // You don't want this as it somehow prevents smooth transition of tool bar when opening drawer
+        //window.statusBarColor = R.color.transparent
         backgroundDrawable.color = color
         window.setBackgroundDrawable(backgroundDrawable)
         // That if statement is preventing us to change the icons color while a drawer is showing
@@ -2010,30 +2004,19 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode == FILE_CHOOSER_REQUEST_CODE) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                val result = if (intent == null || resultCode != Activity.RESULT_OK) {
-                    null
+            val results: Array<Uri>? = if (resultCode == Activity.RESULT_OK) {
+                if (intent == null) {
+                    // If there is not data, then we may have taken a photo
+                    cameraPhotoPath?.let { arrayOf(it.toUri()) }
                 } else {
-                    intent.data
+                    intent.dataString?.let { arrayOf(it.toUri()) }
                 }
-
-                uploadMessageCallback?.onReceiveValue(result)
-                uploadMessageCallback = null
             } else {
-                val results: Array<Uri>? = if (resultCode == Activity.RESULT_OK) {
-                    if (intent == null) {
-                        // If there is not data, then we may have taken a photo
-                        cameraPhotoPath?.let { arrayOf(it.toUri()) }
-                    } else {
-                        intent.dataString?.let { arrayOf(it.toUri()) }
-                    }
-                } else {
-                    null
-                }
-
-                filePathCallback?.onReceiveValue(results)
-                filePathCallback = null
+                null
             }
+
+            filePathCallback?.onReceiveValue(results)
+            filePathCallback = null
         } else {
             super.onActivityResult(requestCode, resultCode, intent)
         }

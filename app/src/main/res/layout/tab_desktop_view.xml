@@ -18,7 +18,6 @@
         android:layout_height="match_parent"
         android:background="?attr/colorPrimary">
 
-    <!-- SL: requiresFadingEdge not working for some reason-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tabs_list"
         android:layout_weight="1"
@@ -28,31 +27,6 @@
         android:overScrollMode="never"
         android:scrollbars="none"
          />
-
-
-        <ImageButton
-            android:id="@+id/action_close_all_tabs"
-            style="?android:attr/actionButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/action_close_all_other_tabs"
-            app:tooltipText="@{@string/action_close_all_other_tabs}"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_delete_sweep"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-            />
-
-        <ImageButton
-            android:id="@+id/action_restore_all_pages"
-            style="?android:attr/actionButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/action_restore_all_tabs"
-            app:tooltipText="@{@string/action_restore_all_tabs}"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_restore_from_trash"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-            />
 
         <ImageButton
             android:id="@+id/action_restore_page"

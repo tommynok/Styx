@@ -16,7 +16,6 @@ import com.jamal2367.styx.view.StyxView
 import android.app.Activity
 import android.os.Bundle
 import android.webkit.WebView
-import androidx.fragment.app.FragmentActivity
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import javax.inject.Inject
@@ -161,7 +160,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
     private fun clearCookies(): Completable = Completable.fromAction {
         val activity = activity
         if (activity != null) {
-            WebUtils.clearCookies(activity)
+            WebUtils.clearCookies()
         } else {
             throw RuntimeException("Activity was null in clearCookies")
         }

@@ -233,10 +233,6 @@ class StyxView(
 
             isFocusableInTouchMode = true
             isFocusable = true
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                isAnimationCacheEnabled = false
-                isAlwaysDrawnWithCacheEnabled = false
-            }
             setBackgroundColor(Color.WHITE)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -390,10 +386,8 @@ class StyxView(
 
         settings.textZoom = userPreferences.browserTextSize +  MIN_BROWSER_TEXT_SIZE
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            CookieManager.getInstance().setAcceptThirdPartyCookies(webView,
-                !userPreferences.blockThirdPartyCookiesEnabled)
-        }
+        CookieManager.getInstance().setAcceptThirdPartyCookies(webView,
+            !userPreferences.blockThirdPartyCookiesEnabled)
     }
 
     /**

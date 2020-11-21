@@ -4,10 +4,7 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
-import android.view.Menu
 import android.webkit.CookieManager
-import android.webkit.CookieSyncManager
 import io.reactivex.Completable
 
 class IncognitoActivity : BrowserActivity() {
@@ -17,9 +14,6 @@ class IncognitoActivity : BrowserActivity() {
     @Suppress("DEPRECATION")
     public override fun updateCookiePreference(): Completable = Completable.fromAction {
         val cookieManager = CookieManager.getInstance()
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            CookieSyncManager.createInstance(this@IncognitoActivity)
-        }
         if (Capabilities.FULL_INCOGNITO.isSupported) {
             cookieManager.setAcceptCookie(userPreferences.cookiesEnabled)
         } else {

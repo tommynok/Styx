@@ -1,17 +1,15 @@
 package com.jamal2367.styx.utils;
 
 import android.content.Context;
-import android.os.Build;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewDatabase;
-
-import com.jamal2367.styx.database.history.HistoryRepository;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import io.reactivex.Scheduler;
+
+import com.jamal2367.styx.database.history.HistoryRepository;
 
 /**
  * Copyright 8/4/2015 Anthony Restaino
@@ -20,15 +18,9 @@ public final class WebUtils {
 
     private WebUtils() {}
 
-    public static void clearCookies(@NonNull Context context) {
+    public static void clearCookies() {
         CookieManager c = CookieManager.getInstance();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            c.removeAllCookies(null);
-        } else {
-            //noinspection deprecation
-            CookieSyncManager.createInstance(context);
-            c.removeAllCookie();
-        }
+        c.removeAllCookies(null);
     }
 
     public static void clearWebStorage() {

@@ -9,7 +9,6 @@ import com.jamal2367.styx.utils.ThemeUtils
 import com.jamal2367.styx.utils.foregroundColorFromBackgroundColor
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import javax.inject.Inject
@@ -32,7 +31,6 @@ abstract class ThemableSettingsActivity : AppCompatActivity() {
         resetPreferences()
     }
 
-
     protected fun applyTheme(themeId: AppTheme) {
         when (themeId) {
             AppTheme.LIGHT -> {
@@ -50,14 +48,11 @@ abstract class ThemableSettingsActivity : AppCompatActivity() {
         }
     }
 
-
     private fun resetPreferences() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (userPreferences.useBlackStatusBar) {
-                window.statusBarColor = Color.BLACK
-            } else {
-                window.statusBarColor = ThemeUtils.getStatusBarColor(this)
-            }
+        if (userPreferences.useBlackStatusBar) {
+            window.statusBarColor = Color.BLACK
+        } else {
+            window.statusBarColor = ThemeUtils.getStatusBarColor(this)
         }
     }
 
