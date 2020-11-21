@@ -34,7 +34,7 @@
 
     <application
         android:name=".BrowserApp"
-        android:allowBackup="true"
+        android:fullBackupContent="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher"
