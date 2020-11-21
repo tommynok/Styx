@@ -1,6 +1,5 @@
 package com.jamal2367.styx.database.bookmark;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
@@ -18,7 +17,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jamal2367.styx.BrowserApp;
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.database.Bookmark;
 import com.jamal2367.styx.database.WebPageKt;
@@ -67,12 +65,12 @@ public final class BookmarkExporter {
                     JSONObject object = new JSONObject(line);
                     final String folderTitle = object.getString(KEY_FOLDER);
                     bookmarks.add(
-                        new Bookmark.Entry(
-                            object.getString(KEY_URL),
-                            object.getString(KEY_TITLE),
-                            object.getInt(KEY_ORDER),
-                            WebPageKt.asFolder(folderTitle)
-                        )
+                            new Bookmark.Entry(
+                                    object.getString(KEY_URL),
+                                    object.getString(KEY_TITLE),
+                                    object.getInt(KEY_ORDER),
+                                    WebPageKt.asFolder(folderTitle)
+                            )
                     );
                 } catch (JSONException e) {
                     Log.e(TAG, "Can't parse line " + line, e);
@@ -143,10 +141,10 @@ public final class BookmarkExporter {
                 JSONObject object = new JSONObject(line);
                 final String folderName = object.getString(KEY_FOLDER);
                 final Bookmark.Entry entry = new Bookmark.Entry(
-                    object.getString(KEY_URL),
-                    object.getString(KEY_TITLE),
-                    object.getInt(KEY_ORDER),
-                    WebPageKt.asFolder(folderName)
+                        object.getString(KEY_URL),
+                        object.getString(KEY_TITLE),
+                        object.getInt(KEY_ORDER),
+                        WebPageKt.asFolder(folderName)
                 );
                 bookmarks.add(entry);
             }
@@ -169,19 +167,15 @@ public final class BookmarkExporter {
     @WorkerThread
     @NonNull
     public static File createNewExportFile() {
-        // SL: Environment.getExternalStoragePublicDirectory has been deprecated
-        // While it still returns a valid path on Android 10/Q apps can't read/write from there anymore
-        // The following gives us a path we can write into
-        File folder = BrowserApp.instance.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
         File bookmarksExport = new File(
-            folder,
-            "BookmarksExport.txt");
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                "BookmarksExport.txt");
         int counter = 0;
         while (bookmarksExport.exists()) {
             counter++;
             bookmarksExport = new File(
-                folder,
-                "BookmarksExport-" + counter + ".txt");
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                    "BookmarksExport-" + counter + ".txt");
         }
 
         return bookmarksExport;

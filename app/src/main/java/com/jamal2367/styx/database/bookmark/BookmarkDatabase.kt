@@ -26,7 +26,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class BookmarkDatabase @Inject constructor(
-    application: Application
+        application: Application
 ) : SQLiteOpenHelper(application, DATABASE_NAME, null, DATABASE_VERSION), BookmarkRepository {
 
     private val defaultBookmarkTitle: String = application.getString(R.string.untitled)
@@ -35,12 +35,12 @@ class BookmarkDatabase @Inject constructor(
     // Creating Tables
     override fun onCreate(db: SQLiteDatabase) {
         val createBookmarkTable = "CREATE TABLE ${DatabaseUtils.sqlEscapeString(TABLE_BOOKMARK)}(" +
-            "${DatabaseUtils.sqlEscapeString(KEY_ID)} INTEGER PRIMARY KEY," +
-            "${DatabaseUtils.sqlEscapeString(KEY_URL)} TEXT," +
-            "${DatabaseUtils.sqlEscapeString(KEY_TITLE)} TEXT," +
-            "${DatabaseUtils.sqlEscapeString(KEY_FOLDER)} TEXT," +
-            "${DatabaseUtils.sqlEscapeString(KEY_POSITION)} INTEGER" +
-            ')'
+                "${DatabaseUtils.sqlEscapeString(KEY_ID)} INTEGER PRIMARY KEY," +
+                "${DatabaseUtils.sqlEscapeString(KEY_URL)} TEXT," +
+                "${DatabaseUtils.sqlEscapeString(KEY_TITLE)} TEXT," +
+                "${DatabaseUtils.sqlEscapeString(KEY_FOLDER)} TEXT," +
+                "${DatabaseUtils.sqlEscapeString(KEY_POSITION)} INTEGER" +
+                ')'
         db.execSQL(createBookmarkTable)
     }
 
@@ -63,14 +63,14 @@ class BookmarkDatabase @Inject constructor(
     private fun queryWithOptionalEndSlash(url: String): Cursor {
         val alternateUrl = alternateSlashUrl(url)
         return database.query(
-            TABLE_BOOKMARK,
-            null,
-            "$KEY_URL=? OR $KEY_URL=?",
-            arrayOf(url, alternateUrl),
-            null,
-            null,
-            null,
-            "1"
+                TABLE_BOOKMARK,
+                null,
+                "$KEY_URL=? OR $KEY_URL=?",
+                arrayOf(url, alternateUrl),
+                null,
+                null,
+                null,
+                "1"
         )
     }
 
@@ -84,9 +84,9 @@ class BookmarkDatabase @Inject constructor(
      */
     private fun deleteWithOptionalEndSlash(url: String): Int {
         return database.delete(
-            TABLE_BOOKMARK,
-            "$KEY_URL=? OR $KEY_URL=?",
-            arrayOf(url, alternateSlashUrl(url))
+                TABLE_BOOKMARK,
+                "$KEY_URL=? OR $KEY_URL=?",
+                arrayOf(url, alternateSlashUrl(url))
         )
     }
 
@@ -101,19 +101,19 @@ class BookmarkDatabase @Inject constructor(
      */
     private fun updateWithOptionalEndSlash(url: String, contentValues: ContentValues): Int {
         var updatedRows = database.update(
-            TABLE_BOOKMARK,
-            contentValues,
-            "$KEY_URL=?",
-            arrayOf(url)
+                TABLE_BOOKMARK,
+                contentValues,
+                "$KEY_URL=?",
+                arrayOf(url)
         )
 
         if (updatedRows == 0) {
             val alternateUrl = alternateSlashUrl(url)
             updatedRows = database.update(
-                TABLE_BOOKMARK,
-                contentValues,
-                "$KEY_URL=?",
-                arrayOf(alternateUrl)
+                    TABLE_BOOKMARK,
+                    contentValues,
+                    "$KEY_URL=?",
+                    arrayOf(alternateUrl)
             )
         }
 
@@ -138,9 +138,9 @@ class BookmarkDatabase @Inject constructor(
         }
 
         val id = database.insert(
-            TABLE_BOOKMARK,
-            null,
-            entry.bindBookmarkToContentValues()
+                TABLE_BOOKMARK,
+                null,
+                entry.bindBookmarkToContentValues()
         )
 
         return@fromCallable id != -1L
@@ -171,9 +171,8 @@ class BookmarkDatabase @Inject constructor(
         database.update(TABLE_BOOKMARK, contentValues, "$KEY_FOLDER=?", arrayOf(oldName))
     }
 
-    override fun deleteFolder(folderToDelete: String): Completable = Completable.fromAction {
-        renameFolder(folderToDelete, "").subscribe()
-    }
+    override fun deleteFolder(folderToDelete: String): Completable =
+            Completable.fromAction(renameFolder(folderToDelete, "")::subscribe)
 
     override fun deleteAllBookmarks(): Completable = Completable.fromAction {
         database.run {
@@ -190,32 +189,49 @@ class BookmarkDatabase @Inject constructor(
 
     override fun getAllBookmarksSorted(): Single<List<Bookmark.Entry>> = Single.fromCallable {
         return@fromCallable database.query(
-            TABLE_BOOKMARK,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "$KEY_FOLDER, $KEY_POSITION ASC, $KEY_TITLE COLLATE NOCASE ASC, $KEY_URL ASC"
+                TABLE_BOOKMARK,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "$KEY_FOLDER, $KEY_POSITION ASC, $KEY_TITLE COLLATE NOCASE ASC, $KEY_URL ASC"
         ).useMap { it.bindToBookmarkEntry() }
     }
 
     override fun getBookmarksFromFolderSorted(folder: String?): Single<List<Bookmark>> = Single.fromCallable {
         val finalFolder = folder ?: ""
         return@fromCallable database.query(
-            TABLE_BOOKMARK,
-            null,
-            "$KEY_FOLDER=?",
-            arrayOf(finalFolder),
-            null,
-            null,
-            "$KEY_POSITION ASC, $KEY_TITLE COLLATE NOCASE ASC, $KEY_URL ASC"
+                TABLE_BOOKMARK,
+                null,
+                "$KEY_FOLDER=?",
+                arrayOf(finalFolder),
+                null,
+                null,
+                "$KEY_POSITION ASC, $KEY_TITLE COLLATE NOCASE ASC, $KEY_URL ASC"
         ).useMap { it.bindToBookmarkEntry() }
     }
 
     override fun getFoldersSorted(): Single<List<Bookmark.Folder>> = Single.fromCallable {
         return@fromCallable database
-            .query(
+                .query(
+                        true,
+                        TABLE_BOOKMARK,
+                        arrayOf(KEY_FOLDER),
+                        null,
+                        null,
+                        null,
+                        null,
+                        "$KEY_FOLDER ASC",
+                        null
+                )
+                .useMap { it.getString(it.getColumnIndex(KEY_FOLDER)) }
+                .filter { !it.isNullOrEmpty() }
+                .map(String::asFolder)
+    }
+
+    override fun getFolderNames(): Single<List<String>> = Single.fromCallable {
+        return@fromCallable database.query(
                 true,
                 TABLE_BOOKMARK,
                 arrayOf(KEY_FOLDER),
@@ -225,25 +241,8 @@ class BookmarkDatabase @Inject constructor(
                 null,
                 "$KEY_FOLDER ASC",
                 null
-            )
-            .useMap { it.getString(it.getColumnIndex(KEY_FOLDER)) }
-            .filter { !it.isNullOrEmpty() }
-            .map(String::asFolder)
-    }
-
-    override fun getFolderNames(): Single<List<String>> = Single.fromCallable {
-        return@fromCallable database.query(
-            true,
-            TABLE_BOOKMARK,
-            arrayOf(KEY_FOLDER),
-            null,
-            null,
-            null,
-            null,
-            "$KEY_FOLDER ASC",
-            null
         ).useMap { it.getString(it.getColumnIndex(KEY_FOLDER)) }
-            .filter { !it.isNullOrEmpty() }
+                .filter { !it.isNullOrEmpty() }
     }
 
     override fun count(): Long = DatabaseUtils.queryNumEntries(database, TABLE_BOOKMARK)
@@ -269,10 +268,10 @@ class BookmarkDatabase @Inject constructor(
      * @return a valid item containing all the pertinent information.
      */
     private fun Cursor.bindToBookmarkEntry() = Bookmark.Entry(
-        url = getString(getColumnIndex(KEY_URL)),
-        title = getString(getColumnIndex(KEY_TITLE)),
-        folder = getStringOrNull(getColumnIndex(KEY_FOLDER)).asFolder(),
-        position = getInt(getColumnIndex(KEY_POSITION))
+            url = getString(getColumnIndex(KEY_URL)),
+            title = getString(getColumnIndex(KEY_TITLE)),
+            folder = getStringOrNull(getColumnIndex(KEY_FOLDER)).asFolder(),
+            position = getInt(getColumnIndex(KEY_POSITION))
     )
 
     /**
