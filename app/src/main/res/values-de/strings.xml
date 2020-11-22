@@ -86,7 +86,6 @@
     <string name="developer">Entwickler</string>
     <string name="dialog_adblock_disable_for_site">Werbeblocker für Website deaktivieren</string>
     <string name="dialog_adblock_enable_for_site">Werbeblocker für Website aktivierung</string>
-    <string name="dialog_adobe_not_installed">Adobe Flash Player wurde nicht erkannt.\nBitte installieren Sie den Flash Player.</string>
     <string name="dialog_bookmark">Was möchten Sie mit diesem Lesezeichen tun?</string>
     <string name="dialog_cookies">Möchten Sie alle Cookies löschen?</string>
     <string name="dialog_copy_link">Link kopieren</string>
@@ -128,8 +127,6 @@
     <string name="export_bookmarks">Lesezeichen exportieren</string>
     <string name="faq_description">Häufig gestellte Fragen</string>
     <string name="faq">FAQ</string>
-    <string name="flash_not_supported">Flash Player wird von Ihrem System nicht unterstützt!</string>
-    <string name="flash">Adobe Flash aktivieren</string>
     <string name="folder_custom">Andere</string>
     <string name="folder_default">Standard</string>
     <string name="folder">Ordnername</string>
@@ -299,7 +296,6 @@
     <string name="title_edit_bookmark">Lesezeichen bearbeiten</string>
     <string name="title_error">Fehler</string>
     <string name="title_file_chooser">Dateiauswahl</string>
-    <string name="title_flash">Adobe Flash</string>
     <string name="title_form_resubmission">Formularneuzustellung</string>
     <string name="title_permission_request">Berechtigungs-Anfrage</string>
     <string name="title_rename_folder">Ordner umbenennen</string>
