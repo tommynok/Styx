@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     buildToolsVersion '30.0.2'
 
     defaultConfig {
         applicationId "com.jamal2367.stxy"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 17
         versionName "1.7.0"
         resConfigs "en", "de"
