@@ -54,7 +54,7 @@
     <string name="block_ad_refresh_now">Hosts aktualisieren</string>
     <string name="block_ad_remote_refresh_frequency_description">(Online-Hosts Datei)</string>
     <string name="block_ad_source">Hosts-Datei Quelle</string>
-    <string name="block_ads">Werbeblocker</string>
+    <string name="block_ads">Werbeblocker aktivieren</string>
     <string name="block_remote_frequency_daily">Täglich</string>
     <string name="block_remote_frequency_monthly">Monatlich</string>
     <string name="block_remote_frequency_weekly">Wöchentlich</string>
