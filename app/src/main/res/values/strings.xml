@@ -4,26 +4,22 @@
     <string name="action_add_bookmark">Add bookmark</string>
     <string name="action_add_to_homescreen">Add to home screen</string>
     <string name="action_allow">Allow</string>
-    <string name="action_auto">Auto</string>
     <string name="action_back">Back</string>
     <string name="action_blank">Blank page</string>
     <string name="action_bookmarks">Bookmarks</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_close_all_other_tabs">Close all other tabs</string>
-    <string name="action_copy">Copy link</string>
     <string name="action_delete_all_bookmarks">Delete all bookmarks</string>
     <string name="action_delete">Delete</string>
     <string name="action_dont_allow">Don\'t allow</string>
     <string name="action_download">Download</string>
     <string name="action_downloads">Downloads</string>
-    <string name="action_edit">Edit</string>
     <string name="action_find">Find in page</string>
     <string name="action_folder">Folder</string>
     <string name="action_forward">Forward</string>
     <string name="action_history">History</string>
     <string name="action_homepage">Default</string>
     <string name="action_incognito">Go incognito</string>
-    <string name="action_manual">Manual</string>
     <string name="action_message_canceled">Action canceled.</string>
     <string name="action_more">More</string>
     <string name="action_new_tab">New tab</string>
@@ -31,7 +27,6 @@
     <string name="action_ok">OK</string>
     <string name="action_open">Open</string>
     <string name="action_reload">Reload</string>
-    <string name="action_rename">Rename</string>
     <string name="action_restore_all_tabs">Restore all tabs</string>
     <string name="action_restore_tab">Restore tab</string>
     <string name="action_share">Share</string>
@@ -49,27 +44,21 @@
     <string name="agent">User agent</string>
     <string name="android_open_source_project">Android Open Source Project</string>
     <string name="apache">Apache License 2.0</string>
-    <string name="app_restart">Please restart the app for the change to take effect.</string>
     <string name="black_theme">Black (AMOLED)</string>
     <string name="block_ad_refresh_now">Refresh hosts now</string>
     <string name="block_ad_remote_refresh_frequency_description">For remote hosts file</string>
     <string name="block_ad_source">Hosts file source</string>
     <string name="block_ads">Block ads</string>
-    <string name="block_remote_frequency_daily">Daily</string>
-    <string name="block_remote_frequency_monthly">Monthly</string>
-    <string name="block_remote_frequency_weekly">Weekly</string>
     <string name="block_source_default">Default hosts</string>
     <string name="block_source_local_description">File: %1$s</string>
     <string name="block_source_local">Local hosts file</string>
     <string name="block_source_remote_description">URL: %1$s</string>
     <string name="block_source_remote">Remote hosts file</string>
-    <string name="block">Block images</string>
     <string name="bookmark_export_failure">Sorry, bookmarks could not be exported!</string>
     <string name="bookmark_export_path">Bookmarks exported to</string>
     <string name="bookmark_settings">Bookmarks</string>
     <string name="cache">Clear cache on exit</string>
     <string name="cannot_download">Can only download \"http\" or \"https\" URLs.</string>
-    <string name="checking_for_updates">Checking for updates…</string>
     <string name="clear_cache">Clear cache</string>
     <string name="clear_cookies_exit">Clear cookies on exit</string>
     <string name="clear_cookies">Clear browser cookies</string>
@@ -86,20 +75,13 @@
     <string name="developer">Developer</string>
     <string name="dialog_adblock_disable_for_site">Disable ad block for site</string>
     <string name="dialog_adblock_enable_for_site">Enable ad block for site</string>
-    <string name="dialog_bookmark">What would you like to do with this bookmark?</string>
     <string name="dialog_cookies">Would you like to clear all browser cookies?</string>
     <string name="dialog_copy_link">Copy link</string>
     <string name="dialog_delete_all_downloads">Delete all downloads</string>
-    <string name="dialog_delete_download">Delete download</string>
     <string name="dialog_download_image">Download image</string>
     <string name="dialog_download">Do you want to download this file? (%1$s)</string>
     <string name="dialog_edit_bookmark">Edit bookmark</string>
-    <string name="dialog_folder">What would you like to do with this folder?</string>
-    <string name="dialog_history_long_press">What would you like to do with this history item?</string>
     <string name="dialog_history">Would you like to clear all browser history?</string>
-    <string name="dialog_image">What would you like to do with this image?</string>
-    <string name="dialog_import_error">No browser was detected to import bookmarks from.</string>
-    <string name="dialog_link">What would you like to do with this link?</string>
     <string name="dialog_message_third_party_app">Do you want to launch the application associated with that web site?</string>
     <string name="dialog_open_background_tab">Open in background tab</string>
     <string name="dialog_open_incognito_tab">Open in incognito tab</string>
@@ -125,21 +107,16 @@
     <string name="downloads_notification_description">Triggers upon download completion</string>
     <string name="downloads">Downloads</string>
     <string name="export_bookmarks">Export bookmarks to backup</string>
-    <string name="faq_description">Frequently asked questions</string>
-    <string name="faq">FAQ</string>
     <string name="folder_custom">Custom</string>
     <string name="folder_default">Default</string>
     <string name="folder">Folder name</string>
     <string name="freeware">Freeware</string>
-    <string name="fullscreen">Full-screen mode</string>
-    <string name="fullScreenOption">Hide status bar while browsing</string>
     <string name="hint_password">Password</string>
     <string name="hint_title">Title</string>
     <string name="hint_url">URL</string>
     <string name="hint_username">Username</string>
     <string name="home">Homepage</string>
     <string name="host">Host:</string>
-    <string name="hosts_source">Hosts file ad blocking source</string>
     <string name="http_proxy">HTTP proxy</string>
     <string name="i2p_not_running">I2P is not running.</string>
     <string name="i2p_tunnels_not_ready">I2P tunnels are not ready yet.</string>
@@ -162,7 +139,6 @@
     <string name="loading">Loading&#8230;</string>
     <string name="location">Location access</string>
     <string name="manual_proxy">Manual proxy</string>
-    <string name="max_tabs">Max tabs reached</string>
     <string name="message_added_to_homescreen">Shortcut added to home screen</string>
     <string name="message_blocked_local">Local file has been blocked from loading</string>
     <string name="message_bookmark_added">Bookmark added.</string>
@@ -182,7 +158,6 @@
     <string name="message_location">\nWould like to use your location</string>
     <string name="message_open_download_fail">This file doesn\'t exist anymore</string>
     <string name="message_permission_request">%1$s\n\nwould like to use:\n\n%2$s</string>
-    <string name="message_text_copied">Text copied to clipboard</string>
     <string name="message_web_storage_cleared">Web storage cleared</string>
     <string name="mit_license">MIT License</string>
     <string name="mpl_license">Mozilla Public License v2.0</string>
@@ -213,12 +188,10 @@
     <string name="pref_summary_color_mode">Apply web page color to tool and status bar</string>
     <string name="pref_summary_desktop_width">Desktop mode viewport width, set it higher for smaller content</string>
     <string name="pref_summary_locked_drawers">Tabs and Bookmarks drawers are locked</string>
-    <string name="pref_summary_tab_list_item_show_close_button">Display close tab buttons on tab list items</string>
     <string name="pref_title_desktop_width">Desktop width</string>
     <string name="pref_title_hide_status_bar">Hide status bar</string>
     <string name="pref_title_locked_drawers">Locked drawers</string>
     <string name="pref_title_pull_to_refresh">Pull to refresh</string>
-    <string name="pref_title_tab_list_item_show_close_button">Show close tab button</string>
     <string name="problem_download">Invalid URL encountered, cannot download</string>
     <string name="problem_location_download">Cannot download to the specified location</string>
     <string name="reading_mode">Reader mode</string>
@@ -263,11 +236,6 @@
     <string name="settings">Settings</string>
     <string name="shortcut_message_failed_to_add">Sorry, your launcher does not support shortcuts.</string>
     <string name="show">Show</string>
-    <string name="size_large">Large</string>
-    <string name="size_largest">Largest</string>
-    <string name="size_normal">Normal</string>
-    <string name="size_small">Small</string>
-    <string name="size_smallest">Smallest</string>
     <string name="size">Text size</string>
     <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Expires on:</string>
@@ -275,14 +243,8 @@
     <string name="ssl_info_issued_on">Issued on:</string>
     <string name="ssl_info_issued_to">Issued to:</string>
     <string name="ssl_warning_dont_ask_again">Don\'t ask again for this browsing session.</string>
-    <string name="stock_browser_available">Supported stock browser detected</string>
-    <string name="stock_browser_unavailable">No stock browser detected</string>
-    <string name="stock_browser">Stock browser</string>
     <string name="suggestion">Search for</string>
-    <string name="supported_browsers_title">Supported browsers</string>
     <string name="swap_bookmarks_and_tabs">Swap bookmark and tab drawers</string>
-    <string name="sync_history">Sync history with Google</string>
-    <string name="tab_frozen">Frozen…</string>
     <string name="tabs_in_drawer">Show tabs in navigation drawer</string>
     <string name="tabs">Tabs</string>
     <string name="text_encoding">Text encoding</string>
@@ -334,16 +296,5 @@
         <item>URL</item>
         <item>Title (Standard)</item>
     </string-array>
-	
-	<string-array name="block_ad_frequency_list">
-        <item>@string/block_remote_frequency_daily</item>
-        <item>@string/block_remote_frequency_weekly</item>
-        <item>@string/block_remote_frequency_monthly</item>
-    </string-array>
-	
-	    <string-array name="block_ad_source_list">
-        <item>@string/block_source_default</item>
-        <item>@string/block_source_local</item>
-        <item>@string/block_source_remote</item>
-    </string-array>
+
 </resources>

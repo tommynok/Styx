@@ -7,7 +7,6 @@ import android.app.DownloadManager;
 import android.os.Environment;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
-import android.webkit.URLUtil;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

@@ -20,7 +20,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.webkit.URLUtil;
 
 import java.io.Closeable;
 import java.io.File;
@@ -32,7 +31,6 @@ import java.util.Date;
 
 import com.jamal2367.styx.BrowserApp;
 import com.jamal2367.styx.R;
-import com.jamal2367.styx.constant.Constants;
 import com.jamal2367.styx.database.HistoryEntry;
 import com.jamal2367.styx.dialog.BrowserDialog;
 import com.jamal2367.styx.extensions.ActivityExtensions;

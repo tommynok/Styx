@@ -13,11 +13,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.text.format.Formatter;
 import android.view.View;
 import android.webkit.DownloadListener;
-import android.webkit.URLUtil;
 
 import com.anthonycr.grant.PermissionsManager;
 import com.anthonycr.grant.PermissionsResultAction;

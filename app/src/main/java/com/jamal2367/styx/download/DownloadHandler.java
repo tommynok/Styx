@@ -15,7 +15,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.webkit.CookieManager;
 import android.webkit.MimeTypeMap;
-import android.webkit.URLUtil;
 
 import java.io.File;
 import java.io.IOException;
