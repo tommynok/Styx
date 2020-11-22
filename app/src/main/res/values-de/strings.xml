@@ -11,7 +11,7 @@
     <string name="action_cancel">Abbrechen</string>
     <string name="action_close_all_other_tabs">Alle anderen Tabs schließen</string>
     <string name="action_copy">Link kopieren</string>
-    <string name="action_delete_all_bookmarks">Alle Lesezeichen löschen</string>
+    <string name="action_delete_all_bookmarks">Lesezeichen zurücksetzen</string>
     <string name="action_delete">Löschen</string>
     <string name="action_dont_allow">Nicht erlauben</string>
     <string name="action_download">Herunterladen</string>
