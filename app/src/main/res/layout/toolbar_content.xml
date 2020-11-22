@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:contentDescription="@string/action_reload"
-        app:tooltipText="@{`action_reload`}"
         app:srcCompat="@drawable/ic_action_refresh"
         android:nextFocusDown="@id/web_view" />
 
@@ -30,7 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:contentDescription="@string/action_back"
-        app:tooltipText="@{`action_back`}"
         app:srcCompat="@drawable/ic_action_back" />
 
     <ImageButton
@@ -40,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:contentDescription="@string/action_forward"
-        app:tooltipText="@{`action_forward`}"
         app:srcCompat="@drawable/ic_action_forward" />
 
     <ImageButton
@@ -50,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:contentDescription="@string/home"
-        app:tooltipText="@{`home`}"
         app:srcCompat="@drawable/ic_action_home"
         android:nextFocusDown="@id/web_view"
         />
@@ -66,7 +62,6 @@
         app:tabIconColor="?attr/iconColor"
         app:tabIconTextSize="10dp"
         android:contentDescription="@string/tabs"
-        app:tooltipText="@{`tabs`}"
         android:nextFocusDown="@id/web_view"
         />
 
@@ -78,7 +73,6 @@
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_more_vertical"
         android:contentDescription="@string/action_more"
-        app:tooltipText="@{`action_more`}"
         android:nextFocusDown="@id/web_view"
         />
 
