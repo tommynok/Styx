@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_reload"
-                app:tooltipText="@{@string/action_reload}"
+                app:tooltipText="@{`action_reload`}"
                 app:srcCompat="@drawable/ic_action_refresh" />
 
             <ImageButton
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_back"
-                app:tooltipText="@{@string/action_back}"
+                app:tooltipText="@{`action_back`}"
                 app:srcCompat="@drawable/ic_action_back" />
 
             <ImageButton
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_forward"
-                app:tooltipText="@{@string/action_forward}"
+                app:tooltipText="@{`action_forward`}"
                 app:srcCompat="@drawable/ic_action_forward" />
 
             <ImageButton
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_bookmarks"
-                app:tooltipText="@{@string/action_bookmarks}"
+                app:tooltipText="@{`action_bookmarks`}"
                 app:srcCompat="@drawable/ic_bookmark_border" />
 
             <ImageButton
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_show_homepage"
-                app:tooltipText="@{@string/action_show_homepage}"
+                app:tooltipText="@{`action_show_homepage`}"
                 app:srcCompat="@drawable/ic_action_home" />
         </LinearLayout>
 

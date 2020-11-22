@@ -127,9 +127,8 @@ class StyxDialogBuilder @Inject constructor(
      */
     // TODO allow individual downloads to be deleted.
     fun showLongPressedDialogForDownloadUrl(
-        activity: Activity,
-        uiController: UIController,
-        url: String
+            activity: Activity,
+            uiController: UIController
     ) = BrowserDialog.show(activity, R.string.action_downloads,
         DialogItem(title = R.string.dialog_delete_all_downloads) {
             downloadsModel.deleteAllDownloads()

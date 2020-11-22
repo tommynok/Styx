@@ -126,6 +126,7 @@ class StyxView(
             }
             uiController.tabChanged(this)
         }
+
     /**
      * Gets whether or not the page rendering is inverted or not. The main purpose of this is to
      * indicate that JavaScript should be run at the end of a page load to invert only the images
@@ -771,9 +772,9 @@ class StyxView(
                 }
             } else if (currentUrl.isDownloadsUrl()) {
                 if (url != null) {
-                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController, url)
+                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController)
                 } else if (newUrl != null) {
-                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController, newUrl)
+                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController)
                 }
             }
         } else {
@@ -858,10 +859,10 @@ class StyxView(
      */
     private inner class TouchListener : OnTouchListener, OnScrollChangeListener {
 
-        internal var location: Float = 0f
-        internal var touchingScreen: Boolean = false
-        internal var y: Float = 0f
-        internal var action: Int = 0
+        var location: Float = 0f
+        var touchingScreen: Boolean = false
+        var y: Float = 0f
+        var action: Int = 0
 
         override fun onScrollChange(view: View?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
 
@@ -949,10 +950,8 @@ class StyxView(
         override fun onLongPress(e: MotionEvent) {
             if (canTriggerLongPress) {
                 val msg = webViewHandler.obtainMessage()
-                if (msg != null) {
-                    msg.target = webViewHandler
-                    webView?.requestFocusNodeHref(msg)
-                }
+                msg.target = webViewHandler
+                webView?.requestFocusNodeHref(msg)
             }
         }
 

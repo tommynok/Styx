@@ -5,7 +5,6 @@
 package com.jamal2367.styx.browser.activity
 
 import com.jamal2367.styx.AppTheme
-import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.IncognitoActivity
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.*
@@ -292,7 +291,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     }
 
     private fun showPopupMenu() {
-        popupMenu.show(coordinator_layout, button_more)
+        popupMenu.show(coordinator_layout)
     }
 
     /**
@@ -705,14 +704,14 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         val currentView = tabsManager.currentTab
         if (isColorMode() && currentView != null && currentView.htmlMetaThemeColor!=Color.TRANSPARENT) {
             // Web page does specify theme color, use it much like Google Chrome does
-            mainHandler.post {changeToolbarBackground(currentView.htmlMetaThemeColor, null)}
+            mainHandler.post {changeToolbarBackground(currentView.htmlMetaThemeColor)}
         }
         else if (isColorMode() && currentView?.favicon != null) {
             // Web page as favicon, use it to extract page theme color
             changeToolbarBackground(currentView.favicon, Color.TRANSPARENT, null)
         } else {
             // That should be the primary color from current theme
-            mainHandler.post {changeToolbarBackground(ThemeUtils.getPrimaryColor(this), null)}
+            mainHandler.post {changeToolbarBackground(ThemeUtils.getPrimaryColor(this))}
         }
     }
 
@@ -1304,32 +1303,32 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
      * This function is central to browser tab switching.
      * It swaps our previous WebView with our new WebView.
      *
-     * @param aView Input is in fact a WebViewEx.
+     * @param view Input is in fact a WebViewEx.
      */
-    override fun setTabView(aView: View) {
+    override fun setTabView(view: View) {
         // SL: Hide any drawers first, thus making sure we close our tab drawer even when user taps current tab
         // Use a delayed handler to make the transition smooth
         // otherwise it will get caught up with the showTab code
         // and cause a janky motion
         mainHandler.postDelayed(drawer_layout::closeDrawers, 200)
 
-        if (currentTabView == aView) {
+        if (currentTabView == view) {
             return
         }
 
         logger.log(TAG, "Setting the tab view")
-        aView.removeFromParent()
+        view.removeFromParent()
         currentTabView.removeFromParent()
 
 
         content_frame.resetTarget() // Needed to make it work together with swipe to refresh
-        content_frame.addView(aView, 0, MATCH_PARENT)
-        aView.requestFocus()
+        content_frame.addView(view, 0, MATCH_PARENT)
+        view.requestFocus()
 
         // Remove existing focus change observer before we change our tab
         currentTabView?.onFocusChangeListener = null
         // Change our tab
-        currentTabView = aView
+        currentTabView = view
         // Close virtual keyboard if we loose focus
         currentTabView.onFocusLost { inputMethodManager.hideSoftInputFromWindow(ui_layout.windowToken, 0) }
         showActionBar()
@@ -1628,7 +1627,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     /**
      *
      */
-    private fun changeToolbarBackground(color: Int, tabBackground: Drawable?) {
+    private fun changeToolbarBackground(color: Int) {
 
         //Workout a foreground colour that will be working with our background color
         currentToolBarTextColor = foregroundColorFromBackgroundColor(color)
@@ -1745,23 +1744,23 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
         if (!isColorMode()) {
             // Put back the theme color then
-            changeToolbarBackground(defaultColor, tabBackground);
+            changeToolbarBackground(defaultColor);
         }
         else if (color != Color.TRANSPARENT)
         {
             // We have a meta theme color specified in our page HTML, use it
-            changeToolbarBackground(color, tabBackground);
+            changeToolbarBackground(color);
         }
         else if (favicon==null)
         {
             // No HTML meta theme color and no favicon, use app theme color then
-            changeToolbarBackground(defaultColor, tabBackground);
+            changeToolbarBackground(defaultColor);
         }
         else {
             Palette.from(favicon).generate { palette ->
                 // OR with opaque black to remove transparency glitches
                 val color = Color.BLACK or (palette?.getVibrantColor(defaultColor) ?: defaultColor)
-                changeToolbarBackground(color, tabBackground);
+                changeToolbarBackground(color)
             }
         }
     }

@@ -58,22 +58,18 @@ class StyxChromeClient(
             styxView.fetchMetaThemeColorTries = 0
 
             // Extract meta theme-color
-            view?.evaluateJavascript("(function() { return document.querySelector('meta[name=\"theme-color\"]').content; })();") { themeColor ->
+            view.evaluateJavascript("(function() { return document.querySelector('meta[name=\"theme-color\"]').content; })();") { themeColor ->
                 try {
                     styxView.htmlMetaThemeColor = Color.parseColor(themeColor.trim('\'').trim('"'));
                     // We did find a valid theme-color, tell our controller about it
                     uiController.tabChanged(styxView)
-                }
-                catch (e: Exception) {
-                    if (triesLeft==0 || newProgress==100)
-                    {
+                } catch (e: Exception) {
+                    if (triesLeft==0 || newProgress==100) {
                         // Exhausted all our tries or the page finished loading before we did
                         // Just give up then and reset our theme color
                         styxView.htmlMetaThemeColor = StyxView.KHtmlMetaThemeColorInvalid
                         uiController.tabChanged(styxView)
-                    }
-                    else
-                    {
+                    } else {
                         // Try it again next time around
                         styxView.fetchMetaThemeColorTries = triesLeft
                     }
@@ -113,7 +109,7 @@ class StyxChromeClient(
         }
         uiController.tabChanged(styxView)
         if (view != null && view.url != null) {
-            uiController.updateHistory(title, view.url!!)
+            uiController.updateHistory(title, view.url.orEmpty())
         }
 
     }

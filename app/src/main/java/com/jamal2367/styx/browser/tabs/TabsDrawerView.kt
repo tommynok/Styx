@@ -1,7 +1,5 @@
 package com.jamal2367.styx.browser.tabs
 
-import TabTouchHelperCallback
-import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.TabsView
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
@@ -11,7 +9,6 @@ import com.jamal2367.styx.list.VerticalItemAnimator
 import com.jamal2367.styx.view.StyxView
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,7 +70,7 @@ class TabsDrawerView @JvmOverloads constructor(
         // If we have more than one tab in our closed tabs list enable restore all pages button
         action_restore_all_pages.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>1
         // If we have at least one tab in our closed tabs list enable restore page button
-        action_restore_page.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>0
+        action_restore_page.isEnabled = uiController.presenter?.closedTabs?.bundleStack?.count()?:0>0
     }
 
     override fun tabAdded() {

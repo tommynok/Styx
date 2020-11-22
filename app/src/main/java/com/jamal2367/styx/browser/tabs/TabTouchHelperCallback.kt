@@ -1,10 +1,8 @@
-
-import com.jamal2367.styx.browser.tabs.ItemTouchHelperAdapter
-import com.jamal2367.styx.browser.tabs.ItemTouchHelperViewHolder
+package com.jamal2367.styx.browser.tabs
 import android.graphics.Canvas
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.abs
 
 /**
  * An implementation of [ItemTouchHelper.Callback] that enables basic drag & drop and
@@ -15,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
  *
  * @author Paul Burke (ipaulpro)
  */
+
 class TabTouchHelperCallback(adapter: ItemTouchHelperAdapter) : ItemTouchHelper.Callback() {
     private val mAdapter: ItemTouchHelperAdapter = adapter
     override fun isLongPressDragEnabled(): Boolean {
@@ -52,7 +51,7 @@ class TabTouchHelperCallback(adapter: ItemTouchHelperAdapter) : ItemTouchHelper.
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             // Fade out the view as it is swiped out of the parent's bounds
-            val alpha = ALPHA_FULL - Math.abs(dX) / viewHolder.itemView.width.toFloat()
+            val alpha = ALPHA_FULL - abs(dX) / viewHolder.itemView.width.toFloat()
             viewHolder.itemView.alpha = alpha
             viewHolder.itemView.translationX = dX
         } else {
@@ -65,7 +64,7 @@ class TabTouchHelperCallback(adapter: ItemTouchHelperAdapter) : ItemTouchHelper.
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             if (viewHolder is ItemTouchHelperViewHolder) {
                 // Let the view holder know that this item is being moved or dragged
-                val itemViewHolder: ItemTouchHelperViewHolder? = viewHolder as ItemTouchHelperViewHolder?
+                val itemViewHolder: ItemTouchHelperViewHolder? = viewHolder
                 itemViewHolder?.onItemSelected()
             }
         }
@@ -77,7 +76,7 @@ class TabTouchHelperCallback(adapter: ItemTouchHelperAdapter) : ItemTouchHelper.
         viewHolder.itemView.alpha = ALPHA_FULL
         if (viewHolder is ItemTouchHelperViewHolder) {
             // Tell the view holder it's time to restore the idle state
-            val itemViewHolder: ItemTouchHelperViewHolder = viewHolder as ItemTouchHelperViewHolder
+            val itemViewHolder: ItemTouchHelperViewHolder = viewHolder
             itemViewHolder.onItemClear()
         }
     }

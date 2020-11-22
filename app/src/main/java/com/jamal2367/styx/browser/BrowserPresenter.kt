@@ -1,5 +1,6 @@
 package com.jamal2367.styx.browser
 
+import android.annotation.SuppressLint
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.TabModel.Companion.URL_KEY
@@ -54,6 +55,7 @@ class BrowserPresenter(
      *
      * @param intent the intent to handle, may be null.
      */
+    @SuppressLint("CheckResult")
     fun setupTabs(intent: Intent?) {
         tabsModel.initializeTabs(view as Activity, intent, isIncognito)
             .subscribeBy(

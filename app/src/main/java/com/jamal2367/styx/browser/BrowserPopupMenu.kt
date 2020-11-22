@@ -7,9 +7,6 @@ import com.jamal2367.styx.databinding.PopupMenuBrowserBinding
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Build.VERSION.SDK_INT
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +43,7 @@ class BrowserPopupMenu : PopupWindow {
         }
     }
 
-    fun show(rootView: View, anchorView: View) {
+    fun show(rootView: View) {
 
         (contentView.context as BrowserActivity).tabsManager.let {
             // Set desktop mode checkbox according to current tab

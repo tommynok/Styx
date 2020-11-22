@@ -22,7 +22,6 @@ import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.ThemeUtils
 import android.app.Activity
-import android.app.Application
 import android.os.Bundle
 import android.os.Environment
 import android.text.Editable
@@ -63,7 +62,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
         clickableDynamicPreference(
             preference = SETTINGS_USER_AGENT,
-            summary = userAgentSummary(userPreferences.userAgentChoice, activity?.application),
+            summary = userAgentSummary(),
             onClick = ::showUserAgentChooserDialog
         )
 
@@ -223,7 +222,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
     }
 
 
-    private fun userAgentSummary(index: Int, application: Application?) =
+    private fun userAgentSummary() =
             choiceToUserAgent(userPreferences.userAgentChoice) + activity?.application?.let { ":\n" + userPreferences.userAgent(it) }
 
 
@@ -246,19 +245,19 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 when (which) {
                     in 0..2 -> Unit
                     3 -> {
-                        showCustomUserAgentPicker(summaryUpdater)
+                        showCustomUserAgentPicker()
                     }
                     4 -> Unit
                     5 -> Unit
                 }
 
-                summaryUpdater.updateSummary(userAgentSummary(userPreferences.userAgentChoice,activity?.application))
+                summaryUpdater.updateSummary(userAgentSummary())
             }
             setPositiveButton(resources.getString(R.string.action_ok), null)
         }
     }
 
-    private fun showCustomUserAgentPicker(summaryUpdater: SummaryUpdater) {
+    private fun showCustomUserAgentPicker() {
         activity?.let {
             BrowserDialog.showEditText(it,
                 R.string.title_user_agent,
@@ -300,8 +299,8 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
             val dialogView = LayoutInflater.from(activity).inflate(R.layout.dialog_edit_text, null)
             val getDownload = dialogView.findViewById<EditText>(R.id.dialog_edit_text)
 
-            val errorColor = ContextCompat.getColor(activity
-                , R.color.error_red)
+            val errorColor = ContextCompat.getColor(activity, R.color.error_red)
+
             val regularColor = ThemeUtils.getTextColor(activity)
             getDownload.setTextColor(regularColor)
             getDownload.addTextChangedListener(DownloadLocationTextWatcher(getDownload, errorColor, regularColor))

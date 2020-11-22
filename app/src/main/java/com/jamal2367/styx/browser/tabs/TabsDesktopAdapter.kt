@@ -73,10 +73,10 @@ class TabsDesktopAdapter(
 
         holder.txtTitle.text = web.title
         updateViewHolderAppearance(holder, web.favicon, web.themeColor, web.isForegroundTab)
-        updateViewHolderFavicon(holder, web.favicon, web.isForegroundTab)
+        updateViewHolderFavicon(holder, web.favicon)
     }
 
-    private fun updateViewHolderFavicon(viewHolder: TabViewHolder, favicon: Bitmap?, isForeground: Boolean) {
+    private fun updateViewHolderFavicon(viewHolder: TabViewHolder, favicon: Bitmap?) {
         favicon?.let {
                 viewHolder.favicon.setImageBitmap(it)
             }

@@ -183,16 +183,6 @@ fun ImageView.setImageForTheme(bitmap: Bitmap, isDarkTheme: Boolean) {
     setImageBitmap(bitmap)
 }
 
-/**
- * To be able to have tooltips working before API level 26
- * See: https://stackoverflow.com/a/61873888/3969362
- */
-@BindingAdapter("app:tooltipText")
-fun View.bindTooltipText(tooltipText: String) {
-    TooltipCompat.setTooltipText(this, tooltipText)
-}
-
-
 fun RectF.scale(factor: Float) {
     val oldWidth = width()
     val oldHeight = height()

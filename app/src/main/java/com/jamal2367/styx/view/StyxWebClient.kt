@@ -152,7 +152,7 @@ class StyxWebClient(
             uiController.setForwardButtonEnabled(view.canGoForward())
             view.postInvalidate()
         }
-        if (view.title == null || view.title!!.isEmpty()) {
+        if (view.title.isNullOrEmpty()) {
             styxView.titleInfo.setTitle(activity.getString(R.string.untitled))
         } else {
             styxView.titleInfo.setTitle(view.title)
@@ -259,13 +259,13 @@ class StyxWebClient(
             setOnCancelListener { handler.cancel() }
             setPositiveButton(activity.getString(R.string.action_yes)) { _, _ ->
                 if (dontAskAgain.isChecked) {
-                    webView.url?.let { sslWarningPreferences.rememberBehaviorForDomain(it, SslWarningPreferences.Behavior.PROCEED) }
+                    sslWarningPreferences.rememberBehaviorForDomain(webView.url.orEmpty(), SslWarningPreferences.Behavior.PROCEED)
                 }
                 handler.proceed()
             }
             setNegativeButton(activity.getString(R.string.action_no)) { _, _ ->
                 if (dontAskAgain.isChecked) {
-                    webView.url?.let { sslWarningPreferences.rememberBehaviorForDomain(it, SslWarningPreferences.Behavior.CANCEL) }
+                    sslWarningPreferences.rememberBehaviorForDomain(webView.url.orEmpty(), SslWarningPreferences.Behavior.CANCEL)
                 }
                 handler.cancel()
             }
@@ -340,22 +340,22 @@ class StyxWebClient(
             (activity as BrowserActivity).mainHandler.postDelayed({
                 if (exAppLaunchDialog==null) {
                 exAppLaunchDialog = AlertDialog.Builder(activity).setTitle(R.string.dialog_title_third_party_app).setMessage(R.string.dialog_message_third_party_app)
-                    .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
+                    .setPositiveButton("Yes") { dialog, _ ->
                         // Handle Ok
                         intentUtils.startActivityForIntent(intent)
                         dialog.dismiss()
                         exAppLaunchDialog = null
                         // Remember user choice
-                        preferences.edit().putBoolean(prefKey,true).apply()
-                    })
-                    .setNegativeButton("No", DialogInterface.OnClickListener { dialog, id ->
+                        preferences.edit().putBoolean(prefKey, true).apply()
+                    }
+                        .setNegativeButton("No") { dialog, _ ->
                         // Handle Cancel
                         dialog.dismiss()
                         exAppLaunchDialog = null
                         // Remember user choice
-                        preferences.edit().putBoolean(prefKey,false).apply()
-                    })
-                    .create()
+                        preferences.edit().putBoolean(prefKey, false).apply()
+                    }
+                        .create()
                 exAppLaunchDialog?.show()
                 }},1000)
         }
