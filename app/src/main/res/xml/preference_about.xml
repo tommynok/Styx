@@ -53,7 +53,7 @@
             app:iconSpaceReserved="false">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="http://hosts-file.net/">
+                android:data="https://github.com/StevenBlack/hosts">
                 <extra
                     android:name="SOURCE"
                     android:value="SELF" />
