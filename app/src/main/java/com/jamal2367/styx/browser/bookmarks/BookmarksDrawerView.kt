@@ -1,5 +1,17 @@
 package com.jamal2367.styx.browser.bookmarks
 
+import android.app.Activity
+import android.content.Context
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.allowlist.AllowListModel
 import com.jamal2367.styx.animation.AnimationUtils
@@ -10,7 +22,6 @@ import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.database.Bookmark
 import com.jamal2367.styx.database.bookmark.BookmarkRepository
 import com.jamal2367.styx.databinding.BookmarkDrawerViewBinding
-import com.jamal2367.styx.databinding.TabDrawerViewBinding
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.di.NetworkScheduler
@@ -25,18 +36,6 @@ import com.jamal2367.styx.extensions.setImageForTheme
 import com.jamal2367.styx.favicon.FaviconModel
 import com.jamal2367.styx.reading.activity.ReadingActivity
 import com.jamal2367.styx.utils.isSpecialUrl
-import android.app.Activity
-import android.content.Context
-import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable

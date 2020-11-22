@@ -2,7 +2,6 @@ package com.jamal2367.styx.rx
 
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
 import org.reactivestreams.Publisher
 
 /**

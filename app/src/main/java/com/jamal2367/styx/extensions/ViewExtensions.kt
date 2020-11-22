@@ -1,6 +1,5 @@
 package com.jamal2367.styx.extensions
 
-import com.jamal2367.styx.utils.getFilteredColor
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ColorMatrixColorFilter
@@ -9,13 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.ImageView
-import androidx.appcompat.widget.TooltipCompat
 import androidx.core.graphics.ColorUtils
-import androidx.databinding.BindingAdapter
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.jamal2367.styx.utils.getFilteredColor
 
 
 /**

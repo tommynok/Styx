@@ -1,13 +1,12 @@
 package com.jamal2367.styx.view
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.utils.ThemeUtils
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
 import androidx.annotation.AttrRes
-import androidx.core.content.ContextCompat
+import com.jamal2367.styx.R
+import com.jamal2367.styx.utils.ThemeUtils
 
 /**
  * Create a new transition drawable with the specified list of layers. At least

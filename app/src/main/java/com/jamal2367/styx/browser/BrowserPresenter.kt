@@ -1,9 +1,11 @@
 package com.jamal2367.styx.browser
 
 import android.annotation.SuppressLint
-import com.jamal2367.styx.BuildConfig
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.webkit.URLUtil
 import com.jamal2367.styx.R
-import com.jamal2367.styx.browser.TabModel.Companion.URL_KEY
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.constant.INTENT_ORIGIN
 import com.jamal2367.styx.constant.SCHEME_BOOKMARKS
@@ -15,13 +17,11 @@ import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.ssl.SslState
 import com.jamal2367.styx.utils.isSpecialUrl
-import com.jamal2367.styx.view.*
+import com.jamal2367.styx.view.FreezableBundleInitializer
+import com.jamal2367.styx.view.StyxView
+import com.jamal2367.styx.view.TabInitializer
+import com.jamal2367.styx.view.UrlInitializer
 import com.jamal2367.styx.view.find.FindResults
-import android.app.Activity
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.os.Bundle
-import android.webkit.URLUtil
 import io.reactivex.Scheduler
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy

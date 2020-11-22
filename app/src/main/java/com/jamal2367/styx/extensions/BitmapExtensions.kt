@@ -1,6 +1,5 @@
 package com.jamal2367.styx.extensions
 
-import com.jamal2367.styx.utils.Utils
 import android.graphics.*
 import androidx.core.graphics.createBitmap
 

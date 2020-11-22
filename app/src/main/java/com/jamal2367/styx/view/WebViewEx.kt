@@ -2,7 +2,6 @@ package com.jamal2367.styx.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.KeyEvent
 import android.webkit.WebView
 

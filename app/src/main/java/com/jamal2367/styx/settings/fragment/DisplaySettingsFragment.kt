@@ -3,19 +3,8 @@
  */
 package com.jamal2367.styx.settings.fragment
 
-import com.jamal2367.styx.AppTheme
-import com.jamal2367.styx.R
-import com.jamal2367.styx.browser.SearchBoxDisplayChoice
-import com.jamal2367.styx.di.injector
-import com.jamal2367.styx.extensions.resizeAndShow
-import com.jamal2367.styx.extensions.withSingleChoiceItems
-import com.jamal2367.styx.preference.UserPreferences
-import com.jamal2367.styx.settings.NewTabPosition
-import com.jamal2367.styx.utils.Utils
-import com.jamal2367.styx.view.RenderingMode
 import android.app.Activity
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
@@ -24,6 +13,15 @@ import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.jamal2367.styx.AppTheme
+import com.jamal2367.styx.R
+import com.jamal2367.styx.browser.SearchBoxDisplayChoice
+import com.jamal2367.styx.di.injector
+import com.jamal2367.styx.extensions.resizeAndShow
+import com.jamal2367.styx.extensions.withSingleChoiceItems
+import com.jamal2367.styx.preference.UserPreferences
+import com.jamal2367.styx.utils.Utils
+import com.jamal2367.styx.view.RenderingMode
 import javax.inject.Inject
 
 class DisplaySettingsFragment : AbstractSettingsFragment() {

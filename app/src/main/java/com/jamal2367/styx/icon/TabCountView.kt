@@ -1,14 +1,13 @@
 package com.jamal2367.styx.icon
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.extensions.preferredLocale
-import com.jamal2367.styx.extensions.scale
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.withStyledAttributes
-import androidx.core.graphics.toRectF
+import com.jamal2367.styx.R
+import com.jamal2367.styx.extensions.preferredLocale
+import com.jamal2367.styx.extensions.scale
 import java.text.NumberFormat
 
 /**

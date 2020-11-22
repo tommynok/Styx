@@ -1,6 +1,10 @@
 package com.jamal2367.styx.settings.fragment
 
-import com.jamal2367.styx.BuildConfig
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import androidx.preference.Preference
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.BloomFilterAdBlocker
 import com.jamal2367.styx.adblock.source.HostsSourceType
@@ -13,19 +17,12 @@ import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.dialog.DialogItem
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.preference.UserPreferences
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import androidx.preference.Preference
 import io.reactivex.Maybe
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
-import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import okio.Okio
 import okio.buffer
 import okio.sink
 import okio.source

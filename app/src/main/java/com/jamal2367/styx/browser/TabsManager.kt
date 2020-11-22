@@ -1,6 +1,11 @@
 package com.jamal2367.styx.browser
 
-import com.jamal2367.styx.R
+import android.app.Activity
+import android.app.Application
+import android.app.SearchManager
+import android.content.Intent
+import android.os.Bundle
+import android.webkit.URLUtil
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.DiskScheduler
 import com.jamal2367.styx.di.MainScheduler
@@ -9,12 +14,6 @@ import com.jamal2367.styx.search.SearchEngineProvider
 import com.jamal2367.styx.settings.NewTabPosition
 import com.jamal2367.styx.utils.*
 import com.jamal2367.styx.view.*
-import android.app.Activity
-import android.app.Application
-import android.app.SearchManager
-import android.content.Intent
-import android.os.Bundle
-import android.webkit.URLUtil
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Scheduler

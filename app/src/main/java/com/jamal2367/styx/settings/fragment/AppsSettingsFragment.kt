@@ -1,20 +1,13 @@
 package com.jamal2367.styx.settings.fragment
 
+import android.app.Activity
+import android.content.SharedPreferences
+import android.os.Bundle
+import androidx.preference.SwitchPreferenceCompat
 import com.jamal2367.styx.R
 import com.jamal2367.styx.di.UserPrefs
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.utils.IntentUtils
-import android.app.Activity
-import android.content.SharedPreferences
-import android.content.pm.ResolveInfo
-import android.content.res.Resources
-import android.graphics.Color
-import android.os.Build
-import android.os.Bundle
-import androidx.annotation.RequiresApi
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.graphics.drawable.DrawableCompat
-import androidx.preference.SwitchPreferenceCompat
 import javax.inject.Inject
 
 
