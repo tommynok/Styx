@@ -185,7 +185,6 @@
     <string name="pref_category_general">General</string>
     <string name="pref_category_landscape">Landscape</string>
     <string name="pref_category_portrait">Portrait</string>
-    <string name="pref_summary_color_mode">Apply web page color to tool and status bar</string>
     <string name="pref_summary_desktop_width">Desktop mode viewport width, set it higher for smaller content</string>
     <string name="pref_summary_locked_drawers">Tabs and Bookmarks drawers are locked</string>
     <string name="pref_title_desktop_width">Desktop width</string>

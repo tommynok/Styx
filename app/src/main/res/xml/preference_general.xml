@@ -24,6 +24,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_restore_tabs_on_startup"
+            android:summary="@string/recommended"
             android:title="@string/restore_tabs_on_startup"
             app:icon="@drawable/ic_save" />
 
@@ -64,6 +65,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_load_images"
+            android:summary="@string/recommended"
             android:title="@string/load_images"
             app:icon="@drawable/ic_image"
             app:iconSpaceReserved="false" />
@@ -92,6 +94,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_javascript"
+            android:summary="@string/recommended"
             android:title="@string/java"
             app:iconSpaceReserved="false"/>
 

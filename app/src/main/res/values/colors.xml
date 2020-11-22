@@ -6,18 +6,18 @@
 
     <color name="primary_color">#FFFFFF</color>
     <color name="secondary_color">#66000000</color>
-    <color name="accent_color">#E57373</color>
+    <color name="accent_color">#E53935</color>
 
     <color name="drawer_background">#ffffff</color>
-    <color name="drawer_background_dark">#2E2E2E</color>
+    <color name="drawer_background_dark">#121212</color>
 
-    <color name="secondary_color_settings_dark">#2E2E2E</color>
+    <color name="secondary_color_settings_dark">#121212</color>
 
     <color name="hint_text_light_theme">#80000000</color>
     <color name="hint_text_dark_theme">#80ffffff</color>
 
-    <color name="primary_color_dark">#2E2E2E</color>
-    <color name="accent_color_dark">#E57373</color>
+    <color name="primary_color_dark">#121212</color>
+    <color name="accent_color_dark">#EF9A9A</color>
 
     <color name="divider_dark">#B2B2B2</color>
     <color name="divider_light">#2F2F2F</color>

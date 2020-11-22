@@ -185,7 +185,6 @@
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_landscape">Querformat</string>
     <string name="pref_category_portrait">Hochformat</string>
-    <string name="pref_summary_color_mode">Farbe der Webseite in Statusleiste anzeigen</string>
     <string name="pref_summary_desktop_width">Breite des Desktop-Modus, für kleinere Inhalte höher einstellen</string>
     <string name="pref_summary_locked_drawers">Tabs- und Lesezeichen-Drawer sperren</string>
     <string name="pref_title_desktop_width">Desktop-Breite</string>
