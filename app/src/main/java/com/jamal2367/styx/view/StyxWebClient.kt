@@ -337,8 +337,10 @@ class StyxWebClient(
             // We will keep loading even if an external app is available the first time we encounter it.
             (activity as BrowserActivity).mainHandler.postDelayed({
                 if (exAppLaunchDialog==null) {
-                exAppLaunchDialog = AlertDialog.Builder(activity).setTitle(R.string.dialog_title_third_party_app).setMessage(R.string.dialog_message_third_party_app)
-                    .setPositiveButton("Yes") { dialog, _ ->
+                exAppLaunchDialog = AlertDialog.Builder(activity)
+                        .setTitle(R.string.dialog_title_third_party_app)
+                        .setMessage(R.string.dialog_message_third_party_app)
+                        .setPositiveButton(R.string.yes) { dialog, _ ->
                         // Handle Ok
                         intentUtils.startActivityForIntent(intent)
                         dialog.dismiss()
@@ -346,7 +348,7 @@ class StyxWebClient(
                         // Remember user choice
                         preferences.edit().putBoolean(prefKey, true).apply()
                     }
-                        .setNegativeButton("No") { dialog, _ ->
+                        .setNegativeButton(R.string.no) { dialog, _ ->
                         // Handle Cancel
                         dialog.dismiss()
                         exAppLaunchDialog = null
