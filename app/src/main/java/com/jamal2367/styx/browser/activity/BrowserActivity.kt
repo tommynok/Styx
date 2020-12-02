@@ -775,27 +775,65 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     var iRecentTabIndex = -1;
     var iCapturedRecentTabsIndices : Set<StyxView>? = null
 
-    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+    private fun copyRecentTabsList()
+    {
+        // Fetch snapshot of our recent tab list
+        iCapturedRecentTabsIndices = tabsManager.iRecentTabs.toSet()
+        iRecentTabIndex = iCapturedRecentTabsIndices?.size?.minus(1) ?: -1
+        //logger.log(TAG, "Recent indices snapshot: iCapturedRecentTabsIndices")
+    }
 
-        /*
-        if (event.action == KeyEvent.ACTION_UP && event.keyCode==KeyEvent.KEYCODE_TAB) {
-            logger.log(TAG,"Tab: up not discarded")
-            return true
+    /**
+     * Initiate Ctrl + Tab session if one is not already started.
+     */
+    private fun startCtrlTab()
+    {
+        if (iCapturedRecentTabsIndices==null)
+        {
+            copyRecentTabsList()
         }
-         */
+    }
+
+    /**
+     * Reset ctrl + tab session if one was started.
+     * Typically used when creating or deleting tabs.
+     */
+    private fun resetCtrlTab()
+    {
+        if (iCapturedRecentTabsIndices!=null)
+        {
+            copyRecentTabsList()
+        }
+    }
+
+    /**
+     * Stop ctrl + tab session.
+     * Typically when the ctrl key is released.
+     */
+    private fun stopCtrlTab()
+    {
+        iCapturedRecentTabsIndices?.let {
+            // Replace our recent tabs list by putting our captured one back in place making sure the selected tab is going back on top
+            // See: https://github.com/Slion/Fulguris/issues/56
+            tabsManager.iRecentTabs = it.toMutableSet()
+            val tab = tabsManager.iRecentTabs.elementAt(iRecentTabIndex)
+            tabsManager.iRecentTabs.remove(tab)
+            tabsManager.iRecentTabs.add(tab)
+        }
+
+        iRecentTabIndex = -1;
+        iCapturedRecentTabsIndices = null;
+        //logger.log(TAG,"CTRL+TAB: Reset")
+    }
+
+    /**
+     * Manage our key events.
+     */
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
 
         if (event.action == KeyEvent.ACTION_UP && (event.keyCode==KeyEvent.KEYCODE_CTRL_LEFT||event.keyCode==KeyEvent.KEYCODE_CTRL_RIGHT)) {
             // Exiting CTRL+TAB mode
-            iCapturedRecentTabsIndices?.let {
-                tabsManager.iRecentTabs = it.toMutableSet()
-                val tab = tabsManager.iRecentTabs.elementAt(iRecentTabIndex)
-                tabsManager.iRecentTabs.remove(tab)
-                tabsManager.iRecentTabs.add(tab)
-            }
-
-            iRecentTabIndex = -1;
-            iCapturedRecentTabsIndices = null;
-            //logger.log(TAG,"CTRL+TAB: Reset")
+            stopCtrlTab()
         }
 
         // Keyboard shortcuts
