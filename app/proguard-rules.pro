@@ -1,3 +1,9 @@
+-optimizationpasses 5
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+
 -keep class com.jamal2367.styx.settings.** { *; }
 
 -keep public class * extends android.app.Activity
