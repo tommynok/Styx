@@ -11,8 +11,8 @@ android {
         applicationId 'com.jamal2367.stxy'
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 21
-        versionName '2.1.0'
+        versionCode 22
+        versionName '2.2.0'
         resConfigs 'en', 'de'
         vectorDrawables.useSupportLibrary = true
         setProperty("archivesBaseName", 'Styx_v' + versionName)
