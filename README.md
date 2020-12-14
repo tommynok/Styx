@@ -71,9 +71,11 @@
 ## License
 ```
 Copyright 2020 Jamal Rothfuchs
+Copyright 2020 Stéphane Lenclud
 Copyright 2014 Anthony Restaino
 
 Styx Browser
+Fulguris Browser
 Lightning Browser
 
    This Source Code Form is subject to the terms of the 
