@@ -38,14 +38,12 @@ android {
         }
     }
 
-    lintOptions {
-        disable 'MissingTranslation'
+    dexOptions {
+        javaMaxHeapSize "8g"
     }
 
-    packagingOptions {
-        exclude 'META-INF/*'
-        exclude 'DebugProbesKt.bin'
-        exclude '**/kotlin/**'
+    lintOptions {
+        disable 'MissingTranslation'
     }
 
     compileOptions {
@@ -111,7 +109,7 @@ dependencies {
 
     // RxJava //
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
     // Tor Proxy //
@@ -122,5 +120,18 @@ dependencies {
 kapt {
     arguments {
         arg("mezzanine.projectPath", project.rootDir)
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+        kotlinOptions {
+            freeCompilerArgs += ['-XXLanguage:+InlineClasses']
+            freeCompilerArgs += ['-progressive']
+        }
     }
 }

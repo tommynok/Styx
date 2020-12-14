@@ -2,6 +2,7 @@ package com.jamal2367.styx.rx
 
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
 import org.reactivestreams.Publisher
 
 /**
@@ -16,12 +17,12 @@ import org.reactivestreams.Publisher
  * @see Observable.join
  */
 inline fun <T, R, Selector_T, Selector_R, S> Flowable<T>.join(
-    other: Flowable<R>,
-    crossinline selectorLeft: (T) -> Publisher<Selector_T>,
-    crossinline selectorRight: (R) -> Publisher<Selector_R>,
-    crossinline join: (T, R) -> S
+        other: Flowable<R>,
+        crossinline selectorLeft: (T) -> Publisher<Selector_T>,
+        crossinline selectorRight: (R) -> Publisher<Selector_R>,
+        crossinline join: (T, R) -> S
 ): Flowable<S> = join<R, Selector_T, Selector_R, S>(
-    other,
+        other,
         { selectorLeft(it) },
         { selectorRight(it) },
         { t1, t2 -> join(t1, t2) }
