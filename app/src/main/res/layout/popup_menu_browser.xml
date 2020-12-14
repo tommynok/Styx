@@ -87,16 +87,23 @@
                     android:text="@string/action_new_tab" />
 
                 <Button
-                    android:id="@+id/menuItemAddBookmark"
+                    android:id="@+id/menuItemIncognito"
                     style="@style/BrowserTextMenuItem"
-                    android:drawableStart="@drawable/ic_bookmark_border"
-                    android:text="@string/action_add_bookmark" />
+                    android:drawableStart="@drawable/ic_incognito"
+                    android:text="@string/action_incognito"
+                    android:enabled="true" />
 
                 <Button
                     android:id="@+id/menuItemHistory"
                     style="@style/BrowserTextMenuItem"
                     android:drawableStart="@drawable/ic_history"
                     android:text="@string/action_history" />
+
+                <Button
+                    android:id="@+id/menuItemAddBookmark"
+                    style="@style/BrowserTextMenuItem"
+                    android:drawableStart="@drawable/ic_bookmark_border"
+                    android:text="@string/action_add_bookmark" />
 
                 <Button
                     android:id="@+id/menuItemDownloads"
@@ -138,13 +145,6 @@
                     android:drawableStart="@drawable/ic_desktop"
                     android:text="@string/agent_desktop"
                     android:gravity="center_vertical"
-                    android:enabled="true" />
-
-                <Button
-                    android:id="@+id/menuItemIncognito"
-                    style="@style/BrowserTextMenuItem"
-                    android:drawableStart="@drawable/ic_incognito"
-                    android:text="@string/action_incognito"
                     android:enabled="true" />
 
                 <Button
