@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion 29
@@ -11,8 +12,8 @@ android {
         applicationId 'com.jamal2367.stxy'
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 22
-        versionName '2.2.0'
+        versionCode 23
+        versionName '2.3.0'
         resConfigs 'en', 'de'
         vectorDrawables.useSupportLibrary = true
         setProperty("archivesBaseName", 'Styx_v' + versionName)
@@ -32,9 +33,9 @@ android {
         }
 
         release {
-            minifyEnabled true
-            shrinkResources true
-            multiDexEnabled false
+            minifyEnabled false
+            shrinkResources false
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             ndk {
@@ -59,6 +60,14 @@ android {
     buildFeatures {
         dataBinding true
     }
+}
+
+dexcount {
+    includeClasses = false
+    includeFieldCount = false
+    format = "tree"
+    orderByMethodCount = true
+    verbose = false
 }
 
 dependencies {
