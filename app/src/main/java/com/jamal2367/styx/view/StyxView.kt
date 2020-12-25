@@ -752,7 +752,7 @@ class StyxView(
      * thingy, if it is null, this method tries to deal with it and find
      * a workaround.
      */
-    private fun longClickPage(url: String?) {
+    private fun longClickPage(url: String?, text: String?, src: String?) {
         val result = webView?.hitTestResult
         val currentUrl = webView?.url
         val newUrl = result?.extra
@@ -783,16 +783,16 @@ class StyxView(
                     if (result.type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE || result.type == WebView.HitTestResult.IMAGE_TYPE) {
                         dialogBuilder.showLongPressImageDialog(activity, uiController, url, userAgent)
                     } else {
-                        dialogBuilder.showLongPressLinkDialog(activity, uiController, url)
+                        dialogBuilder.showLongPressLinkDialog(activity, uiController, url, text)
                     }
                 } else {
-                    dialogBuilder.showLongPressLinkDialog(activity, uiController, url)
+                    dialogBuilder.showLongPressLinkDialog(activity, uiController, url, text)
                 }
             } else if (newUrl != null) {
                 if (result.type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE || result.type == WebView.HitTestResult.IMAGE_TYPE) {
                     dialogBuilder.showLongPressImageDialog(activity, uiController, newUrl, userAgent)
                 } else {
-                    dialogBuilder.showLongPressLinkDialog(activity, uiController, newUrl)
+                    dialogBuilder.showLongPressLinkDialog(activity, uiController, newUrl, text)
                 }
             }
         }
@@ -987,7 +987,10 @@ class StyxView(
             super.handleMessage(msg)
             val url = msg.data.getString("url")
 
-            reference.get()?.longClickPage(url)
+            val title = msg.data.getString("title")
+            val src = msg.data.getString("src")
+            //
+            reference.get()?.longClickPage(url,title,src)
         }
     }
 

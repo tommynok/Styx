@@ -13,7 +13,6 @@ import com.jamal2367.styx.di.NetworkScheduler
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.extensions.drawable
 import com.jamal2367.styx.preference.UserPreferences
-import com.jamal2367.styx.rx.join
 import com.jamal2367.styx.search.suggestions.NoOpSuggestionsRepository
 import com.jamal2367.styx.search.suggestions.SuggestionsRepository
 import android.content.Context

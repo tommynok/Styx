@@ -77,6 +77,7 @@
     <string name="dialog_adblock_enable_for_site">Enable ad block for site</string>
     <string name="dialog_cookies">Would you like to clear all browser cookies?</string>
     <string name="dialog_copy_link">Copy link</string>
+    <string name="dialog_copy_text">Copy text</string>
     <string name="dialog_delete_all_downloads">Delete all downloads</string>
     <string name="dialog_download_image">Download image</string>
     <string name="dialog_download">Do you want to download this file? (%1$s)</string>
