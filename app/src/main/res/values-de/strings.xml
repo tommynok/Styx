@@ -101,7 +101,7 @@
     <string name="download_failed">Download fehlgeschlagen</string>
     <string name="download_no_sdcard_dlg_msg">USB-Speicher ist für das Herunterladen der Datei notwendig!</string>
     <string name="download_no_sdcard_dlg_title">Keine SD-Karte</string>
-    <string name="download_pending">Herunterladen läuft\</string>
+    <string name="download_pending">Herunterladen:</string>
     <string name="download_sdcard_busy_dlg_msg">Speicher in Benutzung. Um das Herunterladen zu ermöglichen, schalten Sie den USB-Speicher in der Benachrichtigung aus.</string>
     <string name="download_sdcard_busy_dlg_title">USB-Speicher nicht verfügbar</string>
     <string name="download">Download-Verzeichnis</string>

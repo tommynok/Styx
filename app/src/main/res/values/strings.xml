@@ -101,7 +101,7 @@
     <string name="download_failed">Download failed</string>
     <string name="download_no_sdcard_dlg_msg">USB storage is required to download the file.</string>
     <string name="download_no_sdcard_dlg_title">No SD card</string>
-    <string name="download_pending">Starting download\u2026</string>
+    <string name="download_pending">Downloading:</string>
     <string name="download_sdcard_busy_dlg_msg">The storage is busy. To allow downloads, touch \'Turn Off USB Storage\' in the notification.</string>
     <string name="download_sdcard_busy_dlg_title">USB storage unavailable</string>
     <string name="download">Download location</string>

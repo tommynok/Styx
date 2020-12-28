@@ -64,7 +64,7 @@ public class DownloadHandler {
     private final Scheduler mainScheduler;
     private final Logger logger;
 
-    long iDownloadId =0;
+    long iDownloadId = 0;
     String iFilename="";
 
 
@@ -234,6 +234,7 @@ public class DownloadHandler {
         // or, should it be set to one of several Environment.DIRECTORY* dirs
         // depending on mimetype?
         String location = preferences.getDownloadDirectory();
+        //String location = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getPath();
         location = FileUtils.addNecessarySlashes(location);
         Uri downloadFolder = Uri.parse(location);
 
@@ -270,7 +271,7 @@ public class DownloadHandler {
                 .subscribeOn(networkScheduler)
                 .observeOn(mainScheduler)
                 .subscribe(result -> {
-                    switch (result) {
+                    switch (result.iCode) {
                         case FAILURE_ENQUEUE:
                             ActivityExtensions.snackbar(context, R.string.cannot_download);
                             break;
@@ -278,7 +279,9 @@ public class DownloadHandler {
                             ActivityExtensions.snackbar(context, R.string.problem_location_download);
                             break;
                         case SUCCESS:
-                            ActivityExtensions.snackbar(context, R.string.download_pending);
+                            iDownloadId = result.iDownloadId;
+                            iFilename = result.iFilename;
+                            ActivityExtensions.snackbar(context, context.getString(R.string.download_pending)  + '\n' + iFilename);
                             break;
                     }
                 });
@@ -295,7 +298,7 @@ public class DownloadHandler {
                 // because the system can only handle Environment.getExternal... as a path
                 ActivityExtensions.snackbar(context, R.string.problem_location_download);
             }
-            ActivityExtensions.snackbar(context, context.getString(R.string.download_pending) + ' ' + iFilename);
+            ActivityExtensions.snackbar(context, context.getString(R.string.download_pending) + '\n' + iFilename);
         }
 
         // save download in database

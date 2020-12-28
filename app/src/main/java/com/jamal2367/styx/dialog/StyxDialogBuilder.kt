@@ -19,6 +19,7 @@ import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.IntentUtils
 import com.jamal2367.styx.utils.isBookmarkUrl
+import android.Manifest
 import android.app.Activity
 import android.content.ClipboardManager
 import android.view.View
@@ -27,6 +28,8 @@ import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
+import com.anthonycr.grant.PermissionsManager
+import com.anthonycr.grant.PermissionsResultAction
 import dagger.Reusable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy
@@ -318,9 +321,18 @@ class StyxDialogBuilder @Inject constructor(
         DialogItem(title = R.string.dialog_copy_link) {
             clipboardManager.copyToClipboard(url)
         },
-        DialogItem(title = R.string.dialog_download_image) {
-            downloadHandler.onDownloadStart(activity, userPreferences, url, userAgent, "attachment", null, "")
-        })
+            DialogItem(title = R.string.dialog_download_image) {
+                // Ask for required permissions before starting our download
+                PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        object : PermissionsResultAction() {
+                            override fun onGranted() {
+                                downloadHandler.onDownloadStart(activity, userPreferences, url, userAgent, "attachment", null, "")
+                            }
+                            override fun onDenied(permission: String) {
+                                //TODO show message
+                            }
+                        })
+            })
 
     fun showLongPressLinkDialog(
         activity: Activity,

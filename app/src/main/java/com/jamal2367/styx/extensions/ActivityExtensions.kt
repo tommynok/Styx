@@ -2,6 +2,7 @@
 
 package com.jamal2367.styx.extensions
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.View
 import androidx.annotation.StringRes
@@ -17,8 +18,7 @@ import com.google.android.material.snackbar.Snackbar
  * @param resource the string resource to display to the user.
  */
 fun Activity.snackbar(@StringRes resource: Int) {
-    val view = findViewById<View>(android.R.id.content)
-    Snackbar.make(view, resource, Snackbar.LENGTH_SHORT).show()
+    makeSnackbar(getString(resource)).show()
 }
 
 /**
@@ -28,9 +28,24 @@ fun Activity.snackbar(@StringRes resource: Int) {
  * @see snackbar
  */
 fun Activity.snackbar(message: String) {
-    val view = findViewById<View>(android.R.id.content)
-    Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+    makeSnackbar(message).show()
 }
+
+// Define our snackbar popup duration
+const val KDuration: Int = 4000; // Snackbar.LENGTH_LONG
+
+/**
+ *
+ */
+@SuppressLint("WrongConstant")
+fun Activity.makeSnackbar(message: String): Snackbar {
+    val view = findViewById<View>(android.R.id.content)
+    return Snackbar.make(view, message, KDuration)
+}
+
+/**
+ *
+ */
 
 fun Activity.setStatusBarIconsColor(dark: Boolean)
 {

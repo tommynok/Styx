@@ -19,7 +19,6 @@ import android.webkit.DownloadListener;
 
 import com.anthonycr.grant.PermissionsManager;
 import com.anthonycr.grant.PermissionsResultAction;
-import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -28,13 +27,13 @@ import com.jamal2367.styx.browser.activity.BrowserActivity;
 import com.jamal2367.styx.database.downloads.DownloadsRepository;
 import com.jamal2367.styx.di.Injector;
 import com.jamal2367.styx.dialog.BrowserDialog;
+import com.jamal2367.styx.extensions.ActivityExtensions;
 import com.jamal2367.styx.log.Logger;
 import com.jamal2367.styx.preference.UserPreferences;
 import com.jamal2367.styx.utils.Utils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -130,9 +129,7 @@ public class StyxDownloadListener extends BroadcastReceiver implements DownloadL
                 //Show a snackbar with a link to open the downloaded file
                 if (success) {
                     final Intent i = downloadsIntent;
-                    View view = ((AppCompatActivity) mActivity).findViewById(android.R.id.content);
-                    Snackbar.make(view,contentTitle, Snackbar.LENGTH_LONG)
-                            .setAction(R.string.show, new View.OnClickListener() {
+                    ActivityExtensions.makeSnackbar(mActivity,contentTitle).setAction(R.string.show, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     context.startActivity(i);
@@ -140,8 +137,7 @@ public class StyxDownloadListener extends BroadcastReceiver implements DownloadL
                             }).show();
                 }
                 else {
-                    View view = ((AppCompatActivity) mActivity).findViewById(android.R.id.content);
-                    Snackbar.make(view,contentTitle, Snackbar.LENGTH_LONG).show();
+                    ActivityExtensions.snackbar(mActivity,contentTitle);
                 }
             }
         }
