@@ -11,8 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,8 +26,9 @@
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="match_parent"
                 android:background="?attr/actionBarItemBackground"
-                android:contentDescription="@string/action_back"
                 android:scaleType="center"
+                android:focusable="false"
+                android:clickable="false"
                 app:srcCompat="@drawable/ic_bookmark_border" />
 
             <TextView
