@@ -5,6 +5,7 @@
 package com.jamal2367.styx.browser.activity
 
 import com.jamal2367.styx.AppTheme
+import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.IncognitoActivity
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.*
@@ -220,11 +221,16 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     protected abstract fun updateCookiePreference(): Completable
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        //window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         super.onCreate(savedInstanceState)
         injector.inject(this)
+
+        if (BrowserApp.instance.justStarted) {
+            BrowserApp.instance.justStarted = false
+            // Since amazingly on Android you can't tell when your app is closed we do exit cleanup on start-up, go figure
+            // See: https://github.com/Slion/Fulguris/issues/106
+            performExitCleanUp()
+        }
+
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
         createPopupMenu()
@@ -1544,7 +1550,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
     }
 
-    protected fun saveOpenTabs() {
+    protected fun saveOpenTabsIfNeeded() {
         if (userPreferences.restoreTabsOnStartup) {
             tabsManager.saveState()
         }
@@ -1562,7 +1568,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         logger.log(TAG, "onDestroy")
         // Should we remove saveOpenTabs from MainActivity.onPause then?
         // Make sure we save our tabs before we are destroyed
-        saveOpenTabs()
 
         incognitoNotification?.hide()
 

@@ -21,11 +21,12 @@ android {
 
     dexOptions {
         javaMaxHeapSize "8g"
-        preDexLibraries false
+        preDexLibraries true
     }
 
     buildTypes {
         debug {
+            debuggable true
             minifyEnabled true
             shrinkResources true
             multiDexEnabled false
@@ -33,9 +34,10 @@ android {
         }
 
         release {
-            minifyEnabled false
-            shrinkResources false
-            multiDexEnabled true
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            multiDexEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             ndk {

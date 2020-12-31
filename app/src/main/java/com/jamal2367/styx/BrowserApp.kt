@@ -18,6 +18,7 @@ import android.content.Context
 import android.os.Build
 import android.os.StrictMode
 import android.webkit.WebView
+import androidx.databinding.library.BuildConfig
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.plugins.RxJavaPlugins
@@ -33,6 +34,8 @@ class BrowserApp : Application() {
     @Inject internal lateinit var buildInfo: BuildInfo
 
     lateinit var applicationComponent: AppComponent
+
+    var justStarted: Boolean = true;
 
     override fun onCreate() {
         // SL: Use this to debug when launched from another app for instance
