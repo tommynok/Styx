@@ -70,8 +70,8 @@
 
 ## License
 ```
-Copyright 2020 Jamal Rothfuchs
-Copyright 2020 Stéphane Lenclud
+Copyright 2021 Jamal Rothfuchs
+Copyright 2021 Stéphane Lenclud
 Copyright 2014 Anthony Restaino
 
 Styx Browser
