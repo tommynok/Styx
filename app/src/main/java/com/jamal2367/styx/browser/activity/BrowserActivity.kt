@@ -610,11 +610,18 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         }
     }
 
+    /**
+     * Called when search view gains focus
+     */
     private fun showUrl() {
         val currentView = tabsManager.currentTab ?: return
         val url = currentView.url
         if (!url.isSpecialUrl()) {
                 searchView?.setText(url)
+        }
+        else {
+            // Special URLs like home page and history just show search field then
+            searchView?.setText("")
         }
     }
 

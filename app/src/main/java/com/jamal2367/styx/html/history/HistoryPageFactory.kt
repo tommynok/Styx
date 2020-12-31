@@ -33,7 +33,7 @@ class HistoryPageFactory @Inject constructor(
         .lastHundredVisitedHistoryEntries()
         .map { list ->
             parse(listPageReader.provideHtml()
-                    // Theme our page first
+                    .replace("\${pageTitle}", application.getString(R.string.action_history))
                     .replace("\${backgroundColor}", htmlColor(ThemeUtils.getPrimaryColor(BrowserApp.currentContext())))
                     .replace("\${textColor}", htmlColor(ThemeUtils.getTextColor(BrowserApp.currentContext())))
                     .replace("\${secondaryTextColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorAccent)))
