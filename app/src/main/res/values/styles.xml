@@ -112,6 +112,7 @@
 
     <style name="AppCompatDialogStyle.Black" parent="Theme.AppCompat.Dialog.Alert">
         <item name="colorAccent">@color/accent_color_dark</item>
+        <item name="android:background">@color/black</item>
     </style>
 
     <style name="boldText">
