@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="black">#ff000000</color>
-    <color name="white">#ffffff</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="primary_color">#FFFFFF</color>
     <color name="secondary_color">#66000000</color>
@@ -10,12 +10,12 @@
 
     <color name="drawer_background">#F0F0F0</color>
     <color name="drawer_background_dark">#2D2D2D</color>
-    <color name="drawer_background_black">#0F0F0F</color>
+    <color name="drawer_background_black">#151515</color>
 
     <color name="secondary_color_settings_dark">#1E1E1E</color>
 
     <color name="hint_text_light_theme">#80000000</color>
-    <color name="hint_text_dark_theme">#80ffffff</color>
+    <color name="hint_text_dark_theme">#80FFFFFF</color>
 
     <color name="primary_color_dark">#1E1E1E</color>
     <color name="accent_color_dark">#EF9A9A</color>
