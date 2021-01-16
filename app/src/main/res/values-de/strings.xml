@@ -260,7 +260,7 @@
     <string name="suggestion">Suche nach</string>
     <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer tauschen</string>
     <string name="tab_frozen">Eingefroren…</string>
-    <string name="tabs_in_drawer">Tabs in Drawer deaktivieren</string>
+    <string name="tabs_in_drawer">Desktop Tab-Drawer deaktivieren</string>
     <string name="tabs">Tabs</string>
     <string name="text_encoding">Text Enkodierung</string>
     <string name="theme">App-Design</string>
