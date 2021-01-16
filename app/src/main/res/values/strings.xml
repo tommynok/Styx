@@ -14,6 +14,7 @@
     <string name="action_dont_allow">Don\'t allow</string>
     <string name="action_download">Download</string>
     <string name="action_downloads">Downloads</string>
+    <string name="action_edit_sessions">Edit sessions</string>
     <string name="action_find">Find in page</string>
     <string name="action_folder">Folder</string>
     <string name="action_forward">Forward</string>
@@ -29,6 +30,9 @@
     <string name="action_reload">Reload</string>
     <string name="action_restore_all_tabs">Restore all tabs</string>
     <string name="action_restore_tab">Restore tab</string>
+    <string name="action_save_session">Save session as</string>
+    <string name="action_sessions">Sessions</string>
+    <string name="action_new_session">New session</string>
     <string name="action_share">Share</string>
     <string name="action_show_homepage">Show homepage</string>
     <string name="action_webpage">Webpage</string>
@@ -57,6 +61,7 @@
     <string name="bookmark_export_failure">Sorry, bookmarks could not be exported!</string>
     <string name="bookmark_export_path">Bookmarks exported to</string>
     <string name="bookmark_settings">Bookmarks</string>
+    <string name="busy">Busy, try again shortly."</string>
     <string name="cache">Clear cache on exit</string>
     <string name="cannot_download">Can only download \"http\" or \"https\" URLs.</string>
     <string name="clear_cache">Clear cache</string>
@@ -127,6 +132,8 @@
     <string name="incognito_cookies">Enable cookies in incognito mode</string>
     <string name="infinity">∞</string>
     <string name="install_orbot">Please install Orbot in order to proxy with Tor.</string>
+    <string name="invalid_character_removed">Invalid character removed!</string>
+    <string name="invalid_characters_removed">Invalid characters removed!</string>
     <string name="invert_color">Invert color</string>
     <string name="java">Enable JavaScript</string>
     <string name="jsoup">jsoup: Java HTML Parser</string>
@@ -222,6 +229,13 @@
     <string name="search_suggestions_off">No search suggestions</string>
     <string name="search_suggestions">Search suggestions</string>
     <string name="search">Search engine</string>
+    <string name="session_default">Default</string>
+    <string name="session_name_prompt">Enter session name:</string>
+    <string name="session_already_exists">A session with that name already exists!</string>
+    <string name="session_cant_delete_current">Can\'t delete current session!</string>
+    <string name="session_prompt_confirm_deletion_title">Confirm deletion</string>
+    <string name="session_prompt_confirm_deletion_message">Are you sure you want to delete session \"%s\"?</string>
+    <string name="session_switched">Switched to \"%s\"</string>
     <string name="settings_about_explain">Details about version, update, author and license.</string>
     <string name="settings_about">About</string>
     <string name="settings_adblock">Ad Block</string>
@@ -245,6 +259,7 @@
     <string name="ssl_warning_dont_ask_again">Don\'t ask again for this browsing session.</string>
     <string name="suggestion">Search for</string>
     <string name="swap_bookmarks_and_tabs">Swap bookmark and tab drawers</string>
+    <string name="tab_frozen">Frozen…</string>
     <string name="tabs_in_drawer">Show tabs in navigation drawer</string>
     <string name="tabs">Tabs</string>
     <string name="text_encoding">Text encoding</string>

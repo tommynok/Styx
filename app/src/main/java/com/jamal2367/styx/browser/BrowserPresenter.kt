@@ -5,12 +5,15 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.webkit.URLUtil
+
 import com.jamal2367.styx.R
+import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.constant.INTENT_ORIGIN
 import com.jamal2367.styx.constant.SCHEME_BOOKMARKS
 import com.jamal2367.styx.constant.SCHEME_HOMEPAGE
 import com.jamal2367.styx.di.MainScheduler
+import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.html.homepage.HomePageFactory
 import com.jamal2367.styx.log.Logger
@@ -48,6 +51,34 @@ class BrowserPresenter(
 
     init {
         tabsModel.addTabNumberChangedListener(view::updateTabNumber)
+    }
+
+    /**
+     * Switch to the session with the given name
+     */
+    fun switchToSession(aSessionName: String) {
+        // Don't do anything if given session name is already the current one or if such session does not exists
+        if (!tabsModel.isInitialized
+                || tabsModel.iCurrentSessionName==aSessionName
+                || tabsModel.iSessions?.filter { s -> s.name == aSessionName }.isNullOrEmpty()) {
+            return
+        }
+
+        tabsModel.isInitialized = false
+
+        // Save current states
+        tabsModel.saveState()
+        // Change current session
+        tabsModel.iCurrentSessionName = aSessionName
+        // Save it again to preserve new current session name
+        tabsModel.saveSessions()
+        // Then reload our tabs
+        setupTabs(null)
+        //
+        BrowserApp.instance.applicationContext.apply {
+            toast(getString(R.string.session_switched,aSessionName))
+        }
+
     }
 
     /**

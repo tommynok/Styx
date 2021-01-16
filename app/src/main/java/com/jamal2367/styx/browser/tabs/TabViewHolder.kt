@@ -3,6 +3,7 @@ package com.jamal2367.styx.browser.tabs
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
+import com.jamal2367.styx.utils.ItemOperationListener
 import com.jamal2367.styx.view.BackgroundDrawable
 import android.view.View
 import android.widget.ImageView
@@ -17,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 class TabViewHolder(
     view: View,
     private val uiController: UIController
-) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener, ItemTouchHelperViewHolder {
+) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener, ItemOperationListener {
 
     // Using view binding won't give us much
     val txtTitle: TextView = view.findViewById(R.id.textTab)
@@ -51,7 +52,7 @@ class TabViewHolder(
 
     // From ItemTouchHelperViewHolder
     // Start dragging
-    override fun onItemSelected() {
+    override fun onItemOperationStart() {
         // Do some fancy for smoother transition
         previousBackground = layout.background as BackgroundDrawable
         previousBackground?.let {
@@ -61,7 +62,7 @@ class TabViewHolder(
 
     // From ItemTouchHelperViewHolder
     // Stopped dragging
-    override fun onItemClear() {
+    override fun onItemOperationStop() {
         // Here sadly no transition
         layout.background = previousBackground
     }

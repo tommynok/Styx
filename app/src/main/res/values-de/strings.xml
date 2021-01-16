@@ -14,6 +14,7 @@
     <string name="action_dont_allow">Nicht erlauben</string>
     <string name="action_download">Herunterladen</string>
     <string name="action_downloads">Downloads</string>
+    <string name="action_edit_sessions">Sitzungen bearbeiten</string>
     <string name="action_find">Auf Seite suchen</string>
     <string name="action_folder">Ordner</string>
     <string name="action_forward">Weiter</string>
@@ -29,6 +30,9 @@
     <string name="action_reload">Neu laden</string>
     <string name="action_restore_all_tabs">Alle Tabs wiederherstellen</string>
     <string name="action_restore_tab">Tab wiederherstellen</string>
+    <string name="action_save_session">Sitzung speichern als</string>
+    <string name="action_sessions">Sitzungen</string>
+    <string name="action_new_session">Neue Sitzung</string>
     <string name="action_share">Teilen</string>
     <string name="action_show_homepage">Homepage anzeigen</string>
     <string name="action_webpage">Webseite</string>
@@ -57,6 +61,7 @@
     <string name="bookmark_export_failure">Lesezeichen konnten nicht exportiert werden</string>
     <string name="bookmark_export_path">Lesezeichen exportiert nach</string>
     <string name="bookmark_settings">Lesezeichen</string>
+    <string name="busy">Besetzt, versuchen Sie es in Kürze wieder."</string>
     <string name="cache">Cache beim Beenden löschen</string>
     <string name="cannot_download">Herunterladen nur bei \"http\" oder \"https\" URLs möglich!</string>
     <string name="clear_cache">Cache löschen</string>
@@ -127,6 +132,8 @@
     <string name="incognito_cookies">Cookies im Inkognito-Modus aktivieren</string>
     <string name="infinity">∞</string>
     <string name="install_orbot">Um Tor verwenden zu können, muss Orbot installiert sein!</string>
+    <string name="invalid_character_removed">Ungültiges Zeichen entfernt!</string>
+    <string name="invalid_characters_removed">Ungültige Zeichen entfernt!</string>
     <string name="invert_color">Farben invertieren</string>
     <string name="java">JavaScript aktivieren</string>
     <string name="jsoup">jsoup: Java HTML Parser</string>
@@ -222,6 +229,13 @@
     <string name="search_suggestions_off">Keine Suchvorschläge</string>
     <string name="search_suggestions">Suchvorschläge</string>
     <string name="search">Suchdienst</string>
+    <string name="session_default">Standard</string>
+    <string name="session_name_prompt">Name der Sitzung:</string>
+    <string name="session_already_exists">Es existiert bereits eine Sitzung mit diesem Namen!</string>
+    <string name="session_cant_delete_current">Die aktuelle Sitzung kann nicht gelöscht werden!</string>
+    <string name="session_prompt_confirm_deletion_title">Löschung bestätigen</string>
+    <string name="session_prompt_confirm_deletion_message">Sind Sie sicher, dass Sie die Sitzung \"%s\" löschen möchten?</string>
+    <string name="session_switched">Zu \"%s\" gewechselt</string>
     <string name="settings_about_explain">Details über Autor und Lizenz</string>
     <string name="settings_about">Über</string>
     <string name="settings_adblock">Werbeblocker</string>
@@ -245,6 +259,7 @@
     <string name="ssl_warning_dont_ask_again">Während dieser Sitzung nicht mehr nachfragen</string>
     <string name="suggestion">Suche nach</string>
     <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer tauschen</string>
+    <string name="tab_frozen">Eingefroren…</string>
     <string name="tabs_in_drawer">Tabs in Drawer deaktivieren</string>
     <string name="tabs">Tabs</string>
     <string name="text_encoding">Text Enkodierung</string>

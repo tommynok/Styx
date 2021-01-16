@@ -238,22 +238,24 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
     }
 
     private fun showUserAgentChooserDialog(summaryUpdater: SummaryUpdater) {
-        BrowserDialog.showCustomDialog(activity) {
-            setTitle(resources.getString(R.string.title_user_agent))
-            setSingleChoiceItems(R.array.user_agent, userPreferences.userAgentChoice - 1) { _, which ->
-                userPreferences.userAgentChoice = which + 1
-                when (which) {
-                    in 0..2 -> Unit
-                    3 -> {
-                        showCustomUserAgentPicker()
+        activity?.let {
+            BrowserDialog.showCustomDialog(it) {
+                setTitle(resources.getString(R.string.title_user_agent))
+                setSingleChoiceItems(R.array.user_agent, userPreferences.userAgentChoice - 1) { _, which ->
+                    userPreferences.userAgentChoice = which + 1
+                    when (which) {
+                        in 0..2 -> Unit
+                        3 -> {
+                            showCustomUserAgentPicker()
+                        }
+                        4 -> Unit
+                        5 -> Unit
                     }
-                    4 -> Unit
-                    5 -> Unit
-                }
 
-                summaryUpdater.updateSummary(userAgentSummary())
+                    summaryUpdater.updateSummary(userAgentSummary())
+                }
+                setPositiveButton(resources.getString(R.string.action_ok), null)
             }
-            setPositiveButton(resources.getString(R.string.action_ok), null)
         }
     }
 
@@ -270,7 +272,8 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
     }
 
     private fun showDownloadLocationDialog(summaryUpdater: SummaryUpdater) {
-        BrowserDialog.showCustomDialog(activity) {
+        activity?.let {
+            BrowserDialog.showCustomDialog(it) {
             setTitle(resources.getString(R.string.title_download_location))
             val n: Int = if (userPreferences.downloadDirectory.contains(Environment.DIRECTORY_DOWNLOADS)) {
                 0
@@ -290,6 +293,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 }
             }
             setPositiveButton(resources.getString(R.string.action_ok), null)
+        }
         }
     }
 
@@ -346,7 +350,8 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
     }
 
     private fun showHomePageDialog(summaryUpdater: SummaryUpdater) {
-        BrowserDialog.showCustomDialog(activity) {
+        activity?.let {
+            BrowserDialog.showCustomDialog(it) {
             setTitle(R.string.home)
             val n = when (userPreferences.homepage) {
                 SCHEME_HOMEPAGE -> 0
@@ -375,6 +380,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 }
             }
             setPositiveButton(resources.getString(R.string.action_ok), null)
+        }
         }
     }
 
@@ -409,7 +415,8 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         searchEngines.map { getString(it.titleRes) }.toTypedArray()
 
     private fun showSearchProviderDialog(summaryUpdater: SummaryUpdater) {
-        BrowserDialog.showCustomDialog(activity) {
+        activity?.let {
+            BrowserDialog.showCustomDialog(it) {
             setTitle(resources.getString(R.string.title_search_engine))
 
             val searchEngineList = searchEngineProvider.provideAllSearchEngines()
@@ -434,6 +441,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 }
             }
             setPositiveButton(R.string.action_ok, null)
+        }
         }
     }
 
@@ -463,7 +471,8 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         }
 
     private fun showSearchSuggestionsDialog(summaryUpdater: SummaryUpdater) {
-        BrowserDialog.showCustomDialog(activity) {
+        activity?.let {
+            BrowserDialog.showCustomDialog(it) {
             setTitle(resources.getString(R.string.search_suggestions))
 
             val currentChoice = when (Suggestions.from(userPreferences.searchSuggestionChoice)) {
@@ -487,6 +496,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 summaryUpdater.updateSummary(searchSuggestionChoiceToTitle(suggestionsProvider))
             }
             setPositiveButton(resources.getString(R.string.action_ok), null)
+        }
         }
     }
 

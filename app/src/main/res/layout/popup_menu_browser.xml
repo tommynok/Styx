@@ -100,16 +100,22 @@
                     android:text="@string/action_history" />
 
                 <Button
-                    android:id="@+id/menuItemAddBookmark"
+                    android:id="@+id/menuItemSessions"
                     style="@style/BrowserTextMenuItem"
-                    android:drawableStart="@drawable/ic_bookmark_border"
-                    android:text="@string/action_add_bookmark" />
+                    android:drawableStart="@drawable/ic_sessions"
+                    android:text="@string/action_sessions" />
 
                 <Button
                     android:id="@+id/menuItemDownloads"
                     style="@style/BrowserTextMenuItem"
                     android:drawableStart="@drawable/ic_file_download"
                     android:text="@string/action_downloads" />
+
+                <Button
+                    android:id="@+id/menuItemAddBookmark"
+                    style="@style/BrowserTextMenuItem"
+                    android:drawableStart="@drawable/ic_bookmark_border"
+                    android:text="@string/action_add_bookmark" />
 
                 <Button
                     android:id="@+id/menuItemShare"

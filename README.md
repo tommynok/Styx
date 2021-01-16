@@ -1,6 +1,7 @@
 # Styx Browser
 
 ## Features
+* Sessions.
 * Tabs manager.
 * Bookmarks.
 * History.

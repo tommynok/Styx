@@ -5,6 +5,7 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.setImageForTheme
+import com.jamal2367.styx.utils.ItemDragDropSwipeListener
 import com.jamal2367.styx.view.BackgroundDrawable
 import android.graphics.Bitmap
 import android.view.ViewGroup
@@ -18,7 +19,7 @@ import java.util.*
  */
 class TabsDrawerAdapter(
     private val uiController: UIController
-) : RecyclerView.Adapter<TabViewHolder>(), ItemTouchHelperAdapter {
+) : RecyclerView.Adapter<TabViewHolder>(), ItemDragDropSwipeListener {
 
     private var tabList: List<TabViewState> = emptyList()
 

@@ -11,6 +11,7 @@ import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.*
 import com.jamal2367.styx.browser.bookmarks.BookmarksDrawerView
 import com.jamal2367.styx.browser.cleanup.ExitCleanup
+import com.jamal2367.styx.browser.sessions.SessionsPopupWindow
 import com.jamal2367.styx.browser.tabs.TabsDesktopView
 import com.jamal2367.styx.browser.tabs.TabsDrawerView
 import com.jamal2367.styx.controller.UIController
@@ -189,6 +190,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
     // Menu
     private lateinit var popupMenu: BrowserPopupMenu
+    lateinit var sessionsMenu: SessionsPopupWindow
 
     // Settings
     private var showCloseTabButton = false
@@ -234,6 +236,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
         createPopupMenu()
+        createSessionsMenu()
 
         if (isIncognito()) {
             incognitoNotification = IncognitoNotification(this, notificationManager)
@@ -266,7 +269,39 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         button_reload.setOnClickListener(this)
     }
 
+    private fun createSessionsMenu() {
+        sessionsMenu = SessionsPopupWindow(layoutInflater)
 
+        /*
+        val view = sessionsMenu.contentView
+        // TODO: could use data binding instead
+        popupMenu.apply {
+            // Bind our actions
+            onMenuItemClicked(view.menuItemNewTab) { executeAction(R.id.action_sessions) }
+            onMenuItemClicked(view.menuItemNewTab) { executeAction(R.id.action_new_tab) }
+            onMenuItemClicked(view.menuItemIncognito) { executeAction(R.id.action_incognito) }
+            onMenuItemClicked(view.menuItemAddBookmark) { executeAction(R.id.action_add_bookmark) }
+            onMenuItemClicked(view.menuItemHistory) { executeAction(R.id.action_history) }
+            onMenuItemClicked(view.menuItemDownloads) { executeAction(R.id.action_downloads) }
+            onMenuItemClicked(view.menuItemShare) { executeAction(R.id.action_share) }
+            onMenuItemClicked(view.menuItemFind) { executeAction(R.id.action_find) }
+            onMenuItemClicked(view.menuItemAddToHome) { executeAction(R.id.action_add_to_homescreen) }
+            onMenuItemClicked(view.menuItemReaderMode) { executeAction(R.id.action_reading_mode) }
+            onMenuItemClicked(view.menuItemSettings) { executeAction(R.id.action_settings) }
+            onMenuItemClicked(view.menuItemDesktopMode) { executeAction(R.id.action_toggle_desktop_mode) }
+            // Popup menu action shortcut icons
+            onMenuItemClicked(view.menuShortcutRefresh) { executeAction(R.id.action_reload) }
+            onMenuItemClicked(view.menuShortcutHome) { executeAction(R.id.action_show_homepage) }
+            onMenuItemClicked(view.menuShortcutForward) { executeAction(R.id.action_forward) }
+            onMenuItemClicked(view.menuShortcutBack) { executeAction(R.id.action_back) }
+            onMenuItemClicked(view.menuShortcutBookmarks) { executeAction(R.id.action_bookmarks) }
+        }
+        */
+    }
+
+    public fun showSessions() {
+        sessionsMenu.show(coordinator_layout)
+    }
 
     private fun createPopupMenu() {
         popupMenu = BrowserPopupMenu(layoutInflater)
@@ -274,6 +309,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         // TODO: could use data binding instead
         popupMenu.apply {
             // Bind our actions
+            onMenuItemClicked(view.menuItemSessions) { executeAction(R.id.action_sessions) }
             onMenuItemClicked(view.menuItemNewTab) { executeAction(R.id.action_new_tab) }
             onMenuItemClicked(view.menuItemIncognito) { executeAction(R.id.action_incognito) }
             onMenuItemClicked(view.menuItemAddBookmark) { executeAction(R.id.action_add_bookmark) }
@@ -1020,6 +1056,10 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
                         toggleTabs()
                         return true
                     }
+                    KeyEvent.KEYCODE_S -> {
+                        toggleSessions()
+                        return true
+                    }
                     KeyEvent.KEYCODE_B -> {
                         toggleBookmarks()
                         return true
@@ -1185,6 +1225,12 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
                 return true
             }
 
+            R.id.action_sessions -> {
+                // Show sessions menu
+                showSessions()
+                return true
+            }
+
             else -> return false
         }
     }
@@ -1344,12 +1390,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         currentTabView.removeFromParent()
         currentTabView?.onFocusChangeListener = null
         currentTabView = null
-
-        // Use a delayed handler to make the transition smooth
-        // otherwise it will get caught up with the showTab code
-        // and cause a janky motion
-        mainHandler.postDelayed(drawer_layout::closeDrawers, 200)
-
     }
 
     /**
@@ -1359,12 +1399,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
      * @param view Input is in fact a WebViewEx.
      */
     override fun setTabView(view: View) {
-        // SL: Hide any drawers first, thus making sure we close our tab drawer even when user taps current tab
-        // Use a delayed handler to make the transition smooth
-        // otherwise it will get caught up with the showTab code
-        // and cause a janky motion
-        mainHandler.postDelayed(drawer_layout::closeDrawers, 200)
-
         if (currentTabView == view) {
             return
         }
@@ -1372,7 +1406,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         logger.log(TAG, "Setting the tab view")
         view.removeFromParent()
         currentTabView.removeFromParent()
-
 
         content_frame.resetTarget() // Needed to make it work together with swipe to refresh
         content_frame.addView(view, 0, MATCH_PARENT)
@@ -1385,6 +1418,9 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         // Close virtual keyboard if we loose focus
         currentTabView.onFocusLost { inputMethodManager.hideSoftInputFromWindow(ui_layout.windowToken, 0) }
         showActionBar()
+
+        // Make sure current tab is visible in tab list
+        scrollToCurrentTab()
     }
 
     override fun showBlockedLocalFileDialog(onPositiveClick: Function0<Unit>) {
@@ -1404,6 +1440,12 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     }
 
     override fun tabClicked(position: Int) {
+        // SL: Hide any drawers first, thus making sure we close our tab drawer even when user taps current tab
+        // Use a delayed handler to make the transition smooth
+        // otherwise it will get caught up with the showTab code
+        // and cause a janky motion
+        mainHandler.postDelayed(drawer_layout::closeDrawers, 200)
+
         presenter?.tabChanged(position)
     }
 
@@ -1507,6 +1549,10 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         super.onPause()
         logger.log(TAG, "onPause")
         tabsManager.pauseAll()
+
+        // Dismiss any popup menu
+        popupMenu.dismiss()
+        sessionsMenu.dismiss()
 
         if (isIncognito() && isFinishing) {
             overridePendingTransition(R.anim.fade_in_scale, R.anim.slide_down_out)
@@ -1997,33 +2043,41 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         // That's needed for focus issue when opening with tap on button
         val tabListView = drawer_layout.findViewById<RecyclerView>(R.id.tabs_list)
         tabListView?.requestFocus()
-
         // Define what to do once our list drawer it opened
         // Item focus won't work sometimes when not using keyboard, I'm guessing that's somehow a feature
         drawer_layout.onceOnDrawerOpened {
-            // Set focus
-            // Find our recycler list view
-            tabListView?.apply {
-                // Get current tab index and layout manager
-                val index = tabsManager.indexOfCurrentTab()
-                val lm = layoutManager as LinearLayoutManager
-                // Check if current item is currently visible
-                if (lm.findFirstCompletelyVisibleItemPosition() <= index && index <= lm.findLastCompletelyVisibleItemPosition()) {
-                    // We don't need to scroll as current item is already visible
-                    // Just focus our current item then for best keyboard navigation experience
-                    findViewHolderForAdapterPosition(tabsManager.indexOfCurrentTab())?.itemView?.requestFocus()
-                } else {
-                    // Our current item is not completely visible, we need to scroll then
-                    // Once scroll is complete we will focus our current item
-                    onceOnScrollStateIdle { findViewHolderForAdapterPosition(tabsManager.indexOfCurrentTab())?.itemView?.requestFocus() }
-                    // Trigger scroll
-                    smoothScrollToPosition(index)
-                }
-            }
+            scrollToCurrentTab()
         }
 
         // Open our tab list drawer
         drawer_layout.openDrawer(getTabDrawer())
+    }
+
+    /**
+     * Scroll to current tab.
+     */
+    private fun scrollToCurrentTab() {
+        val tabListView = drawer_layout.findViewById<RecyclerView>(R.id.tabs_list)
+        // Set focus
+        // Find our recycler list view
+        tabListView?.apply {
+            // Get current tab index and layout manager
+            val index = tabsManager.indexOfCurrentTab()
+            val lm = layoutManager as LinearLayoutManager
+            // Check if current item is currently visible
+            if (lm.findFirstCompletelyVisibleItemPosition() <= index && index <= lm.findLastCompletelyVisibleItemPosition()) {
+                // We don't need to scroll as current item is already visible
+                // Just focus our current item then for best keyboard navigation experience
+                findViewHolderForAdapterPosition(tabsManager.indexOfCurrentTab())?.itemView?.requestFocus()
+            } else {
+                // Our current item is not completely visible, we need to scroll then
+                // Once scroll is complete we will focus our current item
+                onceOnScrollStateIdle { findViewHolderForAdapterPosition(tabsManager.indexOfCurrentTab())?.itemView?.requestFocus() }
+                // Trigger scroll
+                smoothScrollToPosition(index)
+            }
+        }
+
     }
 
     /**
@@ -2037,6 +2091,19 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         }
     }
 
+    /**
+     * Toggle tab list visibility
+     */
+    private fun toggleSessions() {
+        // isShowing always return false for some reason
+        // Therefore toggle is not working however one can use Esc to close menu.
+        // TODO: Fix that at some point
+        if (sessionsMenu.isShowing) {
+            sessionsMenu.dismiss()
+        } else {
+            showSessions()
+        }
+    }
 
     /**
      * This method closes any open drawer and executes the runnable after the drawers are closed.
@@ -2088,7 +2155,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
             type = "*/*"
         }, getString(R.string.title_file_chooser)), FILE_CHOOSER_REQUEST_CODE)
     }
-
 
     /**
      * used to allow uploading into the browser
