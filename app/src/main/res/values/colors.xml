@@ -8,8 +8,9 @@
     <color name="secondary_color">#66000000</color>
     <color name="accent_color">#E53935</color>
 
-    <color name="drawer_background">#ffffff</color>
-    <color name="drawer_background_dark">#1E1E1E</color>
+    <color name="drawer_background">#F0F0F0</color>
+    <color name="drawer_background_dark">#2D2D2D</color>
+    <color name="drawer_background_black">#0F0F0F</color>
 
     <color name="secondary_color_settings_dark">#1E1E1E</color>
 

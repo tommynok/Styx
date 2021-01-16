@@ -50,7 +50,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_new_session"
-                app:tooltipText="@{@string/action_edit_sessions}"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_edit"
                 />
@@ -63,7 +62,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_save_session"
-                app:tooltipText="@{@string/action_save_session}"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_save"
                 />
@@ -76,7 +74,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/action_new_session"
-                app:tooltipText="@{@string/action_new_session}"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_action_plus"
                 />

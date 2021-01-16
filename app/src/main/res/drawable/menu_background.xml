@@ -40,9 +40,9 @@
     </item>
 
 
-    <item android:top="0dp" android:left="0dp" android:right="5dp" android:bottom="5dp">
+    <item android:top="0dp" android:left="0dp" android:right="3dp" android:bottom="3dp">
         <shape>
-            <solid android:color="?attr/colorPrimary"/>
+            <solid android:color="?attr/drawerBackground"/>
             <corners android:radius="@dimen/menu_corner_radius" />
         </shape>
     </item>
