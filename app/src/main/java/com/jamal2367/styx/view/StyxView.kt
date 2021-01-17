@@ -469,10 +469,6 @@ class StyxView(
         } else {
             setUserAgentForPreference(userPreferences)
         }
-
-
-
-
         toggleDesktop = !toggleDesktop
     }
 

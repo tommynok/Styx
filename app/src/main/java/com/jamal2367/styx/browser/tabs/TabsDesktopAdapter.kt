@@ -102,7 +102,7 @@ class TabsDesktopAdapter(
             }
             viewHolder.layout.background = foregroundDrawable
         } else {
-            TextViewCompat.setTextAppearance(viewHolder.txtTitle, R.style.normalText)
+            TextViewCompat.setTextAppearance(viewHolder.txtTitle, R.style.italicText)
             viewHolder.layout.background = backgroundTabDrawable
             // Put back the color we stashed
             viewHolder.txtTitle.setTextColor(textColor)
