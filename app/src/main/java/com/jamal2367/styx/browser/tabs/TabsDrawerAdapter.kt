@@ -43,7 +43,7 @@ class TabsDrawerAdapter(
         holder.txtTitle.text = web.title
         updateViewHolderAppearance(holder, web)
         updateViewHolderFavicon(holder, web.favicon)
-        updateViewHolderBackground(holder, web.isForegroundTab)
+        updateViewHolderBackground(holder, web.isForeground)
     }
 
 
@@ -66,7 +66,7 @@ class TabsDrawerAdapter(
     }
 
     private fun updateViewHolderAppearance(viewHolder: TabViewHolder, tab: TabViewState) {
-        if (tab.isForegroundTab) {
+        if (tab.isForeground) {
             TextViewCompat.setTextAppearance(viewHolder.txtTitle, R.style.boldText)
         } else {
             TextViewCompat.setTextAppearance(viewHolder.txtTitle, R.style.italicText)

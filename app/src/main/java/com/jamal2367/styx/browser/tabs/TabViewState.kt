@@ -13,7 +13,7 @@ data class TabViewState(
     val id: Int,
     val title: String,
     val favicon: Bitmap?,
-    val isForegroundTab: Boolean,
+    val isForeground: Boolean,
     val themeColor: Int
 )
 
@@ -24,6 +24,6 @@ fun StyxView.asTabViewState() = TabViewState(
     id = id,
     title = title,
     favicon = favicon,
-    isForegroundTab = isForegroundTab,
+    isForeground = isForeground,
     themeColor = htmlMetaThemeColor
 )

@@ -90,7 +90,7 @@ class TabsDesktopAdapter(
             textColor = viewHolder.txtTitle.currentTextColor
         }
 
-        if (tab.isForegroundTab) {
+        if (tab.isForeground) {
             val foregroundDrawable = BitmapDrawable(resources, foregroundTabBitmap)
             TextViewCompat.setTextAppearance(viewHolder.txtTitle, R.style.boldText)
             val newTextColor = (uiController as BrowserActivity).currentToolBarTextColor

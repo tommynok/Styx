@@ -147,12 +147,12 @@ class BrowserPresenter(
                     // TODO: Restore this when Google fixes the bug where the WebView is
                     // blank after calling onPause followed by onResume.
                     // currentTab.onPause();
-                    it?.isForegroundTab = false
+                    it?.isForeground = false
                 }
 
                 newTab.resumeTimers()
                 newTab.onResume()
-                newTab.isForegroundTab = true
+                newTab.isForeground = true
 
                 view.updateProgress(newTab.progress)
                 view.setBackButtonEnabled(newTab.canGoBack())
