@@ -44,6 +44,7 @@ import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebView
+import androidx.annotation.RequiresApi
 import androidx.collection.ArrayMap
 import io.reactivex.Observable
 import io.reactivex.Scheduler
@@ -256,13 +257,10 @@ class StyxView(
             webViewClient = styxWebClient
             // We want to receive download complete notifications
             setDownloadListener(iDownloadListener.also { activity.registerReceiver(it, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) })
-            val tl = TouchListener()
-            setOnTouchListener(tl)
             // For older devices show Tool Bar On Page Top won't work after fling to top.
             // Who cares? I mean those devices are probably from 2014 or older.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                setOnScrollChangeListener(tl)
-            }
+            val tl = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) TouchListener().also { setOnScrollChangeListener(it) } else TouchListenerLollipop()
+            setOnTouchListener(tl)
             initializeSettings()
         }
 
@@ -868,25 +866,12 @@ class StyxView(
      * get scroll events and show/hide the action bar when
      * the page is scrolled up/down.
      */
-    private inner class TouchListener : OnTouchListener, OnScrollChangeListener {
+    private open inner class TouchListenerLollipop : OnTouchListener {
 
         var location: Float = 0f
-        var touchingScreen: Boolean = false
+        protected var touchingScreen: Boolean = false
         var y: Float = 0f
         var action: Int = 0
-
-        override fun onScrollChange(view: View?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
-
-            view?.apply {
-                if (canScrollVertically()) {
-                    // Handle the case after fling all the way to the top of the web page
-                    // Are we near the top of our web page and is user finder not on the screen
-                    if (scrollY < SCROLL_DOWN_THRESHOLD && !touchingScreen) {
-                        showToolBarOnPageTopIfNeeded()
-                    }
-                }
-            }
-        }
 
         @SuppressLint("ClickableViewAccessibility")
         override fun onTouch(view: View?, arg1: MotionEvent): Boolean {
@@ -924,6 +909,26 @@ class StyxView(
             gestureDetector.onTouchEvent(arg1)
 
             return false
+        }
+    }
+
+    /**
+     * Improved touch listener for devices above API 21 Lollipop
+     */
+    @RequiresApi(Build.VERSION_CODES.M)
+    private inner class TouchListener: TouchListenerLollipop(), OnScrollChangeListener {
+
+        override fun onScrollChange(view: View?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
+
+            view?.apply {
+                if (canScrollVertically()) {
+                    // Handle the case after fling all the way to the top of the web page
+                    // Are we near the top of our web page and is user finger not on the screen
+                    if (scrollY < SCROLL_DOWN_THRESHOLD && !touchingScreen) {
+                        showToolBarOnPageTopIfNeeded()
+                    }
+                }
+            }
         }
     }
 

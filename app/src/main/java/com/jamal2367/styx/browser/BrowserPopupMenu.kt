@@ -7,6 +7,7 @@ import com.jamal2367.styx.databinding.PopupMenuBrowserBinding
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
+import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,10 @@ class BrowserPopupMenu : PopupWindow {
 
         animationStyle = R.style.AnimationMenu
         //animationStyle = android.R.style.Animation_Dialog
+
+        // Needed on Android 5 to make sure our pop-up can be dismissed by tapping outside and back button
+        // See: https://stackoverflow.com/questions/46872634/close-popupwindow-upon-tapping-outside-or-back-button
+        setBackgroundDrawable(ColorDrawable())
 
         // Hide incognito menu item if we are already incognito
         if ((view.context as BrowserActivity).isIncognito()) {
@@ -51,7 +56,7 @@ class BrowserPopupMenu : PopupWindow {
             // Set desktop mode checkbox according to current tab
             contentView.menuItemDesktopMode.isChecked = it.currentTab?.toggleDesktop ?: false
 
-            it.currentTab?.let {tab ->
+            it.currentTab?.let { tab ->
                 // Let user add multiple times the same URL I guess, for now anyway
                 // Blocking it is not nice and subscription is more involved I guess
                 // See BookmarksDrawerView.updateBookmarkIndicator
