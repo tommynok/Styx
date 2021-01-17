@@ -5,19 +5,16 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.SessionListBinding
 import com.jamal2367.styx.dialog.BrowserDialog
+import com.jamal2367.styx.extensions.dimBehind
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.list.VerticalItemAnimator
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
 import android.app.Activity
-import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.text.InputFilter
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.view.WindowManager
 import android.widget.EditText
 import android.widget.PopupWindow
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -49,39 +46,40 @@ class SessionsPopupWindow : PopupWindow {
         // See: https://stackoverflow.com/questions/46872634/close-popupwindow-upon-tapping-outside-or-back-button
         setBackgroundDrawable(ColorDrawable())
 
+
         // Handle click on "add session" button
         aBinding.buttonNewSession.setOnClickListener { view ->
-                val dialogView = LayoutInflater.from(aBinding.root.context).inflate(R.layout.dialog_edit_text, null)
-                val textView = dialogView.findViewById<EditText>(R.id.dialog_edit_text)
-                // Make sure user can only enter valid filename characters
-                textView.filters = arrayOf<InputFilter>(FileNameInputFilter())
+            val dialogView = LayoutInflater.from(aBinding.root.context).inflate(R.layout.dialog_edit_text, null)
+            val textView = dialogView.findViewById<EditText>(R.id.dialog_edit_text)
+            // Make sure user can only enter valid filename characters
+            textView.filters = arrayOf<InputFilter>(FileNameInputFilter())
 
-                BrowserDialog.showCustomDialog(aBinding.root.context as Activity) {
-                    setTitle(R.string.session_name_prompt)
-                    setView(dialogView)
-                    setPositiveButton(R.string.action_ok) { _, _ ->
-                        val name = textView.text.toString()
-                        // Check if session exists already
-                        if (iUiController.getTabModel().isValidSessionName(name)) {
-                            // That session does not exist yet, add it then
-                            iUiController.getTabModel().iSessions.let {
-                                it.add(Session(name, 1))
-                                // Switch to our newly added session
-                                (view.context as BrowserActivity).apply {
-                                    presenter?.switchToSession(name)
-                                    // Close session dialog after creating and switching to new session
-                                    sessionsMenu.dismiss()
-                                }
-                                // Update our session list
-                                //iAdapter.showSessions(it)
+            BrowserDialog.showCustomDialog(aBinding.root.context as Activity) {
+                setTitle(R.string.session_name_prompt)
+                setView(dialogView)
+                setPositiveButton(R.string.action_ok) { _, _ ->
+                    val name = textView.text.toString()
+                    // Check if session exists already
+                    if (iUiController.getTabModel().isValidSessionName(name)) {
+                        // That session does not exist yet, add it then
+                        iUiController.getTabModel().iSessions.let {
+                            it.add(Session(name, 1))
+                            // Switch to our newly added session
+                            (view.context as BrowserActivity).apply {
+                                presenter?.switchToSession(name)
+                                // Close session dialog after creating and switching to new session
+                                sessionsMenu.dismiss()
                             }
-                        } else {
-                            // We already have a session with that name, display an error message
-                            context.toast(R.string.session_already_exists)
+                            // Update our session list
+                            //iAdapter.showSessions(it)
                         }
+                    } else {
+                        // We already have a session with that name, display an error message
+                        context.toast(R.string.session_already_exists)
                     }
                 }
             }
+        }
 
         // Handle save as button
         // TODO: reuse code between, new, save as and edit dialog
@@ -149,6 +147,21 @@ class SessionsPopupWindow : PopupWindow {
             }
         }
 
+        // Make sure Ctrl + Shift + S closes our menu so that toggle is working
+        // TODO: Somehow still not working
+        /*
+        contentView.isFocusableInTouchMode = true
+        contentView.setOnKeyListener { _, keyCode, event ->
+            val isCtrlShiftOnly  = KeyEvent.metaStateHasModifiers(event.metaState, KeyEvent.META_CTRL_ON or KeyEvent.META_SHIFT_ON)
+            //(isCtrlShiftOnly && keyCode == KeyEvent.KEYCODE_S).also { if (it) dismiss() }
+            if (isCtrlShiftOnly && keyCode == KeyEvent.KEYCODE_S) {
+                dismiss()
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+        */
+
         val animator = VerticalItemAnimator().apply {
             supportsChangeAnimations = false
             addDuration = 200
@@ -167,23 +180,28 @@ class SessionsPopupWindow : PopupWindow {
         }
 
         // Enable drag & drop and swipe
-        val callback: ItemTouchHelper.Callback = ItemDragDropSwipeHelper(iAdapter,true,false)
+        val callback: ItemTouchHelper.Callback = ItemDragDropSwipeHelper(iAdapter, true, false)
         iItemTouchHelper = ItemTouchHelper(callback)
         iItemTouchHelper?.attachToRecyclerView(iBinding.recyclerViewSessions)
     }
 
 
-    fun show(rootView: View) {
-
+    /**
+     *
+     */
+    fun show(aAnchor: View) {
         // Disable edit mode when showing our menu
         iAdapter.iEditModeEnabledObservable.onNext(false)
         iBinding.buttonEditSessions.setImageResource(R.drawable.ic_edit);
 
-        showAtLocation(rootView, Gravity.CENTER, 0, 0);
-        dimBehind(this)
+        //showAsDropDown(aAnchor, 0,-aAnchor.height)
+        showAsDropDown(aAnchor, 0, 0)
+
+        dimBehind()
         // Show our sessions
         updateSessions()
     }
+
 
     fun updateSessions() {
         //See: https://stackoverflow.com/q/43221847/3969362
@@ -194,20 +212,4 @@ class SessionsPopupWindow : PopupWindow {
         }
     }
 
-    /**
-     *  TODO: Make this a View extension
-     *  See: https://stackoverflow.com/a/46711174/3969362
-     */
-    private fun dimBehind(popupWindow: PopupWindow) {
-        val container = popupWindow.contentView.rootView
-        val context: Context = popupWindow.contentView.context
-        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val p = container.layoutParams as WindowManager.LayoutParams
-        p.flags = p.flags or WindowManager.LayoutParams.FLAG_DIM_BEHIND
-        p.dimAmount = 0.3f
-        wm.updateViewLayout(container, p)
-    }
-
-
 }
-
