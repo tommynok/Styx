@@ -246,6 +246,7 @@
     <string name="settings_general">Allgemein</string>
     <string name="settings_privacy">Privatsphäre</string>
     <string name="settings_summary_apps">Anwendungen von Drittanbietern</string>
+    <string name="settings_summary_vertical_tab_bar">Ausschalten um Desktop Tab-Drawer zu nutzen</string>
     <string name="settings_title_apps">Apps</string>
     <string name="settings">Einstellungen</string>
     <string name="shortcut_message_failed_to_add">Ihr Launcher unterstützt keine Verknüpfungen!</string>
@@ -260,7 +261,7 @@
     <string name="suggestion">Suche nach</string>
     <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer tauschen</string>
     <string name="tab_frozen">Eingefroren…</string>
-    <string name="tabs_in_drawer">Desktop Tab-Drawer deaktivieren</string>
+    <string name="tabs_in_drawer">Desktop Tab-Drawer</string>
     <string name="tabs">Tabs</string>
     <string name="text_encoding">Text Enkodierung</string>
     <string name="theme">App-Design</string>

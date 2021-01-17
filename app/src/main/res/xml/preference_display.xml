@@ -115,7 +115,7 @@
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_tabs_in_drawer"
-            android:summary="@string/recommended"
+            android:summary="@string/settings_summary_vertical_tab_bar"
             android:title="@string/tabs_in_drawer"
             app:iconSpaceReserved="false" />
 
