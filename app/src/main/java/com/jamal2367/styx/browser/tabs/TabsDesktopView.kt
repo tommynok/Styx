@@ -14,8 +14,6 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.popup_menu_browser.view.*
-import kotlinx.android.synthetic.main.tab_drawer_view.view.*
 import java.lang.Exception
 
 /**
@@ -30,10 +28,12 @@ class TabsDesktopView @JvmOverloads constructor(
     private val uiController = context as UIController
     private val tabsAdapter: TabsDesktopAdapter
     private val tabList: RecyclerView
+    // Inflate our layout with binding support
+    private val iBinding: TabDesktopViewBinding = TabDesktopViewBinding.inflate(context.inflater,this, true)
 
     init {
-        // Inflate our layout with binding support, provide UI controller
-        TabDesktopViewBinding.inflate(context.inflater,this, true).uiController = uiController
+        // Provide UI controller
+        iBinding.uiController = uiController
 
         val layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
@@ -62,10 +62,10 @@ class TabsDesktopView @JvmOverloads constructor(
      */
     private fun updateTabActionButtons() {
         // If we have at least one tab in our closed tabs list enable restore page button
-        action_restore_page.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>0
+        iBinding.actionRestorePage.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>0
         // No sessions in incognito mode
         if (uiController.isIncognito()) {
-            action_sessions.visibility = View.GONE
+            iBinding.actionSessions.visibility = View.GONE
         }
     }
 
