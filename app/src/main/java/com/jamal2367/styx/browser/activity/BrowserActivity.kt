@@ -315,7 +315,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     }
 
     private fun showPopupMenu() {
-        popupMenu.show(coordinator_layout)
+        popupMenu.show(button_more)
     }
 
     /**
@@ -2592,6 +2592,9 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
     var iLastTouchUpPosition: Point = Point()
 
+    /**
+     * TODO: Unused
+     */
     override fun dispatchTouchEvent(anEvent: MotionEvent?): Boolean {
 
         when (anEvent?.action) {
@@ -2601,7 +2604,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
 
             }
         }
-
         return super.dispatchTouchEvent(anEvent)
     }
 
@@ -2616,7 +2618,6 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
         // Constant
         private val MATCH_PARENT = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         private val COVER_SCREEN_PARAMS = FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-
     }
 
 }
