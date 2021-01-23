@@ -287,6 +287,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
             // Otherwise use main menu button as anchor
             button_more?.let { sessionsMenu.show(it) }
         }
+    }
 
     /**
      *
