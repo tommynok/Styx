@@ -4,6 +4,7 @@ import com.jamal2367.styx.R
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.DiffUtil
@@ -64,7 +65,16 @@ class SessionsAdapter(
     override fun onBindViewHolder(holder: SessionViewHolder, position: Int) {
         val session = iSessions[position]
         holder.textName.tag = session.name
-        holder.textName.text = holder.sessionLabel()
+        holder.textName.text = session.name
+        holder.textTabCount.text = holder.tabCountLabel()
+
+        if (iEditModeEnabledObservable.value == true) {
+            holder.buttonEdit.visibility = View.VISIBLE
+            holder.buttonDelete.visibility = View.VISIBLE
+        } else {
+            holder.buttonEdit.visibility = View.GONE
+            holder.buttonDelete.visibility = View.GONE
+        }
 
         // Set item font style according to current session
         if (session.isCurrent) {
@@ -84,7 +94,7 @@ class SessionsAdapter(
         // Swap local list position
         Collections.swap(iSessions, fromPosition, toPosition)
         // Swap model list position
-        Collections.swap(uiController.getTabModel().iSessions!!, fromPosition, toPosition)
+        Collections.swap(uiController.getTabModel().iSessions, fromPosition, toPosition)
         // Tell base class an item was moved
         notifyItemMoved(fromPosition, toPosition)
         // Persist our changes
