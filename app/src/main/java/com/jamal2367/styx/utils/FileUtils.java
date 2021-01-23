@@ -15,7 +15,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import com.jamal2367.styx.BrowserApp;
 import io.reactivex.Completable;
 
 /**
@@ -138,7 +137,7 @@ public final class FileUtils {
      */
     public static void writeCrashToStorage(@NonNull Throwable throwable) {
         String fileName = throwable.getClass().getSimpleName() + '_' + System.currentTimeMillis() + ".txt";
-        File outputFile = new File(BrowserApp.instance.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
+        File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
 
         FileOutputStream outputStream = null;
         try {

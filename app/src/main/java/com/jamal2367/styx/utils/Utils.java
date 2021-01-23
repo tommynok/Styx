@@ -29,7 +29,6 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.jamal2367.styx.BrowserApp;
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.database.HistoryEntry;
 import com.jamal2367.styx.dialog.BrowserDialog;
@@ -194,7 +193,8 @@ public final class Utils {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + '_';
-        File storageDir = BrowserApp.instance.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         return File.createTempFile(imageFileName, /* prefix */
             ".jpg", /* suffix */
             storageDir /* directory */
