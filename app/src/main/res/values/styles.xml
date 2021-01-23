@@ -94,7 +94,7 @@
         <item name="iconColorState">@color/state_color_icons_dark</item>
         <item name="autoCompleteTitleColor">@color/white</item>
         <item name="autoCompleteUrlColor">@color/hint_text_dark_theme</item>
-        <item name="selectedBackground">@color/selected_dark</item>
+        <item name="selectedBackground">@color/selected_black</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowContentOverlay">@null</item>

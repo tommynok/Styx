@@ -3,9 +3,7 @@ package com.jamal2367.styx.browser.sessions
 import com.jamal2367.styx.R
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.extensions.inflater
-import com.jamal2367.styx.utils.ItemDragDropSwipeListener
-import com.jamal2367.styx.view.BackgroundDrawable
-import android.graphics.Bitmap
+import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
 import android.view.ViewGroup
 import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.DiffUtil
@@ -22,7 +20,7 @@ import java.util.*
  */
 class SessionsAdapter(
         private val uiController: UIController
-) : RecyclerView.Adapter<SessionViewHolder>(), ItemDragDropSwipeListener {
+) : RecyclerView.Adapter<SessionViewHolder>(), ItemDragDropSwipeAdapter {
 
     // Current sessions shown in our dialog
     private var iSessions: ArrayList<Session> = arrayListOf<Session>()
@@ -74,44 +72,6 @@ class SessionsAdapter(
         } else {
             TextViewCompat.setTextAppearance(holder.textName, R.style.normalText)
         }
-
-        //updateViewHolderAppearance(holder, web.favicon, web.themeColor, web.isForegroundTab)
-        //updateViewHolderFavicon(holder, web.favicon, web.isForegroundTab)
-        //updateViewHolderBackground(holder, web.isForegroundTab)
-    }
-
-
-    private fun updateViewHolderFavicon(viewHolder: SessionViewHolder, favicon: Bitmap?, isForeground: Boolean) {
-        // Apply filter to favicon if needed
-        /*
-        favicon?.let {
-            val ba = uiController as BrowserActivity
-            viewHolder.favicon.setImageForTheme(it,ba.isDarkTheme)
-        } ?: viewHolder.favicon.setImageResource(R.drawable.ic_webpage)
-
-         */
-    }
-
-    private fun updateViewHolderBackground(viewHolder: SessionViewHolder, isForeground: Boolean) {
-        val verticalBackground = viewHolder.layout.background as BackgroundDrawable
-        verticalBackground.isCrossFadeEnabled = false
-        if (isForeground) {
-            verticalBackground.startTransition(200)
-        } else {
-            verticalBackground.reverseTransition(200)
-        }
-    }
-
-    private fun updateViewHolderAppearance(viewHolder: SessionViewHolder, favicon: Bitmap?, color: Int, isForeground: Boolean) {
-        /*
-        if (isForeground) {
-            TextViewCompat.setTextAppearance(viewHolder.txtTitle, R.style.boldText)
-            uiController.changeToolbarBackground(favicon, color, null)
-        } else {
-            TextViewCompat.setTextAppearance(viewHolder.txtTitle, R.style.normalText)
-        }
-
-         */
     }
 
     override fun getItemCount() = iSessions.size

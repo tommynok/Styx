@@ -7,11 +7,13 @@ import com.jamal2367.styx.list.HorizontalItemAnimator
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.TabDesktopViewBinding
 import com.jamal2367.styx.extensions.inflater
+import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
 import com.jamal2367.styx.view.StyxView
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.Exception
@@ -28,6 +30,7 @@ class TabsDesktopView @JvmOverloads constructor(
     private val uiController = context as UIController
     private val tabsAdapter: TabsDesktopAdapter
     private val tabList: RecyclerView
+    private var iItemTouchHelper: ItemTouchHelper? = null
     // Inflate our layout with binding support
     private val iBinding: TabDesktopViewBinding = TabDesktopViewBinding.inflate(context.inflater,this, true)
 
@@ -54,6 +57,11 @@ class TabsDesktopView @JvmOverloads constructor(
             adapter = tabsAdapter
             setHasFixedSize(true)
         }
+
+        // Enable drag & drop but not swipe
+        val callback: ItemTouchHelper.Callback = ItemDragDropSwipeHelper(tabsAdapter, true, false, ItemTouchHelper.END or ItemTouchHelper.START)
+        iItemTouchHelper = ItemTouchHelper(callback)
+        iItemTouchHelper?.attachToRecyclerView(iBinding.tabsList)
     }
 
     /**

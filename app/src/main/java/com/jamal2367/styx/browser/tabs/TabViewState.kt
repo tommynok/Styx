@@ -2,6 +2,7 @@ package com.jamal2367.styx.browser.tabs
 
 import com.jamal2367.styx.view.StyxView
 import android.graphics.Bitmap
+import android.graphics.Color
 
 /**
  * @param id The unique id of the tab.
@@ -10,11 +11,12 @@ import android.graphics.Bitmap
  * @param isForegroundTab True if the tab is in the foreground, false otherwise.
  */
 data class TabViewState(
-    val id: Int,
-    val title: String,
-    val favicon: Bitmap?,
-    val isForeground: Boolean,
-    val themeColor: Int
+        val id: Int = 0,
+        val title: String = "",
+        val favicon: Bitmap? = null,
+        val isForeground: Boolean = false,
+        val themeColor: Int = Color.TRANSPARENT,
+        val isFrozen: Boolean = true
 )
 
 /**
