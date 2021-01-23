@@ -5,25 +5,18 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.setImageForTheme
-import com.jamal2367.styx.extensions.toast
-import com.jamal2367.styx.list.HorizontalItemAnimator
-import com.jamal2367.styx.list.VerticalItemAnimator
-import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
 import com.jamal2367.styx.view.BackgroundDrawable
 import android.graphics.Bitmap
 import android.view.ViewGroup
 import androidx.core.widget.TextViewCompat
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
 /**
  * The adapter for vertical mobile style browser tabs.
  */
 class TabsDrawerAdapter(
-        uiController: UIController,
-        animator: VerticalItemAnimator
-) : TabsAdapter(uiController,animator) {
+        uiController: UIController
+) : TabsAdapter(uiController) {
 
     /**
      * From [RecyclerView.Adapter]

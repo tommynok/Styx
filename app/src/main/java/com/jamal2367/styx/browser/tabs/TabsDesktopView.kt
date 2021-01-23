@@ -3,7 +3,6 @@ package com.jamal2367.styx.browser.tabs
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.TabsView
 import com.jamal2367.styx.browser.activity.BrowserActivity
-import com.jamal2367.styx.list.HorizontalItemAnimator
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.TabDesktopViewBinding
 import com.jamal2367.styx.extensions.inflater
@@ -13,6 +12,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,19 +40,12 @@ class TabsDesktopView @JvmOverloads constructor(
 
         val layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
-        val animator = HorizontalItemAnimator().apply {
-            supportsChangeAnimations = false
-            addDuration = 200
-            changeDuration = 0
-            removeDuration = 200
-            moveDuration = 200
-        }
-
-        tabsAdapter = TabsDesktopAdapter(context, context.resources, uiController, animator)
+        tabsAdapter = TabsDesktopAdapter(context, context.resources, uiController)
 
         tabList = findViewById<RecyclerView>(R.id.tabs_list).apply {
             setLayerType(View.LAYER_TYPE_NONE, null)
-            itemAnimator = animator
+            // We don't want that morphing animation for now
+            (itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
             this.layoutManager = layoutManager
             adapter = tabsAdapter
             setHasFixedSize(true)

@@ -7,7 +7,6 @@ import com.jamal2367.styx.databinding.SessionListBinding
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.extensions.dimBehind
 import com.jamal2367.styx.extensions.toast
-import com.jamal2367.styx.list.VerticalItemAnimator
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
 import android.app.Activity
@@ -17,6 +16,7 @@ import android.view.*
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.EditText
 import android.widget.PopupWindow
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -162,18 +162,10 @@ class SessionsPopupWindow : PopupWindow {
         }
         */
 
-        val animator = VerticalItemAnimator().apply {
-            supportsChangeAnimations = false
-            addDuration = 200
-            changeDuration = 0
-            removeDuration = 200
-            moveDuration = 200
-        }
-
         // Setup our recycler view
         aBinding.recyclerViewSessions.apply {
             //setLayerType(View.LAYER_TYPE_NONE, null)
-            itemAnimator = animator
+            //(itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = iAdapter
             setHasFixedSize(true)

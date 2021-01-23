@@ -4,7 +4,6 @@ import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.extensions.*
-import com.jamal2367.styx.list.HorizontalItemAnimator
 import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
 import com.jamal2367.styx.utils.ThemeUtils
 import com.jamal2367.styx.utils.Utils
@@ -17,9 +16,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.widget.TextViewCompat
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
 /**
  * The adapter for horizontal desktop style browser tabs.
@@ -27,9 +24,8 @@ import java.util.*
 class TabsDesktopAdapter(
     context: Context,
     private val resources: Resources,
-    uiController: UIController,
-    animator: HorizontalItemAnimator
-) : TabsAdapter(uiController, animator), ItemDragDropSwipeAdapter {
+    uiController: UIController
+) : TabsAdapter(uiController), ItemDragDropSwipeAdapter {
 
     private var textColor = Color.TRANSPARENT
 

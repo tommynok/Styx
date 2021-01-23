@@ -6,12 +6,12 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.TabDrawerViewBinding
 import com.jamal2367.styx.extensions.inflater
-import com.jamal2367.styx.list.VerticalItemAnimator
 import com.jamal2367.styx.view.StyxView
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,21 +42,12 @@ class TabsDrawerView @JvmOverloads constructor(
         iBinding = TabDrawerViewBinding.inflate(context.inflater,this, true)
         iBinding.uiController = uiController
 
-
-        val animator = VerticalItemAnimator().apply {
-            supportsChangeAnimations = false
-            addDuration = 200
-            changeDuration = 0
-            removeDuration = 200
-            moveDuration = 200
-
-        }
-
-        tabsAdapter = TabsDrawerAdapter(uiController,animator)
+        tabsAdapter = TabsDrawerAdapter(uiController)
 
         iBinding.tabsList.apply {
             //setLayerType(View.LAYER_TYPE_NONE, null)
-            itemAnimator = animator
+            // We don't want that morphing animation for now
+            (itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = tabsAdapter
             setHasFixedSize(true)
@@ -67,18 +58,6 @@ class TabsDrawerView @JvmOverloads constructor(
         mItemTouchHelper = ItemTouchHelper(callback)
         mItemTouchHelper?.attachToRecyclerView(iBinding.tabsList)
 
-        // Install a scroll listener that's disabling animation during scroll
-        /*
-        iBinding.tabsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState==RecyclerView.SCROLL_STATE_IDLE) {
-                    recyclerView.itemAnimator = animator
-                } else {
-                    recyclerView.itemAnimator = null
-                }
-            }
-        })
-        */
     }
 
     /**
@@ -106,11 +85,13 @@ class TabsDrawerView @JvmOverloads constructor(
 
     override fun tabRemoved(position: Int) {
         displayTabs()
+        //tabsAdapter.notifyItemRemoved(position)
         updateTabActionButtons()
     }
 
     override fun tabChanged(position: Int) {
         displayTabs()
+        //tabsAdapter.notifyItemChanged(position)
     }
 
     private fun displayTabs() {
