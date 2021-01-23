@@ -27,7 +27,7 @@ class TabsDrawerView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr), TabsView {
 
     private val uiController = context as UIController
-    private val tabsAdapter = TabsDrawerAdapter(uiController)
+    private val tabsAdapter: TabsDrawerAdapter
 
     private var mItemTouchHelper: ItemTouchHelper? = null
 
@@ -49,7 +49,10 @@ class TabsDrawerView @JvmOverloads constructor(
             changeDuration = 0
             removeDuration = 200
             moveDuration = 200
+
         }
+
+        tabsAdapter = TabsDrawerAdapter(uiController,animator)
 
         iBinding.tabsList.apply {
             //setLayerType(View.LAYER_TYPE_NONE, null)
@@ -64,6 +67,18 @@ class TabsDrawerView @JvmOverloads constructor(
         mItemTouchHelper = ItemTouchHelper(callback)
         mItemTouchHelper?.attachToRecyclerView(iBinding.tabsList)
 
+        // Install a scroll listener that's disabling animation during scroll
+        /*
+        iBinding.tabsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    recyclerView.itemAnimator = animator
+                } else {
+                    recyclerView.itemAnimator = null
+                }
+            }
+        })
+        */
     }
 
     /**
