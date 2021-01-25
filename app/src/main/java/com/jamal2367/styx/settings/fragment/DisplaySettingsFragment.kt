@@ -211,7 +211,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
         }
 
         private fun getTextDemo(context: Context, size: Int): String {
-            return context.getText(R.string.untitled).toString() + ": " + (size + MIN_BROWSER_TEXT_SIZE) + "%"
+            return context.getText(R.string.example_text).toString() + ": " + (size + MIN_BROWSER_TEXT_SIZE) + "%"
         }
 
 

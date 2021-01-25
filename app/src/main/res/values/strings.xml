@@ -112,6 +112,7 @@
     <string name="download">Download location</string>
     <string name="downloads_notification_description">Triggers upon download completion</string>
     <string name="downloads">Downloads</string>
+    <string name="example_text">Example text</string>
     <string name="export_bookmarks">Export bookmarks to backup</string>
     <string name="folder_custom">Custom</string>
     <string name="folder_default">Default</string>

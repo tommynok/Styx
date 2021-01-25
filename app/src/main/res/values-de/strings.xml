@@ -112,6 +112,7 @@
     <string name="download">Download-Verzeichnis</string>
     <string name="downloads_notification_description">Auslöser bei Abschluss des Downloads</string>
     <string name="downloads">Downloads</string>
+    <string name="example_text">Bespieltext</string>
     <string name="export_bookmarks">Lesezeichen exportieren</string>
     <string name="folder_custom">Andere</string>
     <string name="folder_default">Standard</string>
@@ -251,7 +252,7 @@
     <string name="settings">Einstellungen</string>
     <string name="shortcut_message_failed_to_add">Ihr Launcher unterstützt keine Verknüpfungen!</string>
     <string name="show">Zeigen</string>
-    <string name="size">Textgröße</string>
+    <string name="size">Textgröße:</string>
     <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Verfällt am:</string>
     <string name="ssl_info_issued_by">Ausgestellt von:</string>
