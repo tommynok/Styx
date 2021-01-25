@@ -86,6 +86,8 @@ class BookmarkPageFactory @Inject constructor(
     private fun construct(list: List<BookmarkViewModel>): String {
         return parse(bookmarkPageReader.provideHtml()
                 .replace("\${backgroundColor}", htmlColor(ThemeUtils.getPrimaryColor(BrowserApp.currentContext())))
+                .replace("\${searchBarColor}", htmlColor(ThemeUtils.getSearchBarColor(BrowserApp.currentContext())))
+                .replace("\${searchBarTextColor}", htmlColor(ThemeUtils.getSearchBarTextColor(BrowserApp.currentContext())))
         ) andBuild {
             title { title }
             body {
