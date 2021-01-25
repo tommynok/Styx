@@ -12,6 +12,7 @@ import com.jamal2367.styx.html.download.DownloadPageFactory
 import com.jamal2367.styx.html.history.HistoryPageFactory
 import com.jamal2367.styx.html.homepage.HomePageFactory
 import com.jamal2367.styx.preference.UserPreferences
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Activity
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -184,7 +185,7 @@ class PermissionInitializer(
 ) : TabInitializer {
 
     override fun initialize(webView: WebView, headers: Map<String, String>) {
-        AlertDialog.Builder(activity).apply {
+        MaterialAlertDialogBuilder(activity).apply {
             setTitle(R.string.title_warning)
             setMessage(R.string.message_blocked_local)
             setCancelable(false)

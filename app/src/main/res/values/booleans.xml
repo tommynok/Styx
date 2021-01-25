@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <bool name="const_true">true</bool>
-    <bool name="const_false">false</bool>
-</resources> 
+</resources>

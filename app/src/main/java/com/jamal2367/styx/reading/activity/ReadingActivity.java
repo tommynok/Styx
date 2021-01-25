@@ -28,6 +28,7 @@ import com.jamal2367.styx.reading.HtmlFetcher;
 import com.jamal2367.styx.reading.JResult;
 import com.jamal2367.styx.settings.activity.ThemableSettingsActivity;
 import com.jamal2367.styx.utils.Utils;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -302,7 +303,7 @@ public class ReadingActivity extends ThemableSettingsActivity {
                 bar.setMax(5);
                 bar.setProgress(mTextSize);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
                     .setView(view)
                     .setTitle(R.string.size)
                     .setPositiveButton(android.R.string.ok, (dialog, arg1) -> {

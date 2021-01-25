@@ -96,6 +96,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.ButterKnife
 import com.anthonycr.grant.PermissionsManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy
@@ -1412,7 +1413,7 @@ abstract class BrowserActivity : ThemableBrowserActivity(), BrowserView, UIContr
     }
 
     override fun showBlockedLocalFileDialog(onPositiveClick: Function0<Unit>) {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setCancelable(true)
             .setTitle(R.string.title_warning)
             .setMessage(R.string.message_blocked_local)

@@ -22,6 +22,7 @@ import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.list.RecyclerViewDialogItemAdapter
 import com.jamal2367.styx.list.RecyclerViewStringAdapter
 import com.jamal2367.styx.utils.DeviceUtils
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
@@ -44,7 +45,7 @@ object BrowserDialog {
     ) = show(activity, activity.getString(title), *items)
 
     fun showWithIcons(context: Context, title: String?, vararg items: DialogItem) {
-        val builder = AlertDialog.Builder(context)
+        val builder = MaterialAlertDialogBuilder(context)
 
         val layout = context.inflater.inflate(R.layout.list_dialog, null)
 
@@ -82,7 +83,7 @@ object BrowserDialog {
      * the dialog.
      */
     fun showListChoices(activity: Activity, @StringRes title: Int, vararg items: DialogItem) {
-        AlertDialog.Builder(activity).apply {
+        MaterialAlertDialogBuilder(activity).apply {
             setTitle(title)
 
             val choices = items.map { activity.getString(it.title) }.toTypedArray()
@@ -97,7 +98,7 @@ object BrowserDialog {
 
     @JvmStatic
     fun show(activity: Activity, title: String?, vararg items: DialogItem) {
-        val builder = AlertDialog.Builder(activity)
+        val builder = MaterialAlertDialogBuilder(activity)
 
         val layout = activity.inflater.inflate(R.layout.list_dialog, null)
 
@@ -143,7 +144,7 @@ object BrowserDialog {
         } else {
             activity.getString(message)
         }
-        AlertDialog.Builder(activity).apply {
+        MaterialAlertDialogBuilder(activity).apply {
             setTitle(title)
             setMessage(messageValue)
             setOnCancelListener { onCancel() }
@@ -178,7 +179,7 @@ object BrowserDialog {
             editText.setText(currentText)
         }
 
-        AlertDialog.Builder(activity)
+        MaterialAlertDialogBuilder(activity)
             .setTitle(title)
             .setView(dialogView)
             .setPositiveButton(action
@@ -200,8 +201,8 @@ object BrowserDialog {
     /**
      * Show the custom dialog with the custom builder arguments applied.
      */
-    fun showCustomDialog(activity: Activity, block: AlertDialog.Builder.(Activity) -> Unit) : Dialog {
-        AlertDialog.Builder(activity).apply {
+    fun showCustomDialog(activity: Activity, block: MaterialAlertDialogBuilder.(Activity) -> Unit) : Dialog {
+        MaterialAlertDialogBuilder(activity).apply {
             block(activity)
             return resizeAndShow()
         }

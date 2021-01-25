@@ -1,7 +1,5 @@
 <!-- Copyright 2014 ACR Development -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/coordinator_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                android:background="?attr/colorPrimary"
+                android:background="?android:attr/colorBackground"
                 android:fitsSystemWindows="true"
                 android:weightSum="1"
                 android:layout_marginLeft="-64dp"/>
@@ -44,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:background="?attr/colorPrimary"
+                android:background="?android:attr/colorBackground"
                 android:fitsSystemWindows="true"
                 android:weightSum="1"
                 android:layout_marginLeft="-64dp"/>

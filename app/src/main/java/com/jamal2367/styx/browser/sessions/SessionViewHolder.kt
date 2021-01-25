@@ -8,9 +8,13 @@ import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeViewHolder
+import com.jamal2367.styx.utils.ThemeUtils
 import com.jamal2367.styx.view.BackgroundDrawable
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Activity
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.text.InputFilter
 import android.view.LayoutInflater
@@ -44,6 +48,7 @@ class SessionViewHolder(
     val layout: LinearLayout = view.findViewById(R.id.layout_background)
 
     private var previousBackground: Drawable? = null
+    private var previousAlpha: Int = 256
 
     init {
         // Delete a session
@@ -53,7 +58,7 @@ class SessionViewHolder(
             if (iUiController.getTabModel().iCurrentSessionName == session()?.name) {
                 it.context.toast(R.string.session_cant_delete_current)
             } else {
-                AlertDialog.Builder(it.context)
+                MaterialAlertDialogBuilder(it.context)
                         .setCancelable(true)
                         .setTitle(R.string.session_prompt_confirm_deletion_title)
                         .setMessage(it.context.getString(R.string.session_prompt_confirm_deletion_message,session()?.name))
@@ -181,11 +186,9 @@ class SessionViewHolder(
     // From ItemTouchHelperViewHolder
     // Start dragging
     override fun onItemOperationStart() {
-        // Do some fancy for smoother transition
         previousBackground = layout.background
-        previousBackground?.let {
-            layout.background = BackgroundDrawable(itemView.context, R.attr.selectedBackground, R.attr.colorControlHighlight).apply{startTransition(300)}
-        }
+        // Just set transparent background
+        layout.background = ColorDrawable(ThemeUtils.getColor(itemView.context,R.attr.colorControlHighlight)).apply{alpha=128}
     }
 
     // From ItemTouchHelperViewHolder

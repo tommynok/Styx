@@ -16,12 +16,9 @@ import android.database.Cursor;
 import android.text.format.Formatter;
 import android.view.View;
 import android.webkit.DownloadListener;
-
 import com.anthonycr.grant.PermissionsManager;
 import com.anthonycr.grant.PermissionsResultAction;
-
 import javax.inject.Inject;
-
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.browser.activity.BrowserActivity;
 import com.jamal2367.styx.database.downloads.DownloadsRepository;
@@ -31,12 +28,11 @@ import com.jamal2367.styx.extensions.ActivityExtensions;
 import com.jamal2367.styx.log.Logger;
 import com.jamal2367.styx.preference.UserPreferences;
 import com.jamal2367.styx.utils.Utils;
-
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import java.util.Objects;
 
 import static com.jamal2367.styx.utils.UrlUtils.guessFileName;
@@ -206,7 +202,7 @@ public class StyxDownloadListener extends BroadcastReceiver implements DownloadL
             }
         };
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity); // dialog
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(mActivity); // dialog
         String message = mActivity.getString(R.string.dialog_download, downloadSize);
         Dialog dialog = builder.setTitle(fileName)
                 .setMessage(message)

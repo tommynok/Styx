@@ -18,8 +18,8 @@ class BackgroundDrawable : TransitionDrawable
 
     constructor(
             context: Context,
-            @AttrRes first: Int = R.attr.colorPrimaryDark,
-            @AttrRes second: Int = R.attr.selectedBackground
+            @AttrRes first: Int = R.attr.colorPrimary,
+            @AttrRes second: Int = R.attr.colorSurface
     ) : super (
             arrayOf<Drawable>(
                     ColorDrawable(ThemeUtils.getColor(context, first)),
@@ -28,7 +28,6 @@ class BackgroundDrawable : TransitionDrawable
     )
 
     constructor(
-            context: Context,
             aFirst: Drawable,
             aSecond: Drawable
     ) : super (

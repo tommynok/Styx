@@ -32,13 +32,8 @@
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:background="@drawable/menu_title_background"
-                >
+                android:background="@drawable/menu_title_background">
 
-                <!--
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                    Results in small font in landscape, consider using something else
-                -->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

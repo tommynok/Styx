@@ -39,24 +39,13 @@ abstract class ThemableBrowserActivity : AppCompatActivity() {
 
         // set the theme
         setTheme(provideThemeOverride() ?: when (userPreferences.useTheme) {
-            AppTheme.LIGHT -> R.style.Theme_LightTheme
-            AppTheme.DARK -> R.style.Theme_DarkTheme
-            AppTheme.BLACK -> R.style.Theme_BlackTheme
+            AppTheme.LIGHT -> R.style.Theme_App_Light
+            AppTheme.DARK -> R.style.Theme_App_Dark
+            AppTheme.BLACK -> R.style.Theme_App_Black
         })
         super.onCreate(savedInstanceState)
 
         resetPreferences()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        withStyledAttributes(attrs = intArrayOf(R.attr.iconColorState)) {
-            val iconTintList = getColorStateList(0)
-            menu.iterator().forEach { menuItem ->
-                menuItem.icon?.let { DrawableCompat.setTintList(DrawableCompat.wrap(it), iconTintList) }
-            }
-        }
-
-        return super.onCreateOptionsMenu(menu)
     }
 
     private fun resetPreferences() {

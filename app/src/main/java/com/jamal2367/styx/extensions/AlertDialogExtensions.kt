@@ -1,6 +1,7 @@
 package com.jamal2367.styx.extensions
 
 import com.jamal2367.styx.dialog.BrowserDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Dialog
 import androidx.appcompat.app.AlertDialog
 
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
  * @param checkedItem The item that will be checked when the dialog is displayed.
  * @param onClick Called when an item is clicked. The item clicked is provided.
  */
-fun <T> AlertDialog.Builder.withSingleChoiceItems(
+fun <T> MaterialAlertDialogBuilder.withSingleChoiceItems(
     items: List<Pair<T, String>>,
     checkedItem: T,
     onClick: (T) -> Unit
@@ -27,4 +28,4 @@ fun <T> AlertDialog.Builder.withSingleChoiceItems(
  * Ensures that the dialog is appropriately sized and displays it.
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun AlertDialog.Builder.resizeAndShow(): Dialog = show().also { BrowserDialog.setDialogSize(context, it) }
+inline fun MaterialAlertDialogBuilder.resizeAndShow(): Dialog = show().also { BrowserDialog.setDialogSize(context, it) }

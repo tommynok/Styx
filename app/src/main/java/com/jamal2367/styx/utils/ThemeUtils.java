@@ -47,6 +47,16 @@ public final class ThemeUtils {
         return getColor(context, R.attr.colorPrimaryDark);
     }
 
+    @ColorInt
+    public static int getSearchBarColor(@NonNull Context context) {
+        return getColor(context, R.attr.colorSurface);
+    }
+
+    @ColorInt
+    public static int getSearchBarTextColor(@NonNull Context context) {
+        return getColor(context, R.attr.colorOnSurface);
+    }
+
     /**
      * Gets the accent color of the current theme.
      *

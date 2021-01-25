@@ -11,6 +11,7 @@ import com.jamal2367.styx.favicon.FaviconModel
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.view.webrtc.WebRtcPermissionsModel
 import com.jamal2367.styx.view.webrtc.WebRtcPermissionsView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.Manifest
 import android.annotation.TargetApi
 import android.app.Activity
@@ -164,7 +165,7 @@ class StyxChromeClient(
         PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(activity, geoLocationPermissions, object : PermissionsResultAction() {
             override fun onGranted() {
                 val remember = true
-                AlertDialog.Builder(activity).apply {
+                MaterialAlertDialogBuilder(activity).apply {
                     setTitle(activity.getString(R.string.location))
                     val org = if (origin.length > 50) {
                         "${origin.subSequence(0, 50)}..."

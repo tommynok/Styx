@@ -43,6 +43,7 @@ import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
 import com.jamal2367.styx.view.StyxView.Companion.KFetchMetaThemeColorTries
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import java.io.ByteArrayInputStream
@@ -190,7 +191,7 @@ class StyxWebClient(
         host: String,
         realm: String
     ) {
-        AlertDialog.Builder(activity).apply {
+        MaterialAlertDialogBuilder(activity).apply {
             val dialogView = LayoutInflater.from(activity).inflate(R.layout.dialog_auth_request, null)
 
             val realmLabel = dialogView.findViewById<TextView>(R.id.auth_request_realm_textview)
@@ -247,7 +248,7 @@ class StyxWebClient(
         }
         val alertMessage = activity.getString(R.string.message_insecure_connection, stringBuilder.toString())
 
-        AlertDialog.Builder(activity).apply {
+        MaterialAlertDialogBuilder(activity).apply {
             val view = LayoutInflater.from(activity).inflate(R.layout.dialog_ssl_warning, null)
             val dontAskAgain = view.findViewById<CheckBox>(R.id.checkBoxDontAskAgain)
             setTitle(activity.getString(R.string.title_warning))
@@ -271,7 +272,7 @@ class StyxWebClient(
     }
 
     override fun onFormResubmission(view: WebView, dontResend: Message, resend: Message) {
-        AlertDialog.Builder(activity).apply {
+        MaterialAlertDialogBuilder(activity).apply {
             setTitle(activity.getString(R.string.title_form_resubmission))
             setMessage(activity.getString(R.string.message_form_resubmission))
             setCancelable(true)
@@ -337,7 +338,7 @@ class StyxWebClient(
             // We will keep loading even if an external app is available the first time we encounter it.
             (activity as BrowserActivity).mainHandler.postDelayed({
                 if (exAppLaunchDialog==null) {
-                exAppLaunchDialog = AlertDialog.Builder(activity)
+                    exAppLaunchDialog = MaterialAlertDialogBuilder(activity)
                         .setTitle(R.string.dialog_title_third_party_app)
                         .setMessage(R.string.dialog_message_third_party_app)
                         .setPositiveButton(R.string.yes) { dialog, _ ->

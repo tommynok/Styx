@@ -15,7 +15,9 @@ import com.jamal2367.styx.extensions.snackbar
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.utils.Utils
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.Manifest
+import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.os.Environment
@@ -189,7 +191,7 @@ class BookmarkSettingsFragment : AbstractSettingsFragment() {
     }
 
     private fun showImportBookmarkDialog(path: File?) {
-        val builder = activity?.let { AlertDialog.Builder(it) }
+        val builder = MaterialAlertDialogBuilder(activity as Activity)
 
         val title = getString(R.string.title_chooser)
         if (builder != null) {

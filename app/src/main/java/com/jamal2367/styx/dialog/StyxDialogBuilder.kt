@@ -19,6 +19,7 @@ import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.IntentUtils
 import com.jamal2367.styx.utils.isBookmarkUrl
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.Manifest
 import android.app.Activity
 import android.content.ClipboardManager
@@ -148,7 +149,7 @@ class StyxDialogBuilder @Inject constructor(
         uiController: UIController,
         entry: Bookmark.Entry
     ) {
-        val editBookmarkDialog = AlertDialog.Builder(activity)
+        val editBookmarkDialog = MaterialAlertDialogBuilder(activity)
         editBookmarkDialog.setTitle(R.string.action_add_bookmark)
         val dialogLayout = View.inflate(activity, R.layout.dialog_edit_bookmark, null)
         val getTitle = dialogLayout.findViewById<EditText>(R.id.bookmark_title)
@@ -195,7 +196,7 @@ class StyxDialogBuilder @Inject constructor(
         uiController: UIController,
         entry: Bookmark.Entry
     ) {
-        val editBookmarkDialog = AlertDialog.Builder(activity)
+        val editBookmarkDialog = MaterialAlertDialogBuilder(activity)
         editBookmarkDialog.setTitle(R.string.title_edit_bookmark)
         val dialogLayout = View.inflate(activity, R.layout.dialog_edit_bookmark, null)
         val getTitle = dialogLayout.findViewById<EditText>(R.id.bookmark_title)

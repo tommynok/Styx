@@ -8,7 +8,6 @@ import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.ThemeUtils
 import com.jamal2367.styx.utils.foregroundColorFromBackgroundColor
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import javax.inject.Inject
@@ -34,16 +33,13 @@ abstract class ThemableSettingsActivity : AppCompatActivity() {
     protected fun applyTheme(themeId: AppTheme) {
         when (themeId) {
             AppTheme.LIGHT -> {
-                setTheme(R.style.Theme_SettingsTheme)
-                window.setBackgroundDrawable(ColorDrawable(ThemeUtils.getPrimaryColor(this)))
+                setTheme(R.style.Theme_App_Light_Settings)
             }
             AppTheme.DARK -> {
-                setTheme(R.style.Theme_SettingsTheme_Dark)
-                window.setBackgroundDrawable(ColorDrawable(ThemeUtils.getPrimaryColorDark(this)))
+                setTheme(R.style.Theme_App_Dark_Settings)
             }
             AppTheme.BLACK -> {
-                setTheme(R.style.Theme_SettingsTheme_Black)
-                window.setBackgroundDrawable(ColorDrawable(ThemeUtils.getPrimaryColorDark(this)))
+                setTheme(R.style.Theme_App_Black_Settings)
             }
         }
     }

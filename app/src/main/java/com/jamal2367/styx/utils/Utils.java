@@ -20,7 +20,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
-
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -28,11 +27,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.database.HistoryEntry;
 import com.jamal2367.styx.dialog.BrowserDialog;
 import com.jamal2367.styx.extensions.ActivityExtensions;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -75,7 +74,7 @@ public final class Utils {
      * @param message  the message of the dialog.
      */
     public static void createInformativeDialog(@NonNull Activity activity, @StringRes int title, @StringRes int message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
         builder.setTitle(title);
         builder.setMessage(message)
             .setCancelable(true)

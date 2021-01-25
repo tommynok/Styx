@@ -4,16 +4,12 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.util.Log;
-
 import net.i2p.android.ui.I2PAndroidHelper;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
 import com.jamal2367.styx.BrowserApp;
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.browser.ProxyChoice;
@@ -22,6 +18,7 @@ import com.jamal2367.styx.extensions.ActivityExtensions;
 import com.jamal2367.styx.extensions.AlertDialogExtensionsKt;
 import com.jamal2367.styx.preference.DeveloperPreferences;
 import com.jamal2367.styx.preference.UserPreferences;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import info.guardianproject.netcipher.proxy.OrbotHelper;
@@ -74,7 +71,7 @@ public final class ProxyUtils {
             if (i2p) {
                 developerPreferences.setCheckedForI2P(true);
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 
             if (orbotInstalled && i2pInstalled) {
                 String[] proxyChoices = activity.getResources().getStringArray(R.array.proxy_choices_array);

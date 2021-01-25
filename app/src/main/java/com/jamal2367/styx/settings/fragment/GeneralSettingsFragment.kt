@@ -21,6 +21,7 @@ import com.jamal2367.styx.search.engine.CustomSearch
 import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.ThemeUtils
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Activity
 import android.os.Bundle
 import android.os.Environment
@@ -133,7 +134,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
      */
     private fun showTextEncodingDialogPicker(summaryUpdater: SummaryUpdater) {
         activity?.let {
-            AlertDialog.Builder(it).apply {
+            MaterialAlertDialogBuilder(it).apply {
                 setTitle(resources.getString(R.string.text_encoding))
 
                 val currentChoice = TEXT_ENCODINGS.indexOf(userPreferences.textEncoding)

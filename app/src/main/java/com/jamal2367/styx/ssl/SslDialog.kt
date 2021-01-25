@@ -3,6 +3,7 @@ package com.jamal2367.styx.ssl
 import com.jamal2367.styx.R
 import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.resizeAndShow
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.content.Context
 import android.net.http.SslCertificate
 import android.text.format.DateFormat
@@ -30,7 +31,7 @@ fun Context.showSslDialog(sslCertificate: SslCertificate, sslState: SslState) {
 
     val icon = createSslDrawableForState(sslState)
 
-    AlertDialog.Builder(this)
+    MaterialAlertDialogBuilder(this)
         .setIcon(icon)
         .setTitle(to.cName)
         .setView(contentView)

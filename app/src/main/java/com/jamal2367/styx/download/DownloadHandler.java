@@ -39,6 +39,7 @@ import com.jamal2367.styx.preference.UserPreferences;
 import com.jamal2367.styx.utils.FileUtils;
 import com.jamal2367.styx.utils.Utils;
 import com.jamal2367.styx.view.StyxView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -199,7 +200,7 @@ public class DownloadHandler {
                 title = R.string.download_no_sdcard_dlg_title;
             }
 
-            Dialog dialog = new AlertDialog.Builder(context).setTitle(title)
+            Dialog dialog = new MaterialAlertDialogBuilder(context).setTitle(title)
                 .setIcon(android.R.drawable.ic_dialog_alert).setMessage(msg)
                 .setPositiveButton(R.string.action_ok, null).show();
             BrowserDialog.setDialogSize(context, dialog);
