@@ -1,12 +1,13 @@
 package com.jamal2367.styx.di
 
 import com.jamal2367.styx.BrowserApp
+import com.jamal2367.styx.ThemedActivity
 import com.jamal2367.styx.adblock.BloomFilterAdBlocker
 import com.jamal2367.styx.adblock.NoOpAdBlocker
 import com.jamal2367.styx.browser.BrowserPopupMenu
 import com.jamal2367.styx.browser.SearchBoxModel
 import com.jamal2367.styx.browser.activity.BrowserActivity
-import com.jamal2367.styx.browser.activity.ThemableBrowserActivity
+import com.jamal2367.styx.browser.activity.ThemedBrowserActivity
 import com.jamal2367.styx.browser.bookmarks.BookmarksDrawerView
 import com.jamal2367.styx.device.BuildInfo
 import com.jamal2367.styx.dialog.StyxDialogBuilder
@@ -14,12 +15,12 @@ import com.jamal2367.styx.download.StyxDownloadListener
 import com.jamal2367.styx.reading.activity.ReadingActivity
 import com.jamal2367.styx.search.SuggestionsAdapter
 import com.jamal2367.styx.settings.activity.SettingsActivity
-import com.jamal2367.styx.settings.activity.ThemableSettingsActivity
 import com.jamal2367.styx.settings.fragment.*
 import com.jamal2367.styx.view.StyxChromeClient
 import com.jamal2367.styx.view.StyxView
 import com.jamal2367.styx.view.StyxWebClient
 import android.app.Application
+import com.jamal2367.styx.settings.activity.ThemedSettingsActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -48,7 +49,7 @@ interface AppComponent {
 
     fun inject(styxView: StyxView)
 
-    fun inject(activity: ThemableBrowserActivity)
+    fun inject(activity: ThemedBrowserActivity)
 
     fun inject(app: BrowserApp)
 
@@ -58,7 +59,7 @@ interface AppComponent {
 
     fun inject(activity: SettingsActivity)
 
-    fun inject(activity: ThemableSettingsActivity)
+    fun inject(activity: ThemedSettingsActivity)
 
     fun inject(listener: StyxDownloadListener)
 
@@ -81,6 +82,8 @@ interface AppComponent {
     fun inject(popupMenu: BrowserPopupMenu)
 
     fun inject(appsSettingsFragment: AppsSettingsFragment)
+
+    fun inject(themedActivity: ThemedActivity)
 
     fun provideBloomFilterAdBlocker(): BloomFilterAdBlocker
 

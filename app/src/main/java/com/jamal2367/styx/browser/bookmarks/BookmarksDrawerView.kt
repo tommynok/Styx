@@ -158,7 +158,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
     private fun setBookmarkDataSet(items: List<Bookmark>, animate: Boolean) {
         bookmarkAdapter?.updateItems(items.map { BookmarksViewModel(it) })
         val resource = if (uiModel.isCurrentFolderRoot()) {
-            R.drawable.ic_bookmarks
+            R.drawable.ic_bookmark_border
         } else {
             R.drawable.ic_action_back
         }
@@ -355,7 +355,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                                 viewModel.icon = bitmap
                                 if (holder.favicon.tag == url) {
                                     val ba = context as BrowserActivity
-                                    holder.favicon.setImageForTheme(bitmap, ba.isDarkTheme)
+                                    holder.favicon.setImageForTheme(bitmap, ba.useDarkTheme)
                                 }
                             }
                         )

@@ -19,6 +19,12 @@
         <item name="colorPrimaryDark">?android:attr/colorBackground</item>
     </style>
 
+    <style name="Theme.App.DayNight.Settings" parent="Theme.App.DayNight">
+        <item name="android:windowBackground">?android:attr/colorBackground</item>
+        <item name="colorPrimary">?android:attr/colorBackground</item>
+        <item name="colorPrimaryDark">?android:attr/colorBackground</item>
+    </style>
+
     <style name="Theme.App.Light" parent="Theme.MaterialComponents.Light">
         <item name="colorPrimary">@color/md_grey_200</item>
         <item name="colorPrimaryVariant">@color/md_grey_200</item>
@@ -32,7 +38,10 @@
         <item name="colorOnSurface">@color/black</item>
         <item name="colorError">@color/md_red_500</item>
         <item name="colorOnError">@color/white</item>
-        <item name="colorControlNormal">@color/md_grey_650</item>
+        <item name="appColorControlEnabled">@color/md_grey_650</item>
+        <item name="appColorControlSelected">?attr/colorOnPrimary</item>
+        <item name="appColorControlDisabled">@color/md_grey_400</item>
+        <item name="colorControlNormal">@color/state_color_control</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <item name="searchBackground">@drawable/card_bg</item>
         <item name="listBackground">?attr/listChoiceBackgroundIndicator</item>
@@ -65,7 +74,10 @@
         <item name="colorOnSurface">@color/white</item>
         <item name="colorError">@color/md_red_500</item>
         <item name="colorOnError">@color/white</item>
-        <item name="colorControlNormal">@color/md_grey_350</item>
+        <item name="appColorControlEnabled">@color/md_grey_350</item>
+        <item name="appColorControlSelected">?attr/colorOnPrimary</item>
+        <item name="appColorControlDisabled">@color/md_grey_600</item>
+        <item name="colorControlNormal">@color/state_color_control</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog.Dark</item>
         <item name="searchBackground">@drawable/card_bg</item>
         <item name="listBackground">?attr/listChoiceBackgroundIndicator</item>
@@ -98,7 +110,10 @@
         <item name="colorOnSurface">@color/white</item>
         <item name="colorError">@color/md_red_500</item>
         <item name="colorOnError">@color/white</item>
-        <item name="colorControlNormal">@color/md_grey_350</item>
+        <item name="appColorControlEnabled">@color/md_grey_350</item>
+        <item name="appColorControlSelected">?attr/colorOnPrimary</item>
+        <item name="appColorControlDisabled">@color/md_grey_600</item>
+        <item name="colorControlNormal">@color/state_color_control</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog.Black</item>
         <item name="searchBackground">@drawable/card_bg</item>
         <item name="listBackground">?attr/listChoiceBackgroundIndicator</item>
@@ -117,6 +132,8 @@
         <item name="snackbarTextViewStyle">@style/MaterialSnackbarTextViewTheme.Dark</item>
         <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme.Dark</item>
     </style>
+
+    <style name="Theme.App.DayNight" parent="Theme.App.Light" />
 
     <style name="boldText">
         <item name="android:textStyle">bold</item>

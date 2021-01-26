@@ -12,7 +12,6 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import com.jamal2367.styx.AppTheme
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.SearchBoxDisplayChoice
@@ -46,7 +45,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
         // Setup web browser font size selector
         clickableDynamicPreference(
             preference = getString(R.string.pref_key_browser_text_size),
-            summary = (userPreferences.browserTextSize + MIN_BROWSER_TEXT_SIZE).toString() +  "%",
+            summary = (userPreferences.browserTextSize + MIN_BROWSER_TEXT_SIZE).toString() + "%",
             onClick = ::showTextSizePicker
         )
 
@@ -134,7 +133,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
                     gravity = Gravity.CENTER
                     height = Utils.dpToPx(100f)
                 }
-                addView(text,0)
+                addView(text, 0)
                 findViewById<SeekBar>(R.id.text_size_seekbar).apply {
                     setOnSeekBarChangeListener(TextSeekBarListener(text))
                     max = MAX_BROWSER_TEXT_SIZE - MIN_BROWSER_TEXT_SIZE
@@ -163,7 +162,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
             }
             setPositiveButton(resources.getString(R.string.action_ok)) { _, _ ->
                 if (currentTheme != userPreferences.useTheme) {
-                    (activity as Activity).finish()
+                    requireActivity().recreate()
                 }
             }
             setOnCancelListener {
@@ -175,6 +174,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
     }
 
     private fun AppTheme.toDisplayString(): String = getString(when (this) {
+        AppTheme.DEFAULT -> R.string.default_theme
         AppTheme.LIGHT -> R.string.light_theme
         AppTheme.DARK -> R.string.dark_theme
         AppTheme.BLACK -> R.string.black_theme
@@ -186,7 +186,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
 
         override fun onProgressChanged(view: SeekBar, size: Int, user: Boolean) {
             this.sampleText.textSize = getTextSize(size)
-            this.sampleText.text = getTextDemo(view.context,size)
+            this.sampleText.text = getTextDemo(view.context, size)
         }
 
         override fun onStartTrackingTouch(arg0: SeekBar) {}

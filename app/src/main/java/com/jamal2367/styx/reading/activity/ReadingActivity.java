@@ -2,7 +2,6 @@ package com.jamal2367.styx.reading.activity;
 
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +13,7 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-
 import javax.inject.Inject;
-
 import com.jamal2367.styx.AppTheme;
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.di.Injector;
@@ -26,7 +23,7 @@ import com.jamal2367.styx.dialog.BrowserDialog;
 import com.jamal2367.styx.preference.UserPreferences;
 import com.jamal2367.styx.reading.HtmlFetcher;
 import com.jamal2367.styx.reading.JResult;
-import com.jamal2367.styx.settings.activity.ThemableSettingsActivity;
+import com.jamal2367.styx.settings.activity.ThemedSettingsActivity;
 import com.jamal2367.styx.utils.Utils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.annotation.NonNull;
@@ -39,7 +36,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 
-public class ReadingActivity extends ThemableSettingsActivity {
+public class ReadingActivity extends ThemedSettingsActivity {
 
     private static final String LOAD_READING_URL = "ReadingUrl";
 
@@ -67,7 +64,7 @@ public class ReadingActivity extends ThemableSettingsActivity {
     private boolean mInvert;
     @Nullable private String mUrl = null;
     private int mTextSize;
-    @Nullable private ProgressDialog mProgressDialog;
+    @Nullable private AlertDialog mProgressDialog;
     private Disposable mPageLoaderSubscription;
 
     private static final float XXLARGE = 30.0f;
@@ -88,10 +85,10 @@ public class ReadingActivity extends ThemableSettingsActivity {
 
         // Change our theme if inverted
         if (mInvert) {
-            if (getThemeId() == AppTheme.LIGHT) {
-                applyTheme(AppTheme.BLACK);
-            } else {
+            if (getUseDarkTheme()) {
                 applyTheme(AppTheme.LIGHT);
+            } else {
+                applyTheme(AppTheme.BLACK);
             }
         }
 
@@ -155,12 +152,16 @@ public class ReadingActivity extends ThemableSettingsActivity {
             getSupportActionBar().setTitle(Utils.getDisplayDomainName(mUrl));
         }
 
-        mProgressDialog = new ProgressDialog(ReadingActivity.this);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setMessage(getString(R.string.loading));
+        // Build progress dialog
+        View progressView = LayoutInflater.from(this).inflate(R.layout.dialog_progress, null);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
+                .setView(progressView)
+                .setCancelable(false);
+        mProgressDialog = builder.create();
+        TextView tv=progressView.findViewById(R.id.text_progress_bar);
+        tv.setText(R.string.loading);
         mProgressDialog.show();
+
         BrowserDialog.setDialogSize(ReadingActivity.this, mProgressDialog);
 
         mPageLoaderSubscription = loadPage(mUrl)

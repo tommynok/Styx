@@ -7,6 +7,9 @@
     <attr name="progressBackgroundColor" format="color" />
     <attr name="searchBackground" format="reference|color" />
     <attr name="dividerColor" format="reference|color" />
+    <attr name="appColorControlEnabled" format="reference|color" />
+    <attr name="appColorControlDisabled" format="reference|color" />
+    <attr name="appColorControlSelected" format="reference|color" />
 
     <declare-styleable name="TabCountView">
         <attr name="tabIconColor" format="reference|color" />

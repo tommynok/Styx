@@ -6,7 +6,8 @@ import com.jamal2367.styx.preference.IntEnum
  * The available app themes.
  */
 enum class AppTheme(override val value: Int) : IntEnum {
-    LIGHT(0),
-    DARK(1),
-    BLACK(2)
+    DEFAULT(0),
+    LIGHT(1),
+    DARK(2),
+    BLACK(3)
 }
