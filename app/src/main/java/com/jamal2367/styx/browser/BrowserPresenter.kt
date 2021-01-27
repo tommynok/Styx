@@ -131,10 +131,7 @@ class BrowserPresenter(
 
         if (newTab == null) {
             view.removeTabView()
-            currentTab?.let {
-                it.pauseTimers()
-                it.onDestroy()
-            }
+            currentTab?.pauseTimers()
         } else {
             if (webView == null) {
                 view.removeTabView()
