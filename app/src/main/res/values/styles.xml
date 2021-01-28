@@ -5,34 +5,46 @@
         <item name="android:windowBackground">?android:attr/colorBackground</item>
         <item name="colorPrimary">?android:attr/colorBackground</item>
         <item name="colorPrimaryDark">?android:attr/colorBackground</item>
+        <item name="actionBarWidgetTheme">@null</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
     </style>
 
     <style name="Theme.App.Dark.Settings" parent="Theme.App.Dark">
         <item name="android:windowBackground">?android:attr/colorBackground</item>
         <item name="colorPrimary">?android:attr/colorBackground</item>
         <item name="colorPrimaryDark">?android:attr/colorBackground</item>
+        <item name="actionBarWidgetTheme">@null</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
     </style>
 
     <style name="Theme.App.Black.Settings" parent="Theme.App.Black">
         <item name="android:windowBackground">?android:attr/colorBackground</item>
         <item name="colorPrimary">?android:attr/colorBackground</item>
         <item name="colorPrimaryDark">?android:attr/colorBackground</item>
+        <item name="actionBarWidgetTheme">@null</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
     </style>
 
     <style name="Theme.App.DayNight.Settings" parent="Theme.App.DayNight">
         <item name="android:windowBackground">?android:attr/colorBackground</item>
         <item name="colorPrimary">?android:attr/colorBackground</item>
         <item name="colorPrimaryDark">?android:attr/colorBackground</item>
+        <item name="actionBarWidgetTheme">@null</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
     </style>
 
     <style name="Theme.App.Light" parent="Theme.MaterialComponents.Light">
-        <item name="colorPrimary">@color/md_grey_200</item>
-        <item name="colorPrimaryVariant">@color/md_grey_200</item>
+        <item name="colorPrimary">@color/md_grey_50</item>
+        <item name="colorPrimaryVariant">@color/md_grey_50</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/md_red_500</item>
         <item name="colorSecondaryVariant">@color/md_red_700</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="android:colorBackground">@color/md_grey_200</item>
+        <item name="android:colorBackground">@color/md_grey_50</item>
         <item name="colorOnBackground">@color/black</item>
         <item name="colorSurface">@color/md_grey_300</item>
         <item name="colorOnSurface">@color/black</item>
@@ -50,7 +62,6 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowDisablePreview">false</item>
         <item name="colorPrimaryDark">@color/transparent</item>
-        <item name="dividerColor">@color/divider_light</item>
         <item name="autoCompleteTitleColor">@color/black</item>
         <item name="autoCompleteUrlColor">@color/hint_text_light_theme</item>
         <item name="windowNoTitle">true</item>
@@ -58,6 +69,8 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="snackbarStyle">@style/MaterialSnackbarTheme</item>
         <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme</item>
+        <item name="appBarLayoutStyle">@style/Widget.App.AppBarLayout.Light</item>
+        <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
     </style>
 
     <style name="Theme.App.Dark" parent="Theme.MaterialComponents">
@@ -86,7 +99,6 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowDisablePreview">false</item>
         <item name="colorPrimaryDark">@color/transparent</item>
-        <item name="dividerColor">@color/divider_dark</item>
         <item name="autoCompleteTitleColor">@color/white</item>
         <item name="autoCompleteUrlColor">@color/hint_text_dark_theme</item>
         <item name="windowNoTitle">true</item>
@@ -95,6 +107,7 @@
         <item name="snackbarStyle">@style/MaterialSnackbarTheme.Dark</item>
         <item name="snackbarTextViewStyle">@style/MaterialSnackbarTextViewTheme.Dark</item>
         <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme.Dark</item>
+        <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
     </style>
 
     <style name="Theme.App.Black" parent="Theme.MaterialComponents">
@@ -122,7 +135,6 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowDisablePreview">false</item>
         <item name="colorPrimaryDark">@color/transparent</item>
-        <item name="dividerColor">@color/divider_light</item>
         <item name="autoCompleteTitleColor">@color/white</item>
         <item name="autoCompleteUrlColor">@color/hint_text_dark_theme</item>
         <item name="windowNoTitle">true</item>
@@ -131,6 +143,7 @@
         <item name="snackbarStyle">@style/MaterialSnackbarTheme.Dark</item>
         <item name="snackbarTextViewStyle">@style/MaterialSnackbarTextViewTheme.Dark</item>
         <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme.Dark</item>
+        <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
     </style>
 
     <style name="Theme.App.DayNight" parent="Theme.App.Light" />
@@ -202,6 +215,17 @@
 
     <style name="MaterialSnackbarTextButtonTheme.Dark" parent="@style/Widget.MaterialComponents.Button.TextButton.Snackbar">
         <item name="android:textColor">?attr/colorSecondary</item>
+    </style>
+
+    <style name="Widget.App.AppBarLayout.Light" parent="Widget.Design.AppBarLayout">
+        <item name="android:background">@color/md_grey_300</item>
+    </style>
+
+    <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="checkedIconMargin">4dp</item>
+        <item name="checkedIconSize">6dp</item>
+        <item name="checkedIcon">@drawable/ic_circle</item>
+        <item name="checkedIconTint">?attr/colorSecondary</item>
     </style>
 
 </resources>

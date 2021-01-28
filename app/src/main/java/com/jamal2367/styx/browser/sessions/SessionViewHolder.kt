@@ -8,22 +8,16 @@ import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeViewHolder
-import com.jamal2367.styx.utils.ThemeUtils
-import com.jamal2367.styx.view.BackgroundDrawable
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Activity
 import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -45,10 +39,7 @@ class SessionViewHolder(
     val textTabCount: TextView = view.findViewById(R.id.text_tab_count)
     val buttonEdit: ImageView = view.findViewById(R.id.button_edit)
     val buttonDelete: View = view.findViewById(R.id.button_delete)
-    val layout: LinearLayout = view.findViewById(R.id.layout_background)
-
-    private var previousBackground: Drawable? = null
-    private var previousAlpha: Int = 256
+    val iCardView: MaterialCardView = view.findViewById(R.id.layout_background)
 
     init {
         // Delete a session
@@ -142,7 +133,7 @@ class SessionViewHolder(
         }
 
         // Session item clicked
-        layout.setOnClickListener{
+        iCardView.setOnClickListener{
 
             if (!iUiController.getTabModel().isInitialized) {
                 // We are still busy loading a session
@@ -164,7 +155,7 @@ class SessionViewHolder(
             }
         }
 
-        layout.setOnLongClickListener(this)
+        iCardView.setOnLongClickListener(this)
     }
 
     private fun session() = iUiController.getTabModel().session(textName.tag as String)
@@ -173,7 +164,7 @@ class SessionViewHolder(
     override fun onClick(v: View) {
         if (v === buttonDelete) {
             //uiController.tabCloseClicked(adapterPosition)
-        } else if (v === layout) {
+        } else if (v === iCardView) {
         }
     }
 
@@ -186,16 +177,13 @@ class SessionViewHolder(
     // From ItemTouchHelperViewHolder
     // Start dragging
     override fun onItemOperationStart() {
-        previousBackground = layout.background
-        // Just set transparent background
-        layout.background = ColorDrawable(ThemeUtils.getColor(itemView.context,R.attr.colorControlHighlight)).apply{alpha=128}
+        iCardView.isDragged = true
     }
 
     // From ItemTouchHelperViewHolder
     // Stopped dragging
     override fun onItemOperationStop() {
-        // Here sadly no transition
-        layout.background = previousBackground
+        iCardView.isDragged = false
     }
 
     /**
