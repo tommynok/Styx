@@ -27,5 +27,4 @@
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:maxLines="1" />
-
 </LinearLayout>

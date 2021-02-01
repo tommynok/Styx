@@ -54,5 +54,4 @@
         android:contentDescription="@string/search_insert_suggestion"
         android:scaleType="center"
         app:srcCompat="@drawable/ic_insert" />
-
 </LinearLayout>

@@ -35,8 +35,7 @@
             app:tooltipText="@{@string/action_close_all_other_tabs}"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_delete_sweep"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-            />
+            android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
         <ImageButton
             android:id="@+id/action_restore_all_pages"
@@ -48,8 +47,7 @@
             app:tooltipText="@{@string/action_restore_all_tabs}"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_restore_from_trash"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-            />
+            android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
         <ImageButton
             android:id="@+id/action_restore_page"
@@ -61,8 +59,7 @@
             app:tooltipText="@{@string/action_restore_tab}"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_restore_page"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-            />
+            android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
         <ImageButton
             android:id="@+id/action_new_tab"
@@ -74,8 +71,7 @@
             app:tooltipText="@{@string/action_new_tab}"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_action_plus"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-            />
+            android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
         <ImageButton
             android:id="@+id/action_sessions"
@@ -87,8 +83,7 @@
             app:tooltipText="@{@string/action_sessions}"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_sessions"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-            />
+            android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
     </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -107,7 +102,5 @@
         android:focusable="true"
         android:clickable="true"
         android:descendantFocusability="afterDescendants"/>
-
-
 </LinearLayout>
 </layout>

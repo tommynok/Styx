@@ -9,10 +9,6 @@
             type="com.jamal2367.styx.controller.UIController"/>
     </data>
 
-    <!-- Added outer layout with no background as a convenient way to offset our menu from the screen edge
-         android:paddingRight="5dp"
-            Make sure we are not too close from the screen edge.
-    -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,9 +25,6 @@
             android:background="@drawable/session_background"
             tools:ignore="UselessParent">
 
-<!--            <com.google.android.material.appbar.AppBarLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
@@ -39,12 +32,8 @@
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:background="@drawable/session_title_background"
-                    >
-                    <!--
-                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                        Results in small font in landscape, consider using something else
-                    -->
+                    android:background="@drawable/session_title_background">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -65,8 +54,7 @@
                         android:contentDescription="@string/action_new_session"
                         app:tooltipText="@{@string/action_edit_sessions}"
                         android:scaleType="center"
-                        app:srcCompat="@drawable/ic_edit"
-                        />
+                        app:srcCompat="@drawable/ic_edit" />
 
                     <!-- Save as button -->
                     <ImageButton
@@ -78,8 +66,7 @@
                         android:contentDescription="@string/action_save_session"
                         app:tooltipText="@{@string/action_save_session}"
                         android:scaleType="center"
-                        app:srcCompat="@drawable/ic_save"
-                        />
+                        app:srcCompat="@drawable/ic_save" />
 
 
                     <ImageButton
@@ -91,11 +78,9 @@
                         android:contentDescription="@string/action_new_session"
                         app:tooltipText="@{@string/action_new_session}"
                         android:scaleType="center"
-                        app:srcCompat="@drawable/ic_action_plus"
-                        />
+                        app:srcCompat="@drawable/ic_action_plus" />
 
                 </LinearLayout>
-<!--            </com.google.android.material.appbar.AppBarLayout>-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_sessions"
@@ -112,8 +97,7 @@
                 android:clickable="true"
                 android:descendantFocusability="afterDescendants"
                 android:layout_marginBottom="12dp"
-                android:layout_marginRight="5dp"
-                />
+                android:layout_marginRight="5dp" />
         </LinearLayout>
     </LinearLayout>
 </layout>

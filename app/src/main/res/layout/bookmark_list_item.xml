@@ -7,9 +7,7 @@ android:focusableInTouchMode="true"
     Keep it single tap for now.
 -->
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -50,7 +48,6 @@ android:focusableInTouchMode="true"
                 android:minHeight="?android:attr/listPreferredItemHeightSmall"
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceListItemSmall" />
-
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

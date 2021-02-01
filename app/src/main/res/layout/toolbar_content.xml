@@ -48,8 +48,7 @@
         android:layout_gravity="center"
         android:contentDescription="@string/home"
         app:srcCompat="@drawable/ic_action_home"
-        android:nextFocusDown="@id/web_view"
-        />
+        android:nextFocusDown="@id/web_view" />
 
     <com.jamal2367.styx.icon.TabCountView
         android:id="@+id/tabs_button"
@@ -62,8 +61,7 @@
         app:tabIconColor="?attr/colorControlNormal"
         app:tabIconTextSize="10dp"
         android:contentDescription="@string/tabs"
-        android:nextFocusDown="@id/web_view"
-        />
+        android:nextFocusDown="@id/web_view" />
 
     <ImageButton
         android:id="@+id/button_more"
@@ -73,9 +71,7 @@
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_more_vertical"
         android:contentDescription="@string/action_more"
-        android:nextFocusDown="@id/web_view"
-        />
+        android:nextFocusDown="@id/web_view" />
 
 </LinearLayout>
-
 </layout>

@@ -19,13 +19,12 @@
                 android:background="?attr/colorPrimary"
                 android:animateLayoutChanges="true">
 
-                <include layout="@layout/toolbar"/>
+                <include layout="@layout/toolbar" />
 
-                <include layout="@layout/browser_content"/>
+                <include layout="@layout/browser_content" />
 
-                <include layout="@layout/search_interface"/>
+                <include layout="@layout/search_interface" />
             </LinearLayout>
-
 
             <FrameLayout
                 android:id="@+id/left_drawer"
@@ -35,7 +34,7 @@
                 android:background="?android:attr/colorBackground"
                 android:fitsSystemWindows="true"
                 android:weightSum="1"
-                android:layout_marginLeft="-64dp"/>
+                android:layout_marginLeft="-64dp" />
 
             <FrameLayout
                 android:id="@+id/right_drawer"
@@ -45,8 +44,6 @@
                 android:background="?android:attr/colorBackground"
                 android:fitsSystemWindows="true"
                 android:weightSum="1"
-                android:layout_marginLeft="-64dp"/>
-
+                android:layout_marginLeft="-64dp" />
         </androidx.drawerlayout.widget.DrawerLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

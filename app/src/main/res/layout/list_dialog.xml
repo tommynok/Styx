@@ -26,5 +26,4 @@
         android:dividerHeight="0dp"
         android:listSelector="?attr/listChoiceBackgroundIndicator"
         android:overScrollMode="ifContentScrolls" />
-
 </LinearLayout>

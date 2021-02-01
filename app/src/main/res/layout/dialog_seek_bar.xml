@@ -10,5 +10,4 @@
         android:id="@+id/text_size_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 </LinearLayout>

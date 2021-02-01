@@ -2,18 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--
-    android:focusableInTouchMode="true"
-        Makes it so that you need to double tap an item to select it
-        Could be an interesting settings option
-
-    android:background="@drawable/background_session_item"
-        TODO: We could use a custom background and define our own state or reuse one to visualize current session
-        See: https://stackoverflow.com/a/21969864/3969362
-
-    android:background="?attr/selectableItemBackground"
-        Make sure we show ripples when touched
-    -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/layout_background"
         android:layout_width="match_parent"
@@ -29,38 +17,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/material_grid_touch_large"
-            android:animateLayoutChanges="true"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/material_grid_margin"
                 android:layout_marginRight="@dimen/material_grid_margin"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:singleLine="true" />
-
-            <!-- Needed to push following views to the right end side -->
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:singleLine="true"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/text_tab_count"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/material_grid_touch_large"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:layout_marginLeft="@dimen/material_grid_margin"
-                android:layout_marginRight="@dimen/material_grid_margin"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:fontFamily="sans-serif"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -71,7 +51,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_edit"
-                />
+                android:contentDescription="@null" />
 
             <ImageButton
                 android:id="@+id/button_delete"
@@ -81,7 +61,7 @@
                 app:tooltipText="@{@string/action_delete}"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_delete_forever"
-                />
+                android:contentDescription="@null" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

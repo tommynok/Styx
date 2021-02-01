@@ -36,7 +36,6 @@ android:background="@drawable/card_bg_elevate"
         app:layout_constraintTop_toTopOf="parent"
         android:focusable="false" />
 
-    <!-- Apparently ellipsis won't work with AppCompatAutoCompleteTextView -->
     <com.jamal2367.styx.view.SearchView
         android:id="@+id/search"
         android:layout_width="0dp"

@@ -21,7 +21,6 @@
                 android:layout_height="match_parent"
                 android:background="?attr/colorPrimary">
 
-                <!-- SL: requiresFadingEdge not working for some reason-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/tabs_list"
                     android:layout_weight="1"
@@ -29,9 +28,7 @@
                     android:layout_height="match_parent"
                     android:requiresFadingEdge="horizontal|vertical"
                     android:overScrollMode="never"
-                    android:scrollbars="none"
-                    />
-
+                    android:scrollbars="none" />
 
                 <ImageButton
                     android:id="@+id/action_close_all_tabs"
@@ -43,8 +40,7 @@
                     android:scaleType="center"
                     app:srcCompat="@drawable/ic_delete_sweep"
                     android:visibility="gone"
-                    android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-                    />
+                    android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
                 <ImageButton
                     android:id="@+id/action_restore_all_pages"
@@ -56,8 +52,7 @@
                     android:scaleType="center"
                     app:srcCompat="@drawable/ic_restore_from_trash"
                     android:visibility="gone"
-                    android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-                    />
+                    android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
                 <ImageButton
                     android:id="@+id/action_restore_page"
@@ -69,8 +64,7 @@
                     android:scaleType="center"
                     app:srcCompat="@drawable/ic_restore_page"
                     android:visibility="gone"
-                    android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-                    />
+                    android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
                 <ImageButton
                     android:id="@+id/action_new_tab"
@@ -81,8 +75,7 @@
                     app:tooltipText="@{@string/action_new_tab}"
                     android:scaleType="center"
                     app:srcCompat="@drawable/ic_action_plus"
-                    android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-                    />
+                    android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
                 <ImageButton
                     android:id="@+id/action_sessions"
@@ -94,13 +87,8 @@
                     android:scaleType="center"
                     app:srcCompat="@drawable/ic_sessions"
                     android:visibility="gone"
-                    android:onClick="@{(view) -> uiController.executeAction(view.id)}"
-                    />
-
-
+                    android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
             </LinearLayout>
-
         </com.google.android.material.appbar.AppBarLayout>
     </merge>
 </layout>
-

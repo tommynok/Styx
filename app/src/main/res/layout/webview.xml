@@ -7,5 +7,4 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:defaultFocusHighlightEnabled="false"
-    android:id="@+id/web_view"
-    />
+    android:id="@+id/web_view" />

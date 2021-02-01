@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/material_grid_unit"
-            android:text="@string/host"/>
+            android:text="@string/host" />
 
         <EditText
             android:id="@+id/proxyHost"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/material_grid_unit"
-            android:text="@string/port"/>
+            android:text="@string/port" />
 
         <EditText
             android:id="@+id/proxyPort"
@@ -43,5 +43,4 @@
             android:inputType="number"
             android:importantForAutofill="no" />
     </LinearLayout>
-
 </LinearLayout>

@@ -9,4 +9,3 @@
     android:background="?attr/colorPrimary"
     android:clipChildren="true"
     android:animateLayoutChanges="true" />
-
