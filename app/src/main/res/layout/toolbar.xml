@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-Elevation defines the shadow being cast by our tool bar
--->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_layout"
@@ -46,5 +42,4 @@ Elevation defines the shadow being cast by our tool bar
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:progressColor="?attr/colorAccent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
