@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Not sure why referencing the following style attribute here is not working
-android:background="?attr/searchBackground"
-Instead we had to use the following directly
-android:background="@drawable/card_bg_elevate"
-
--->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/search_container"
@@ -64,5 +57,4 @@ android:background="@drawable/card_bg_elevate"
         android:focusableInTouchMode="true"
         android:clickable="true"
         android:focusable="true" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
