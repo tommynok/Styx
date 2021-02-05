@@ -142,6 +142,15 @@ class StyxView(
      * True if desktop mode is enabled for this tab.
      */
     var desktopMode = false
+        set(aDesktopMode) {
+            field = aDesktopMode
+            // Set our user agent accordingly
+            if (aDesktopMode) {
+                webView?.settings?.userAgentString = DESKTOP_USER_AGENT
+            } else {
+                setUserAgentForPreference(userPreferences)
+            }
+        }
 
     /**
      *
@@ -291,6 +300,7 @@ class StyxView(
 
         if (tabInitializer !is FreezableBundleInitializer) {
             tabInitializer.initialize(tab, requestHeaders)
+            desktopMode = userPreferences.desktopModeDefault
         } else {
             latentTabInitializer = tabInitializer
             titleInfo.setTitle(tabInitializer.tabModel.title)
@@ -481,12 +491,6 @@ class StyxView(
     fun toggleDesktopUserAgent() {
         // Toggle desktop mode
         desktopMode = !desktopMode
-        // Set our user agent accordingly
-        if (desktopMode) {
-            webView?.settings?.userAgentString = DESKTOP_USER_AGENT
-        } else {
-            setUserAgentForPreference(userPreferences)
-        }
     }
 
     /**
