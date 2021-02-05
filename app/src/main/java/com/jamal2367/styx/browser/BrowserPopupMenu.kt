@@ -5,10 +5,8 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.database.bookmark.BookmarkRepository
 import com.jamal2367.styx.databinding.PopupMenuBrowserBinding
 import com.jamal2367.styx.di.injector
-import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
 import android.graphics.drawable.ColorDrawable
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -54,7 +52,7 @@ class BrowserPopupMenu : PopupWindow {
 
         (contentView.context as BrowserActivity).tabsManager.let {
             // Set desktop mode checkbox according to current tab
-            contentView.menuItemDesktopMode.isChecked = it.currentTab?.toggleDesktop ?: false
+            contentView.menuItemDesktopMode.isChecked = it.currentTab?.desktopMode ?: false
 
             it.currentTab?.let { tab ->
                 // Let user add multiple times the same URL I guess, for now anyway

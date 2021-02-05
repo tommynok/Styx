@@ -137,7 +137,15 @@ class StyxView(
      */
     var invertPage = false
         private set
-    var toggleDesktop = false
+
+    /**
+     * True if desktop mode is enabled for this tab.
+     */
+    var desktopMode = false
+
+    /**
+     *
+     */
     private val webViewHandler = WebViewHandler(this)
 
     /**
@@ -220,6 +228,12 @@ class StyxView(
         get() = webView?.url ?: ""
 
     /**
+     * Return true if this tab is frozen, meaning it was not yet loaded from its bundle
+     */
+    val isFrozen : Boolean
+        get() = latentTabInitializer?.tabModel?.webView != null
+
+    /**
      * We had forgotten to unregisterReceiver our download listener thus leaking them all whenever we switched between sessions.
      * It turns out android as a hardcoded limit of 1000 [BroadcastReceiver] per application.
      * So after a while switching between sessions with many tabs we would get an exception saying:
@@ -279,8 +293,9 @@ class StyxView(
             tabInitializer.initialize(tab, requestHeaders)
         } else {
             latentTabInitializer = tabInitializer
-            titleInfo.setTitle(tabInitializer.initialTitle)
-            titleInfo.setFavicon(tabInitializer.favicon)
+            titleInfo.setTitle(tabInitializer.tabModel.title)
+            titleInfo.setFavicon(tabInitializer.tabModel.favicon)
+            desktopMode = tabInitializer.tabModel.desktopMode
         }
 
         networkDisposable = networkConnectivityModel.connectivity()
@@ -463,13 +478,15 @@ class StyxView(
      * This method is used to toggle the user agent between desktop and the current preference of
      * the user.
      */
-    fun toggleDesktopUA() {
-        if (!toggleDesktop) {
+    fun toggleDesktopUserAgent() {
+        // Toggle desktop mode
+        desktopMode = !desktopMode
+        // Set our user agent accordingly
+        if (desktopMode) {
             webView?.settings?.userAgentString = DESKTOP_USER_AGENT
         } else {
             setUserAgentForPreference(userPreferences)
         }
-        toggleDesktop = !toggleDesktop
     }
 
     /**
@@ -484,7 +501,7 @@ class StyxView(
      * We get that state bundle either directly from our Web View,
      * or from our frozen tab initializer if ever our Web View was never loaded.
      */
-    private fun webViewState(): Bundle = latentTabInitializer?.bundle
+    private fun webViewState(): Bundle = latentTabInitializer?.tabModel?.webView
         ?: Bundle(ClassLoader.getSystemClassLoader()).also {
             webView?.saveState(it)
         }
@@ -493,7 +510,7 @@ class StyxView(
      * Save the state of this tab and return it as a [Bundle].
      */
     fun saveState(): Bundle {
-         return TabModel(url,title,favicon,webViewState()).toBundle()
+        return TabModel(url,title,desktopMode,favicon,webViewState()).toBundle()
     }
     /**
      * Pause the current WebView instance.

@@ -4,7 +4,6 @@
 
 package com.jamal2367.styx.browser.activity
 
-import com.jamal2367.styx.AppTheme
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.IncognitoActivity
 import com.jamal2367.styx.R
@@ -1203,7 +1202,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
             R.id.action_toggle_desktop_mode -> {
                 tabsManager.currentTab?.apply {
-                    toggleDesktopUA()
+                    toggleDesktopUserAgent()
                     reload()
                 }
                 return true

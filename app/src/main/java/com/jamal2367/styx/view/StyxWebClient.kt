@@ -131,7 +131,7 @@ class StyxWebClient(
 
     override fun onLoadResource(view: WebView, url: String?) {
         super.onLoadResource(view, url)
-        if (styxView.toggleDesktop) {
+        if (styxView.desktopMode) {
             // That's needed for desktop mode support
             // See: https://stackoverflow.com/a/60621350/3969362
             // See: https://stackoverflow.com/a/39642318/3969362

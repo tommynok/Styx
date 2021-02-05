@@ -34,7 +34,6 @@ import com.jamal2367.styx.extensions.drawable
 import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.setImageForTheme
 import com.jamal2367.styx.favicon.FaviconModel
-import com.jamal2367.styx.reading.activity.ReadingActivity
 import com.jamal2367.styx.utils.isSpecialUrl
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -210,7 +209,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 title = R.string.dialog_toggle_desktop
             ) {
                 getTabsManager().currentTab?.apply {
-                    toggleDesktopUA()
+                    toggleDesktopUserAgent()
                     reload()
                     // TODO add back drawer closing
                 }
