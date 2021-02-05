@@ -16,6 +16,9 @@ import android.text.TextUtils;
 import android.webkit.CookieManager;
 import android.webkit.MimeTypeMap;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -40,9 +43,7 @@ import com.jamal2367.styx.utils.FileUtils;
 import com.jamal2367.styx.utils.Utils;
 import com.jamal2367.styx.view.StyxView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
 

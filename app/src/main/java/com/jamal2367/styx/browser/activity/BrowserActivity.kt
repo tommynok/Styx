@@ -92,7 +92,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.ButterKnife
 import com.anthonycr.grant.PermissionsManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.Completable
@@ -233,7 +232,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         }
 
         setContentView(R.layout.activity_main)
-        ButterKnife.bind(this)
         createPopupMenu()
         createSessionsMenu()
 

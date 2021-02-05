@@ -30,8 +30,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
@@ -39,6 +37,9 @@ import io.reactivex.disposables.Disposable;
 public class ReadingActivity extends ThemedSettingsActivity {
 
     private static final String LOAD_READING_URL = "ReadingUrl";
+
+    TextView mTitle;
+    TextView mBody;
 
     /**
      * Launches this activity with the necessary URL argument.
@@ -53,9 +54,6 @@ public class ReadingActivity extends ThemedSettingsActivity {
     }
 
     private static final String TAG = "ReadingActivity";
-
-    @BindView(R.id.textViewTitle) TextView mTitle;
-    @BindView(R.id.textViewBody) TextView mBody;
 
     @Inject UserPreferences mUserPreferences;
     @Inject @NetworkScheduler Scheduler mNetworkScheduler;
@@ -93,7 +91,9 @@ public class ReadingActivity extends ThemedSettingsActivity {
         }
 
         setContentView(R.layout.reading_view);
-        ButterKnife.bind(this);
+
+        mTitle = findViewById(R.id.textViewTitle);
+        mBody = findViewById(R.id.textViewBody);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
