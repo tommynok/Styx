@@ -1,5 +1,4 @@
 <resources>
-
     <dimen name="material_grid_margin">16dp</dimen>
     <dimen name="material_grid_unit">8dp</dimen>
 
