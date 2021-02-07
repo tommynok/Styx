@@ -14,7 +14,9 @@ import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.WebUtils
 import com.jamal2367.styx.view.StyxView
 import android.app.Activity
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.webkit.WebView
 import io.reactivex.Completable
 import io.reactivex.Scheduler
@@ -55,7 +57,8 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
             preference = SETTINGS_SAVEPASSWORD,
             isChecked = userPreferences.savePasswordsEnabled,
             onCheckChange = { userPreferences.savePasswordsEnabled = it }
-        )
+                // From Android O auto-fill framework is used instead
+        ).isVisible = Build.VERSION.SDK_INT < Build.VERSION_CODES.O
 
         switchPreference(
             preference = SETTINGS_CACHEEXIT,
