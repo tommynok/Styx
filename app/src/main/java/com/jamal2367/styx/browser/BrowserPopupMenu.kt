@@ -5,12 +5,18 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.database.bookmark.BookmarkRepository
 import com.jamal2367.styx.databinding.PopupMenuBrowserBinding
 import com.jamal2367.styx.di.injector
+import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.PopupWindow
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
 import kotlinx.android.synthetic.main.popup_menu_browser.view.*
 import javax.inject.Inject
 
@@ -24,6 +30,9 @@ class BrowserPopupMenu : PopupWindow {
 
         view.context.injector.inject(this)
 
+        // Elevation just need to be high enough not to cut the effect defined in our layout
+        elevation = 100F
+        //
         animationStyle = R.style.AnimationMenu
         //animationStyle = android.R.style.Animation_Dialog
 
@@ -37,6 +46,18 @@ class BrowserPopupMenu : PopupWindow {
             // No sessions in incognito mode
             view.menuItemSessions.visibility = View.GONE
         }
+
+        //val radius: Float = getResources().getDimension(R.dimen.default_corner_radius) //32dp
+
+        /*
+        // TODO: That fixes the corner but leaves a square shadow behind
+        val toolbar: AppBarLayout = view.findViewById(R.id.header)
+        val materialShapeDrawable = toolbar.background as MaterialShapeDrawable
+        materialShapeDrawable.shapeAppearanceModel = materialShapeDrawable.shapeAppearanceModel
+                .toBuilder()
+                .setAllCorners(CornerFamily.ROUNDED, Utils.dpToPx(16F).toFloat())
+                .build()
+         */
 
     }
 
@@ -63,12 +84,20 @@ class BrowserPopupMenu : PopupWindow {
             }
         }
 
-        showAsDropDown(aAnchor, 0,-aAnchor.height)
+        //showAsDropDown(aAnchor, 0,-aAnchor.height)
+
+        // Get our anchor location
+        val anchorLoc = IntArray(2)
+        aAnchor.getLocationInWindow(anchorLoc)
+        // Show our popup menu from the right side of the screen below our anchor
+        showAtLocation(aAnchor, Gravity.TOP or Gravity.RIGHT,
+                // Offset from the right screen edge
+                Utils.dpToPx(10F),
+                // Above our anchor
+                anchorLoc[1])
     }
 
     companion object {
-
-        private const val margin = 15
 
         fun inflate(layoutInflater: LayoutInflater): View {
             return PopupMenuBrowserBinding.inflate(layoutInflater).root

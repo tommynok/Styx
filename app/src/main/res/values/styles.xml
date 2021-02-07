@@ -71,6 +71,10 @@
         <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme</item>
         <item name="appBarLayoutStyle">@style/Widget.App.AppBarLayout.Light</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="popupMenuBackground">@drawable/popup_menu_background</item>
     </style>
 
     <style name="Theme.App.Dark" parent="Theme.MaterialComponents">
@@ -108,6 +112,10 @@
         <item name="snackbarTextViewStyle">@style/MaterialSnackbarTextViewTheme.Dark</item>
         <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme.Dark</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="popupMenuBackground">@drawable/popup_menu_background</item>
     </style>
 
     <style name="Theme.App.Black" parent="Theme.MaterialComponents">
@@ -144,6 +152,10 @@
         <item name="snackbarTextViewStyle">@style/MaterialSnackbarTextViewTheme.Dark</item>
         <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme.Dark</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="popupMenuBackground">@drawable/popup_menu_background</item>
     </style>
 
     <style name="Theme.App.DayNight" parent="Theme.App.Light" />
@@ -226,6 +238,21 @@
         <item name="checkedIconSize">6dp</item>
         <item name="checkedIcon">@drawable/ic_circle</item>
         <item name="checkedIconTint">?attr/colorSecondary</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
 </resources>
