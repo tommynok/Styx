@@ -46,6 +46,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:colorBackground">@color/md_grey_50</item>
         <item name="colorOnBackground">@color/black</item>
+        <item name="trackColor">@color/md_grey_400</item>
         <item name="colorSurface">@color/md_grey_300</item>
         <item name="colorOnSurface">@color/black</item>
         <item name="colorError">@color/md_red_500</item>
@@ -87,6 +88,7 @@
         <item name="android:colorBackground">@color/md_grey_900</item>
         <item name="android:navigationBarColor">@color/md_grey_900</item>
         <item name="colorOnBackground">@color/white</item>
+        <item name="trackColor">@color/md_grey_800</item>
         <item name="colorSurface">@color/md_grey_850</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="colorError">@color/md_red_500</item>
@@ -127,6 +129,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:colorBackground">@color/black</item>
         <item name="colorOnBackground">@color/white</item>
+        <item name="trackColor">@color/md_grey_900</item>
         <item name="colorSurface">@color/md_grey_950</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="colorError">@color/md_red_500</item>
