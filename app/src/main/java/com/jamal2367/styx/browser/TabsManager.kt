@@ -20,12 +20,11 @@ import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.Single
-import java.io.File
 import javax.inject.Inject
 
 /**
  * A manager singleton that holds all the [StyxView] and tracks the current tab. It handles
- * creation, deletion, restoration, state saving, and switching of tabs and sessions..
+ * creation, deletion, restoration, state saving, and switching of tabs and sessions.
  */
 class TabsManager @Inject constructor(
         private val application: Application,
@@ -66,7 +65,7 @@ class TabsManager @Inject constructor(
     private var tabNumberListeners = emptySet<(Int) -> Unit>()
 
     var isInitialized = false
-    private var postInitializationWorkList = emptyList<() -> Unit>()
+    private var postInitializationWorkList = mutableListOf<InitializationListener>()
 
     init {
         addTabNumberChangedListener {
@@ -81,6 +80,7 @@ class TabsManager @Inject constructor(
             }
         }
     }
+
 
     /**
      */
@@ -114,6 +114,7 @@ class TabsManager @Inject constructor(
         return list[0]
     }
 
+
     /**
      * Adds a listener to be notified when the number of tabs changes.
      */
@@ -125,17 +126,38 @@ class TabsManager @Inject constructor(
      * Cancels any pending work that was scheduled to run after initialization.
      */
     fun cancelPendingWork() {
-        postInitializationWorkList = emptyList()
+        postInitializationWorkList.clear()
+    }
+
+
+    /**
+     * Executes the [runnable] once after the next time this manager has been initialized.
+     */
+    fun doOnceAfterInitialization(runnable: () -> Unit) {
+        if (isInitialized) {
+            runnable()
+        } else {
+            postInitializationWorkList.add(object : InitializationListener {
+                override fun onInitializationComplete() {
+                    runnable()
+                    postInitializationWorkList.remove(this)
+                }
+            })
+        }
     }
 
     /**
-     * Executes the [runnable] after the manager has been initialized.
+     * Executes the [runnable] every time after this manager has been initialized.
      */
     fun doAfterInitialization(runnable: () -> Unit) {
         if (isInitialized) {
             runnable()
         } else {
-            postInitializationWorkList += runnable
+            postInitializationWorkList.add(object : InitializationListener {
+                override fun onInitializationComplete() {
+                    runnable()
+                }
+            })
         }
     }
 
@@ -160,8 +182,12 @@ class TabsManager @Inject constructor(
         }
 
         isInitialized = true
-        for (runnable in postInitializationWorkList) {
-            runnable()
+
+        // Iterate through our collection while allowing item to be removed and avoid ConcurrentModificationException
+        // To do that we need to make a copy of our list
+        val listCopy = postInitializationWorkList.toList()
+        for (listener in listCopy) {
+            listener.onInitializationComplete()
         }
     }
 
@@ -186,51 +212,51 @@ class TabsManager @Inject constructor(
      * a background scheduler and emits on the foreground scheduler.
      */
     fun initializeTabs(activity: Activity, intent: Intent?, incognito: Boolean): Single<StyxView> =
-        Single
-            .just(Option.fromNullable(
-                if (intent?.action == Intent.ACTION_WEB_SEARCH) {
-                    extractSearchFromIntent(intent)
-                } else {
-                    intent?.dataString
-                }
-            ))
-            .doOnSuccess { shutdown() }
-            .subscribeOn(mainScheduler)
-            .observeOn(databaseScheduler)
-            .flatMapObservable {
-                if (incognito) {
-                    initializeIncognitoMode(it.value())
-                } else {
-                    initializeRegularMode(it.value(), activity)
-                }
-            }.observeOn(mainScheduler)
-            .map {
-                newTab(activity, it, incognito, NewTabPosition.END_OF_TAB_LIST)
-            }
-            .lastOrError()
-            .doAfterSuccess { finishInitialization() }
+            Single
+                    .just(Option.fromNullable(
+                            if (intent?.action == Intent.ACTION_WEB_SEARCH) {
+                                extractSearchFromIntent(intent)
+                            } else {
+                                intent?.dataString
+                            }
+                    ))
+                    .doOnSuccess { shutdown() }
+                    .subscribeOn(mainScheduler)
+                    .observeOn(databaseScheduler)
+                    .flatMapObservable {
+                        if (incognito) {
+                            initializeIncognitoMode(it.value())
+                        } else {
+                            initializeRegularMode(it.value(), activity)
+                        }
+                    }.observeOn(mainScheduler)
+                    .map {
+                        newTab(activity, it, incognito, NewTabPosition.END_OF_TAB_LIST)
+                    }
+                    .lastOrError()
+                    .doAfterSuccess { finishInitialization() }
 
     /**
      * Returns an [Observable] that emits the [TabInitializer] for incognito mode.
      */
     private fun initializeIncognitoMode(initialUrl: String?): Observable<TabInitializer> =
-        Observable.fromCallable { initialUrl?.let(::UrlInitializer) ?: homePageInitializer }
+            Observable.fromCallable { initialUrl?.let(::UrlInitializer) ?: homePageInitializer }
 
     /**
      * Returns an [Observable] that emits the [TabInitializer] for normal operation mode.
      */
     private fun initializeRegularMode(initialUrl: String?, activity: Activity): Observable<TabInitializer> =
-        restorePreviousTabs()
-            .concatWith(Maybe.fromCallable<TabInitializer> {
-                return@fromCallable initialUrl?.let {
-                    if (URLUtil.isFileUrl(it)) {
-                        PermissionInitializer(it, activity, homePageInitializer)
-                    } else {
-                        UrlInitializer(it)
-                    }
-                }
-            })
-            .defaultIfEmpty(homePageInitializer)
+            restorePreviousTabs()
+                    .concatWith(Maybe.fromCallable<TabInitializer> {
+                        return@fromCallable initialUrl?.let {
+                            if (URLUtil.isFileUrl(it)) {
+                                PermissionInitializer(it, activity, homePageInitializer)
+                            } else {
+                                UrlInitializer(it)
+                            }
+                        }
+                    })
+                    .defaultIfEmpty(homePageInitializer)
 
     /**
      * Returns the URL for a search [Intent]. If the query is empty, then a null URL will be
@@ -248,15 +274,13 @@ class TabsManager @Inject constructor(
     }
 
     /**
-     * Returns an observable that emits the [TabInitializer] for each previously opened tab as
-     * saved on disk. Can potentially be empty.
-     * * Load tabs from the given file
+     * Load tabs from the given file
      */
     private fun loadSession(aFilename: String): Observable<TabInitializer>
     {
         val bundle = FileUtils.readBundleFromStorage(application, aFilename)
 
-	    // Read saved current tab index if any
+        // Read saved current tab index if any
         bundle?.let{
             savedRecentTabsIndices.clear()
             it.getIntArray(RECENT_TAB_INDICES)?.toList()?.let { it1 -> savedRecentTabsIndices.addAll(it1) }
@@ -327,6 +351,9 @@ class TabsManager @Inject constructor(
         }
     }
 
+
+
+
     /**
      * Returns an observable that emits the [TabInitializer] for each previously opened tab as
      * saved on disk. Can potentially be empty.
@@ -396,11 +423,11 @@ class TabsManager @Inject constructor(
      * @return the corespondent [StyxView], or null if the index is invalid
      */
     fun getTabAtPosition(position: Int): StyxView? =
-        if (position < 0 || position >= tabList.size) {
-            null
-        } else {
-            tabList[position]
-        }
+            if (position < 0 || position >= tabList.size) {
+                null
+            } else {
+                tabList[position]
+            }
 
     val allTabs: List<StyxView>
         get() = tabList
@@ -446,20 +473,20 @@ class TabsManager @Inject constructor(
      * @return a valid initialized tab.
      */
     fun newTab(
-        activity: Activity,
-        tabInitializer: TabInitializer,
-        isIncognito: Boolean,
-        newTabPosition: NewTabPosition
+            activity: Activity,
+            tabInitializer: TabInitializer,
+            isIncognito: Boolean,
+            newTabPosition: NewTabPosition
     ): StyxView {
         logger.log(TAG, "New tab")
         val tab = StyxView(
-            activity,
-            tabInitializer,
-            isIncognito,
-            homePageInitializer,
-            bookmarkPageInitializer,
-            downloadPageInitializer,
-            logger
+                activity,
+                tabInitializer,
+                isIncognito,
+                homePageInitializer,
+                bookmarkPageInitializer,
+                downloadPageInitializer,
+                logger
         )
 
         // Add our new tab at the specified position
@@ -526,6 +553,8 @@ class TabsManager @Inject constructor(
      */
     fun positionOf(tab: StyxView?): Int = tabList.indexOf(tab)
 
+
+
     /**
      * Saves the state of the current WebViews, to a bundle which is then stored in persistent
      * storage and can be unparceled.
@@ -547,8 +576,8 @@ class TabsManager @Inject constructor(
         val outState = Bundle(ClassLoader.getSystemClassLoader())
         logger.log(TAG, "Saving tab state")
         tabList
-            .withIndex()
-            .forEach { (index, tab) ->
+                .withIndex()
+                .forEach { (index, tab) ->
                     // Index padding with zero to make sure they are restored in the correct order
                     // That gives us proper sorting up to 99999 tabs which should be more than enough :)
                     outState.putBundle(TAB_KEY_PREFIX + String.format("%05d", index), tab.saveState())
@@ -562,8 +591,8 @@ class TabsManager @Inject constructor(
 
         // Write our bundle to disk
         FileUtils.writeBundleToStorage(application, outState, aFilename)
-            .subscribeOn(diskScheduler)
-            .subscribe()
+                .subscribeOn(diskScheduler)
+                .subscribe()
     }
 
     /**
@@ -630,7 +659,7 @@ class TabsManager @Inject constructor(
             // Search for session files
             val files = application.filesDir?.let{it.listFiles { d, name -> name.startsWith(FILENAME_SESSION_PREFIX) }}
             // Add recovered sessions to our collection
-            files?.forEach { f -> iSessions.add(Session(f.name.substring(FILENAME_SESSION_PREFIX.length),-1)) }
+            files?.forEach { f -> iSessions.add(Session(f.name.substring(FILENAME_SESSION_PREFIX.length), -1)) }
             // Set the first one as current one
             if (!iSessions.isNullOrEmpty()) {
                 iCurrentSessionName = iSessions[0].name
@@ -638,21 +667,22 @@ class TabsManager @Inject constructor(
         }
     }
 
+
     /**
      * Creates an [Observable] that emits the [Bundle] state stored for each previously opened tab
      * on disk.
      * Can potentially be empty.
      */
     private fun readSavedStateFromDisk(aBundle: Bundle?): Observable<TabModel> = Maybe
-        .fromCallable { aBundle }
-        .flattenAsObservable { bundle ->
-            bundle.keySet()
-                .filter { it.startsWith(TAB_KEY_PREFIX) }
-                .mapNotNull { bundleKey ->
-                    bundle.getBundle(bundleKey)?.let {TabModelFromBundle(it) as TabModel }
-                }
+            .fromCallable { aBundle }
+            .flattenAsObservable { bundle ->
+                bundle.keySet()
+                        .filter { it.startsWith(TAB_KEY_PREFIX) }
+                        .mapNotNull { bundleKey ->
+                            bundle.getBundle(bundleKey)?.let {TabModelFromBundle(it) as TabModel }
+                        }
             }
-        .doOnNext { logger.log(TAG, "Restoring previous WebView state now") }
+            .doOnNext { logger.log(TAG, "Restoring previous WebView state now") }
 
     /**
      * Returns the index of the current tab.
@@ -675,7 +705,7 @@ class TabsManager @Inject constructor(
      * @return the tab with an identical hash, or null.
      */
     fun getTabForHashCode(hashCode: Int): StyxView? =
-        tabList.firstOrNull { styxView -> styxView.webView?.let { it.hashCode() == hashCode } == true }
+            tabList.firstOrNull { StyxView -> StyxView.webView?.let { it.hashCode() == hashCode } == true }
 
     /**
      * Switch the current tab to the one at the given position. It returns the selected tab that has
@@ -695,12 +725,20 @@ class TabsManager @Inject constructor(
                 iRecentTabs.apply{
                     remove(it)
                     add(it)
-                    }
+                }
 
                 //logger.log(TAG, "Recent indices: $recentTabsIndices")
-                }
             }
         }
+    }
+
+    /**
+     * Was needed instead of simple runnable to be able to implement run once after init function
+     */
+    interface InitializationListener {
+        fun onInitializationComplete()
+    }
+
 
     companion object {
 
