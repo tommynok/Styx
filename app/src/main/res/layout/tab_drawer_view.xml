@@ -62,18 +62,6 @@
             android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
         <ImageButton
-            android:id="@+id/action_new_tab"
-            style="?android:attr/actionButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:contentDescription="@string/action_new_tab"
-            app:tooltipText="@{@string/action_new_tab}"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_action_plus"
-            android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
-
-        <ImageButton
             android:id="@+id/action_sessions"
             style="?android:attr/actionButtonStyle"
             android:layout_width="match_parent"
@@ -83,6 +71,18 @@
             app:tooltipText="@{@string/action_sessions}"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_sessions"
+            android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
+
+        <ImageButton
+            android:id="@+id/action_new_tab"
+            style="?android:attr/actionButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/action_new_tab"
+            app:tooltipText="@{@string/action_new_tab}"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_action_plus"
             android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
 
     </LinearLayout>
