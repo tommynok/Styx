@@ -197,10 +197,12 @@
     <string name="pref_category_portrait">Portrait</string>
     <string name="pref_summary_desktop_width">Desktop mode viewport width, set it higher for smaller content</string>
     <string name="pref_summary_locked_drawers">Tabs and Bookmarks drawers are locked</string>
+    <string name="pref_summary_webrtc">Allows Real Time Communication over the Web using your device camera and microphone</string>
     <string name="pref_title_desktop_width">Desktop width</string>
     <string name="pref_title_hide_status_bar">Hide status bar</string>
     <string name="pref_title_locked_drawers">Locked drawers</string>
     <string name="pref_title_pull_to_refresh">Pull to refresh</string>
+    <string name="pref_title_webrtc">WebRTC Support</string>
     <string name="problem_download">Invalid URL encountered, cannot download</string>
     <string name="problem_location_download">Cannot download to the specified location</string>
     <string name="reading_mode">Reader mode</string>
@@ -294,7 +296,6 @@
     <string name="use_i2p_prompt">It looks like you have I2P installed. Do you want to use I2P?</string>
     <string name="use_tor_prompt">It looks like you have Orbot installed. Do you want to use Tor?</string>
     <string name="version">Application version</string>
-    <string name="webrtc_support">WebRTC Support</string>
     <string name="wideViewPort">Use wide viewport</string>
     <string name="window">Allow sites to open new windows</string>
     <string name="yes">Yes</string>

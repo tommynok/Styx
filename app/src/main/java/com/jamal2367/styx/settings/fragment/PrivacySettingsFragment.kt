@@ -91,7 +91,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
         )
 
         switchPreference(
-            preference = SETTINGS_WEBRTC,
+            preference = getString(R.string.pref_key_webrtc),
             isChecked = userPreferences.webRtcEnabled && Capabilities.WEB_RTC.isSupported,
             isEnabled = Capabilities.WEB_RTC.isSupported,
             onCheckChange = { userPreferences.webRtcEnabled = it }
@@ -187,7 +187,6 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
         private const val SETTINGS_CLEARWEBSTORAGE = "clear_webstorage"
         private const val SETTINGS_WEBSTORAGEEXIT = "clear_webstorage_exit"
         private const val SETTINGS_DONOTTRACK = "do_not_track"
-        private const val SETTINGS_WEBRTC = "webrtc_support"
         private const val SETTINGS_IDENTIFYINGHEADERS = "remove_identifying_headers"
     }
 

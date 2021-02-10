@@ -5,6 +5,13 @@
     <PreferenceCategory android:title="@string/settings_privacy" app:iconSpaceReserved="false">
 
     <SwitchPreferenceCompat
+        android:defaultValue="@bool/pref_default_webrtc"
+        android:key="@string/pref_key_webrtc"
+        android:title="@string/pref_title_webrtc"
+        android:summary="@string/pref_summary_webrtc"
+        app:icon="@drawable/ic_videocam" />
+
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="location"
         android:summary="@string/recommended"
@@ -34,12 +41,6 @@
         android:defaultValue="false"
         android:key="remove_identifying_headers"
         android:title="@string/remove_identifying_headers"
-        app:iconSpaceReserved="false" />
-
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:key="webrtc_support"
-        android:title="@string/webrtc_support"
         app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
