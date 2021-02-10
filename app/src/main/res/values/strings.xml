@@ -248,7 +248,9 @@
     <string name="settings_black_status_bar">Black status bar</string>
     <string name="settings_display">Look &amp; feel</string>
     <string name="settings_general">General</string>
+    <string name="settings_other">Other</string>
     <string name="settings_privacy">Privacy</string>
+    <string name="settings_security">Security</string>
     <string name="settings_summary_apps">Enable third-party apps</string>
     <string name="settings_summary_desktop_mode_default">Define if new tabs use desktop mode by default</string>
     <string name="settings_summary_vertical_tab_bar">Disable it to use tabs in navigation drawer</string>

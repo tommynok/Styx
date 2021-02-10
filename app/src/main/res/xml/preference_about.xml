@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/settings_about">
+    <PreferenceCategory
+        android:title="@string/settings_about">
 
         <Preference
             android:summary="@string/name"
@@ -27,7 +29,8 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/licenses">
+    <PreferenceCategory
+        android:title="@string/licenses">
 
         <Preference
             android:summary="@string/mpl_license"

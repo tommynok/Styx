@@ -248,7 +248,9 @@
     <string name="settings_black_status_bar">Schwarze Statusleiste</string>
     <string name="settings_display">Darstellung</string>
     <string name="settings_general">Allgemein</string>
+    <string name="settings_other">Sonstiges</string>
     <string name="settings_privacy">Privatsphäre</string>
+    <string name="settings_security">Sicherheit</string>
     <string name="settings_summary_apps">Anwendungen von Drittanbietern</string>
     <string name="settings_summary_desktop_mode_default">Neue Tabs standardmäßig im Desktop Modus verwenden</string>
     <string name="settings_summary_vertical_tab_bar">Ausschalten um Desktop Tab-Drawer zu nutzen</string>

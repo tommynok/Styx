@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/bookmark_settings">
+    <PreferenceCategory
+        android:title="@string/bookmark_settings">
+
         <Preference
             android:key="export_bookmark"
             android:title="@string/export_bookmarks"
@@ -15,6 +18,7 @@
             android:key="delete_bookmarks"
             android:title="@string/action_delete_all_bookmarks"
             app:icon="@drawable/ic_baseline_delete_24"/>
+
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

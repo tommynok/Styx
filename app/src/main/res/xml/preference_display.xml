@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.preference.PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/settings_display">
+    <PreferenceCategory
+        android:title="@string/settings_display">
+
     <Preference
         android:key="@string/pref_key_theme"
         android:title="@string/theme"
@@ -25,7 +28,8 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_portrait">
+    <PreferenceCategory
+        android:title="@string/pref_category_portrait">
 
         <SwitchPreferenceCompat
             android:defaultValue="@bool/pref_default_portrait_pull_to_refresh"
@@ -53,7 +57,8 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_landscape">
+    <PreferenceCategory
+        android:title="@string/pref_category_landscape">
 
         <SwitchPreferenceCompat
             android:defaultValue="@bool/pref_default_landscape_pull_to_refresh"
@@ -81,7 +86,8 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_general">
+    <PreferenceCategory
+        android:title="@string/pref_category_general">
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
