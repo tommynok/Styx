@@ -3,16 +3,19 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/settings_about" app:iconSpaceReserved="false">
+    <PreferenceCategory android:title="@string/settings_about">
+
         <Preference
             android:summary="@string/name"
             android:title="@string/developer"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_dev">
         </Preference>
+
         <Preference
             android:key="pref_version"
             android:title="@string/version"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_about">
+
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/url_app_home_page">
@@ -20,13 +23,18 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
+
         </Preference>
+
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/licenses" app:iconSpaceReserved="false" >
+
+    <PreferenceCategory android:title="@string/licenses">
+
         <Preference
             android:summary="@string/mpl_license"
             android:title="@string/app_name"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_library">
+
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://www.mozilla.org/MPL/2.0/">
@@ -34,11 +42,14 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
+
         </Preference>
+
         <Preference
             android:summary="@string/apache"
             android:title="@string/android_open_source_project"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_library">
+
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://www.apache.org/licenses/LICENSE-2.0">
@@ -46,11 +57,14 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
+
         </Preference>
+
         <Preference
             android:summary="@string/freeware"
             android:title="@string/ad_server_list"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_library">
+
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/StevenBlack/hosts">
@@ -58,11 +72,14 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
+
         </Preference>
+
         <Preference
             android:summary="@string/license_gnu"
             android:title="@string/library_netcipher"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_library">
+
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://www.gnu.org/licenses/lgpl.html">
@@ -70,11 +87,14 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
+
         </Preference>
+
         <Preference
             android:summary="@string/apache"
             android:title="@string/snacktory"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_library">
+
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://www.apache.org/licenses/LICENSE-2.0">
@@ -82,11 +102,14 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
+
         </Preference>
+
         <Preference
             android:summary="@string/mit_license"
             android:title="@string/jsoup"
-            app:iconSpaceReserved="false">
+            app:icon="@drawable/ic_library">
+
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://jsoup.org/license">
@@ -94,6 +117,9 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
+
         </Preference>
+
     </PreferenceCategory>
+
 </PreferenceScreen>

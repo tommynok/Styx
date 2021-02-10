@@ -32,20 +32,17 @@
             app:key="@string/pref_key_search_in_new_tab"
             app:title="@string/search_in_new_tab"
             app:defaultValue="false"
-            app:iconSpaceReserved="false"
             app:icon="@drawable/ic_search" />
 
         <SwitchPreferenceCompat
             app:key="@string/pref_key_url_in_new_tab"
             app:title="@string/url_in_new_tab"
             app:defaultValue="false"
-            app:iconSpaceReserved="false"
             app:icon="@drawable/ic_web" />
 
         <ListPreference
             app:key="@string/pref_key_new_tab_position"
             app:title="@string/new_tab_position"
-            app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true"
             app:defaultValue="@string/new_tab_position_after_value"
             app:entries="@array/new_tab_positions"
@@ -57,75 +54,71 @@
             android:key="@string/pref_key_desktop_mode_default"
             android:title="@string/settings_title_desktop_mode_default"
             android:summary="@string/settings_summary_desktop_mode_default"
-            app:iconSpaceReserved="false"
             app:icon="@drawable/ic_desktop" />
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_advanced">
 
-        <Preference
-            android:key="download"
-            android:title="@string/download"
-            app:icon="@drawable/ic_file_download"
-            app:iconSpaceReserved="false"/>
-
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_load_images"
             android:summary="@string/recommended"
             android:title="@string/load_images"
-            app:icon="@drawable/ic_image"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_image" />
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_support_multiple_window"
             android:summary="@string/recommended"
             android:title="@string/window"
-            app:icon="@drawable/ic_baseline_open_in_new_24"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_baseline_open_in_new_24" />
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_cookies"
             android:summary="@string/recommended"
             android:title="@string/cookies"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_cookie" />
 
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/pref_key_cookies_incognito"
             android:title="@string/incognito_cookies"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_cookie" />
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_javascript"
             android:summary="@string/recommended"
             android:title="@string/java"
-            app:iconSpaceReserved="false"/>
+            app:icon="@drawable/ic_script" />
 
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/pref_key_request_save_data"
             android:title="@string/save_data"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_data_save" />
+
+        <Preference
+            android:key="download"
+            android:title="@string/download"
+            app:icon="@drawable/ic_cloud_download" />
 
         <Preference
             android:key="proxy"
             android:title="@string/http_proxy"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_http" />
 
         <Preference
             android:key="agent"
             android:title="@string/agent"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_user_agent" />
 
         <Preference
             android:key="@string/pref_key_default_text_encoding"
             android:title="@string/text_encoding"
-            app:iconSpaceReserved="false" />
+            app:icon="@drawable/ic_text_variant" />
 
     </PreferenceCategory>
 </PreferenceScreen>

@@ -295,7 +295,7 @@
     <string name="url_in_new_tab">URL in neuem Tab</string>
     <string name="use_i2p_prompt">I2P ist installiert. Soll I2P verwendet werden?</string>
     <string name="use_tor_prompt">Orbot ist installiert. Soll Tor verwendet werden?</string>
-    <string name="version">Version</string>
+    <string name="version">App-Version</string>
     <string name="wideViewPort">Breiten Anzeigebereich verwenden</string>
     <string name="window">Seiten erlauben einen neuen Tab zu öffnen</string>
     <string name="yes">Ja</string>
