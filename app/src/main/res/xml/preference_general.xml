@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/settings_general">
@@ -19,6 +19,7 @@
         app:icon="@drawable/ic_list" />
 
     </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/tabs">
 
         <SwitchPreferenceCompat
@@ -121,4 +122,5 @@
             app:icon="@drawable/ic_text_variant" />
 
     </PreferenceCategory>
-</PreferenceScreen>
+
+</androidx.preference.PreferenceScreen>
