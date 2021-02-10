@@ -240,7 +240,7 @@
     <string name="session_prompt_confirm_deletion_title">Confirm deletion</string>
     <string name="session_prompt_confirm_deletion_message">Are you sure you want to delete session \"%s\"?</string>
     <string name="session_switched">Switched to \"%s\"</string>
-    <string name="settings_about_explain">Details about version, update, author and license.</string>
+    <string name="settings_about_explain">Details about version, author and license.</string>
     <string name="settings_about">About</string>
     <string name="settings_adblock">Ad Block</string>
     <string name="settings_advanced">Advanced</string>
