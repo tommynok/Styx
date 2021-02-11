@@ -1030,8 +1030,8 @@ class StyxView(
 
     companion object {
 
-        public const val KHtmlMetaThemeColorInvalid: Int = Color.TRANSPARENT
-        public const val KFetchMetaThemeColorTries: Int = 6
+        const val KHtmlMetaThemeColorInvalid: Int = Color.TRANSPARENT
+        const val KFetchMetaThemeColorTries: Int = 6
 
         private const val TAG = "StyxView"
 

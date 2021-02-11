@@ -374,7 +374,7 @@ class TabsManager @Inject constructor(
             // TODO: delete legacy session file at some point
         } else {
             // Load current session then
-            loadSession(fileNameFromSessionName(iCurrentSessionName!!))
+            loadSession(fileNameFromSessionName(iCurrentSessionName))
         }
     }
 
