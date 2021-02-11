@@ -44,7 +44,6 @@ import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebView
-import androidx.annotation.RequiresApi
 import androidx.collection.ArrayMap
 import io.reactivex.Observable
 import io.reactivex.Scheduler
@@ -282,7 +281,7 @@ class StyxView(
             setDownloadListener(iDownloadListener.also { activity.registerReceiver(it, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) })
             // For older devices show Tool Bar On Page Top won't work after fling to top.
             // Who cares? I mean those devices are probably from 2014 or older.
-            val tl = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) TouchListener().also { setOnScrollChangeListener(it) } else TouchListenerLollipop()
+            val tl = TouchListener().also { setOnScrollChangeListener(it) }
             setOnTouchListener(tl)
             initializeSettings()
         }
@@ -434,9 +433,8 @@ class StyxView(
             // That needs to be false for WebRTC to work at all, don't ask me why
             mediaPlaybackRequiresUserGesture = false
 
-            if (API >= Build.VERSION_CODES.LOLLIPOP && !isIncognito) {
+            if (!isIncognito) {
                 mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
-            } else if (API >= Build.VERSION_CODES.LOLLIPOP) {
                 // We're in Incognito mode, reject
                 mixedContentMode = WebSettings.MIXED_CONTENT_NEVER_ALLOW
             }
@@ -931,9 +929,8 @@ class StyxView(
     }
 
     /**
-     * Improved touch listener for devices above API 21 Lollipop
+     * Improved touch listener for devices above API 23 Marshmallow
      */
-    @RequiresApi(Build.VERSION_CODES.M)
     private inner class TouchListener: TouchListenerLollipop(), OnScrollChangeListener {
 
         override fun onScrollChange(view: View?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {

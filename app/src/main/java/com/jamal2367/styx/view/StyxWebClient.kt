@@ -1,6 +1,5 @@
 package com.jamal2367.styx.view
 
-import android.annotation.TargetApi
 import androidx.appcompat.app.AppCompatActivity
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -11,7 +10,6 @@ import android.graphics.Bitmap
 import android.net.MailTo
 import android.net.Uri
 import android.net.http.SslError
-import android.os.Build
 import android.os.Message
 import android.view.LayoutInflater
 import android.webkit.*
@@ -110,7 +108,6 @@ class StyxWebClient(
     private fun shouldRequestBeBlocked(pageUrl: String, requestUrl: String) =
         !whitelistModel.isUrlAllowedAds(pageUrl) && adBlock.isAd(requestUrl)
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
         if (shouldRequestBeBlocked(currentUrl, request.url.toString())) {
             val empty = ByteArrayInputStream(emptyResponseByteArray)
@@ -120,7 +117,6 @@ class StyxWebClient(
     }
 
     @Suppress("OverridingDeprecatedMember")
-    @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
     override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
         if (shouldRequestBeBlocked(currentUrl, url)) {
             val empty = ByteArrayInputStream(emptyResponseByteArray)
@@ -285,7 +281,6 @@ class StyxWebClient(
         }.resizeAndShow()
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =
         shouldOverrideLoading(view, request.url.toString()) || super.shouldOverrideUrlLoading(view, request)
 

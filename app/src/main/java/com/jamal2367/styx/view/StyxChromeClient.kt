@@ -13,13 +13,11 @@ import com.jamal2367.styx.view.webrtc.WebRtcPermissionsModel
 import com.jamal2367.styx.view.webrtc.WebRtcPermissionsView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.Manifest
-import android.annotation.TargetApi
 import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.os.Message
 import android.util.Log
 import android.view.LayoutInflater
@@ -150,7 +148,6 @@ class StyxChromeClient(
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onPermissionRequest(request: PermissionRequest) {
         if (userPreferences.webRtcEnabled) {
             webRtcPermissionsModel.requestPermission(request, this)

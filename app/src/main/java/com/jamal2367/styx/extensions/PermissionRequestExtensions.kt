@@ -9,7 +9,6 @@ import android.webkit.PermissionRequest
  * Returns the permissions retrieved from [Manifest.permission] which are required by the requested
  * resources. If none of the resources require a permission, the list will be empty.
  */
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 fun PermissionRequest.requiredPermissions(): Set<String> {
     return resources.flatMap {
         when (it) {
