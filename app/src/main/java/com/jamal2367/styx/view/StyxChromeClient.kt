@@ -58,7 +58,7 @@ class StyxChromeClient(
             // Extract meta theme-color
             view.evaluateJavascript("(function() { return document.querySelector('meta[name=\"theme-color\"]').content; })();") { themeColor ->
                 try {
-                    styxView.htmlMetaThemeColor = Color.parseColor(themeColor.trim('\'').trim('"'));
+                    styxView.htmlMetaThemeColor = Color.parseColor(themeColor.trim('\'').trim('"'))
                     // We did find a valid theme-color, tell our controller about it
                     uiController.tabChanged(styxView)
                 } catch (e: Exception) {
@@ -112,13 +112,19 @@ class StyxChromeClient(
 
     }
 
+    /**
+     * From [WebRtcPermissionsView]
+     */
     override fun requestPermissions(permissions: Set<String>, onGrant: (Boolean) -> Unit) {
         val missingPermissions = permissions
-            .filter { PermissionsManager.getInstance().hasPermission(activity, it) }
+                // Filter out the permissions that we don't have
+                .filter { !PermissionsManager.getInstance().hasPermission(activity, it) }
 
         if (missingPermissions.isEmpty()) {
+            // We got all permissions already, notify caller then
             onGrant(true)
         } else {
+            // Ask user for the missing permissions
             PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(
                 activity,
                 missingPermissions.toTypedArray(),
@@ -131,9 +137,13 @@ class StyxChromeClient(
         }
     }
 
+    /**
+     * From [WebRtcPermissionsView]
+     */
     override fun requestResources(source: String,
                                   resources: Array<String>,
                                   onGrant: (Boolean) -> Unit) {
+        // Ask user to grant resource access
         activity.runOnUiThread {
             val resourcesString = resources.joinToString(separator = "\n")
             BrowserDialog.showPositiveNegativeDialog(
