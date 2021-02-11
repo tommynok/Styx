@@ -5,19 +5,17 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.SessionListBinding
 import com.jamal2367.styx.dialog.BrowserDialog
-import com.jamal2367.styx.extensions.dimBehind
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
 import com.jamal2367.styx.utils.Utils
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.graphics.drawable.ColorDrawable
 import android.text.InputFilter
 import android.view.*
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.EditText
 import android.widget.PopupWindow
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,7 +57,7 @@ class SessionsPopupWindow : PopupWindow {
             // Make sure user can only enter valid filename characters
             textView.filters = arrayOf<InputFilter>(FileNameInputFilter())
 
-            BrowserDialog.showCustomDialog(aBinding.root.context as Activity) {
+            BrowserDialog.showCustomDialog(aBinding.root.context as AppCompatActivity) {
                 setTitle(R.string.session_name_prompt)
                 setView(dialogView)
                 setPositiveButton(R.string.action_ok) { _, _ ->
@@ -95,15 +93,15 @@ class SessionsPopupWindow : PopupWindow {
             textView.filters = arrayOf<InputFilter>(FileNameInputFilter())
 
             iUiController.getTabModel().let { tabs ->
-                BrowserDialog.showCustomDialog(aBinding.root.context as Activity) {
+                BrowserDialog.showCustomDialog(aBinding.root.context as AppCompatActivity) {
                     setTitle(R.string.session_name_prompt)
                     setView(dialogView)
                     setPositiveButton(R.string.action_ok) { _, _ ->
-                        var name = textView.text.toString()
+                        val name = textView.text.toString()
                         // Check if session exists already
                         if (tabs.isValidSessionName(name)) {
                             // That session does not exist yet, add it then
-                            tabs.iSessions?.let {
+                            tabs.iSessions.let {
                                 // Save current session session first
                                 tabs.saveState()
                                 // Add new session

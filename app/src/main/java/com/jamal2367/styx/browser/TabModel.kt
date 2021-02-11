@@ -51,7 +51,7 @@ class TabModelFromBundle (
 ): TabModel(
         bundle.getString(URL_KEY)?:"",
         bundle.getString(TAB_TITLE_KEY)?:"",
-        bundle.getBoolean(KEY_DESKTOP_MODE)?:false,
+        bundle.getBoolean(KEY_DESKTOP_MODE),
         bundle.getByteArray(TAB_FAVICON_KEY)?.let{BitmapFactory.decodeByteArray(it, 0, it.size)},
         bundle.getBundle(WEB_VIEW_KEY)
 )

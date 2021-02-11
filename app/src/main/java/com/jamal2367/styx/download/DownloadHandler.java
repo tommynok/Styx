@@ -3,7 +3,6 @@
  */
 package com.jamal2367.styx.download;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
@@ -18,13 +17,9 @@ import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.jamal2367.styx.BuildConfig;
 import com.jamal2367.styx.MainActivity;
 import com.jamal2367.styx.R;
@@ -42,7 +37,12 @@ import com.jamal2367.styx.preference.UserPreferences;
 import com.jamal2367.styx.utils.FileUtils;
 import com.jamal2367.styx.utils.Utils;
 import com.jamal2367.styx.view.StyxView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
@@ -96,7 +96,7 @@ public class DownloadHandler {
      * @param mimeType           The mimeType of the content reported by the server
      * @param contentSize        The size of the content
      */
-    public void onDownloadStart(@NonNull Activity context, @NonNull UserPreferences manager, @NonNull String url, String userAgent,
+    public void onDownloadStart(@NonNull AppCompatActivity context, @NonNull UserPreferences manager, @NonNull String url, String userAgent,
                                 @Nullable String contentDisposition, String mimeType, @NonNull String contentSize) {
 
         logger.log(TAG, "DOWNLOAD: Trying to download from URL: " + url);
@@ -181,7 +181,7 @@ public class DownloadHandler {
      * @param contentSize        The size of the content
      */
     /* package */
-    private void onDownloadStartNoStream(@NonNull final Activity context, @NonNull UserPreferences preferences,
+    private void onDownloadStartNoStream(@NonNull final AppCompatActivity context, @NonNull UserPreferences preferences,
                                          @NonNull String url, String userAgent,
                                          String contentDisposition, @Nullable String mimetype, @NonNull String contentSize) {
         iFilename = guessFileName(url, contentDisposition, mimetype);

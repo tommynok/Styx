@@ -1,18 +1,13 @@
 package com.jamal2367.styx.utils;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 import com.jamal2367.styx.BrowserApp;
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.browser.ProxyChoice;
@@ -22,13 +17,17 @@ import com.jamal2367.styx.extensions.AlertDialogExtensionsKt;
 import com.jamal2367.styx.preference.DeveloperPreferences;
 import com.jamal2367.styx.preference.UserPreferences;
 
-import androidx.annotation.NonNull;
+import net.i2p.android.ui.I2PAndroidHelper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 import info.guardianproject.netcipher.webkit.WebkitProxy;
-
-import net.i2p.android.ui.I2PAndroidHelper;
-
 import kotlin.Pair;
 import kotlin.Unit;
 
@@ -58,7 +57,7 @@ public final class ProxyUtils {
      * If Orbot/Tor or I2P is installed, prompt the user if they want to enable
      * proxying for this session
      */
-    public void checkForProxy(@NonNull final Activity activity) {
+    public void checkForProxy(@NonNull final AppCompatActivity activity) {
         final ProxyChoice currentProxyChoice = userPreferences.getProxyChoice();
 
         final boolean orbotInstalled = OrbotHelper.isOrbotInstalled(activity);
@@ -124,7 +123,7 @@ public final class ProxyUtils {
     /*
      * Initialize WebKit Proxying
      */
-    private void initializeProxy(@NonNull Activity activity) {
+    private void initializeProxy(@NonNull AppCompatActivity activity) {
         String host;
         int port;
 
@@ -162,7 +161,7 @@ public final class ProxyUtils {
 
     }
 
-    public boolean isProxyReady(@NonNull Activity activity) {
+    public boolean isProxyReady(@NonNull AppCompatActivity activity) {
         if (userPreferences.getProxyChoice() == ProxyChoice.I2P) {
             if (!i2PAndroidHelper.isI2PAndroidRunning()) {
                 ActivityExtensions.snackbar(activity, R.string.i2p_not_running);
@@ -176,7 +175,7 @@ public final class ProxyUtils {
         return true;
     }
 
-    public void updateProxySettings(@NonNull Activity activity) {
+    public void updateProxySettings(@NonNull AppCompatActivity activity) {
         if (userPreferences.getProxyChoice() != ProxyChoice.NONE) {
             initializeProxy(activity);
         } else {
@@ -195,7 +194,7 @@ public final class ProxyUtils {
         sI2PHelperBound = false;
     }
 
-    public void onStart(final Activity activity) {
+    public void onStart(final AppCompatActivity activity) {
         if (userPreferences.getProxyChoice() == ProxyChoice.I2P) {
             // Try to bind to I2P Android
             i2PAndroidHelper.bind(() -> {
@@ -206,7 +205,7 @@ public final class ProxyUtils {
         }
     }
 
-    public static ProxyChoice sanitizeProxyChoice(ProxyChoice choice, @NonNull Activity activity) {
+    public static ProxyChoice sanitizeProxyChoice(ProxyChoice choice, @NonNull AppCompatActivity activity) {
         switch (choice) {
             case ORBOT:
                 if (!OrbotHelper.isOrbotInstalled(activity)) {

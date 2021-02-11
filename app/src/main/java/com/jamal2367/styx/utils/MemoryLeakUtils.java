@@ -9,13 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public final class MemoryLeakUtils {
 
@@ -33,7 +34,7 @@ public final class MemoryLeakUtils {
      *                    the InputMethodManager that is
      *                    leaking the views.
      */
-    public static void clearNextServedView(@NonNull Activity activity, @NonNull Application application) {
+    public static void clearNextServedView(@NonNull AppCompatActivity activity, @NonNull Application application) {
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             // This shouldn't be a problem on N

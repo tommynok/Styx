@@ -3,7 +3,7 @@
  */
 package com.jamal2367.styx.settings.fragment
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
@@ -124,8 +124,8 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
     })
 
     private fun showTextSizePicker(summaryUpdater: SummaryUpdater) {
-        MaterialAlertDialogBuilder(activity as Activity).apply {
-            val layoutInflater = (activity as Activity).layoutInflater
+        MaterialAlertDialogBuilder(activity as AppCompatActivity).apply {
+            val layoutInflater = (activity as AppCompatActivity).layoutInflater
             val customView = (layoutInflater.inflate(R.layout.dialog_seek_bar, null) as LinearLayout).apply {
                 val text = TextView(activity).apply {
                     text = getTextDemo(context, userPreferences.browserTextSize)
@@ -153,7 +153,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
 
     private fun showThemePicker(summaryUpdater: SummaryUpdater) {
         val currentTheme = userPreferences.useTheme
-        MaterialAlertDialogBuilder(activity as Activity).apply {
+        MaterialAlertDialogBuilder(activity as AppCompatActivity).apply {
             setTitle(resources.getString(R.string.theme))
             val values = AppTheme.values().map { Pair(it, it.toDisplayString()) }
             withSingleChoiceItems(values, userPreferences.useTheme) {
@@ -167,7 +167,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
             }
             setOnCancelListener {
                 if (currentTheme != userPreferences.useTheme) {
-                    (activity as Activity).onBackPressed()
+                    (activity as AppCompatActivity).onBackPressed()
                 }
             }
         }.resizeAndShow()

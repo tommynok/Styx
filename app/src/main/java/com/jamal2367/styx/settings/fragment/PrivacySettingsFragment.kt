@@ -13,10 +13,9 @@ import com.jamal2367.styx.isSupported
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.WebUtils
 import com.jamal2367.styx.view.StyxView
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.webkit.WebView
 import io.reactivex.Completable
 import io.reactivex.Scheduler
@@ -108,7 +107,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
 
     private fun clearHistoryDialog() {
         BrowserDialog.showPositiveNegativeDialog(
-            activity = activity as Activity,
+            activity = activity as AppCompatActivity,
             title = R.string.title_clear_history,
             message = R.string.dialog_history,
             positiveButton = DialogItem(title = R.string.action_yes) {
@@ -116,7 +115,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
                     .subscribeOn(databaseScheduler)
                     .observeOn(mainScheduler)
                     .subscribe {
-                        (activity as Activity).snackbar(R.string.message_clear_history)
+                        (activity as AppCompatActivity).snackbar(R.string.message_clear_history)
                     }
             },
             negativeButton = DialogItem(title = R.string.action_no) {},
@@ -126,7 +125,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
 
     private fun clearCookiesDialog() {
         BrowserDialog.showPositiveNegativeDialog(
-            activity = activity as Activity,
+            activity = activity as AppCompatActivity,
             title = R.string.title_clear_cookies,
             message = R.string.dialog_cookies,
             positiveButton = DialogItem(title = R.string.action_yes) {
@@ -134,7 +133,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
                     .subscribeOn(databaseScheduler)
                     .observeOn(mainScheduler)
                     .subscribe {
-                        (activity as Activity).snackbar(R.string.message_cookies_cleared)
+                        (activity as AppCompatActivity).snackbar(R.string.message_cookies_cleared)
                     }
             },
             negativeButton = DialogItem(title = R.string.action_no) {},
@@ -147,7 +146,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
             clearCache(true)
             destroy()
         }
-        (activity as Activity).snackbar(R.string.message_cache_cleared)
+        (activity as AppCompatActivity).snackbar(R.string.message_cache_cleared)
     }
 
     private fun clearHistory(): Completable = Completable.fromAction {
@@ -171,7 +170,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
 
     private fun clearWebStorage() {
         WebUtils.clearWebStorage()
-        (activity as Activity).snackbar(R.string.message_web_storage_cleared)
+        (activity as AppCompatActivity).snackbar(R.string.message_web_storage_cleared)
     }
 
     companion object {

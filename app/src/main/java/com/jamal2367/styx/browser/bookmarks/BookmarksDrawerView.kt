@@ -1,6 +1,6 @@
 package com.jamal2367.styx.browser.bookmarks
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -173,7 +173,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
     }
 
     private fun handleItemLongPress(bookmark: Bookmark): Boolean {
-        (context as Activity?)?.let {
+        (context as AppCompatActivity?)?.let {
             when (bookmark) {
                 is Bookmark.Folder -> bookmarksDialogBuilder.showBookmarkFolderLongPressedDialog(it, uiController, bookmark)
                 is Bookmark.Entry -> bookmarksDialogBuilder.showLongPressedDialogForBookmarkUrl(it, uiController, bookmark)

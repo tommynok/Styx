@@ -1,6 +1,6 @@
 package com.jamal2367.styx.settings.fragment
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -91,7 +91,7 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
 
     private fun showHostsSourceChooser(summaryUpdater: SummaryUpdater) {
         BrowserDialog.showListChoices(
-                activity as Activity,
+                activity as AppCompatActivity,
             R.string.block_ad_source,
             DialogItem(
                 title = R.string.block_source_default,
@@ -131,7 +131,7 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
 
     private fun showUrlChooser(summaryUpdater: SummaryUpdater) {
         BrowserDialog.showEditText(
-                activity as Activity,
+                activity as AppCompatActivity,
             title = R.string.block_source_remote,
             hint = R.string.hint_url,
             currentText = userPreferences.hostsRemoteFile,
@@ -149,7 +149,7 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == FILE_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
+            if (resultCode == AppCompatActivity.RESULT_OK) {
                 data?.data?.also { uri ->
                     compositeDisposable += readTextFromUri(uri)
                         .subscribeOn(diskScheduler)

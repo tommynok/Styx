@@ -10,7 +10,7 @@ import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeViewHolder
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.Dialog
 import android.text.InputFilter
 import android.view.LayoutInflater
@@ -80,7 +80,7 @@ class SessionViewHolder(
             textView.selectAll()
             //textView.requestFocus()
 
-            var dialog : Dialog? = null
+
 
             //textView.showSoftInputOnFocus
             /*
@@ -91,7 +91,7 @@ class SessionViewHolder(
             }
              */
 
-            dialog = BrowserDialog.showCustomDialog(it.context as Activity) {
+            BrowserDialog.showCustomDialog(it.context as AppCompatActivity) {
                 setTitle(R.string.session_name_prompt)
                 setView(dialogView)
                 setPositiveButton(R.string.action_ok) { _, _ ->
@@ -137,7 +137,7 @@ class SessionViewHolder(
             }
 
             // User wants to switch session
-            session()?.name?.let { sessionName ->
+            session().name.let { sessionName ->
                 (it.context as BrowserActivity).apply {
                     presenter?.switchToSession(sessionName)
                     if (!isEditModeEnabled()) {

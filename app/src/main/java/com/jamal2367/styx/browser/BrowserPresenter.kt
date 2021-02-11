@@ -1,9 +1,8 @@
 package com.jamal2367.styx.browser
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
-import android.os.Bundle
 import android.webkit.URLUtil
 
 import com.jamal2367.styx.R
@@ -60,7 +59,7 @@ class BrowserPresenter(
         // Don't do anything if given session name is already the current one or if such session does not exists
         if (!tabsModel.isInitialized
                 || tabsModel.iCurrentSessionName==aSessionName
-                || tabsModel.iSessions?.filter { s -> s.name == aSessionName }.isNullOrEmpty()) {
+                || tabsModel.iSessions.filter { s -> s.name == aSessionName }.isNullOrEmpty()) {
             return
         }
 
@@ -88,7 +87,7 @@ class BrowserPresenter(
      */
     @SuppressLint("CheckResult")
     fun setupTabs(intent: Intent?) {
-        tabsModel.initializeTabs(view as Activity, intent, isIncognito)
+        tabsModel.initializeTabs(view as AppCompatActivity, intent, isIncognito)
             .subscribeBy(
                 onSuccess = {
                     // At this point we always have at least a tab in the tab manager
@@ -359,7 +358,7 @@ class BrowserPresenter(
     fun newTab(tabInitializer: TabInitializer, show: Boolean): Boolean {
         logger.log(TAG, "New tab, show: $show")
 
-        val startingTab = tabsModel.newTab(view as Activity, tabInitializer, isIncognito, userPreferences.newTabPosition)
+        val startingTab = tabsModel.newTab(view as AppCompatActivity, tabInitializer, isIncognito, userPreferences.newTabPosition)
         if (tabsModel.size() == 1) {
             startingTab.resumeTimers()
         }

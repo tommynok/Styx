@@ -22,7 +22,7 @@ import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.ThemeUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.text.Editable
@@ -32,7 +32,6 @@ import android.view.LayoutInflater
 import android.webkit.URLUtil
 import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import javax.inject.Inject
 
@@ -160,7 +159,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
     }
 
     private fun showProxyPicker(summaryUpdater: SummaryUpdater) {
-        BrowserDialog.showCustomDialog(activity as Activity) {
+        BrowserDialog.showCustomDialog(activity as AppCompatActivity) {
             setTitle(R.string.http_proxy)
             val stringArray = resources.getStringArray(R.array.proxy_choices_array)
             val values = ProxyChoice.values().map {
@@ -172,13 +171,13 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 })
             }
             withSingleChoiceItems(values, userPreferences.proxyChoice) {
-                updateProxyChoice(it, activity as Activity, summaryUpdater)
+                updateProxyChoice(it, activity as AppCompatActivity, summaryUpdater)
             }
             setPositiveButton(R.string.action_ok, null)
         }
     }
 
-    private fun updateProxyChoice(choice: ProxyChoice, activity: Activity, summaryUpdater: SummaryUpdater) {
+    private fun updateProxyChoice(choice: ProxyChoice, activity: AppCompatActivity, summaryUpdater: SummaryUpdater) {
         val sanitizedChoice = ProxyUtils.sanitizeProxyChoice(choice, activity)
         if (sanitizedChoice == ProxyChoice.MANUAL) {
             showManualProxyPicker(activity, summaryUpdater)
@@ -188,7 +187,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         summaryUpdater.updateSummary(sanitizedChoice.toSummary())
     }
 
-    private fun showManualProxyPicker(activity: Activity, summaryUpdater: SummaryUpdater) {
+    private fun showManualProxyPicker(activity: AppCompatActivity, summaryUpdater: SummaryUpdater) {
         val v = activity.layoutInflater.inflate(R.layout.dialog_manual_proxy, null)
         val eProxyHost = v.findViewById<TextView>(R.id.proxyHost)
         val eProxyPort = v.findViewById<TextView>(R.id.proxyPort)
@@ -240,7 +239,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     private fun showUserAgentChooserDialog(summaryUpdater: SummaryUpdater) {
         activity?.let {
-            BrowserDialog.showCustomDialog(it) {
+            BrowserDialog.showCustomDialog(it as AppCompatActivity) {
                 setTitle(resources.getString(R.string.title_user_agent))
                 setSingleChoiceItems(R.array.user_agent, userPreferences.userAgentChoice - 1) { _, which ->
                     userPreferences.userAgentChoice = which + 1
@@ -262,7 +261,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     private fun showCustomUserAgentPicker() {
         activity?.let {
-            BrowserDialog.showEditText(it,
+            BrowserDialog.showEditText(it as AppCompatActivity,
                 R.string.title_user_agent,
                 R.string.title_user_agent,
                 userPreferences.userAgentString,
@@ -274,7 +273,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     private fun showDownloadLocationDialog(summaryUpdater: SummaryUpdater) {
         activity?.let {
-            BrowserDialog.showCustomDialog(it) {
+            BrowserDialog.showCustomDialog(it as AppCompatActivity) {
             setTitle(resources.getString(R.string.title_download_location))
             val n: Int = if (userPreferences.downloadDirectory.contains(Environment.DIRECTORY_DOWNLOADS)) {
                 0
@@ -311,7 +310,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
             getDownload.addTextChangedListener(DownloadLocationTextWatcher(getDownload, errorColor, regularColor))
             getDownload.setText(userPreferences.downloadDirectory)
 
-            BrowserDialog.showCustomDialog(activity) {
+            BrowserDialog.showCustomDialog(activity as AppCompatActivity) {
                 setTitle(R.string.title_download_location)
                 setView(dialogView)
                 setPositiveButton(R.string.action_ok) { _, _ ->
@@ -352,7 +351,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     private fun showHomePageDialog(summaryUpdater: SummaryUpdater) {
         activity?.let {
-            BrowserDialog.showCustomDialog(it) {
+            BrowserDialog.showCustomDialog(it as AppCompatActivity) {
             setTitle(R.string.home)
             val n = when (userPreferences.homepage) {
                 SCHEME_HOMEPAGE -> 0
@@ -393,7 +392,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         }
 
         activity?.let {
-            BrowserDialog.showEditText(it,
+            BrowserDialog.showEditText(it as AppCompatActivity,
                 R.string.title_custom_homepage,
                 R.string.title_custom_homepage,
                 currentHomepage,
@@ -417,7 +416,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     private fun showSearchProviderDialog(summaryUpdater: SummaryUpdater) {
         activity?.let {
-            BrowserDialog.showCustomDialog(it) {
+            BrowserDialog.showCustomDialog(it as AppCompatActivity) {
             setTitle(resources.getString(R.string.title_search_engine))
 
             val searchEngineList = searchEngineProvider.provideAllSearchEngines()
@@ -449,7 +448,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
     private fun showCustomSearchDialog(customSearch: CustomSearch, summaryUpdater: SummaryUpdater) {
         activity?.let {
             BrowserDialog.showEditText(
-                it,
+                    it as AppCompatActivity,
                 R.string.search_engine_custom,
                 R.string.search_engine_custom,
                 userPreferences.searchUrl,
@@ -473,7 +472,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     private fun showSearchSuggestionsDialog(summaryUpdater: SummaryUpdater) {
         activity?.let {
-            BrowserDialog.showCustomDialog(it) {
+            BrowserDialog.showCustomDialog(it as AppCompatActivity) {
             setTitle(resources.getString(R.string.search_suggestions))
 
             val currentChoice = when (Suggestions.from(userPreferences.searchSuggestionChoice)) {

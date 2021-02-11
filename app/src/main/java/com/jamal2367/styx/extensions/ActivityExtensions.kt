@@ -3,7 +3,7 @@
 package com.jamal2367.styx.extensions
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import androidx.annotation.StringRes
 import com.google.android.material.snackbar.Snackbar
@@ -17,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar
  *
  * @param resource the string resource to display to the user.
  */
-fun Activity.snackbar(@StringRes resource: Int) {
+fun AppCompatActivity.snackbar(@StringRes resource: Int) {
     makeSnackbar(getString(resource)).show()
 }
 
@@ -27,7 +27,7 @@ fun Activity.snackbar(@StringRes resource: Int) {
  * @param message the message to display to the user.
  * @see snackbar
  */
-fun Activity.snackbar(message: String) {
+fun AppCompatActivity.snackbar(message: String) {
     makeSnackbar(message).show()
 }
 
@@ -38,7 +38,7 @@ const val KDuration: Int = 4000; // Snackbar.LENGTH_LONG
  *
  */
 @SuppressLint("WrongConstant")
-fun Activity.makeSnackbar(message: String): Snackbar {
+fun AppCompatActivity.makeSnackbar(message: String): Snackbar {
     val view = findViewById<View>(android.R.id.content)
     return Snackbar.make(view, message, KDuration)
 }
@@ -47,7 +47,7 @@ fun Activity.makeSnackbar(message: String): Snackbar {
  *
  */
 
-fun Activity.setStatusBarIconsColor(dark: Boolean)
+fun AppCompatActivity.setStatusBarIconsColor(dark: Boolean)
 {
         if (dark) {
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR

@@ -25,7 +25,7 @@ import com.jamal2367.styx.ssl.SslState
 import com.jamal2367.styx.utils.*
 import com.jamal2367.styx.view.find.FindResults
 import android.annotation.SuppressLint
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.DownloadManager
 import android.content.IntentFilter
 import android.content.res.Configuration
@@ -59,13 +59,13 @@ import javax.inject.Inject
  * class.
  */
 class StyxView(
-    private val activity: Activity,
-    tabInitializer: TabInitializer,
-    val isIncognito: Boolean,
-    private val homePageInitializer: HomePageInitializer,
-    private val bookmarkPageInitializer: BookmarkPageInitializer,
-    private val downloadPageInitializer: DownloadPageInitializer,
-    private val logger: Logger
+        private val activity: AppCompatActivity,
+        tabInitializer: TabInitializer,
+        val isIncognito: Boolean,
+        private val homePageInitializer: HomePageInitializer,
+        private val bookmarkPageInitializer: BookmarkPageInitializer,
+        private val downloadPageInitializer: DownloadPageInitializer,
+        private val logger: Logger
 ) {
 
     /**
@@ -779,7 +779,7 @@ class StyxView(
      * thingy, if it is null, this method tries to deal with it and find
      * a workaround.
      */
-    private fun longClickPage(url: String?, text: String?, src: String?) {
+    private fun longClickPage(url: String?, text: String?) {
         val result = webView?.hitTestResult
         val currentUrl = webView?.url
         val newUrl = result?.extra
@@ -1024,7 +1024,7 @@ class StyxView(
             val title = msg.data.getString("title")
             val src = msg.data.getString("src")
             //
-            reference.get()?.longClickPage(url,title,src)
+            reference.get()?.longClickPage(url, title)
         }
     }
 

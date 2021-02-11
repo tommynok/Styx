@@ -4,7 +4,6 @@
 package com.jamal2367.styx.download;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.PendingIntent;
@@ -18,17 +17,13 @@ import android.view.View;
 import android.webkit.DownloadListener;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import java.util.Objects;
-import javax.inject.Inject;
-
 import com.anthonycr.grant.PermissionsManager;
 import com.anthonycr.grant.PermissionsResultAction;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 import com.jamal2367.styx.R;
 import com.jamal2367.styx.browser.activity.BrowserActivity;
 import com.jamal2367.styx.database.downloads.DownloadsRepository;
@@ -39,13 +34,17 @@ import com.jamal2367.styx.log.Logger;
 import com.jamal2367.styx.preference.UserPreferences;
 import com.jamal2367.styx.utils.Utils;
 
+import java.util.Objects;
+
+import javax.inject.Inject;
+
 import static com.jamal2367.styx.utils.UrlUtils.guessFileName;
 
 public class StyxDownloadListener extends BroadcastReceiver implements DownloadListener {
 
     private static final String TAG = "StyxDownloader";
 
-    private final Activity mActivity;
+    private final AppCompatActivity mActivity;
 
     @Inject UserPreferences userPreferences;
     @Inject DownloadHandler downloadHandler;
@@ -53,7 +52,7 @@ public class StyxDownloadListener extends BroadcastReceiver implements DownloadL
     @Inject DownloadsRepository downloadsRepository;
     @Inject Logger logger;
 
-    public StyxDownloadListener(Activity context) {
+    public StyxDownloadListener(AppCompatActivity context) {
         Injector.getInjector(context).inject(this);
         mActivity = context;
     }

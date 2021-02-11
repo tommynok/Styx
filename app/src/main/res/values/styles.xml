@@ -178,12 +178,12 @@
     <style name="BrowserTextMenuItem" parent="@style/Widget.AppCompat.ActionButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingEnd">30dp</item>
-        <item name="android:paddingStart">30dp</item>
+        <item name="paddingEnd">30dp</item>
+        <item name="paddingStart">30dp</item>
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">14dp</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
         <item name="android:gravity">left</item>
         <item name="android:textAlignment">gravity</item>
@@ -197,17 +197,17 @@
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:background">?attr/colorPrimaryVariant</item>
+        <item name="background">?attr/colorPrimaryVariant</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog.Dark" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:background">?attr/colorSurface</item>
+        <item name="background">?attr/colorSurface</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog.Black" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:background">?attr/colorSurface</item>
+        <item name="background">?attr/colorSurface</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
@@ -233,7 +233,7 @@
     </style>
 
     <style name="Widget.App.AppBarLayout.Light" parent="Widget.Design.AppBarLayout">
-        <item name="android:background">@color/md_grey_300</item>
+        <item name="background">@color/md_grey_300</item>
     </style>
 
     <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">

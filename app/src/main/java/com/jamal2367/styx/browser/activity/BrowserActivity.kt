@@ -47,7 +47,7 @@ import com.jamal2367.styx.view.*
 import com.jamal2367.styx.view.SearchView
 import com.jamal2367.styx.view.find.FindResults
 import android.animation.LayoutTransition
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.ClipboardManager
@@ -2156,7 +2156,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         if (requestCode == FILE_CHOOSER_REQUEST_CODE) {
-            val results: Array<Uri>? = if (resultCode == Activity.RESULT_OK) {
+            val results: Array<Uri>? = if (resultCode == AppCompatActivity.RESULT_OK) {
                 if (intent == null) {
                     // If there is not data, then we may have taken a photo
                     cameraPhotoPath?.let { arrayOf(it.toUri()) }

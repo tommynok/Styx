@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ssl_info_issued_by"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         android:textStyle="bold" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_grid_unit"
         android:paddingStart="@dimen/material_grid_unit"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         tools:text="Test Cert Authority" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_grid_margin"
         android:text="@string/ssl_info_issued_to"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         android:textStyle="bold" />
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_grid_unit"
         android:paddingStart="@dimen/material_grid_unit"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         tools:text="Test Company" />
 
     <TextView
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_grid_margin"
         android:text="@string/ssl_info_issued_on"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         android:textStyle="bold" />
 
     <TextView
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_grid_unit"
         android:paddingStart="@dimen/material_grid_unit"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         tools:text="today" />
 
     <TextView
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_grid_margin"
         android:text="@string/ssl_info_expires_on"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         android:textStyle="bold" />
 
     <TextView
@@ -70,6 +70,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/material_grid_unit"
         android:paddingStart="@dimen/material_grid_unit"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?attr/textAppearanceListItemSmall"
         tools:text="tomorrow" />
 </LinearLayout>

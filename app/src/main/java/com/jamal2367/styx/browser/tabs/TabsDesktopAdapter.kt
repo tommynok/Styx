@@ -6,9 +6,7 @@ import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.extensions.*
 import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
 import com.jamal2367.styx.utils.ThemeUtils
-import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.view.BackgroundDrawable
-import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -22,17 +20,11 @@ import androidx.recyclerview.widget.RecyclerView
  * The adapter for horizontal desktop style browser tabs.
  */
 class TabsDesktopAdapter(
-    context: Context,
-    private val resources: Resources,
-    uiController: UIController
+        private val resources: Resources,
+        uiController: UIController
 ) : TabsAdapter(uiController), ItemDragDropSwipeAdapter {
 
     private var textColor = Color.TRANSPARENT
-
-    init {
-        //val backgroundColor = Utils.mixTwoColors(ThemeUtils.getPrimaryColor(context), Color.BLACK, 0.75f)
-        //val foregroundColor = ThemeUtils.getPrimaryColor(context)
-    }
 
     /**
      * From [RecyclerView.Adapter]
@@ -56,7 +48,7 @@ class TabsDesktopAdapter(
         updateViewHolderAppearance(holder, tab)
         updateViewHolderFavicon(holder, tab.favicon)
         // Update our copy so that we can check for changes then
-        holder.tab = tab.copy();
+        holder.tab = tab.copy()
     }
 
     private fun updateViewHolderFavicon(viewHolder: TabViewHolder, favicon: Bitmap?) {
@@ -89,16 +81,17 @@ class TabsDesktopAdapter(
 
                 // Pick our color according to settings and states
                 val color = if (uiController.isColorMode())
-                    if (tab.themeColor!=Color.TRANSPARENT)
-                    // Use meta theme color if we have one
-                        tab.themeColor
-                    else
-                        if (uiController.getUiColor()!=backgroundColor)
-                        // Use favicon extracted color if there is one
-                            uiController.getUiColor()
+                    when {
+                        tab.themeColor!=Color.TRANSPARENT
+                            // Use meta theme color if we have one
+                        -> tab.themeColor
+                        uiController.getUiColor()!=backgroundColor
+                            // Use favicon extracted color if there is one
+                        -> uiController.getUiColor()
                         else
-                        // Otherwise use default theme color
-                            backgroundColor
+                            // Otherwise use default theme color
+                        -> backgroundColor
+                    }
                 else // No color mode just use our theme default background then
                     backgroundColor
 

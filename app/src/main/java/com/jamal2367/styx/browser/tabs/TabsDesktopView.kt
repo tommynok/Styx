@@ -40,7 +40,7 @@ class TabsDesktopView @JvmOverloads constructor(
 
         val layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
-        tabsAdapter = TabsDesktopAdapter(context, context.resources, uiController)
+        tabsAdapter = TabsDesktopAdapter(context.resources, uiController)
 
         tabList = findViewById<RecyclerView>(R.id.tabs_list).apply {
             setLayerType(View.LAYER_TYPE_NONE, null)

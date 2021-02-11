@@ -2,6 +2,7 @@ package com.jamal2367.styx.utils
 import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.abs
 
 /**
  * An implementation of [ItemTouchHelper.Callback] that enables basic drag & drop and
@@ -56,7 +57,7 @@ class ItemDragDropSwipeHelper(adapter: ItemDragDropSwipeAdapter,
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             // Fade out the view as it is swiped out of the parent's bounds
-            val alpha = ALPHA_FULL - Math.abs(dX) / viewHolder.itemView.width.toFloat()
+            val alpha = ALPHA_FULL - abs(dX) / viewHolder.itemView.width.toFloat()
             viewHolder.itemView.alpha = alpha
             viewHolder.itemView.translationX = dX
         } else {
@@ -68,9 +69,9 @@ class ItemDragDropSwipeHelper(adapter: ItemDragDropSwipeAdapter,
         // We only want the active item to change
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             if (viewHolder is ItemDragDropSwipeViewHolder) {
-                // Let the view holder know that this item is being moved or dragged
-                val itemViewHolder: ItemDragDropSwipeViewHolder? = viewHolder as ItemDragDropSwipeViewHolder?
-                itemViewHolder?.onItemOperationStart()
+                /* Let the view holder know that this item is being moved or dragged */
+                val itemViewHolder: ItemDragDropSwipeViewHolder = viewHolder
+                itemViewHolder.onItemOperationStart()
             }
         }
         super.onSelectedChanged(viewHolder, actionState)
@@ -80,8 +81,8 @@ class ItemDragDropSwipeHelper(adapter: ItemDragDropSwipeAdapter,
         super.clearView(recyclerView, viewHolder)
         viewHolder.itemView.alpha = ALPHA_FULL
         if (viewHolder is ItemDragDropSwipeViewHolder) {
-            // Tell the view holder it's time to restore the idle state
-            val itemViewHolder: ItemDragDropSwipeViewHolder = viewHolder as ItemDragDropSwipeViewHolder
+            /* Tell the view holder it's time to restore the idle state */
+            val itemViewHolder: ItemDragDropSwipeViewHolder = viewHolder
             itemViewHolder.onItemOperationStop()
         }
     }

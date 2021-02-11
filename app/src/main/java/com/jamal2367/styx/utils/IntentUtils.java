@@ -1,28 +1,28 @@
 package com.jamal2367.styx.utils;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.util.Log;
 import android.webkit.WebView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.jamal2367.styx.R;
+import com.jamal2367.styx.constant.Constants;
 
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jamal2367.styx.R;
-import com.jamal2367.styx.constant.Constants;
-
 public class IntentUtils {
 
-    @NonNull private final Activity mActivity;
+    @NonNull private final AppCompatActivity mActivity;
 
     private static final Pattern ACCEPTED_URI_SCHEMA = Pattern.compile("(?i)"
         + // switch on case insensitive matching
@@ -31,7 +31,7 @@ public class IntentUtils {
         "(?:http|https|file)://" + "|(?:inline|data|about|javascript):" + "|(?:.*:.*@)"
         + ')' + "(.*)");
 
-    public IntentUtils(@NonNull Activity activity) {
+    public IntentUtils(@NonNull AppCompatActivity activity) {
         mActivity = activity;
     }
 

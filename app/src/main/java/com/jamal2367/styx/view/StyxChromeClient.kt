@@ -14,7 +14,7 @@ import com.jamal2367.styx.view.webrtc.WebRtcPermissionsView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.Manifest
 import android.annotation.TargetApi
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -25,15 +25,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.webkit.*
-import androidx.appcompat.app.AlertDialog
 import com.anthonycr.grant.PermissionsManager
 import com.anthonycr.grant.PermissionsResultAction
 import io.reactivex.Scheduler
 import javax.inject.Inject
 
 class StyxChromeClient(
-    private val activity: Activity,
-    private val styxView: StyxView
+        private val activity: AppCompatActivity,
+        private val styxView: StyxView
 ) : WebChromeClient(), WebRtcPermissionsView {
 
     private val geoLocationPermissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)

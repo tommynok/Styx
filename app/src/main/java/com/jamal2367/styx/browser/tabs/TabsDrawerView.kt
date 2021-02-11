@@ -70,7 +70,7 @@ class TabsDrawerView @JvmOverloads constructor(
         // If we have more than one tab in our closed tabs list enable restore all pages button
         iBinding.actionRestoreAllPages.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>1
         // If we have at least one tab in our closed tabs list enable restore page button
-        iBinding.actionRestorePage.isEnabled = (uiController as BrowserActivity).presenter?.closedTabs?.bundleStack?.count()?:0>0
+        iBinding.actionRestorePage.isEnabled = uiController.presenter?.closedTabs?.bundleStack?.count()?:0>0
         // No sessions in incognito mode
         if (uiController.isIncognito()) {
             action_sessions.visibility = View.GONE

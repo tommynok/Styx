@@ -1,6 +1,6 @@
 package com.jamal2367.styx.browser
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.Application
 import android.app.SearchManager
 import android.content.Intent
@@ -211,7 +211,7 @@ class TabsManager @Inject constructor(
      * new provided [intent] and emit the last tab that should be displayed. By default operates on
      * a background scheduler and emits on the foreground scheduler.
      */
-    fun initializeTabs(activity: Activity, intent: Intent?, incognito: Boolean): Single<StyxView> =
+    fun initializeTabs(activity: AppCompatActivity, intent: Intent?, incognito: Boolean): Single<StyxView> =
             Single
                     .just(Option.fromNullable(
                             if (intent?.action == Intent.ACTION_WEB_SEARCH) {
@@ -245,7 +245,7 @@ class TabsManager @Inject constructor(
     /**
      * Returns an [Observable] that emits the [TabInitializer] for normal operation mode.
      */
-    private fun initializeRegularMode(initialUrl: String?, activity: Activity): Observable<TabInitializer> =
+    private fun initializeRegularMode(initialUrl: String?, activity: AppCompatActivity): Observable<TabInitializer> =
             restorePreviousTabs()
                     .concatWith(Maybe.fromCallable<TabInitializer> {
                         return@fromCallable initialUrl?.let {
@@ -368,7 +368,7 @@ class TabsManager @Inject constructor(
             // Add our default session
             iCurrentSessionName = application.getString(R.string.session_default)
             // At this stage we must have at least an empty list
-            iSessions.add(Session(iCurrentSessionName!!))
+            iSessions.add(Session(iCurrentSessionName))
             // Than load legacy session file to make sure tabs from earlier version are preserved
             loadSession(FILENAME_SESSION_DEFAULT)
             // TODO: delete legacy session file at some point
@@ -473,7 +473,7 @@ class TabsManager @Inject constructor(
      * @return a valid initialized tab.
      */
     fun newTab(
-            activity: Activity,
+            activity: AppCompatActivity,
             tabInitializer: TabInitializer,
             isIncognito: Boolean,
             newTabPosition: NewTabPosition

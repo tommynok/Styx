@@ -1,5 +1,6 @@
 package com.jamal2367.styx
 
+import android.app.Activity
 import com.jamal2367.styx.database.bookmark.BookmarkExporter
 import com.jamal2367.styx.database.bookmark.BookmarkRepository
 import com.jamal2367.styx.device.BuildInfo
@@ -12,7 +13,7 @@ import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.DeveloperPreferences
 import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.MemoryLeakUtils
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.Application
 import android.content.Context
 import android.os.Build
@@ -99,12 +100,12 @@ class BrowserApp : Application() {
         registerActivityLifecycleCallbacks(object : MemoryLeakUtils.LifecycleAdapter() {
             override fun onActivityDestroyed(activity: Activity) {
                 logger.log(TAG, "Cleaning up after the Android framework")
-                MemoryLeakUtils.clearNextServedView(activity, this@BrowserApp)
+                MemoryLeakUtils.clearNextServedView(activity as AppCompatActivity, this@BrowserApp)
             }
 
             // Track current activity
             override fun onActivityResumed(activity: Activity) {
-                resumedActivity = activity
+                resumedActivity = activity as AppCompatActivity
             }
 
             // Track current activity
@@ -126,7 +127,7 @@ class BrowserApp : Application() {
         private const val TAG = "BrowserApp"
         lateinit var instance: BrowserApp
         // Used to track current activity
-        var resumedActivity: Activity? = null
+        var resumedActivity: AppCompatActivity? = null
 
         /**
          * Used to get current activity context in order to access current theme.

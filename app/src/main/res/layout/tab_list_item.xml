@@ -49,9 +49,9 @@ android:focusableInTouchMode="true"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                android:minHeight="?attr/listPreferredItemHeightSmall"
                 android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+                android:textAppearance="?attr/textAppearanceListItemSmall" />
 
             <ImageView
                 android:id="@+id/deleteAction"

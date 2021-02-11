@@ -1,7 +1,7 @@
 package com.jamal2367.styx.view
 
 import android.annotation.TargetApi
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
@@ -54,8 +54,8 @@ import javax.inject.Inject
 import kotlin.math.abs
 
 class StyxWebClient(
-    private val activity: Activity,
-    private val styxView: StyxView
+        private val activity: AppCompatActivity,
+        private val styxView: StyxView
 ) : WebViewClient() {
 
     private val uiController: UIController

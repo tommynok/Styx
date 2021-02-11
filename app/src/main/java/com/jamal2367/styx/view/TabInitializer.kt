@@ -14,12 +14,10 @@ import com.jamal2367.styx.html.history.HistoryPageFactory
 import com.jamal2367.styx.html.homepage.HomePageFactory
 import com.jamal2367.styx.preference.UserPreferences
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.app.Activity
-import android.graphics.Bitmap
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Message
 import android.webkit.WebView
-import androidx.appcompat.app.AlertDialog
 import dagger.Reusable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy
@@ -178,9 +176,9 @@ class NoOpInitializer : TabInitializer {
  * browser via an intent.
  */
 class PermissionInitializer(
-    private val url: String,
-    private val activity: Activity,
-    private val homePageInitializer: HomePageInitializer
+        private val url: String,
+        private val activity: AppCompatActivity,
+        private val homePageInitializer: HomePageInitializer
 ) : TabInitializer {
 
     override fun initialize(webView: WebView, headers: Map<String, String>) {

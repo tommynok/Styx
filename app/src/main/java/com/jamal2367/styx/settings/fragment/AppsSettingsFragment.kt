@@ -1,6 +1,6 @@
 package com.jamal2367.styx.settings.fragment
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.preference.SwitchPreferenceCompat
@@ -27,7 +27,7 @@ class AppsSettingsFragment : AbstractSettingsFragment() {
 
         injector.inject(this)
 
-        val intentUtils = IntentUtils(activity as Activity)
+        IntentUtils(activity as AppCompatActivity)
 
         // Get all our preferences for external app on populate our settings page with theme
         val allEntries: Map<String, *> = preferences.all

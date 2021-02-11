@@ -21,13 +21,12 @@ import com.jamal2367.styx.utils.IntentUtils
 import com.jamal2367.styx.utils.isBookmarkUrl
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.Manifest
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.ClipboardManager
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
 import com.anthonycr.grant.PermissionsManager
 import com.anthonycr.grant.PermissionsResultAction
@@ -65,9 +64,9 @@ class StyxDialogBuilder @Inject constructor(
      * @param url      the long pressed url
      */
     fun showLongPressedDialogForBookmarkUrl(
-        activity: Activity,
-        uiController: UIController,
-        url: String
+            activity: AppCompatActivity,
+            uiController: UIController,
+            url: String
     ) {
         if (url.isBookmarkUrl()) {
             // TODO hacky, make a better bookmark mechanism in the future
@@ -76,7 +75,7 @@ class StyxDialogBuilder @Inject constructor(
             val folderTitle = filename.substring(0, filename.length - BookmarkPageFactory.FILENAME.length - 1)
             showBookmarkFolderLongPressedDialog(activity, uiController, folderTitle.asFolder())
         } else {
-            bookmarkManager.findBookmarkForUrl(url)
+            val ignored = bookmarkManager.findBookmarkForUrl(url)
                 .subscribeOn(databaseScheduler)
                 .observeOn(mainScheduler)
                 .subscribe { historyItem ->
@@ -87,9 +86,9 @@ class StyxDialogBuilder @Inject constructor(
     }
 
     fun showLongPressedDialogForBookmarkUrl(
-        activity: Activity,
-        uiController: UIController,
-        entry: Bookmark.Entry
+            activity: AppCompatActivity,
+            uiController: UIController,
+            entry: Bookmark.Entry
     ) = BrowserDialog.show(activity, R.string.action_bookmarks,
         DialogItem(title = R.string.dialog_open_new_tab) {
             uiController.handleNewTab(NewTab.FOREGROUND, entry.url)
@@ -127,11 +126,10 @@ class StyxDialogBuilder @Inject constructor(
      * Show the appropriated dialog for the long pressed link.
      *
      * @param activity used to show the dialog
-     * @param url      the long pressed url
      */
     // TODO allow individual downloads to be deleted.
     fun showLongPressedDialogForDownloadUrl(
-            activity: Activity,
+            activity: AppCompatActivity,
             uiController: UIController
     ) = BrowserDialog.show(activity, R.string.action_downloads,
         DialogItem(title = R.string.dialog_delete_all_downloads) {
@@ -145,9 +143,9 @@ class StyxDialogBuilder @Inject constructor(
      * Show the add bookmark dialog. Shows a dialog with the title and URL pre-populated.
      */
     fun showAddBookmarkDialog(
-        activity: Activity,
-        uiController: UIController,
-        entry: Bookmark.Entry
+            activity: AppCompatActivity,
+            uiController: UIController,
+            entry: Bookmark.Entry
     ) {
         val editBookmarkDialog = MaterialAlertDialogBuilder(activity)
         editBookmarkDialog.setTitle(R.string.action_add_bookmark)
@@ -192,9 +190,9 @@ class StyxDialogBuilder @Inject constructor(
     }
 
     private fun showEditBookmarkDialog(
-        activity: Activity,
-        uiController: UIController,
-        entry: Bookmark.Entry
+            activity: AppCompatActivity,
+            uiController: UIController,
+            entry: Bookmark.Entry
     ) {
         val editBookmarkDialog = MaterialAlertDialogBuilder(activity)
         editBookmarkDialog.setTitle(R.string.title_edit_bookmark)
@@ -207,7 +205,7 @@ class StyxDialogBuilder @Inject constructor(
         getFolder.setHint(R.string.folder)
         getFolder.setText(entry.folder.title)
 
-        bookmarkManager.getFolderNames()
+        val ignored = bookmarkManager.getFolderNames()
             .subscribeOn(databaseScheduler)
             .observeOn(mainScheduler)
             .subscribe { folders ->
@@ -233,9 +231,9 @@ class StyxDialogBuilder @Inject constructor(
     }
 
     fun showBookmarkFolderLongPressedDialog(
-        activity: Activity,
-        uiController: UIController,
-        folder: Bookmark.Folder
+            activity: AppCompatActivity,
+            uiController: UIController,
+            folder: Bookmark.Folder
     ) = BrowserDialog.show(activity, R.string.action_folder,
         DialogItem(title = R.string.dialog_rename_folder) {
             showRenameFolderDialog(activity, uiController, folder)
@@ -250,9 +248,9 @@ class StyxDialogBuilder @Inject constructor(
         })
 
     private fun showRenameFolderDialog(
-        activity: Activity,
-        uiController: UIController,
-        folder: Bookmark.Folder
+            activity: AppCompatActivity,
+            uiController: UIController,
+            folder: Bookmark.Folder
     ) = BrowserDialog.showEditText(activity,
         R.string.title_rename_folder,
         R.string.hint_title,
@@ -268,9 +266,9 @@ class StyxDialogBuilder @Inject constructor(
     }
 
     fun showLongPressedHistoryLinkDialog(
-        activity: Activity,
-        uiController: UIController,
-        url: String
+            activity: AppCompatActivity,
+            uiController: UIController,
+            url: String
     ) = BrowserDialog.show(activity, R.string.action_history,
         DialogItem(title = R.string.dialog_open_new_tab) {
             uiController.handleNewTab(NewTab.FOREGROUND, url)
@@ -299,10 +297,10 @@ class StyxDialogBuilder @Inject constructor(
 
     // TODO There should be a way in which we do not need an activity reference to dowload a file
     fun showLongPressImageDialog(
-        activity: Activity,
-        uiController: UIController,
-        url: String,
-        userAgent: String
+            activity: AppCompatActivity,
+            uiController: UIController,
+            url: String,
+            userAgent: String
     ) = BrowserDialog.show(activity, url.replace(HTTP, ""),
         DialogItem(title = R.string.dialog_open_new_tab) {
             uiController.handleNewTab(NewTab.FOREGROUND, url)
@@ -336,10 +334,10 @@ class StyxDialogBuilder @Inject constructor(
             })
 
     fun showLongPressLinkDialog(
-        activity: Activity,
-        uiController: UIController,
-        url: String,
-        text: String?,
+            activity: AppCompatActivity,
+            uiController: UIController,
+            url: String,
+            text: String?,
     ) = BrowserDialog.show(activity, url,
             DialogItem(title = R.string.dialog_open_new_tab) {
                 uiController.handleNewTab(NewTab.FOREGROUND, url)

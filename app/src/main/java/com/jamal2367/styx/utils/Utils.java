@@ -4,7 +4,6 @@
 package com.jamal2367.styx.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +19,19 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.jamal2367.styx.R;
+import com.jamal2367.styx.database.HistoryEntry;
+import com.jamal2367.styx.dialog.BrowserDialog;
+import com.jamal2367.styx.extensions.ActivityExtensions;
+
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -27,15 +39,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import com.jamal2367.styx.R;
-import com.jamal2367.styx.database.HistoryEntry;
-import com.jamal2367.styx.dialog.BrowserDialog;
-import com.jamal2367.styx.extensions.ActivityExtensions;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 
 public final class Utils {
 
@@ -73,7 +76,7 @@ public final class Utils {
      * @param title    the title of the dialog.
      * @param message  the message of the dialog.
      */
-    public static void createInformativeDialog(@NonNull Activity activity, @StringRes int title, @StringRes int message) {
+    public static void createInformativeDialog(@NonNull AppCompatActivity activity, @StringRes int title, @StringRes int message) {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
         builder.setTitle(title);
         builder.setMessage(message)
@@ -227,7 +230,7 @@ public final class Utils {
      *                 the intent and show a snackbar message
      * @param historyEntry     the HistoryEntity to create the shortcut from
      */
-    public static void createShortcut(@NonNull Activity activity,
+    public static void createShortcut(@NonNull AppCompatActivity activity,
                                       @NonNull HistoryEntry historyEntry,
                                       @NonNull Bitmap favicon) {
         Intent shortcutIntent = new Intent(Intent.ACTION_VIEW);

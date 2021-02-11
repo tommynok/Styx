@@ -23,7 +23,7 @@ import com.jamal2367.styx.list.RecyclerViewDialogItemAdapter
 import com.jamal2367.styx.list.RecyclerViewStringAdapter
 import com.jamal2367.styx.utils.DeviceUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -31,7 +31,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -39,9 +38,9 @@ object BrowserDialog {
 
     @JvmStatic
     fun show(
-        activity: Activity,
-        @StringRes title: Int,
-        vararg items: DialogItem
+            activity: AppCompatActivity,
+            @StringRes title: Int,
+            vararg items: DialogItem
     ) = show(activity, activity.getString(title), *items)
 
     fun showWithIcons(context: Context, title: String?, vararg items: DialogItem) {
@@ -82,7 +81,7 @@ object BrowserDialog {
      * the selected item when the dialog is shown. The dialog has an OK button which just dismisses
      * the dialog.
      */
-    fun showListChoices(activity: Activity, @StringRes title: Int, vararg items: DialogItem) {
+    fun showListChoices(activity: AppCompatActivity, @StringRes title: Int, vararg items: DialogItem) {
         MaterialAlertDialogBuilder(activity).apply {
             setTitle(title)
 
@@ -97,7 +96,7 @@ object BrowserDialog {
     }
 
     @JvmStatic
-    fun show(activity: Activity, title: String?, vararg items: DialogItem) {
+    fun show(activity: AppCompatActivity, title: String?, vararg items: DialogItem) {
         val builder = MaterialAlertDialogBuilder(activity)
 
         val layout = activity.inflater.inflate(R.layout.list_dialog, null)
@@ -131,13 +130,13 @@ object BrowserDialog {
 
     @JvmStatic
     fun showPositiveNegativeDialog(
-        activity: Activity,
-        @StringRes title: Int,
-        @StringRes message: Int,
-        messageArguments: Array<Any>? = null,
-        positiveButton: DialogItem,
-        negativeButton: DialogItem,
-        onCancel: () -> Unit
+            activity: AppCompatActivity,
+            @StringRes title: Int,
+            @StringRes message: Int,
+            messageArguments: Array<Any>? = null,
+            positiveButton: DialogItem,
+            negativeButton: DialogItem,
+            onCancel: () -> Unit
     ) {
         val messageValue = if (messageArguments != null) {
             activity.getString(message, *messageArguments)
@@ -155,21 +154,21 @@ object BrowserDialog {
 
     @JvmStatic
     fun showEditText(
-        activity: Activity,
-        @StringRes title: Int,
-        @StringRes hint: Int,
-        @StringRes action: Int,
-        textInputListener: (String) -> Unit
+            activity: AppCompatActivity,
+            @StringRes title: Int,
+            @StringRes hint: Int,
+            @StringRes action: Int,
+            textInputListener: (String) -> Unit
     ) = showEditText(activity, title, hint, null, action, textInputListener)
 
     @JvmStatic
     fun showEditText(
-        activity: Activity,
-        @StringRes title: Int,
-        @StringRes hint: Int,
-        currentText: String?,
-        @StringRes action: Int,
-        textInputListener: (String) -> Unit
+            activity: AppCompatActivity,
+            @StringRes title: Int,
+            @StringRes hint: Int,
+            currentText: String?,
+            @StringRes action: Int,
+            textInputListener: (String) -> Unit
     ) {
         val dialogView = LayoutInflater.from(activity).inflate(R.layout.dialog_edit_text, null)
         val editText = dialogView.findViewById<EditText>(R.id.dialog_edit_text)
@@ -201,7 +200,7 @@ object BrowserDialog {
     /**
      * Show the custom dialog with the custom builder arguments applied.
      */
-    fun showCustomDialog(activity: Activity, block: MaterialAlertDialogBuilder.(Activity) -> Unit) : Dialog {
+    fun showCustomDialog(activity: AppCompatActivity, block: MaterialAlertDialogBuilder.(AppCompatActivity) -> Unit) : Dialog {
         MaterialAlertDialogBuilder(activity).apply {
             block(activity)
             return resizeAndShow()
