@@ -1,6 +1,5 @@
 package com.jamal2367.styx.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
@@ -12,12 +11,16 @@ import android.net.Uri
 import android.net.http.SslError
 import android.os.Message
 import android.view.LayoutInflater
+import android.view.View
 import android.webkit.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.AdBlocker
@@ -41,7 +44,6 @@ import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
 import com.jamal2367.styx.view.StyxView.Companion.KFetchMetaThemeColorTries
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import java.io.ByteArrayInputStream
@@ -50,6 +52,7 @@ import java.net.URISyntaxException
 import java.util.*
 import javax.inject.Inject
 import kotlin.math.abs
+
 
 class StyxWebClient(
         private val activity: AppCompatActivity,
@@ -134,8 +137,8 @@ class StyxWebClient(
             // Note how we compute our initial scale to be zoomed out and fit the page
             // TODO: Check if we really need this here in onLoadResource
             // Pick the proper settings desktop width according to current orientation
-            (Resources.getSystem().configuration.orientation == Configuration.ORIENTATION_PORTRAIT).let{portrait ->
-                view.evaluateJavascript(setMetaViewport.provideJs().replaceFirst("\$width\$",(if (portrait) userPreferences.desktopWidthInPortrait else userPreferences.desktopWidthInLandscape).toString()),null)
+            (Resources.getSystem().configuration.orientation == Configuration.ORIENTATION_PORTRAIT).let{ portrait ->
+                view.evaluateJavascript(setMetaViewport.provideJs().replaceFirst("\$width\$", (if (portrait) userPreferences.desktopWidthInPortrait else userPreferences.desktopWidthInLandscape).toString()), null)
             }
         }
     }
@@ -182,10 +185,10 @@ class StyxWebClient(
     }
 
     override fun onReceivedHttpAuthRequest(
-        view: WebView,
-        handler: HttpAuthHandler,
-        host: String,
-        realm: String
+            view: WebView,
+            handler: HttpAuthHandler,
+            host: String,
+            realm: String
     ) {
         MaterialAlertDialogBuilder(activity).apply {
             val dialogView = LayoutInflater.from(activity).inflate(R.layout.dialog_auth_request, null)
@@ -314,12 +317,17 @@ class StyxWebClient(
             return true
         }
 
+        if (isTel(url, view)) {
+            // If it was a tel: link, or an intent, or could be launched elsewhere, do that
+            return true
+        }
+
         val intent = intentUtils.intentForUrl(view, url)
         intent?.let {
             // Check if that external app is already known
             val prefKey = activity.getString(R.string.settings_app_prefix) + Uri.parse(url).host
             if (preferences.contains(prefKey)) {
-                if (preferences.getBoolean(prefKey,false)) {
+                if (preferences.getBoolean(prefKey, false)) {
                     // Trusted app, just launch it on the stop and abort loading
                     intentUtils.startActivityForIntent(intent)
                     return true
@@ -332,28 +340,29 @@ class StyxWebClient(
             // We first encounter that app ask user if we should use it?
             // We will keep loading even if an external app is available the first time we encounter it.
             (activity as BrowserActivity).mainHandler.postDelayed({
-                if (exAppLaunchDialog==null) {
+                if (exAppLaunchDialog == null) {
                     exAppLaunchDialog = MaterialAlertDialogBuilder(activity)
-                        .setTitle(R.string.dialog_title_third_party_app)
-                        .setMessage(R.string.dialog_message_third_party_app)
-                        .setPositiveButton(R.string.yes) { dialog, _ ->
-                        // Handle Ok
-                        intentUtils.startActivityForIntent(intent)
-                        dialog.dismiss()
-                        exAppLaunchDialog = null
-                        // Remember user choice
-                        preferences.edit().putBoolean(prefKey, true).apply()
-                    }
-                        .setNegativeButton(R.string.no) { dialog, _ ->
-                        // Handle Cancel
-                        dialog.dismiss()
-                        exAppLaunchDialog = null
-                        // Remember user choice
-                        preferences.edit().putBoolean(prefKey, false).apply()
-                    }
-                        .create()
-                exAppLaunchDialog?.show()
-                }},1000)
+                            .setTitle(R.string.dialog_title_third_party_app)
+                            .setMessage(R.string.dialog_message_third_party_app)
+                            .setPositiveButton(R.string.yes) { dialog, _ ->
+                                // Handle Ok
+                                intentUtils.startActivityForIntent(intent)
+                                dialog.dismiss()
+                                exAppLaunchDialog = null
+                                // Remember user choice
+                                preferences.edit().putBoolean(prefKey, true).apply()
+                            }
+                            .setNegativeButton(R.string.no) { dialog, _ ->
+                                // Handle Cancel
+                                dialog.dismiss()
+                                exAppLaunchDialog = null
+                                // Remember user choice
+                                preferences.edit().putBoolean(prefKey, false).apply()
+                            }
+                            .create()
+                    exAppLaunchDialog?.show()
+                }
+            }, 1000)
         }
 
         // If none of the special conditions was met, continue with loading the url
@@ -375,6 +384,19 @@ class StyxWebClient(
                 webView.loadUrl(url, headers)
                 true
             }
+        }
+    }
+
+    private fun isTel(url: String, view: WebView): Boolean {
+        return if (url.startsWith("tel:")) {
+            val i = Intent(Intent.ACTION_DIAL)
+            i.data = Uri.parse(url)
+            activity.startActivity(i)
+            view.reload()
+            true
+        } else {
+            view.loadUrl(url)
+            true
         }
     }
 
