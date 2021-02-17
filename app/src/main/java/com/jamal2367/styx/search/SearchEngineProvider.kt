@@ -45,15 +45,20 @@ class SearchEngineProvider @Inject constructor(
             0 -> CustomSearch(userPreferences.searchUrl)
             1 -> GoogleSearch()
             2 -> AskSearch()
-            3 -> BingSearch()
-            4 -> YahooSearch()
-            5 -> StartPageSearch()
-            6 -> StartPageMobileSearch()
-            7 -> DuckSearch()
-            8 -> DuckLiteSearch()
-            9 -> BaiduSearch()
-            10 -> YandexSearch()
-            11 -> NaverSearch()
+            3 -> BaiduSearch()
+            4 -> BingSearch()
+            5 -> DuckSearch()
+            6 -> DuckNoJSSearch()
+            7 -> DuckLiteSearch()
+            8 -> DuckLiteNoJSSearch()
+            9 -> MojeekSearch()
+            10 -> NaverSearch()
+            11 -> SearxSearch()
+            12 -> StartPageSearch()
+            13 -> StartPageMobileSearch()
+            14 -> YahooSearch()
+            15 -> YahooNoJSSearch()
+            16 -> YandexSearch()
             else -> GoogleSearch()
         }
 
@@ -65,15 +70,20 @@ class SearchEngineProvider @Inject constructor(
             is CustomSearch -> 0
             is GoogleSearch -> 1
             is AskSearch -> 2
-            is BingSearch -> 3
-            is YahooSearch -> 4
-            is StartPageSearch -> 5
-            is StartPageMobileSearch -> 6
-            is DuckSearch -> 7
-            is DuckLiteSearch -> 8
-            is BaiduSearch -> 9
-            is YandexSearch -> 10
-            is NaverSearch -> 11
+            is BaiduSearch -> 3
+            is BingSearch -> 4
+            is DuckSearch -> 5
+            is DuckNoJSSearch -> 6
+            is DuckLiteSearch -> 7
+            is DuckLiteNoJSSearch -> 8
+            is MojeekSearch -> 9
+            is NaverSearch -> 10
+            is SearxSearch -> 11
+            is StartPageSearch -> 12
+            is StartPageMobileSearch -> 13
+            is YahooSearch -> 14
+            is YahooNoJSSearch -> 15
+            is YandexSearch -> 16
             else -> throw UnsupportedOperationException("Unknown search engine provided: " + searchEngine.javaClass)
         }
 
@@ -84,15 +94,20 @@ class SearchEngineProvider @Inject constructor(
         CustomSearch(userPreferences.searchUrl),
         GoogleSearch(),
         AskSearch(),
+        BaiduSearch(),
         BingSearch(),
-        YahooSearch(),
+        DuckSearch(),
+        DuckNoJSSearch(),
+        DuckLiteSearch(),
+        DuckLiteNoJSSearch(),
+        MojeekSearch(),
+        NaverSearch(),
+        SearxSearch(),
         StartPageSearch(),
         StartPageMobileSearch(),
-        DuckSearch(),
-        DuckLiteSearch(),
-        BaiduSearch(),
-        YandexSearch(),
-        NaverSearch()
+        YahooSearch(),
+        YahooNoJSSearch(),
+        YandexSearch()
     )
 
 }
