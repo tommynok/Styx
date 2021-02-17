@@ -2,7 +2,6 @@
 <resources>
     <attr name="autoCompleteTitleColor" format="reference|color" />
     <attr name="autoCompleteUrlColor" format="reference|color" />
-    <attr name="progressBackgroundColor" format="color" />
     <attr name="searchBackground" format="reference|color" />
     <attr name="appColorControlEnabled" format="reference|color" />
     <attr name="appColorControlDisabled" format="reference|color" />
