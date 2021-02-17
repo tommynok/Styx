@@ -1,6 +1,7 @@
 package com.jamal2367.styx.database.bookmark;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
 
@@ -56,7 +57,8 @@ public final class BookmarkExporter {
         BufferedReader bookmarksReader = null;
         InputStream inputStream = null;
         try {
-            inputStream = context.getResources().openRawResource(R.raw.default_bookmarks);
+            AssetManager am = context.getAssets();
+            inputStream = am.open("default_bookmarks.dat");
             //noinspection IOResourceOpenedButNotSafelyClosed
             bookmarksReader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
@@ -169,13 +171,13 @@ public final class BookmarkExporter {
     public static File createNewExportFile() {
         File bookmarksExport = new File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                "BookmarksExport.txt");
+                "StyxBookmarksExport.txt");
         int counter = 0;
         while (bookmarksExport.exists()) {
             counter++;
             bookmarksExport = new File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                    "BookmarksExport-" + counter + ".txt");
+                    "StyxBookmarksExport-" + counter + ".txt");
         }
 
         return bookmarksExport;
