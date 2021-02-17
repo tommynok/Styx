@@ -296,6 +296,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(view.menuItemSessions) { executeAction(R.id.action_sessions) }
             onMenuItemClicked(view.menuItemNewTab) { executeAction(R.id.action_new_tab) }
             onMenuItemClicked(view.menuItemIncognito) { executeAction(R.id.action_incognito) }
+            onMenuItemClicked(view.menuItemCloseIncognito) { executeAction(R.id.action_close_incognito) }
             onMenuItemClicked(view.menuItemAddBookmark) { executeAction(R.id.action_add_bookmark) }
             onMenuItemClicked(view.menuItemHistory) { executeAction(R.id.action_history) }
             onMenuItemClicked(view.menuItemDownloads) { executeAction(R.id.action_downloads) }
@@ -441,9 +442,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         searchBackground = customView.findViewById<View>(R.id.search_container)
         // initialize search background color
         setSearchBarColors(primaryColor)
-
-        drawer_layout.setDrawerShadow(R.drawable.drawer_right_shadow, GravityCompat.END)
-        drawer_layout.setDrawerShadow(R.drawable.drawer_left_shadow, GravityCompat.START)
 
         var intent: Intent? = if (savedInstanceState == null) {
             intent
@@ -659,7 +657,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             // This was causing focus problems when switching directly from tabs drawer to bookmarks drawer
             //currentTabView?.requestFocus()
 
-            if (userPreferences.lockedDrawers) return; // Drawers remain locked
+            if (userPreferences.lockedDrawers) return // Drawers remain locked
             val tabsDrawer = getTabDrawer()
             val bookmarksDrawer = getBookmarkDrawer()
 
@@ -680,7 +678,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             // Trying to sort out our issue with touch input reaching through drawer into address bar
             //toolbar_layout.isEnabled = false
 
-            if (userPreferences.lockedDrawers) return; // Drawers remain locked
+            if (userPreferences.lockedDrawers) return // Drawers remain locked
 
             val tabsDrawer = getTabDrawer()
             val bookmarksDrawer = getBookmarkDrawer()
@@ -760,7 +758,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     private fun initializePreferences() {
 
         // TODO layout transition causing memory leak
-        //        content_frame.setLayoutTransition(new LayoutTransition());
+        //        content_frame.setLayoutTransition(new LayoutTransition())
 
         val currentSearchEngine = searchEngineProvider.provideSearchEngine()
         searchText = currentSearchEngine.queryUrl
@@ -804,7 +802,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     }
 
     // For CTRL+TAB implementation
-    var iRecentTabIndex = -1;
+    var iRecentTabIndex = -1
     var iCapturedRecentTabsIndices : Set<StyxView>? = null
 
     private fun copyRecentTabsList()
@@ -853,8 +851,8 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             tabsManager.iRecentTabs.add(tab)
         }
 
-        iRecentTabIndex = -1;
-        iCapturedRecentTabsIndices = null;
+        iRecentTabIndex = -1
+        iCapturedRecentTabsIndices = null
         //logger.log(TAG,"CTRL+TAB: Reset")
     }
 
@@ -1145,7 +1143,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
             R.id.action_incognito -> {
                 startActivity(IncognitoActivity.createIntent(this))
-                overridePendingTransition(R.anim.slide_up_in, R.anim.fade_out_scale)
+                return true
+            }
+            R.id.action_close_incognito -> {
+                closeActivity()
                 return true
             }
             R.id.action_share -> {
@@ -1548,10 +1549,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         // Dismiss any popup menu
         popupMenu.dismiss()
         sessionsMenu.dismiss()
-
-        if (isIncognito() && isFinishing) {
-            overridePendingTransition(R.anim.fade_in_scale, R.anim.slide_down_out)
-        }
     }
 
     override fun onBackPressed() {
@@ -1729,7 +1726,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         searchView?.setHintTextColor(DrawableUtils.mixColor(0.5f, currentToolBarTextColor, color))
         // Change tab counter color
         tabsButton?.textColor = currentToolBarTextColor
-        tabsButton?.invalidate();
+        tabsButton?.invalidate()
         // Change tool bar home button color, needed when using desktop style tabs
         homeButton?.setColorFilter(currentToolBarTextColor)
         buttonBack?.setColorFilter(currentToolBarTextColor)
@@ -1837,17 +1834,17 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         if (!isColorMode()) {
             // Put back the theme color then
-            changeToolbarBackground(defaultColor);
+            changeToolbarBackground(defaultColor)
         }
         else if (color != Color.TRANSPARENT)
         {
             // We have a meta theme color specified in our page HTML, use it
-            changeToolbarBackground(color);
+            changeToolbarBackground(color)
         }
         else if (favicon==null)
         {
             // No HTML meta theme color and no favicon, use app theme color then
-            changeToolbarBackground(defaultColor);
+            changeToolbarBackground(defaultColor)
         }
         else {
             Palette.from(favicon).generate { palette ->
@@ -2514,7 +2511,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         // Set stop or reload icon according to current load status
         //setMenuItemIcon(R.id.action_reload, if (isLoading) R.drawable.ic_action_delete else R.drawable.ic_action_refresh)
-        button_reload.setImageResource(if (isLoading) R.drawable.ic_action_delete else R.drawable.ic_action_refresh);
+        button_reload.setImageResource(if (isLoading) R.drawable.ic_action_delete else R.drawable.ic_action_refresh)
 
         // That fancy animation would be great but somehow it looks like it is causing issues making the button unresponsive.
         // I'm guessing it is conflicting with animations from layout change.
@@ -2531,7 +2528,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                     it.startAnimation(transition)
                 }
                 else{
-                    button_reload.setImageResource(imageRes);
+                    button_reload.setImageResource(imageRes)
                 }
             }
         }
