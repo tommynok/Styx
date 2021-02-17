@@ -54,7 +54,6 @@ class MainActivity : BrowserActivity() {
                     // Open a new private window
                     if (event.isShiftPressed) {
                         startActivity(IncognitoActivity.createIntent(this))
-                        overridePendingTransition(R.anim.slide_up_in, R.anim.fade_out_scale)
                         return true
                     }
             }
