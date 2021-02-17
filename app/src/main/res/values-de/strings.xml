@@ -8,6 +8,7 @@
     <string name="action_blank">Leere Seite</string>
     <string name="action_bookmarks">Lesezeichen</string>
     <string name="action_cancel">Abbrechen</string>
+    <string name="action_bookmark_edited">Lesezeichen bearbeitet</string>
     <string name="action_close_all_other_tabs">Alle anderen Tabs schließen</string>
     <string name="action_close_incognito">Inkognito beenden</string>
     <string name="action_delete_all_bookmarks">Lesezeichen zurücksetzen</string>
@@ -30,6 +31,7 @@
     <string name="action_open">Öffnen</string>
     <string name="action_reload">Neu laden</string>
     <string name="action_restore_all_tabs">Alle Tabs wiederherstellen</string>
+    <string name="action_remove_bookmark">Lesezeichen entfernt</string>
     <string name="action_restore_tab">Tab wiederherstellen</string>
     <string name="action_save_session">Sitzung speichern als</string>
     <string name="action_sessions">Sitzungen</string>
@@ -103,6 +105,7 @@
     <string name="dialog_remove_bookmark">Lesezeichen löschen</string>
     <string name="dialog_remove_folder">Ordner löschen</string>
     <string name="dialog_remove_from_history">Aus dem Verlauf entfernen</string>
+    <string name="dialog_removed_from_history">Aus dem Verlauf entfernt</string>
     <string name="dialog_rename_folder">Ordner umbenennen</string>
     <string name="dialog_title_close_browser">Browser schließen</string>
     <string name="dialog_title_share">Diese Webseite teilen</string>

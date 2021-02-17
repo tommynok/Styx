@@ -30,6 +30,7 @@ import android.widget.EditText
 import androidx.core.net.toUri
 import com.anthonycr.grant.PermissionsManager
 import com.anthonycr.grant.PermissionsResultAction
+import com.jamal2367.styx.extensions.snackbar
 import dagger.Reusable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy
@@ -107,6 +108,7 @@ class StyxDialogBuilder @Inject constructor(
         },
         DialogItem(title = R.string.dialog_copy_link) {
             clipboardManager.copyToClipboard(entry.url)
+            (activity).snackbar(R.string.message_link_copied)
         },
         DialogItem(title = R.string.dialog_remove_bookmark) {
             bookmarkManager.deleteBookmark(entry)
@@ -115,6 +117,7 @@ class StyxDialogBuilder @Inject constructor(
                 .subscribe { success ->
                     if (success) {
                         uiController.handleBookmarkDeleted(entry)
+                        (activity).snackbar(R.string.action_remove_bookmark)
                     }
                 }
         },
@@ -180,7 +183,7 @@ class StyxDialogBuilder @Inject constructor(
                         .subscribeBy(
                             onSuccess = {
                                 uiController.handleBookmarksChange()
-                                activity.toast(R.string.message_bookmark_added)
+                                (activity).snackbar(R.string.message_bookmark_added)
                             }
                         )
                 }
@@ -225,6 +228,7 @@ class StyxDialogBuilder @Inject constructor(
                         .subscribeOn(databaseScheduler)
                         .observeOn(mainScheduler)
                         .subscribe(uiController::handleBookmarksChange)
+                    (activity).snackbar(R.string.action_bookmark_edited)
                 }
                 editBookmarkDialog.resizeAndShow()
             }
@@ -287,12 +291,14 @@ class StyxDialogBuilder @Inject constructor(
         },
         DialogItem(title = R.string.dialog_copy_link) {
             clipboardManager.copyToClipboard(url)
+            (activity).snackbar(R.string.message_link_copied)
         },
         DialogItem(title = R.string.dialog_remove_from_history) {
             historyModel.deleteHistoryEntry(url)
                 .subscribeOn(databaseScheduler)
                 .observeOn(mainScheduler)
                 .subscribe(uiController::handleHistoryChange)
+            (activity).snackbar(R.string.dialog_removed_from_history)
         })
 
     // TODO There should be a way in which we do not need an activity reference to dowload a file
@@ -319,6 +325,7 @@ class StyxDialogBuilder @Inject constructor(
         },
         DialogItem(title = R.string.dialog_copy_link) {
             clipboardManager.copyToClipboard(url)
+            (activity).snackbar(R.string.message_link_copied)
         },
             DialogItem(title = R.string.dialog_download_image) {
                 // Ask for required permissions before starting our download
@@ -356,6 +363,7 @@ class StyxDialogBuilder @Inject constructor(
             },
             DialogItem(title = R.string.dialog_copy_link) {
                 clipboardManager.copyToClipboard(url)
+                (activity).snackbar(R.string.message_link_copied)
             },
             // Show copy text dialog item if we have some text
             DialogItem(title = R.string.dialog_copy_text, isConditionMet = !text.isNullOrEmpty()) {

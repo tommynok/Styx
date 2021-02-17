@@ -7,6 +7,7 @@
     <string name="action_back">Back</string>
     <string name="action_blank">Blank page</string>
     <string name="action_bookmarks">Bookmarks</string>
+    <string name="action_bookmark_edited">Bookmark edited</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_close_all_other_tabs">Close all other tabs</string>
     <string name="action_close_incognito">Close incognito mode</string>
@@ -30,6 +31,7 @@
     <string name="action_open">Open</string>
     <string name="action_reload">Reload</string>
     <string name="action_restore_all_tabs">Restore all tabs</string>
+    <string name="action_remove_bookmark">Bookmark removed</string>
     <string name="action_restore_tab">Restore tab</string>
     <string name="action_save_session">Save session as</string>
     <string name="action_sessions">Sessions</string>
@@ -103,6 +105,7 @@
     <string name="dialog_remove_bookmark">Remove bookmark</string>
     <string name="dialog_remove_folder">Remove folder</string>
     <string name="dialog_remove_from_history">Remove from history</string>
+    <string name="dialog_removed_from_history">Removed from history</string>
     <string name="dialog_rename_folder">Rename folder</string>
     <string name="dialog_title_close_browser">Close browser</string>
     <string name="dialog_title_share">Share this page</string>
