@@ -2,11 +2,14 @@
 <resources>
     <string-array name="user_agent">
         <item>@string/agent_default</item>
-        <item>@string/agent_desktop</item>
-        <item>@string/agent_mobile</item>
-        <item>@string/agent_custom</item>
-        <item>@string/agent_web_view</item>
+        <item>@string/agent_windows_desktop</item>
+        <item>@string/agent_linux_desktop</item>
+        <item>@string/agent_macos_desktop</item>
+        <item>@string/agent_android_mobile</item>
+        <item>@string/agent_ios_mobile</item>
         <item>@string/agent_system</item>
+        <item>@string/agent_web_view</item>
+        <item>@string/agent_custom</item>
     </string-array>
 
     <string-array name="download_folder">

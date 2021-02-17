@@ -229,11 +229,14 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     private fun choiceToUserAgent(index: Int) = when (index) {
         1 -> resources.getString(R.string.agent_default)
-        2 -> resources.getString(R.string.agent_desktop)
-        3 -> resources.getString(R.string.agent_mobile)
-        4 -> resources.getString(R.string.agent_custom)
-        5 -> resources.getString(R.string.agent_web_view)
+        2 -> resources.getString(R.string.agent_windows_desktop)
+        3 -> resources.getString(R.string.agent_linux_desktop)
+        4 -> resources.getString(R.string.agent_macos_desktop)
+        5 -> resources.getString(R.string.agent_android_mobile)
+        5 -> resources.getString(R.string.agent_ios_mobile)
         6 -> resources.getString(R.string.agent_system)
+        7 -> resources.getString(R.string.agent_web_view)
+        8 -> resources.getString(R.string.agent_custom)
         else -> resources.getString(R.string.agent_default)
     }
 
@@ -244,12 +247,10 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 setSingleChoiceItems(R.array.user_agent, userPreferences.userAgentChoice - 1) { _, which ->
                     userPreferences.userAgentChoice = which + 1
                     when (which) {
-                        in 0..2 -> Unit
-                        3 -> {
+                        in 0..7 -> Unit
+                        8 -> {
                             showCustomUserAgentPicker()
                         }
-                        4 -> Unit
-                        5 -> Unit
                     }
 
                     summaryUpdater.updateSummary(userAgentSummary())

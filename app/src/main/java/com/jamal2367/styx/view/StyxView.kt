@@ -7,7 +7,7 @@ package com.jamal2367.styx.view
 import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.TabModel
-import com.jamal2367.styx.constant.DESKTOP_USER_AGENT
+import com.jamal2367.styx.constant.WINDOWS_DESKTOP_USER_AGENT
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.MainScheduler
@@ -145,7 +145,7 @@ class StyxView(
             field = aDesktopMode
             // Set our user agent accordingly
             if (aDesktopMode) {
-                webView?.settings?.userAgentString = DESKTOP_USER_AGENT
+                webView?.settings?.userAgentString = WINDOWS_DESKTOP_USER_AGENT
             } else {
                 setUserAgentForPreference(userPreferences)
             }
