@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <!--
-    <item name="action_recover_all_tabs" type="id" />
-    -->
     <item name="action_show_homepage" type="id" />
     <item name="action_new_tab" type="id" />
     <item name="action_incognito" type="id" />
