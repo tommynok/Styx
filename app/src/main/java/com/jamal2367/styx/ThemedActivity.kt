@@ -1,22 +1,13 @@
 package com.jamal2367.styx
 
-import com.jamal2367.styx.AppTheme
-import com.jamal2367.styx.R
-import com.jamal2367.styx.di.injector
-import com.jamal2367.styx.extensions.setStatusBarIconsColor
-import com.jamal2367.styx.preference.UserPreferences
-import com.jamal2367.styx.utils.ThemeUtils
-import com.jamal2367.styx.utils.foregroundColorFromBackgroundColor
-import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Menu
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.withStyledAttributes
-import androidx.core.graphics.drawable.DrawableCompat
-import androidx.core.view.iterator
+import com.jamal2367.styx.di.injector
+import com.jamal2367.styx.preference.UserPreferences
+import com.jamal2367.styx.utils.ThemeUtils
 import javax.inject.Inject
 
 abstract class ThemedActivity : AppCompatActivity() {
