@@ -48,7 +48,7 @@ class SuggestionsAdapter(
 
     private val searchIcon = context.drawable(R.drawable.ic_search)
     private val webPageIcon = context.drawable(R.drawable.ic_history)
-    private val bookmarkIcon = context.drawable(R.drawable.ic_bookmark)
+    private val bookmarkIcon = context.drawable(R.drawable.ic_bookmark_border)
     private var suggestionsRepository: SuggestionsRepository
 
     /**
@@ -112,7 +112,6 @@ class SuggestionsAdapter(
 
         if (convertView == null) {
             finalView = layoutInflater.inflate(R.layout.two_line_autocomplete, parent, false)
-
             holder = SuggestionViewHolder(finalView)
             finalView.tag = holder
         } else {

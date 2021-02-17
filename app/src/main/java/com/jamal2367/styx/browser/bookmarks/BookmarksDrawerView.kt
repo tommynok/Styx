@@ -205,7 +205,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
         BrowserDialog.showWithIcons(context, context.getString(R.string.dialog_tools_title),
             DialogItem(
-                icon = context.drawable(R.drawable.ic_action_desktop),
+                icon = context.drawable(R.drawable.ic_desktop),
                 title = R.string.dialog_toggle_desktop
             ) {
                 getTabsManager().currentTab?.apply {

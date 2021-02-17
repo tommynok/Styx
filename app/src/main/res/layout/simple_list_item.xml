@@ -8,4 +8,4 @@
           android:minHeight="?attr/listPreferredItemHeightSmall"
           android:paddingEnd="?attr/listPreferredItemPaddingEnd"
           android:paddingStart="?attr/listPreferredItemPaddingStart"
-          android:textAppearance="?attr/textAppearanceListItemSmall"/>
+          android:textAppearance="?attr/textAppearanceListItemSmall" />
