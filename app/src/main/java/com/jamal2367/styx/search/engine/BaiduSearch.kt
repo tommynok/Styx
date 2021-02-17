@@ -4,8 +4,6 @@ import com.jamal2367.styx.R
 
 /**
  * The Baidu search engine.
- *
- * See http://www.baidu.com/img/bdlogo.gif for the icon.
  */
 class BaiduSearch : BaseSearchEngine(
     "file:///android_asset/baidu.png",
