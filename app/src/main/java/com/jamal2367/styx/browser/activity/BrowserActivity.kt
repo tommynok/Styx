@@ -295,24 +295,24 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             // Bind our actions
             onMenuItemClicked(view.menuItemSessions) { executeAction(R.id.action_sessions) }
             onMenuItemClicked(view.menuItemNewTab) { executeAction(R.id.action_new_tab) }
-            onMenuItemClicked(view.menuItemIncognito) { executeAction(R.id.action_incognito) }
-            onMenuItemClicked(view.menuItemCloseIncognito) { executeAction(R.id.action_close_incognito) }
-            onMenuItemClicked(view.menuItemAddBookmark) { executeAction(R.id.action_add_bookmark) }
-            onMenuItemClicked(view.menuItemHistory) { executeAction(R.id.action_history) }
-            onMenuItemClicked(view.menuItemDownloads) { executeAction(R.id.action_downloads) }
-            onMenuItemClicked(view.menuItemShare) { executeAction(R.id.action_share) }
-            onMenuItemClicked(view.menuItemFind) { executeAction(R.id.action_find) }
-            onMenuItemClicked(view.menuItemAddToHome) { executeAction(R.id.action_add_to_homescreen) }
-            onMenuItemClicked(view.menuItemReaderMode) { executeAction(R.id.action_reading_mode) }
-            onMenuItemClicked(view.menuItemSettings) { executeAction(R.id.action_settings) }
-            onMenuItemClicked(view.menuItemDesktopMode) { executeAction(R.id.action_toggle_desktop_mode) }
+            onMenuItemClicked(view.menuItemIncognito) { executeAction(R.id.menuItemIncognito) }
+            onMenuItemClicked(view.menuItemCloseIncognito) { executeAction(R.id.menuItemCloseIncognito) }
+            onMenuItemClicked(view.menuItemAddBookmark) { executeAction(R.id.menuItemAddBookmark) }
+            onMenuItemClicked(view.menuItemHistory) { executeAction(R.id.menuItemHistory) }
+            onMenuItemClicked(view.menuItemDownloads) { executeAction(R.id.menuItemDownloads) }
+            onMenuItemClicked(view.menuItemShare) { executeAction(R.id.menuItemShare) }
+            onMenuItemClicked(view.menuItemFind) { executeAction(R.id.menuItemFind) }
+            onMenuItemClicked(view.menuItemAddToHome) { executeAction(R.id.menuItemAddToHome) }
+            onMenuItemClicked(view.menuItemReaderMode) { executeAction(R.id.menuItemReaderMode) }
+            onMenuItemClicked(view.menuItemSettings) { executeAction(R.id.menuItemSettings) }
+            onMenuItemClicked(view.menuItemDesktopMode) { executeAction(R.id.menuItemDesktopMode) }
 
             // Popup menu action shortcut icons
-            onMenuItemClicked(view.menuShortcutRefresh) { executeAction(R.id.action_reload) }
-            onMenuItemClicked(view.menuShortcutHome) { executeAction(R.id.action_show_homepage) }
-            onMenuItemClicked(view.menuShortcutForward) { executeAction(R.id.action_forward) }
-            onMenuItemClicked(view.menuShortcutBack) { executeAction(R.id.action_back) }
-            onMenuItemClicked(view.menuShortcutBookmarks) { executeAction(R.id.action_bookmarks) }
+            onMenuItemClicked(view.menuShortcutRefresh) { executeAction(R.id.menuShortcutRefresh) }
+            onMenuItemClicked(view.menuShortcutHome) { executeAction(R.id.menuShortcutHome) }
+            onMenuItemClicked(view.menuShortcutForward) { executeAction(R.id.menuShortcutForward) }
+            onMenuItemClicked(view.menuShortcutBack) { executeAction(R.id.menuShortcutBack) }
+            onMenuItemClicked(view.menuShortcutBookmarks) { executeAction(R.id.menuShortcutBookmarks) }
 
 
         }
@@ -406,9 +406,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         homeButton?.setOnClickListener(this)
 
         buttonBack = customView.findViewById(R.id.button_action_back)
-        buttonBack?.setOnClickListener{executeAction(R.id.action_back)}
+        buttonBack?.setOnClickListener{executeAction(R.id.menuShortcutBack)}
         buttonForward = customView.findViewById(R.id.button_action_forward)
-        buttonForward?.setOnClickListener{executeAction(R.id.action_forward)}
+        buttonForward?.setOnClickListener{executeAction(R.id.menuShortcutForward)}
 
         if (shouldShowTabsInDrawer) {
             tabsButton?.visibility = VISIBLE
@@ -1105,19 +1105,20 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 }
                 return true
             }
-            R.id.action_back -> {
+
+            R.id.menuShortcutBack -> {
                 if (currentView?.canGoBack() == true) {
                     currentView.goBack()
                 }
                 return true
             }
-            R.id.action_forward -> {
+            R.id.menuShortcutForward -> {
                 if (currentView?.canGoForward() == true) {
                     currentView.goForward()
                 }
                 return true
             }
-            R.id.action_add_to_homescreen -> {
+            R.id.menuItemAddToHome -> {
                 if (currentView != null
                         && currentView.url.isNotBlank()
                         && !currentView.url.isSpecialUrl()) {
@@ -1132,7 +1133,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 presenter?.newTab(homePageInitializer, true)
                 return true
             }
-            R.id.action_reload -> {
+            R.id.menuShortcutRefresh -> {
                 if (searchView?.hasFocus() == true) {
                     // SL: Not sure why?
                     searchView?.setText("")
@@ -1141,52 +1142,45 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 }
                 return true
             }
-            R.id.action_incognito -> {
+            R.id.menuItemIncognito -> {
                 startActivity(IncognitoActivity.createIntent(this))
                 return true
             }
-            R.id.action_close_incognito -> {
+            R.id.menuItemCloseIncognito -> {
                 closeActivity()
                 return true
             }
-            R.id.action_share -> {
+            R.id.menuItemShare -> {
                 IntentUtils(this).shareUrl(currentUrl, currentView?.title)
                 return true
             }
-            R.id.action_bookmarks -> {
+            R.id.menuShortcutBookmarks -> {
                 openBookmarks()
                 return true
             }
-            R.id.action_copy -> {
-                if (currentUrl != null && !currentUrl.isSpecialUrl()) {
-                    clipboardManager.copyToClipboard(currentUrl)
-                    snackbar(R.string.message_link_copied)
-                }
-                return true
-            }
-            R.id.action_settings -> {
+            R.id.menuItemSettings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
                 return true
             }
-            R.id.action_history -> {
+            R.id.menuItemHistory -> {
                 openHistory()
                 return true
             }
-            R.id.action_downloads -> {
+            R.id.menuItemDownloads -> {
                 openDownloads()
                 return true
             }
-            R.id.action_add_bookmark -> {
+            R.id.menuItemAddBookmark -> {
                 if (currentUrl != null && !currentUrl.isSpecialUrl()) {
                     addBookmark(currentView.title, currentUrl)
                 }
                 return true
             }
-            R.id.action_find -> {
+            R.id.menuItemFind -> {
                 findInPage()
                 return true
             }
-            R.id.action_reading_mode -> {
+            R.id.menuItemReaderMode -> {
                 if (currentUrl != null) {
                     ReadingActivity.launch(this, currentUrl)
                 }
@@ -1210,13 +1204,13 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 return true
             }
 
-            R.id.action_show_homepage -> {
+            R.id.menuShortcutHome -> {
                 tabsManager.currentTab?.loadHomePage()
                 closeDrawers(null)
                 return true
             }
 
-            R.id.action_toggle_desktop_mode -> {
+            R.id.menuItemDesktopMode -> {
                 tabsManager.currentTab?.apply {
                     toggleDesktopUserAgent()
                     reload()
@@ -2336,7 +2330,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     }
 
     override fun onHomeButtonPressed() {
-        executeAction(R.id.action_show_homepage)
+        executeAction(R.id.menuShortcutHome)
     }
 
 
