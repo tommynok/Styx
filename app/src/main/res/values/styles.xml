@@ -57,7 +57,6 @@
         <item name="colorControlNormal">@color/state_color_control</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <item name="searchBackground">@drawable/card_bg</item>
-        <item name="listBackground">?attr/listChoiceBackgroundIndicator</item>
         <item name="progressBackgroundColor">@color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">false</item>
@@ -99,7 +98,6 @@
         <item name="colorControlNormal">@color/state_color_control</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog.Dark</item>
         <item name="searchBackground">@drawable/card_bg</item>
-        <item name="listBackground">?attr/listChoiceBackgroundIndicator</item>
         <item name="progressBackgroundColor">@color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">false</item>
@@ -140,7 +138,6 @@
         <item name="colorControlNormal">@color/state_color_control</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog.Black</item>
         <item name="searchBackground">@drawable/card_bg</item>
-        <item name="listBackground">?attr/listChoiceBackgroundIndicator</item>
         <item name="progressBackgroundColor">@color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">false</item>
