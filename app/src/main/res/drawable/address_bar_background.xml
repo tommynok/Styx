@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-This is the background of the search edit view.
-Those colors will mix at runtime with the tin used for the search bar.
-See: [BrowserActivity.setSearchBarColors]
--->
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <!--
-    Background while not focused.
-    -->
+
     <item android:state_focused="false" >
         <shape>
             <solid android:color="@color/white"/>
             <corners android:radius="18dp"/>
         </shape>
     </item>
-    <!--
-Background while focused.
--->
+
     <item android:state_focused="true" >
         <shape>
             <solid android:color="@color/white"/>
             <corners android:radius="18dp"/>
         </shape>
     </item>
+
 </selector>
