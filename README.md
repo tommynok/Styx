@@ -10,7 +10,7 @@
 * Webpage theming.
 * Desktop rendering.
 * Android desktop support (Samsung Dex, EMUI Desktop). 
-* Multiple search engines (Google, Bing, Yahoo, StartPage, DuckDuckGo, etc.).
+* Multiple search engines (Google, Bing, Yahoo, StartPage, DuckDuckGo, Mojeek, Searx etc.).
 * Incognito mode.
 * Orbot Proxy support and I2P support.
 * Ad-blocker.
