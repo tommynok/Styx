@@ -2,7 +2,6 @@ package com.jamal2367.styx.notifications
 
 import com.jamal2367.styx.IncognitoActivity
 import com.jamal2367.styx.R
-import com.jamal2367.styx.utils.ThemeUtils
 import android.annotation.TargetApi
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -49,12 +48,11 @@ class IncognitoNotification(
         val incognitoIntent = IncognitoActivity.createIntent(context)
 
         val incognitoNotification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_notification_incognito)
+            .setSmallIcon(R.drawable.ic_incognito)
             .setContentTitle(context.resources.getQuantityString(R.plurals.notification_incognito_running_title, number, number))
             .setContentIntent(PendingIntent.getActivity(context, 0, incognitoIntent, 0))
             .setContentText(context.getString(R.string.notification_incognito_running_message))
             .setAutoCancel(false)
-            .setColor(ThemeUtils.getAccentColor(context))
             .setOngoing(true)
             .build()
 
