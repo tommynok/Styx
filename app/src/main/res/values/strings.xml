@@ -9,6 +9,7 @@
     <string name="action_bookmarks">Bookmarks</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_close_all_other_tabs">Close all other tabs</string>
+    <string name="action_close_incognito">Close incognito mode</string>
     <string name="action_delete_all_bookmarks">Delete all bookmarks</string>
     <string name="action_delete">Delete</string>
     <string name="action_dont_allow">Don\'t allow</string>
@@ -49,6 +50,7 @@
     <string name="android_open_source_project">Android Open Source Project</string>
     <string name="apache">Apache License 2.0</string>
     <string name="black_theme">Black (AMOLED)</string>
+    <string name="block_ad_refresh_hosts">Refresh hosts file…</string>
     <string name="block_ad_refresh_now">Refresh hosts now</string>
     <string name="block_ad_remote_refresh_frequency_description">For remote hosts file</string>
     <string name="block_ad_source">Hosts file source</string>
@@ -60,6 +62,7 @@
     <string name="block_source_remote">Remote hosts file</string>
     <string name="bookmark_export_failure">Sorry, bookmarks could not be exported!</string>
     <string name="bookmark_export_path">Bookmarks exported to</string>
+    <string name="bookmark_restore">Bookmarks restored</string>
     <string name="bookmark_settings">Bookmarks</string>
     <string name="busy">Busy, try again shortly."</string>
     <string name="cache">Clear cache on exit</string>
@@ -218,12 +221,17 @@
     <string name="search_engine_bing">Bing</string>
     <string name="search_engine_custom">Custom URL</string>
     <string name="search_engine_duckduckgo_lite">DuckDuckGo Lite</string>
+    <string name="search_engine_duckduckgo_lite_no_js">DuckDuckGo Lite - No JavaScript</string>
     <string name="search_engine_duckduckgo">DuckDuckGo</string>
+    <string name="search_engine_duckduckgo_no_js">DuckDuckGo - No JavaScript</string>
     <string name="search_engine_google">Google</string>
+    <string name="search_engine_mojeek">Mojeek</string>
     <string name="search_engine_naver">Naver</string>
+    <string name="search_engine_searx">Searx</string>
     <string name="search_engine_startpage_mobile">StartPage Mobile</string>
     <string name="search_engine_startpage">StartPage</string>
     <string name="search_engine_yahoo">Yahoo</string>
+    <string name="search_engine_yahoo_no_js">Yahoo - No JavaScript</string>
     <string name="search_engine_yandex">Yandex</string>
     <string name="search_hint">Search</string>
     <string name="search_homepage">Search</string>

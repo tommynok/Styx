@@ -15,7 +15,7 @@ import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.dialog.DialogItem
-import com.jamal2367.styx.extensions.toast
+import com.jamal2367.styx.extensions.snackbar
 import com.jamal2367.styx.preference.UserPreferences
 import io.reactivex.Maybe
 import io.reactivex.Scheduler
@@ -68,6 +68,7 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
             isEnabled = isRefreshHostsEnabled(),
             onClick = {
                 bloomFilterAdBlocker.populateAdBlockerFromDataSource(forceRefresh = true)
+                (activity as AppCompatActivity).snackbar(R.string.block_ad_refresh_hosts)
             }
         )
     }
@@ -138,7 +139,7 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
             action = R.string.action_ok,
             textInputListener = {
                 val url = it.toHttpUrlOrNull()
-                    ?: return@showEditText run { activity?.toast(R.string.problem_download) }
+                    ?: return@showEditText run { (activity as AppCompatActivity).snackbar(R.string.problem_download) }
                 userPreferences.hostsSource = HostsSourceType.Remote(url).toPreferenceIndex()
                 userPreferences.hostsRemoteFile = it
                 summaryUpdater.updateSummary(it)
@@ -155,7 +156,7 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
                         .subscribeOn(diskScheduler)
                         .observeOn(mainScheduler)
                         .subscribeBy(
-                            onComplete = { activity?.toast(R.string.action_message_canceled) },
+                            onComplete = { (activity as AppCompatActivity).snackbar(R.string.action_message_canceled) },
                             onSuccess = { file ->
                                 userPreferences.hostsSource = HostsSourceType.Local(file).toPreferenceIndex()
                                 userPreferences.hostsLocalFile = file.path
@@ -165,7 +166,7 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
                         )
                 }
             } else {
-                activity?.toast(R.string.action_message_canceled)
+                (activity as AppCompatActivity).snackbar(R.string.action_message_canceled)
             }
         }
         super.onActivityResult(requestCode, resultCode, data)

@@ -13,10 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.PopupWindow
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.MaterialShapeDrawable
 import kotlinx.android.synthetic.main.popup_menu_browser.view.*
 import javax.inject.Inject
 
@@ -34,7 +30,8 @@ class BrowserPopupMenu : PopupWindow {
         elevation = 100F
         //
         animationStyle = R.style.AnimationMenu
-        //animationStyle = android.R.style.Animation_Dialog
+
+        view.menuItemCloseIncognito.visibility = View.GONE
 
         // Needed on Android 5 to make sure our pop-up can be dismissed by tapping outside and back button
         // See: https://stackoverflow.com/questions/46872634/close-popupwindow-upon-tapping-outside-or-back-button
@@ -45,6 +42,8 @@ class BrowserPopupMenu : PopupWindow {
             view.menuItemIncognito.visibility = View.GONE
             // No sessions in incognito mode
             view.menuItemSessions.visibility = View.GONE
+            // Show close incognito mode button
+            view.menuItemCloseIncognito.visibility = View.VISIBLE
         }
 
         //val radius: Float = getResources().getDimension(R.dimen.default_corner_radius) //32dp

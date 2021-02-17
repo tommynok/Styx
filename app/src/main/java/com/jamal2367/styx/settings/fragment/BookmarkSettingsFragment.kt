@@ -12,7 +12,6 @@ import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.dialog.DialogItem
 import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.snackbar
-import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.utils.Utils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -103,7 +102,7 @@ class BookmarkSettingsFragment : AbstractSettingsFragment() {
                                                         if (activity != null && !activity.isFinishing && isAdded) {
                                                             Utils.createInformativeDialog(activity as AppCompatActivity, R.string.title_error, R.string.bookmark_export_failure)
                                                         } else {
-                                                            application.toast(R.string.bookmark_export_failure)
+                                                            (activity as AppCompatActivity).snackbar(R.string.bookmark_export_failure)
                                                         }
                                                     }
                                             )
@@ -115,7 +114,7 @@ class BookmarkSettingsFragment : AbstractSettingsFragment() {
                         if (activity != null && !activity.isFinishing && isAdded) {
                             Utils.createInformativeDialog(activity as AppCompatActivity, R.string.title_error, R.string.bookmark_export_failure)
                         } else {
-                            application.toast(R.string.bookmark_export_failure)
+                            (activity as AppCompatActivity).snackbar(R.string.bookmark_export_failure)
                         }
                     }
                 })
@@ -149,6 +148,7 @@ class BookmarkSettingsFragment : AbstractSettingsFragment() {
                             .deleteAllBookmarks()
                             .subscribeOn(databaseScheduler)
                             .subscribe()
+                    (activity as AppCompatActivity).snackbar(R.string.bookmark_restore)
                 },
                 negativeButton = DialogItem(title = R.string.no) {},
                 onCancel = {}
@@ -229,7 +229,7 @@ class BookmarkSettingsFragment : AbstractSettingsFragment() {
                                     if (activity != null && !activity.isFinishing && isAdded) {
                                         Utils.createInformativeDialog(activity as AppCompatActivity, R.string.title_error, R.string.import_bookmark_error)
                                     } else {
-                                        application.toast(R.string.import_bookmark_error)
+                                        (activity as AppCompatActivity).snackbar(R.string.import_bookmark_error)
                                     }
                                 }
                         )

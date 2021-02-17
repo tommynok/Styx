@@ -102,6 +102,13 @@
                     android:text="@string/action_new_tab" />
 
                 <TextView
+                    android:id="@+id/menuItemCloseIncognito"
+                    style="@style/BrowserTextMenuItem"
+                    app:drawableStartCompat="@drawable/ic_action_delete"
+                    android:text="@string/action_close_incognito"
+                    android:enabled="true" />
+
+                <TextView
                     android:id="@+id/menuItemIncognito"
                     style="@style/BrowserTextMenuItem"
                     app:drawableStartCompat="@drawable/ic_incognito"
@@ -188,6 +195,7 @@
                     style="@style/BrowserTextMenuItem"
                     app:drawableStartCompat="@drawable/ic_settings"
                     android:text="@string/settings" />
+
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

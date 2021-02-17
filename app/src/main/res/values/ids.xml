@@ -6,6 +6,7 @@
     <item name="action_show_homepage" type="id" />
     <item name="action_new_tab" type="id" />
     <item name="action_incognito" type="id" />
+    <item name="action_close_incognito" type="id" />
     <item name="action_history" type="id" />
     <item name="action_downloads" type="id" />
     <item name="action_share" type="id" />
