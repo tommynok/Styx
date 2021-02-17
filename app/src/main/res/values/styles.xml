@@ -197,17 +197,17 @@
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="background">?attr/colorPrimaryVariant</item>
+        <item name="android:background">?attr/colorPrimaryVariant</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog.Dark" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="background">?attr/colorSurface</item>
+        <item name="android:background">?attr/colorSurface</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog.Black" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="background">?attr/colorSurface</item>
+        <item name="android:background">?attr/colorSurface</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
@@ -216,7 +216,7 @@
     </style>
 
     <style name="MaterialSnackbarTheme.Dark" parent="@style/Widget.MaterialComponents.Snackbar">
-        <item name="backgroundTint">?attr/colorSurface</item>
+        <item name="android:backgroundTint">?attr/colorSurface</item>
         <item name="actionTextColorAlpha">1</item>
     </style>
 
@@ -233,7 +233,7 @@
     </style>
 
     <style name="Widget.App.AppBarLayout.Light" parent="Widget.Design.AppBarLayout">
-        <item name="background">@color/md_grey_300</item>
+        <item name="android:background">@color/md_grey_300</item>
     </style>
 
     <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
