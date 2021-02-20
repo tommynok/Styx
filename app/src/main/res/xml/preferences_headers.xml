@@ -6,17 +6,17 @@
     <PreferenceCategory
         android:title="@string/settings_general">
 
-    <Preference
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.GeneralSettingsFragment"
         app:title="@string/settings_general"
         app:icon="@drawable/ic_settings" />
 
-    <Preference
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.DisplaySettingsFragment"
         app:title="@string/settings_display"
         app:icon="@drawable/ic_palette" />
 
-    <Preference
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.BookmarkSettingsFragment"
         app:title="@string/bookmark_settings"
         app:icon="@drawable/ic_bookmark_border" />
@@ -26,12 +26,12 @@
     <PreferenceCategory
         android:title="@string/settings_security">
 
-    <Preference
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.PrivacySettingsFragment"
         app:title="@string/settings_privacy"
         app:icon="@drawable/ic_security" />
 
-    <Preference
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.AdBlockSettingsFragment"
         app:title="@string/settings_adblock"
         app:icon="@drawable/ic_block" />
@@ -41,13 +41,13 @@
     <PreferenceCategory
         android:title="@string/settings_other">
 
-    <Preference
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.AppsSettingsFragment"
         app:summary="@string/settings_summary_apps"
         app:title="@string/settings_title_apps"
         app:icon="@drawable/ic_apps" />
 
-    <Preference
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.AboutSettingsFragment"
         app:summary="@string/settings_about_explain"
         app:title="@string/settings_about"
