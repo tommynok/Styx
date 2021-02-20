@@ -13,37 +13,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.PopupWindow
-import kotlinx.android.synthetic.main.popup_menu_browser.view.*
 import javax.inject.Inject
 
 class BrowserPopupMenu : PopupWindow {
 
     @Inject
     internal lateinit var bookmarkModel: BookmarkRepository
+    var iBinding: PopupMenuBrowserBinding
 
-    constructor(layoutInflater: LayoutInflater, view: View = BrowserPopupMenu.inflate(layoutInflater))
-            : super(view, WRAP_CONTENT, WRAP_CONTENT, true) {
+    constructor(layoutInflater: LayoutInflater, aBinding: PopupMenuBrowserBinding = BrowserPopupMenu.inflate(layoutInflater))
+            : super(aBinding.root, WRAP_CONTENT, WRAP_CONTENT, true) {
 
-        view.context.injector.inject(this)
+        aBinding.root.context.injector.inject(this)
+
+        iBinding = aBinding
 
         // Elevation just need to be high enough not to cut the effect defined in our layout
         elevation = 100F
         //
         animationStyle = R.style.AnimationMenu
 
-        view.menuItemCloseIncognito.visibility = View.GONE
+        aBinding.menuItemCloseIncognito.visibility = View.GONE
 
         // Needed on Android 5 to make sure our pop-up can be dismissed by tapping outside and back button
         // See: https://stackoverflow.com/questions/46872634/close-popupwindow-upon-tapping-outside-or-back-button
         setBackgroundDrawable(ColorDrawable())
 
         // Hide incognito menu item if we are already incognito
-        if ((view.context as BrowserActivity).isIncognito()) {
-            view.menuItemIncognito.visibility = View.GONE
+        if ((aBinding.root.context as BrowserActivity).isIncognito()) {
+            aBinding.menuItemIncognito.visibility = View.GONE
             // No sessions in incognito mode
-            view.menuItemSessions.visibility = View.GONE
+            aBinding.menuItemSessions.visibility = View.GONE
             // Show close incognito mode button
-            view.menuItemCloseIncognito.visibility = View.VISIBLE
+            aBinding.menuItemCloseIncognito.visibility = View.VISIBLE
         }
 
         //val radius: Float = getResources().getDimension(R.dimen.default_corner_radius) //32dp
@@ -72,14 +74,14 @@ class BrowserPopupMenu : PopupWindow {
 
         (contentView.context as BrowserActivity).tabsManager.let {
             // Set desktop mode checkbox according to current tab
-            contentView.menuItemDesktopMode.isChecked = it.currentTab?.desktopMode ?: false
+            iBinding.menuItemDesktopMode.isChecked = it.currentTab?.desktopMode ?: false
 
             it.currentTab?.let { tab ->
                 // Let user add multiple times the same URL I guess, for now anyway
                 // Blocking it is not nice and subscription is more involved I guess
                 // See BookmarksDrawerView.updateBookmarkIndicator
                 //contentView.menuItemAddBookmark.visibility = if (bookmarkModel.isBookmark(tab.url).blockingGet() || tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
-                contentView.menuItemAddBookmark.visibility = if (tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
+                iBinding.menuItemAddBookmark.visibility = if (tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
             }
         }
 
@@ -94,12 +96,13 @@ class BrowserPopupMenu : PopupWindow {
                 Utils.dpToPx(10F),
                 // Above our anchor
                 anchorLoc[1])
+
     }
 
     companion object {
 
-        fun inflate(layoutInflater: LayoutInflater): View {
-            return PopupMenuBrowserBinding.inflate(layoutInflater).root
+        fun inflate(layoutInflater: LayoutInflater): PopupMenuBrowserBinding {
+            return PopupMenuBrowserBinding.inflate(layoutInflater)
         }
 
     }

@@ -20,6 +20,7 @@ import com.jamal2367.styx.database.SearchSuggestion
 import com.jamal2367.styx.database.WebPage
 import com.jamal2367.styx.database.bookmark.BookmarkRepository
 import com.jamal2367.styx.database.history.HistoryRepository
+import com.jamal2367.styx.databinding.ActivityMainBinding
 import com.jamal2367.styx.databinding.ToolbarContentBinding
 import com.jamal2367.styx.di.*
 import com.jamal2367.styx.dialog.BrowserDialog
@@ -85,9 +86,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
-import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.customview.widget.ViewDragHelper
+import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -97,12 +98,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.browser_content.*
-import kotlinx.android.synthetic.main.popup_menu_browser.view.*
-import kotlinx.android.synthetic.main.search.*
-import kotlinx.android.synthetic.main.toolbar.*
-import kotlinx.android.synthetic.main.toolbar_content.*
 import java.io.IOException
 import javax.inject.Inject
 import kotlin.system.exitProcess
@@ -113,7 +108,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     lateinit var CHANNEL_ID: String
 
     // Toolbar Views
-    private var searchBackground: View? = null
     private var searchView: SearchView? = null
     private var homeButton: ImageButton? = null
     private var buttonBack: ImageButton? = null
@@ -190,6 +184,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     private lateinit var popupMenu: BrowserPopupMenu
     lateinit var sessionsMenu: SessionsPopupWindow
 
+    // Binding
+    lateinit var iBinding: ActivityMainBinding
+    lateinit var iBindingToolbarContent: ToolbarContentBinding
+
     // Settings
     private var showCloseTabButton = false
 
@@ -231,7 +229,8 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             performExitCleanUp()
         }
 
-        setContentView(R.layout.activity_main)
+        iBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
         createPopupMenu()
         createSessionsMenu()
 
@@ -263,7 +262,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         initialize(savedInstanceState)
 
         // Hook in buttons with onClick handler
-        button_reload.setOnClickListener(this)
+        iBindingToolbarContent.buttonReload.setOnClickListener(this)
     }
 
     private fun createSessionsMenu() {
@@ -275,12 +274,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     fun showSessions() {
         // If using horizontal tab bar or if our tab drawer is open
-        if (!shouldShowTabsInDrawer || drawer_layout.isDrawerOpen(getTabDrawer())) {
+        if (!shouldShowTabsInDrawer || iBinding.drawerLayout.isDrawerOpen(getTabDrawer())) {
             // Use sessions button as anchor
             buttonSessions?.let { sessionsMenu.show(it) }
         } else {
             // Otherwise use main menu button as anchor
-            button_more?.let { sessionsMenu.show(it) }
+            iBindingToolbarContent.buttonMore?.let { sessionsMenu.show(it) }
         }
     }
 
@@ -293,33 +292,33 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         // TODO: could use data binding instead
         popupMenu.apply {
             // Bind our actions
-            onMenuItemClicked(view.menuItemSessions) { executeAction(R.id.action_sessions) }
-            onMenuItemClicked(view.menuItemNewTab) { executeAction(R.id.action_new_tab) }
-            onMenuItemClicked(view.menuItemIncognito) { executeAction(R.id.menuItemIncognito) }
-            onMenuItemClicked(view.menuItemCloseIncognito) { executeAction(R.id.menuItemCloseIncognito) }
-            onMenuItemClicked(view.menuItemAddBookmark) { executeAction(R.id.menuItemAddBookmark) }
-            onMenuItemClicked(view.menuItemHistory) { executeAction(R.id.menuItemHistory) }
-            onMenuItemClicked(view.menuItemDownloads) { executeAction(R.id.menuItemDownloads) }
-            onMenuItemClicked(view.menuItemShare) { executeAction(R.id.menuItemShare) }
-            onMenuItemClicked(view.menuItemFind) { executeAction(R.id.menuItemFind) }
-            onMenuItemClicked(view.menuItemAddToHome) { executeAction(R.id.menuItemAddToHome) }
-            onMenuItemClicked(view.menuItemReaderMode) { executeAction(R.id.menuItemReaderMode) }
-            onMenuItemClicked(view.menuItemSettings) { executeAction(R.id.menuItemSettings) }
-            onMenuItemClicked(view.menuItemDesktopMode) { executeAction(R.id.menuItemDesktopMode) }
+            onMenuItemClicked(iBinding.menuItemSessions) { executeAction(R.id.action_sessions) }
+            onMenuItemClicked(iBinding.menuItemNewTab) { executeAction(R.id.action_new_tab) }
+            onMenuItemClicked(iBinding.menuItemIncognito) { executeAction(R.id.menuItemIncognito) }
+            onMenuItemClicked(iBinding.menuItemCloseIncognito) { executeAction(R.id.menuItemCloseIncognito) }
+            onMenuItemClicked(iBinding.menuItemAddBookmark) { executeAction(R.id.menuItemAddBookmark) }
+            onMenuItemClicked(iBinding.menuItemHistory) { executeAction(R.id.menuItemHistory) }
+            onMenuItemClicked(iBinding.menuItemDownloads) { executeAction(R.id.menuItemDownloads) }
+            onMenuItemClicked(iBinding.menuItemShare) { executeAction(R.id.menuItemShare) }
+            onMenuItemClicked(iBinding.menuItemFind) { executeAction(R.id.menuItemFind) }
+            onMenuItemClicked(iBinding.menuItemAddToHome) { executeAction(R.id.menuItemAddToHome) }
+            onMenuItemClicked(iBinding.menuItemReaderMode) { executeAction(R.id.menuItemReaderMode) }
+            onMenuItemClicked(iBinding.menuItemSettings) { executeAction(R.id.menuItemSettings) }
+            onMenuItemClicked(iBinding.menuItemDesktopMode) { executeAction(R.id.menuItemDesktopMode) }
 
             // Popup menu action shortcut icons
-            onMenuItemClicked(view.menuShortcutRefresh) { executeAction(R.id.menuShortcutRefresh) }
-            onMenuItemClicked(view.menuShortcutHome) { executeAction(R.id.menuShortcutHome) }
-            onMenuItemClicked(view.menuShortcutForward) { executeAction(R.id.menuShortcutForward) }
-            onMenuItemClicked(view.menuShortcutBack) { executeAction(R.id.menuShortcutBack) }
-            onMenuItemClicked(view.menuShortcutBookmarks) { executeAction(R.id.menuShortcutBookmarks) }
+            onMenuItemClicked(iBinding.menuShortcutRefresh) { executeAction(R.id.menuShortcutRefresh) }
+            onMenuItemClicked(iBinding.menuShortcutHome) { executeAction(R.id.menuShortcutHome) }
+            onMenuItemClicked(iBinding.menuShortcutForward) { executeAction(R.id.menuShortcutForward) }
+            onMenuItemClicked(iBinding.menuShortcutBack) { executeAction(R.id.menuShortcutBack) }
+            onMenuItemClicked(iBinding.menuShortcutBookmarks) { executeAction(R.id.menuShortcutBookmarks) }
 
 
         }
     }
 
     private fun showPopupMenu() {
-        popupMenu.show(button_more)
+        popupMenu.show(iBindingToolbarContent.buttonMore)
     }
 
     /**
@@ -352,7 +351,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         //initializeToolbarHeight(resources.configuration)
         //setSupportActionBar(toolbar)
-        ToolbarContentBinding.inflate(layoutInflater, toolbar, true)
+        iBindingToolbarContent = ToolbarContentBinding.inflate(layoutInflater, iBinding.toolbarInclude.toolbar, true)
         //val actionBar = requireNotNull(supportActionBar)
 
         // TODO: disable those for incognito mode?
@@ -365,11 +364,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         backgroundDrawable.color = primaryColor
 
         // Drawer stutters otherwise
-        //left_drawer.setLayerType(LAYER_TYPE_NONE, null)
-        //right_drawer.setLayerType(LAYER_TYPE_NONE, null)
+        //iBinding.leftDrawer.setLayerType(LAYER_TYPE_NONE, null)
+        //iBinding.rightDrawer.setLayerType(LAYER_TYPE_NONE, null)
 
 
-        drawer_layout.addDrawerListener(DrawerLocker())
+        iBinding.drawerLayout.addDrawerListener(DrawerLocker())
 
         webPageBitmap = drawable(R.drawable.ic_webpage).toBitmap()
 
@@ -384,11 +383,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         bookmarksView = BookmarksDrawerView(this).also(findViewById<FrameLayout>(getBookmarksContainerId())::addView)
 
         if (shouldShowTabsInDrawer) {
-            tabs_toolbar_container.visibility = GONE
+            iBinding.toolbarInclude.tabsToolbarContainer.visibility = GONE
         }
 
         // Is that still needed
-        val customView = toolbar
+        val customView = iBinding.toolbarInclude.toolbar
         customView.layoutParams = customView.layoutParams.apply {
             width = LayoutParams.MATCH_PARENT
             height = LayoutParams.MATCH_PARENT
@@ -396,7 +395,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         // Show incognito icon in more menu button
         if (isIncognito()) {
-            button_more.setImageResource(R.drawable.ic_incognito)
+            iBindingToolbarContent.buttonMore.setImageResource(R.drawable.ic_incognito)
         }
 
         tabsButton = customView.findViewById(R.id.tabs_button)
@@ -420,12 +419,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         // create the search EditText in the ToolBar
         searchView = customView.findViewById<SearchView>(R.id.search).apply {
-            search_ssl_status.setOnClickListener {
+            iBindingToolbarContent.addressBarInclude.searchSslStatus.setOnClickListener {
                 tabsManager.currentTab?.let { tab ->
                     tab.sslCertificate?.let { showSslDialog(it, tab.currentSslState()) }
                 }
             }
-            search_ssl_status.updateVisibilityForContent()
+            iBindingToolbarContent.addressBarInclude.searchSslStatus.updateVisibilityForContent()
             //setMenuItemIcon(R.id.action_reload, R.drawable.ic_action_refresh)
             //toolbar?.menu?.findItem(R.id.action_reload)?.let { it.icon = ContextCompat.getDrawable(this@BrowserActivity, R.drawable.ic_action_refresh) }
 
@@ -439,7 +438,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             initializeSearchSuggestions(this)
         }
 
-        searchBackground = customView.findViewById<View>(R.id.search_container)
         // initialize search background color
         setSearchBarColors(primaryColor)
 
@@ -470,19 +468,19 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         }
 
         // Enable swipe to refresh
-        content_frame.setOnRefreshListener {
+        iBinding.contentFrame.setOnRefreshListener {
             tabsManager.currentTab?.reload()
-            mainHandler.postDelayed({ content_frame.isRefreshing = false }, 1000)   // Stop the loading spinner after one second
+            mainHandler.postDelayed({ iBinding.contentFrame.isRefreshing = false }, 1000)   // Stop the loading spinner after one second
         }
 
         // TODO: define custom transitions to make flying in and out of the tool bar nicer
-        //ui_layout.layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, ui_layout.layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING))
+        //iBinding.uiLayout.layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, iBinding.uiLayout.layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING))
         // Disabling animations which are not so nice
-        ui_layout.layoutTransition.disableTransitionType(LayoutTransition.CHANGE_DISAPPEARING)
-        ui_layout.layoutTransition.disableTransitionType(LayoutTransition.CHANGE_APPEARING)
+        iBinding.uiLayout.layoutTransition.disableTransitionType(LayoutTransition.CHANGE_DISAPPEARING)
+        iBinding.uiLayout.layoutTransition.disableTransitionType(LayoutTransition.CHANGE_APPEARING)
 
 
-        button_more.setOnClickListener(OnClickListener {
+        iBindingToolbarContent.buttonMore.setOnClickListener(OnClickListener {
             // Web page is loosing focus as we open our menu
             // Actually this was causing our search field to gain focus on HTC One M8 - Android 6
             //currentTabView?.clearFocus()
@@ -516,15 +514,15 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     }
 
     private fun getBookmarkDrawer(): View = if (swapBookmarksAndTabs) {
-        left_drawer
+        iBinding.leftDrawer
     } else {
-        right_drawer
+        iBinding.rightDrawer
     }
 
     private fun getTabDrawer(): View = if (swapBookmarksAndTabs) {
-        right_drawer
+        iBinding.rightDrawer
     } else {
-        left_drawer
+        iBinding.leftDrawer
     }
 
     protected fun panicClean() {
@@ -600,12 +598,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                     showUrl()
                     // Select all text so that user conveniently start typing or copy current URL
                     (v as SearchView).selectAll()
-                    search_ssl_status.visibility = GONE
+                    iBindingToolbarContent.addressBarInclude.searchSslStatus.visibility = GONE
                 }
             }
 
             if (!hasFocus) {
-                search_ssl_status.updateVisibilityForContent()
+                iBindingToolbarContent.addressBarInclude.searchSslStatus.updateVisibilityForContent()
                 searchView?.let {
                     inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
                 }
@@ -662,9 +660,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             val bookmarksDrawer = getBookmarkDrawer()
 
             if (v === tabsDrawer) {
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, bookmarksDrawer)
+                iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, bookmarksDrawer)
             } else if (shouldShowTabsInDrawer) {
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, tabsDrawer)
+                iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, tabsDrawer)
             }
 
         }
@@ -684,9 +682,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             val bookmarksDrawer = getBookmarkDrawer()
 
             if (v === tabsDrawer) {
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, bookmarksDrawer)
+                iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, bookmarksDrawer)
             } else {
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, tabsDrawer)
+                iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, tabsDrawer)
             }
         }
 
@@ -717,14 +715,14 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
     private fun lockDrawers()
     {
-        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, getTabDrawer())
-        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, getBookmarkDrawer())
+        iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, getTabDrawer())
+        iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, getBookmarkDrawer())
     }
 
     private fun unlockDrawers()
     {
-        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, getTabDrawer())
-        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, getBookmarkDrawer())
+        iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, getTabDrawer())
+        iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, getBookmarkDrawer())
     }
 
 
@@ -758,7 +756,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     private fun initializePreferences() {
 
         // TODO layout transition causing memory leak
-        //        content_frame.setLayoutTransition(new LayoutTransition())
+        //        iBinding.contentFrame.setLayoutTransition(new LayoutTransition())
 
         val currentSearchEngine = searchEngineProvider.provideSearchEngine()
         searchText = currentSearchEngine.queryUrl
@@ -1100,8 +1098,8 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         when (id) {
             android.R.id.home -> {
-                if (drawer_layout.isDrawerOpen(getBookmarkDrawer())) {
-                    drawer_layout.closeDrawer(getBookmarkDrawer())
+                if (iBinding.drawerLayout.isDrawerOpen(getBookmarkDrawer())) {
+                    iBinding.drawerLayout.closeDrawer(getBookmarkDrawer())
                 }
                 return true
             }
@@ -1286,12 +1284,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         if (!userPreferences.pullToRefreshInPortrait && configuration.orientation == Configuration.ORIENTATION_PORTRAIT
                 || !userPreferences.pullToRefreshInLandscape && configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // User does not want to use pull to refresh
-            content_frame.isEnabled = false
-            button_reload.visibility = View.VISIBLE
+            iBinding.contentFrame.isEnabled = false
+            iBindingToolbarContent.buttonReload.visibility = View.VISIBLE
             return
         }
-        content_frame.isEnabled = currentTabView?.canScrollVertically()?:false
-        button_reload.visibility = if (content_frame.isEnabled && !isLoading()) View.GONE else View.VISIBLE
+        iBinding.contentFrame.isEnabled = currentTabView?.canScrollVertically()?:false
+        iBindingToolbarContent.buttonReload.visibility = if (iBinding.contentFrame.isEnabled && !isLoading()) View.GONE else View.VISIBLE
     }
 
     /**
@@ -1339,10 +1337,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     }
 
     override fun updateSslState(sslState: SslState) {
-        search_ssl_status.setImageDrawable(createSslDrawableForState(sslState))
+        iBindingToolbarContent.addressBarInclude.searchSslStatus.setImageDrawable(createSslDrawableForState(sslState))
 
         if (searchView?.hasFocus() == false) {
-            search_ssl_status.updateVisibilityForContent()
+            iBindingToolbarContent.addressBarInclude.searchSslStatus.updateVisibilityForContent()
         }
     }
 
@@ -1399,8 +1397,8 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         view.removeFromParent()
         currentTabView.removeFromParent()
 
-        content_frame.resetTarget() // Needed to make it work together with swipe to refresh
-        content_frame.addView(view, 0, MATCH_PARENT)
+        iBinding.contentFrame.resetTarget() // Needed to make it work together with swipe to refresh
+        iBinding.contentFrame.addView(view, 0, MATCH_PARENT)
         view.requestFocus()
 
         // Remove existing focus change observer before we change our tab
@@ -1408,7 +1406,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         // Change our tab
         currentTabView = view
         // Close virtual keyboard if we loose focus
-        currentTabView.onFocusLost { inputMethodManager.hideSoftInputFromWindow(ui_layout.windowToken, 0) }
+        currentTabView.onFocusLost { inputMethodManager.hideSoftInputFromWindow(iBinding.uiLayout.windowToken, 0) }
         showActionBar()
 
         // Make sure current tab is visible in tab list
@@ -1436,7 +1434,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         presenter?.tabChanged(position)
         // Keep the drawer open while the tab change animation in running
         // Has the added advantage that closing of the drawer itself should be smoother as the webview had a bit of time to load
-        mainHandler.postDelayed(drawer_layout::closeDrawers, 350)
+        mainHandler.postDelayed(iBinding.drawerLayout::closeDrawers, 350)
     }
 
     // This is the callback from 'new tab' button on page drawer
@@ -1511,22 +1509,22 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         mainHandler.postDelayed({ setupPullToRefresh(newConfig) }, 300)
         popupMenu.dismiss() // As it wont update somehow
         // Make sure our drawers adjust accordingly
-        drawer_layout.requestLayout()
+        iBinding.drawerLayout.requestLayout()
     }
 
     private fun initializeToolbarHeight(configuration: Configuration) =
-        ui_layout.doOnLayout {
+        iBinding.uiLayout.doOnLayout {
             // TODO externalize the dimensions
             val toolbarSize = if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 R.dimen.toolbar_height_portrait
             } else {
                 R.dimen.toolbar_height_landscape
             }
-            toolbar.layoutParams = (toolbar.layoutParams as ConstraintLayout.LayoutParams).apply {
+            iBinding.toolbarInclude.toolbar.layoutParams = (iBinding.toolbarInclude.toolbar.layoutParams as ConstraintLayout.LayoutParams).apply {
                 height = dimen(toolbarSize)
             }
-            toolbar.minimumHeight = toolbarSize
-            toolbar.requestLayout()
+            iBinding.toolbarInclude.toolbar.minimumHeight = toolbarSize
+            iBinding.toolbarInclude.toolbar.requestLayout()
         }
 
     override fun closeBrowser() {
@@ -1551,9 +1549,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
     private fun doBackAction() {
         val currentTab = tabsManager.currentTab
-        if (drawer_layout.isDrawerOpen(getTabDrawer())) {
-            drawer_layout.closeDrawer(getTabDrawer())
-        } else if (drawer_layout.isDrawerOpen(getBookmarkDrawer())) {
+        if (iBinding.drawerLayout.isDrawerOpen(getTabDrawer())) {
+            iBinding.drawerLayout.closeDrawer(getTabDrawer())
+        } else if (iBinding.drawerLayout.isDrawerOpen(getBookmarkDrawer())) {
             bookmarksView?.navigateBack()
         } else {
             if (currentTab != null) {
@@ -1662,7 +1660,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         setupPullToRefresh(resources.configuration)
 
         // We think that's needed in case there was a rotation while in the background
-        drawer_layout.requestLayout()
+        iBinding.drawerLayout.requestLayout()
 
         //intent?.let {logger.log(TAG, it.toString())}
     }
@@ -1729,7 +1727,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         // Check if our tool bar is long enough to display extra buttons
         val threshold = (buttonBack?.width?:3840)*10
         // If our tool bar is longer than 10 action buttons then we show extra buttons
-        (toolbar.width>threshold).let{
+        (iBinding.toolbarInclude.toolbar.width>threshold).let{
             buttonBack?.isVisible = it
             buttonForward?.isVisible = it
         }
@@ -1740,27 +1738,27 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         // Change reload icon color
         //setMenuItemColor(R.id.action_reload, currentToolBarTextColor)
         // SSL status icon color
-        search_ssl_status.setColorFilter(currentToolBarTextColor)
+        iBindingToolbarContent.addressBarInclude.searchSslStatus.setColorFilter(currentToolBarTextColor)
         // Toolbar buttons filter
-        button_more.setColorFilter(currentToolBarTextColor)
-        button_reload.setColorFilter(currentToolBarTextColor)
+        iBindingToolbarContent.buttonMore.setColorFilter(currentToolBarTextColor)
+        iBindingToolbarContent.buttonReload.setColorFilter(currentToolBarTextColor)
 
         // Pull to refresh spinner color also follow current theme
-        content_frame.setProgressBackgroundColorSchemeColor(color)
-        content_frame.setColorSchemeColors(currentToolBarTextColor)
+        iBinding.contentFrame.setProgressBackgroundColorSchemeColor(color)
+        iBinding.contentFrame.setColorSchemeColors(currentToolBarTextColor)
 
         // Color also applies to the following backgrounds as they show during tool bar show/hide animation
-        ui_layout.setBackgroundColor(color)
-        content_frame.setBackgroundColor(color)
+        iBinding.uiLayout.setBackgroundColor(color)
+        iBinding.contentFrame.setBackgroundColor(color)
         // This one is going to be a problem as it will break some websites such as bbc.com
         // Make sure we reset our background color after page load, thanks bbc.com and bbc.com/news for not defining background color
-        currentTabView?.setBackgroundColor(if (progress_view.progress >= 100) Color.WHITE else color)
+        currentTabView?.setBackgroundColor(if (iBinding.toolbarInclude.progressView.progress >= 100) Color.WHITE else color)
         currentTabView?.invalidate()
 
         // No animation for now
         // Toolbar background color
-        toolbar_layout.setBackgroundColor(color)
-        progress_view.mProgressColor = color
+        iBinding.toolbarInclude.toolbarLayout.setBackgroundColor(color)
+        iBinding.toolbarInclude.progressView.mProgressColor = color
         // Search text field color
         setSearchBarColors(color)
 
@@ -1770,10 +1768,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             // That's notably making it more visible on lequipe.fr and bbc.com/sport
             // We hope this is going to work with most white themed website too
             if (ColorUtils.calculateLuminance(it)>0.75) {
-                progress_view.setBackgroundColor(Color.BLACK)
+                iBinding.toolbarInclude.progressView.setBackgroundColor(Color.BLACK)
             }
             else {
-                progress_view.setBackgroundColor(it)
+                iBinding.toolbarInclude.progressView.setBackgroundColor(it)
             }
         }
 
@@ -1853,7 +1851,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      * Set our search bar color for focused and non focused state
      */
     private fun setSearchBarColors(aColor: Int) {
-        searchBackground?.apply {
+        iBindingToolbarContent.addressBarInclude.root.apply {
             val stateListDrawable = background as StateListDrawable
             // Order may matter depending of states declared in our background drawable
             // See: [R.drawable.card_bg_elevate]
@@ -1915,7 +1913,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
     override fun updateProgress(progress: Int) {
         setIsLoading(progress < 100)
-        progress_view.progress = progress
+        iBinding.toolbarInclude.progressView.progress = progress
     }
 
     protected fun addItemToHistory(title: String?, url: String) {
@@ -1983,25 +1981,25 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         //presenter?.newTab(downloadPageInitializer,true)
     }
 
-    private fun showingBookmarks() = drawer_layout.isDrawerOpen(getBookmarkDrawer())
-    private fun showingTabs() = drawer_layout.isDrawerOpen(getTabDrawer())
+    private fun showingBookmarks() = iBinding.drawerLayout.isDrawerOpen(getBookmarkDrawer())
+    private fun showingTabs() = iBinding.drawerLayout.isDrawerOpen(getTabDrawer())
 
     /**
      * helper function that opens the bookmark drawer
      */
     private fun openBookmarks() {
         if (showingTabs()) {
-            drawer_layout.closeDrawers()
+            iBinding.drawerLayout.closeDrawers()
         }
         // Define what to do once our drawer it opened
-        //drawer_layout.onceOnDrawerOpened {
-        drawer_layout.findViewById<RecyclerView>(R.id.bookmark_list_view)?.apply {
+        //iBinding.drawerLayout.onceOnDrawerOpened {
+        iBinding.drawerLayout.findViewById<RecyclerView>(R.id.bookmark_list_view)?.apply {
             // Focus first item in our list
             findViewHolderForAdapterPosition(0)?.itemView?.requestFocus()
         }
         //}
         // Open bookmarks drawer
-        drawer_layout.openDrawer(getBookmarkDrawer())
+        iBinding.drawerLayout.openDrawer(getBookmarkDrawer())
     }
 
     /**
@@ -2009,7 +2007,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     private fun toggleBookmarks() {
         if (showingBookmarks()) {
-            drawer_layout.closeDrawers()
+            iBinding.drawerLayout.closeDrawers()
         } else {
             openBookmarks()
         }
@@ -2020,30 +2018,30 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     private fun openTabs() {
         if (showingBookmarks()) {
-            drawer_layout.closeDrawers()
+            iBinding.drawerLayout.closeDrawers()
         }
 
         // Loose focus on current tab web page
         // Actually this was causing our search field to gain focus on HTC One M8 - Android 6
         // currentTabView?.clearFocus()
         // That's needed for focus issue when opening with tap on button
-        val tabListView = drawer_layout.findViewById<RecyclerView>(R.id.tabs_list)
+        val tabListView = iBinding.drawerLayout.findViewById<RecyclerView>(R.id.tabs_list)
         tabListView?.requestFocus()
         // Define what to do once our list drawer it opened
         // Item focus won't work sometimes when not using keyboard, I'm guessing that's somehow a feature
-        drawer_layout.onceOnDrawerOpened {
+        iBinding.drawerLayout.onceOnDrawerOpened {
             scrollToCurrentTab()
         }
 
         // Open our tab list drawer
-        drawer_layout.openDrawer(getTabDrawer())
+        iBinding.drawerLayout.openDrawer(getTabDrawer())
     }
 
     /**
      * Scroll to current tab.
      */
     private fun scrollToCurrentTab() {
-        val tabListView = drawer_layout.findViewById<RecyclerView>(R.id.tabs_list)
+        val tabListView = iBinding.drawerLayout.findViewById<RecyclerView>(R.id.tabs_list)
         // Set focus
         // Find our recycler list view
         tabListView?.apply {
@@ -2071,7 +2069,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     private fun toggleTabs() {
         if (showingTabs()) {
-            drawer_layout.closeDrawers()
+            iBinding.drawerLayout.closeDrawers()
         } else {
             openTabs()
         }
@@ -2097,22 +2095,22 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      * @param runnable an optional runnable to run after the drawers are closed.
      */
     protected fun closeDrawers(runnable: (() -> Unit)?) {
-        if (!drawer_layout.isDrawerOpen(left_drawer) && !drawer_layout.isDrawerOpen(right_drawer)) {
+        if (!iBinding.drawerLayout.isDrawerOpen(iBinding.leftDrawer) && !iBinding.drawerLayout.isDrawerOpen(iBinding.rightDrawer)) {
             if (runnable != null) {
                 runnable()
                 return
             }
         }
-        drawer_layout.closeDrawers()
+        iBinding.drawerLayout.closeDrawers()
 
-        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
+        iBinding.drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) = Unit
 
             override fun onDrawerOpened(drawerView: View) = Unit
 
             override fun onDrawerClosed(drawerView: View) {
                 runnable?.invoke()
-                drawer_layout.removeDrawerListener(this)
+                iBinding.drawerLayout.removeDrawerListener(this)
             }
 
             override fun onDrawerStateChanged(newState: Int) = Unit
@@ -2120,12 +2118,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     }
 
     override fun setForwardButtonEnabled(enabled: Boolean) {
-        popupMenu.contentView.menuShortcutForward.isEnabled = enabled
+        popupMenu.iBinding.menuShortcutForward.isEnabled = enabled
         tabsView?.setGoForwardEnabled(enabled)
     }
 
     override fun setBackButtonEnabled(enabled: Boolean) {
-        popupMenu.contentView.menuShortcutBack.isEnabled = enabled
+        popupMenu.iBinding.menuShortcutBack.isEnabled = enabled
         tabsView?.setGoBackEnabled(enabled)
     }
 
@@ -2308,14 +2306,14 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     }
 
     override fun onBackButtonPressed() {
-        if (drawer_layout.closeDrawerIfOpen(getTabDrawer())) {
+        if (iBinding.drawerLayout.closeDrawerIfOpen(getTabDrawer())) {
             val currentTab = tabsManager.currentTab
             if (currentTab?.canGoBack() == true) {
                 currentTab.goBack()
             } else if (currentTab != null) {
                 tabsManager.let { presenter?.deleteTab(it.positionOf(currentTab)) }
             }
-        } else if (drawer_layout.closeDrawerIfOpen(getBookmarkDrawer())) {
+        } else if (iBinding.drawerLayout.closeDrawerIfOpen(getBookmarkDrawer())) {
             // Don't do anything other than close the bookmarks drawer when the activity is being
             // delegated to.
         }
@@ -2427,11 +2425,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     override fun showActionBar() {
         logger.log(TAG, "showActionBar")
-        toolbar_layout.visibility = View.VISIBLE
+        iBinding.toolbarInclude.toolbarLayout.visibility = View.VISIBLE
     }
 
-    private fun doHideToolBar() { toolbar_layout.visibility = View.GONE }
-    private fun isToolBarVisible() = toolbar_layout.visibility == View.VISIBLE
+    private fun doHideToolBar() { iBinding.toolbarInclude.toolbarLayout.visibility = View.GONE }
+    private fun isToolBarVisible() = iBinding.toolbarInclude.toolbarLayout.visibility == View.VISIBLE
 
     private fun toggleToolBar() : Boolean
     {
@@ -2441,7 +2439,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             false
         } else {
             showActionBar()
-            button_more.requestFocus()
+            iBindingToolbarContent.buttonMore.requestFocus()
             true
         }
     }
@@ -2479,7 +2477,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             StyxDialogBuilder.NewTab.FOREGROUND -> presenter?.newTab(urlInitializer, true)
             StyxDialogBuilder.NewTab.BACKGROUND -> presenter?.newTab(urlInitializer, false)
             StyxDialogBuilder.NewTab.INCOGNITO -> {
-                drawer_layout.closeDrawers()
+                iBinding.drawerLayout.closeDrawers()
                 val intent = IncognitoActivity.createIntent(this, url.toUri())
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_up_in, R.anim.fade_out_scale)
@@ -2500,18 +2498,18 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     private fun setIsLoading(isLoading: Boolean) {
         if (searchView?.hasFocus() == false) {
-            search_ssl_status.updateVisibilityForContent()
+            iBindingToolbarContent.addressBarInclude.searchSslStatus.updateVisibilityForContent()
         }
 
         // Set stop or reload icon according to current load status
         //setMenuItemIcon(R.id.action_reload, if (isLoading) R.drawable.ic_action_delete else R.drawable.ic_action_refresh)
-        button_reload.setImageResource(if (isLoading) R.drawable.ic_action_delete else R.drawable.ic_action_refresh)
+        iBindingToolbarContent.buttonReload.setImageResource(if (isLoading) R.drawable.ic_action_delete else R.drawable.ic_action_refresh)
 
         // That fancy animation would be great but somehow it looks like it is causing issues making the button unresponsive.
         // I'm guessing it is conflicting with animations from layout change.
         // Animations on Android really are a pain in the ass, half baked crappy implementations.
         /*
-        button_reload.let {
+        iBindingToolbarContent.buttonReload.let {
             val imageRes = if (isLoading) R.drawable.ic_action_delete else R.drawable.ic_action_refresh
             // Only change our image if needed otherwise we animate for nothing
             // Therefore first check if the selected image is already displayed
@@ -2522,7 +2520,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                     it.startAnimation(transition)
                 }
                 else{
-                    button_reload.setImageResource(imageRes)
+                    iBindingToolbarContent.buttonReload.setImageResource(imageRes)
                 }
             }
         }

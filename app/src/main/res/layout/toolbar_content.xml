@@ -10,7 +10,9 @@
         android:layout_marginRight="5dp"
         android:animateLayoutChanges="true">
 
-        <include layout="@layout/search" />
+        <include
+            android:id="@+id/address_bar_include"
+            layout="@layout/search" />
 
         <ImageButton
             android:id="@+id/button_reload"
