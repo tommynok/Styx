@@ -16,4 +16,11 @@
         app:showAsAction="ifRoom">
     </item>
 
+    <item
+        android:id="@+id/tts"
+        android:icon="@drawable/ic_tts"
+        android:title="@string/tts"
+        app:showAsAction="ifRoom">
+    </item>
+
 </menu>

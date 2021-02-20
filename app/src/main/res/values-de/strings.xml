@@ -195,6 +195,7 @@
     <string name="no">Nein</string>
     <string name="notification_incognito_running_description">Dauerhafte Inkognito-Benachrichtigung</string>
     <string name="notification_incognito_running_message">Inkognito-Tab anzeigen</string>
+    <string name="no_tts">Sprache wird nicht unterstützt</string>
     <string name="overViewMode">Seiten in der Übersicht öffnen</string>
     <string name="password">Passwörter speichern</string>
     <string name="port">Port:</string>
@@ -280,6 +281,7 @@
     <string name="ssl_info_issued_on">Ausgestellt am:</string>
     <string name="ssl_info_issued_to">Ausgestellt für:</string>
     <string name="ssl_warning_dont_ask_again">Während dieser Sitzung nicht mehr nachfragen</string>
+    <string name="stop_tts">Lesen beenden</string>
     <string name="suggestion">Suche nach</string>
     <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer tauschen</string>
     <string name="tabs_in_drawer">Desktop Tab-Drawer</string>
@@ -303,6 +305,8 @@
     <string name="title_text_size">Textgröße</string>
     <string name="title_user_agent">User-Agent</string>
     <string name="title_warning">Warnung</string>
+    <string name="tts">Seite lesen</string>
+    <string name="tts_initilization_failed">Initilisierung fehlgeschlagen</string>
     <string name="unknown_size">Unbekannte Größe</string>
     <string name="untitled">Ohne Titel</string>
     <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>

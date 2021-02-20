@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -23,6 +24,7 @@ import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.di.NetworkScheduler
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog.setDialogSize
+import com.jamal2367.styx.extensions.snackbar
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.reading.HtmlFetcher
 import com.jamal2367.styx.settings.activity.ThemedSettingsActivity
@@ -31,9 +33,10 @@ import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 import io.reactivex.disposables.Disposable
+import java.util.*
 import javax.inject.Inject
 
-class ReadingActivity : ThemedSettingsActivity() {
+class ReadingActivity : ThemedSettingsActivity(), TextToSpeech.OnInitListener {
 
     var mTitle: TextView? = null
     var mBody: TextView? = null
@@ -51,16 +54,21 @@ class ReadingActivity : ThemedSettingsActivity() {
     @Inject
     @MainScheduler
     var mMainScheduler: Scheduler? = null
+    private var tts: TextToSpeech? = null
     private var mInvert = false
+    private var reading = false
     private var mUrl: String? = null
     private var mTextSize = 0
     private var mProgressDialog: AlertDialog? = null
     private var mPageLoaderSubscription: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         this.injector.inject(this)
         overridePendingTransition(R.anim.slide_in_from_right, R.anim.fade_out_scale)
         mInvert = mUserPreferences!!.invertColors
+        tts = TextToSpeech(this, this)
+
         super.onCreate(savedInstanceState)
 
         // Change our theme if inverted
@@ -180,6 +188,7 @@ class ReadingActivity : ThemedSettingsActivity() {
             mProgressDialog!!.dismiss()
             mProgressDialog = null
         }
+        tts?.stop()
         super.onDestroy()
     }
 
@@ -223,9 +232,46 @@ class ReadingActivity : ThemedSettingsActivity() {
                 val dialog: Dialog = builder.show()
                 setDialogSize(this, dialog)
             }
+            R.id.tts -> {
+                reading = !reading
+                val text: String = mBody?.text.toString()
+                if (reading) tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+                else tts!!.stop()
+                invalidateOptionsMenu()
+            }
             else -> finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+
+            val result: Int = tts!!.setLanguage(Locale.getDefault())
+
+            //tts!!.setPitch(1F) // set pitch level
+            //tts!!.setSpeechRate(1F) // set speech speed rate
+
+            if (result == TextToSpeech.LANG_MISSING_DATA
+                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                snackbar(R.string.no_tts)
+            } else {
+                //btnSpeak.setEnabled(true)
+                //speakOut()
+            }
+        } else {
+            snackbar(R.string.tts_initilization_failed)
+        }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val item = menu.findItem(R.id.tts)
+        if (reading) {
+            item.title = resources.getString(R.string.stop_tts)
+        } else {
+            item.title = resources.getString(R.string.tts)
+        }
+        return super.onPrepareOptionsMenu(menu)
     }
 
     companion object {
@@ -250,6 +296,7 @@ class ReadingActivity : ThemedSettingsActivity() {
         private const val MEDIUM = 18.0f
         private const val SMALL = 14.0f
         private const val XSMALL = 10.0f
+
         private fun getTextSize(size: Int): Float {
             return when (size) {
                 0 -> XSMALL

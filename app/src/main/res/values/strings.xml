@@ -195,6 +195,7 @@
     <string name="no">No</string>
     <string name="notification_incognito_running_description">Ongoing incognito notification</string>
     <string name="notification_incognito_running_message">Touch to open</string>
+    <string name="no_tts">Language is not supported</string>
     <string name="overViewMode">Load pages in overview mode</string>
     <string name="password">Save your passwords</string>
     <string name="port">Port:</string>
@@ -280,6 +281,7 @@
     <string name="ssl_info_issued_on">Issued on:</string>
     <string name="ssl_info_issued_to">Issued to:</string>
     <string name="ssl_warning_dont_ask_again">Don\'t ask again for this browsing session.</string>
+    <string name="stop_tts">Stop reading</string>
     <string name="suggestion">Search for</string>
     <string name="swap_bookmarks_and_tabs">Swap bookmark and tab drawers</string>
     <string name="tabs_in_drawer">Show tabs in navigation drawer</string>
@@ -303,6 +305,8 @@
     <string name="title_text_size">Text size</string>
     <string name="title_user_agent">User agent</string>
     <string name="title_warning">Warning</string>
+    <string name="tts">Read page</string>
+    <string name="tts_initilization_failed">Initilization Failed</string>
     <string name="unknown_size">Unknown size</string>
     <string name="untitled">Untitled</string>
     <string name="url_app_home_page">https://github.com/jamal2362/</string>
@@ -314,7 +318,7 @@
     <string name="wideViewPort">Use wide viewport</string>
     <string name="window">Allow sites to open new windows</string>
     <string name="yes">Yes</string>
-	
+
 	<plurals name="notification_incognito_running_title">
         <item quantity="one">%1$d incognito tab open</item>
         <item quantity="other">%1$d incognito tabs open</item>
