@@ -25,8 +25,8 @@ import com.jamal2367.styx.ssl.SslState
 import com.jamal2367.styx.utils.*
 import com.jamal2367.styx.view.find.FindResults
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.app.DownloadManager
+import android.content.Context
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.content.res.Resources
@@ -36,6 +36,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.print.*
+import android.provider.Settings.Global.getString
 import android.view.*
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.View.OnScrollChangeListener
@@ -44,7 +46,12 @@ import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.collection.ArrayMap
+import androidx.core.content.ContextCompat.getSystemService
+import com.google.android.material.snackbar.Snackbar
+import com.jamal2367.styx.extensions.snackbar
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -766,6 +773,20 @@ class StyxView(
      */
     private fun setNetworkAvailable(isAvailable: Boolean) {
         webView?.setNetworkAvailable(isAvailable)
+    }
+
+    fun createWebPagePrint(webView: WebView) {
+        val printManager: PrintManager = activity.getSystemService(Context.PRINT_SERVICE) as PrintManager
+        val printAdapter: PrintDocumentAdapter = webView.createPrintDocumentAdapter()
+        val jobName = " Document"
+        val builder: PrintAttributes.Builder = PrintAttributes.Builder()
+        builder.setMediaSize(PrintAttributes.MediaSize.ISO_A4)
+        val printJob: PrintJob = printManager.print(jobName, printAdapter, builder.build())
+        if (printJob.isCompleted()) {
+            activity.snackbar(R.string.yes)
+        } else if (printJob.isFailed()) {
+            activity.snackbar(R.string.no)
+        }
     }
 
     /**

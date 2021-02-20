@@ -33,6 +33,7 @@
     <string name="action_restore_all_tabs">Alle Tabs wiederherstellen</string>
     <string name="action_remove_bookmark">Lesezeichen entfernt</string>
     <string name="action_restore_tab">Tab wiederherstellen</string>
+    <string name="action_print">Drucken</string>
     <string name="action_save_session">Sitzung speichern als</string>
     <string name="action_sessions">Sitzungen</string>
     <string name="action_new_session">Neue Sitzung</string>

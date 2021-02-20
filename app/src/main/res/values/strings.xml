@@ -33,6 +33,7 @@
     <string name="action_restore_all_tabs">Restore all tabs</string>
     <string name="action_remove_bookmark">Bookmark removed</string>
     <string name="action_restore_tab">Restore tab</string>
+    <string name="action_print">Print</string>
     <string name="action_save_session">Save session as</string>
     <string name="action_sessions">Sessions</string>
     <string name="action_new_session">New session</string>

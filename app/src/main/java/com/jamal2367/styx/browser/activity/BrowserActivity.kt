@@ -297,6 +297,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(iBinding.menuItemIncognito) { executeAction(R.id.menuItemIncognito) }
             onMenuItemClicked(iBinding.menuItemCloseIncognito) { executeAction(R.id.menuItemCloseIncognito) }
             onMenuItemClicked(iBinding.menuItemAddBookmark) { executeAction(R.id.menuItemAddBookmark) }
+            onMenuItemClicked(iBinding.menuItemPrint) { executeAction(R.id.menuItemPrint) }
             onMenuItemClicked(iBinding.menuItemHistory) { executeAction(R.id.menuItemHistory) }
             onMenuItemClicked(iBinding.menuItemDownloads) { executeAction(R.id.menuItemDownloads) }
             onMenuItemClicked(iBinding.menuItemShare) { executeAction(R.id.menuItemShare) }
@@ -1150,6 +1151,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
             R.id.menuItemShare -> {
                 IntentUtils(this).shareUrl(currentUrl, currentView?.title)
+                return true
+            }
+            R.id.menuItemPrint -> {
+                currentView!!.webView?.let { currentView.createWebPagePrint(it) }
                 return true
             }
             R.id.menuShortcutBookmarks -> {

@@ -145,6 +145,12 @@
                     android:text="@string/action_add_bookmark" />
 
                 <TextView
+                    android:id="@+id/menuItemPrint"
+                    style="@style/BrowserTextMenuItem"
+                    app:drawableStartCompat="@drawable/ic_action_print"
+                    android:text="@string/action_print" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="?android:attr/listDivider" />
