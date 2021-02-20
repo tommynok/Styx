@@ -33,6 +33,7 @@ import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 import io.reactivex.disposables.Disposable
+import java.util.Locale
 import java.util.*
 import javax.inject.Inject
 
@@ -249,15 +250,9 @@ class ReadingActivity : ThemedSettingsActivity(), TextToSpeech.OnInitListener {
 
             val result: Int = tts!!.setLanguage(Locale.getDefault())
 
-            //tts!!.setPitch(1F) // set pitch level
-            //tts!!.setSpeechRate(1F) // set speech speed rate
-
             if (result == TextToSpeech.LANG_MISSING_DATA
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 snackbar(R.string.no_tts)
-            } else {
-                //btnSpeak.setEnabled(true)
-                //speakOut()
             }
         } else {
             snackbar(R.string.tts_initilization_failed)
