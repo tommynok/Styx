@@ -1,7 +1,3 @@
-/*
- * Copyright 2014 A.C.R. Development
- */
-
 package com.jamal2367.styx.view
 
 import com.jamal2367.styx.Capabilities
@@ -37,7 +33,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.print.*
-import android.provider.Settings.Global.getString
 import android.view.*
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.View.OnScrollChangeListener
@@ -46,12 +41,8 @@ import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.collection.ArrayMap
-import androidx.core.content.ContextCompat.getSystemService
-import com.google.android.material.snackbar.Snackbar
-import com.jamal2367.styx.extensions.snackbar
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -775,18 +766,16 @@ class StyxView(
         webView?.setNetworkAvailable(isAvailable)
     }
 
-    fun createWebPagePrint(webView: WebView) {
+    /**
+     * Start a print job, thus notably enabling saving a web page as PDF.
+     */
+    fun createWebPagePrint(webView: WebView): PrintJob {
         val printManager: PrintManager = activity.getSystemService(Context.PRINT_SERVICE) as PrintManager
-        val printAdapter: PrintDocumentAdapter = webView.createPrintDocumentAdapter()
-        val jobName = " Document"
+        val printAdapter: PrintDocumentAdapter = webView.createPrintDocumentAdapter(title)
+        val jobName = title
         val builder: PrintAttributes.Builder = PrintAttributes.Builder()
         builder.setMediaSize(PrintAttributes.MediaSize.ISO_A4)
-        val printJob: PrintJob = printManager.print(jobName, printAdapter, builder.build())
-        if (printJob.isCompleted()) {
-            activity.snackbar(R.string.yes)
-        } else if (printJob.isFailed()) {
-            activity.snackbar(R.string.no)
-        }
+        return printManager.print(jobName, printAdapter, builder.build())
     }
 
     /**
