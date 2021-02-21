@@ -132,6 +132,14 @@ class StyxWebClient(
 
     override fun onLoadResource(view: WebView, url: String?) {
         super.onLoadResource(view, url)
+        if(userPreferences.noAmp){
+            view.evaluateJavascript(noAMP.provideJs(), null)
+            if (url != null) {
+                if(url.contains("&ampcf=1")){
+                    view.evaluateJavascript("window.location.replace(\"" + url.replace("&ampcf=1", "") + "\");", null)
+                }
+            }
+        }
         if (styxView.desktopMode) {
             // That's needed for desktop mode support
             // See: https://stackoverflow.com/a/60621350/3969362
@@ -160,21 +168,11 @@ class StyxWebClient(
         if (styxView.invertPage) {
             view.evaluateJavascript(invertPageJs.provideJs(), null)
         }
-        if(userPreferences.noAmp){
-            view.evaluateJavascript(noAMP.provideJs(), null)
-        }
         uiController.tabChanged(styxView)
     }
 
     override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
         currentUrl = url
-
-        if(userPreferences.noAmp){
-            view.evaluateJavascript(noAMP.provideJs(), null)
-            if(url.contains("&ampcf=1")){
-                view.evaluateJavascript("window.location.replace(\"" + url.replace("&ampcf=1", "") + "\");", null)
-            }
-        }
 
         // Only set the SSL state if there isn't an error for the current URL.
         if (urlWithSslError != url) {
