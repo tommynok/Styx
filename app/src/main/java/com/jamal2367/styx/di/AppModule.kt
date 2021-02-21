@@ -9,6 +9,7 @@ import com.jamal2367.styx.js.InvertPage
 import com.jamal2367.styx.js.TextReflow
 import com.jamal2367.styx.js.ThemeColor
 import com.jamal2367.styx.js.SetMetaViewport
+import com.jamal2367.styx.js.BlockAMP
 import com.jamal2367.styx.log.AndroidLogger
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.log.NoOpLogger
@@ -195,6 +196,9 @@ class AppModule {
 
     @Provides
     fun providesSetMetaViewport(): SetMetaViewport = MezzanineGenerator.SetMetaViewport()
+
+    @Provides
+    fun providesAmpBlock(): BlockAMP = MezzanineGenerator.BlockAMP()
 
 }
 

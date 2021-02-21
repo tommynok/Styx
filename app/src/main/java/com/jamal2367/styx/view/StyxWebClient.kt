@@ -32,6 +32,7 @@ import com.jamal2367.styx.di.UserPrefs
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.snackbar
+import com.jamal2367.styx.js.BlockAMP
 import com.jamal2367.styx.js.InvertPage
 import com.jamal2367.styx.js.SetMetaViewport
 import com.jamal2367.styx.js.TextReflow
@@ -72,6 +73,7 @@ class StyxWebClient(
     @Inject internal lateinit var textReflowJs: TextReflow
     @Inject internal lateinit var invertPageJs: InvertPage
     @Inject internal lateinit var setMetaViewport: SetMetaViewport
+    @Inject internal lateinit var noAMP: BlockAMP
 
     private var adBlock: AdBlocker
 
@@ -158,12 +160,22 @@ class StyxWebClient(
         if (styxView.invertPage) {
             view.evaluateJavascript(invertPageJs.provideJs(), null)
         }
-
+        if(userPreferences.noAmp){
+            view.evaluateJavascript(noAMP.provideJs(), null)
+        }
         uiController.tabChanged(styxView)
     }
 
     override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
         currentUrl = url
+
+        if(userPreferences.noAmp){
+            view.evaluateJavascript(noAMP.provideJs(), null)
+            if(url.contains("&ampcf=1")){
+                view.evaluateJavascript("window.location.replace(\"" + url.replace("&ampcf=1", "") + "\");", null)
+            }
+        }
+
         // Only set the SSL state if there isn't an error for the current URL.
         if (urlWithSslError != url) {
             sslState = if (URLUtil.isHttpsUrl(url)) {
