@@ -9,6 +9,8 @@
 * Keyboard support.
 * Webpage theming.
 * Desktop rendering.
+* Text To Speech (TTS)
+* Print mode.
 * Android desktop support (Samsung Dex, EMUI Desktop). 
 * Multiple search engines (Google, Bing, Yahoo, StartPage, DuckDuckGo, Mojeek, Searx etc.).
 * Incognito mode.
