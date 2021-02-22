@@ -67,6 +67,18 @@ class UserPreferences @Inject constructor(
     var downloadDirectory by preferences.stringPreference(DOWNLOAD_DIRECTORY, FileUtils.DEFAULT_DOWNLOAD_PATH)
 
     /**
+     * True if the browser should hide the navigation bar when scrolling, false if it should be
+     * immobile.
+     */
+    var hideToolBarInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_hide_tool_bar, false)
+
+    /**
+     * True if the browser should hide the navigation bar when scrolling, false if it should be
+     * immobile.
+     */
+    var hideToolBarInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_hide_tool_bar, true)
+
+    /**
      */
     var showToolBarOnScrollUpInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_show_tool_bar_on_scroll_up, true)
 

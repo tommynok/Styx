@@ -48,6 +48,11 @@
         app:icon="@drawable/ic_apps" />
 
     <androidx.preference.Preference
+        app:fragment="com.jamal2367.styx.settings.fragment.DebugSettingsFragment"
+        app:title="@string/settings_title_debug"
+        app:icon="@drawable/ic_bug" />
+
+    <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.AboutSettingsFragment"
         app:summary="@string/settings_about_explain"
         app:title="@string/settings_about"

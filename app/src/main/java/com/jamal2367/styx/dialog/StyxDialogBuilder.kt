@@ -76,7 +76,7 @@ class StyxDialogBuilder @Inject constructor(
             val folderTitle = filename.substring(0, filename.length - BookmarkPageFactory.FILENAME.length - 1)
             showBookmarkFolderLongPressedDialog(activity, uiController, folderTitle.asFolder())
         } else {
-            val ignored = bookmarkManager.findBookmarkForUrl(url)
+            bookmarkManager.findBookmarkForUrl(url)
                 .subscribeOn(databaseScheduler)
                 .observeOn(mainScheduler)
                 .subscribe { historyItem ->
@@ -133,7 +133,8 @@ class StyxDialogBuilder @Inject constructor(
     // TODO allow individual downloads to be deleted.
     fun showLongPressedDialogForDownloadUrl(
             activity: AppCompatActivity,
-            uiController: UIController
+            uiController: UIController,
+            url: String
     ) = BrowserDialog.show(activity, R.string.action_downloads,
         DialogItem(title = R.string.dialog_delete_all_downloads) {
             downloadsModel.deleteAllDownloads()
@@ -208,7 +209,7 @@ class StyxDialogBuilder @Inject constructor(
         getFolder.setHint(R.string.folder)
         getFolder.setText(entry.folder.title)
 
-        val ignored = bookmarkManager.getFolderNames()
+        bookmarkManager.getFolderNames()
             .subscribeOn(databaseScheduler)
             .observeOn(mainScheduler)
             .subscribe { folders ->

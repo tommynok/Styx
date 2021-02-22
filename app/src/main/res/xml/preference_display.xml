@@ -42,6 +42,12 @@
             app:key="@string/pref_key_portrait_hide_status_bar"
             app:title="@string/pref_title_hide_status_bar"
             app:defaultValue="false"
+            app:icon="@drawable/ic_fullscreen" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/pref_key_portrait_hide_tool_bar"
+            app:title="@string/pref_title_hide_tool_bar"
+            app:defaultValue="false"
             app:icon="@drawable/ic_baseline_aspect_ratio_24" />
 
         <SeekBarPreference
@@ -71,6 +77,12 @@
             app:key="@string/pref_key_landscape_hide_status_bar"
             app:title="@string/pref_title_hide_status_bar"
             app:defaultValue="false"
+            app:icon="@drawable/ic_fullscreen" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/pref_key_landscape_hide_tool_bar"
+            app:title="@string/pref_title_hide_tool_bar"
+            app:defaultValue="true"
             app:icon="@drawable/ic_baseline_aspect_ratio_24" />
 
         <SeekBarPreference

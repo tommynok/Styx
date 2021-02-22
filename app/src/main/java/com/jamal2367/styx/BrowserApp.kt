@@ -20,6 +20,7 @@ import android.os.Build
 import android.os.StrictMode
 import android.webkit.WebView
 import androidx.databinding.library.BuildConfig
+import com.squareup.leakcanary.LeakCanary
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.plugins.RxJavaPlugins
@@ -76,7 +77,7 @@ class BrowserApp : Application() {
         }
 
         RxJavaPlugins.setErrorHandler { throwable: Throwable? ->
-            if (throwable != null) {
+            if (BuildConfig.DEBUG && throwable != null) {
                 FileUtils.writeCrashToStorage(throwable)
                 throw throwable
             }
@@ -96,6 +97,13 @@ class BrowserApp : Application() {
             }
             .subscribeOn(databaseScheduler)
             .subscribe()
+
+        if (developerPreferences.useLeakCanary && buildInfo.buildType == BuildType.DEBUG) {
+            LeakCanary.install(this)
+        }
+        if (buildInfo.buildType == BuildType.DEBUG) {
+            WebView.setWebContentsDebuggingEnabled(true)
+        }
 
         registerActivityLifecycleCallbacks(object : MemoryLeakUtils.LifecycleAdapter() {
             override fun onActivityDestroyed(activity: Activity) {
@@ -144,5 +152,4 @@ class BrowserApp : Application() {
             }
         }
     }
-
 }

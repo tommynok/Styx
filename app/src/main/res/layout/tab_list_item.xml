@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-android:focusableInTouchMode="true"
-    Makes it so that you need to double tap an item to select it
-    Could be an interesting settings option
--->
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -26,7 +19,7 @@ android:focusableInTouchMode="true"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:background="?attr/colorSurface"
+            android:background="?attr/colorPrimaryVariant"
             android:weightSum="1">
 
             <ImageView

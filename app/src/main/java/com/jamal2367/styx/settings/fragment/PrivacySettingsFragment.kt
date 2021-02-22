@@ -162,7 +162,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
     private fun clearCookies(): Completable = Completable.fromAction {
         val activity = activity
         if (activity != null) {
-            WebUtils.clearCookies()
+            WebUtils.clearCookies(activity)
         } else {
             throw RuntimeException("Activity was null in clearCookies")
         }

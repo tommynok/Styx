@@ -97,6 +97,10 @@ dependencies {
     implementation 'info.guardianproject.netcipher:netcipher:2.1.0'
     implementation 'info.guardianproject.netcipher:netcipher-webkit:2.0.0-alpha1'
 
+    // Memory Leak Analysis //
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+
     // OkHttp3 //
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 

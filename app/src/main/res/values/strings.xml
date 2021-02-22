@@ -57,6 +57,7 @@
     <string name="android_open_source_project">Android Open Source Project</string>
     <string name="amp_to_html">AMP to HTML (Beta)</string>
     <string name="apache">Apache License 2.0</string>
+    <string name="app_restart">Please restart the app to apply the changes</string>
     <string name="black_theme">Black (AMOLED)</string>
     <string name="block_ad_refresh_hosts">Refresh hosts file…</string>
     <string name="block_ad_refresh_now">Refresh hosts now</string>
@@ -87,6 +88,8 @@
     <string name="close_tab">Close current tab</string>
     <string name="color_mode">Enable color mode</string>
     <string name="cookies">Enable cookies</string>
+    <string name="debug_leak_canary">LeakCanary</string>
+    <string name="debug_title">Debug</string>
     <string name="dark_theme">Dark</string>
     <string name="default_theme">Follow System</string>
     <string name="developer">Developer</string>
@@ -213,6 +216,7 @@
     <string name="pref_summary_webrtc">Allows Real Time Communication over the Web using your device camera and microphone</string>
     <string name="pref_title_desktop_width">Desktop width</string>
     <string name="pref_title_hide_status_bar">Hide status bar</string>
+    <string name="pref_title_hide_tool_bar">Hide tool bar when scrolling down</string>
     <string name="pref_title_locked_drawers">Locked drawers</string>
     <string name="pref_title_pull_to_refresh">Pull to refresh</string>
     <string name="pref_title_webrtc">WebRTC Support</string>
@@ -272,6 +276,7 @@
     <string name="settings_summary_desktop_mode_default">Define if new tabs use desktop mode by default</string>
     <string name="settings_summary_vertical_tab_bar">Disable it to use tabs in navigation drawer</string>
     <string name="settings_title_apps">Apps</string>
+    <string name="settings_title_debug">Debug</string>
     <string name="settings_title_desktop_mode_default">Desktop mode</string>
     <string name="settings">Settings</string>
     <string name="shortcut_message_failed_to_add">Sorry, your launcher does not support shortcuts.</string>
@@ -353,6 +358,7 @@
     <string name="pref_key_javascript" translatable="false">pref_key_javascript</string>
     <string name="pref_key_landscape_desktop_width" translatable="false">pref_key_landscape_desktop_width</string>
     <string name="pref_key_landscape_hide_status_bar" translatable="false">pref_key_landscape_hide_status_bar</string>
+    <string name="pref_key_landscape_hide_tool_bar" translatable="false">pref_key_landscape_hide_tool_bar</string>
     <string name="pref_key_landscape_pull_to_refresh" translatable="false">pref_key_landscape_pull_to_refresh</string>
     <string name="pref_key_landscape_show_tool_bar_on_page_top" translatable="false">pref_key_landscape_show_tool_bar_on_page_top</string>
     <string name="pref_key_landscape_show_tool_bar_on_scroll_up" translatable="false">pref_key_landscape_show_tool_bar_when_scroll_up</string>
@@ -362,6 +368,7 @@
     <string name="pref_key_overview_mode" translatable="false">pref_key_overview_mode</string>
     <string name="pref_key_portrait_desktop_width" translatable="false">pref_key_portrait_desktop_width</string>
     <string name="pref_key_portrait_hide_status_bar" translatable="false">pref_key_portrait_hide_status_bar</string>
+    <string name="pref_key_portrait_hide_tool_bar" translatable="false">pref_key_portrait_hide_tool_bar</string>
     <string name="pref_key_portrait_pull_to_refresh" translatable="false">pref_key_portrait_pull_to_refresh</string>
     <string name="pref_key_portrait_show_tool_bar_on_page_top" translatable="false">pref_key_portrait_show_tool_bar_on_page_top</string>
     <string name="pref_key_portrait_show_tool_bar_on_scroll_up" translatable="false">pref_key_portrait_show_tool_bar_when_scroll_up</string>

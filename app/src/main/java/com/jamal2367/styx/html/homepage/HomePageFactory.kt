@@ -21,41 +21,41 @@ import javax.inject.Inject
  */
 @Reusable
 class HomePageFactory @Inject constructor(
-    private val application: Application,
-    private val searchEngineProvider: SearchEngineProvider,
-    private val homePageReader: HomePageReader
+        private val application: Application,
+        private val searchEngineProvider: SearchEngineProvider,
+        private val homePageReader: HomePageReader
 ) : HtmlPageFactory {
 
     override fun buildPage(): Single<String> = Single
-        .just(searchEngineProvider.provideSearchEngine())
-        .map { (iconUrl, queryUrl, _) ->
-            parse(homePageReader.provideHtml()
-                    .replace("\${TITLE}", application.getString(R.string.home))
-                    .replace("\${backgroundColor}", htmlColor(ThemeUtils.getPrimaryColor(BrowserApp.currentContext())))
-                    .replace("\${searchBarColor}", htmlColor(ThemeUtils.getSearchBarColor(BrowserApp.currentContext())))
-                    .replace("\${searchBarTextColor}", htmlColor(ThemeUtils.getSearchBarTextColor(BrowserApp.currentContext())))
-                    .replace("\${search}", application.getString(R.string.search_homepage))
-            ) andBuild {
-                charset { UTF8 }
-                body {
-                    id("image_url") { attr("src", iconUrl) }
-                    tag("script") {
-                        html(
-                            html()
-                                .replace("\${BASE_URL}", queryUrl)
-                                .replace("&", "\\u0026")
-                        )
+            .just(searchEngineProvider.provideSearchEngine())
+            .map { (iconUrl, queryUrl, _) ->
+                parse(homePageReader.provideHtml()
+                        .replace("\${TITLE}", application.getString(R.string.home))
+                        .replace("\${backgroundColor}", htmlColor(ThemeUtils.getSurfaceColor(BrowserApp.currentContext())))
+                        .replace("\${searchBarColor}", htmlColor(ThemeUtils.getSearchBarColor(ThemeUtils.getSurfaceColor(BrowserApp.currentContext()))))
+                        .replace("\${searchBarTextColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorOnPrimary)))
+                        .replace("\${search}", application.getString(R.string.search_homepage))
+                ) andBuild {
+                    charset { UTF8 }
+                    body {
+                        id("image_url") { attr("src", iconUrl) }
+                        tag("script") {
+                            html(
+                                    html()
+                                            .replace("\${BASE_URL}", queryUrl)
+                                            .replace("&", "\\u0026")
+                            )
+                        }
                     }
                 }
             }
-        }
-        .map { content -> Pair(createHomePage(), content) }
-        .doOnSuccess { (page, content) ->
-            FileWriter(page, false).use {
-                it.write(content)
+            .map { content -> Pair(createHomePage(), content) }
+            .doOnSuccess { (page, content) ->
+                FileWriter(page, false).use {
+                    it.write(content)
+                }
             }
-        }
-        .map { (page, _) -> "$FILE$page" }
+            .map { (page, _) -> "$FILE$page" }
 
     /**
      * Create the home page file.

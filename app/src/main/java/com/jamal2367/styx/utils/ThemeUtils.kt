@@ -50,7 +50,7 @@ object ThemeUtils {
     @JvmStatic
     @ColorInt
     fun getSurfaceColor(context: Context): Int {
-        return getColor(context, R.attr.colorSurface)
+        return getColor(context, R.attr.colorPrimary)
     }
 
     /**
@@ -223,7 +223,7 @@ object ThemeUtils {
         val luminance = ColorUtils.calculateLuminance(requestedColor)
         return if (luminance > 0.9) {
             // Too bright, make it darker then
-            DrawableUtils.mixColor(0.20f, requestedColor, Color.BLACK)
+            DrawableUtils.mixColor(0.00f, requestedColor, Color.BLACK)
         } else {
             // Make search text field background lighter
             DrawableUtils.mixColor(0.20f, requestedColor, Color.WHITE)

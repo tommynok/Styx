@@ -38,16 +38,16 @@
     </style>
 
     <style name="Theme.App.Light" parent="Theme.MaterialComponents.Light">
-        <item name="colorPrimary">@color/md_grey_50</item>
-        <item name="colorPrimaryVariant">@color/md_grey_50</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/md_grey_300</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/md_red_500</item>
         <item name="colorSecondaryVariant">@color/md_red_700</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="android:colorBackground">@color/md_grey_50</item>
+        <item name="android:colorBackground">@color/white</item>
         <item name="colorOnBackground">@color/black</item>
-        <item name="trackColor">@color/md_grey_400</item>
-        <item name="colorSurface">@color/md_grey_300</item>
+        <item name="trackColor">@color/md_grey_100</item>
+        <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
         <item name="colorError">@color/md_red_500</item>
         <item name="colorOnError">@color/white</item>
@@ -73,11 +73,12 @@
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
         <item name="popupMenuBackground">@drawable/popup_menu_background</item>
+        <item name="navigationViewStyle">@drawable/session_menu_background</item>
     </style>
 
     <style name="Theme.App.Dark" parent="Theme.MaterialComponents">
         <item name="colorPrimary">@color/md_grey_900</item>
-        <item name="colorPrimaryVariant">@color/md_grey_900</item>
+        <item name="colorPrimaryVariant">@color/md_grey_850</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/md_red_300</item>
         <item name="colorSecondaryVariant">@color/md_red_500</item>
@@ -85,7 +86,7 @@
         <item name="android:colorBackground">@color/md_grey_900</item>
         <item name="android:navigationBarColor">@color/md_grey_900</item>
         <item name="colorOnBackground">@color/white</item>
-        <item name="trackColor">@color/md_grey_800</item>
+        <item name="trackColor">@color/md_grey_875</item>
         <item name="colorSurface">@color/md_grey_850</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="colorError">@color/md_red_500</item>
@@ -112,18 +113,19 @@
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
         <item name="popupMenuBackground">@drawable/popup_menu_background</item>
-    </style>
+        <item name="navigationViewStyle">@drawable/session_menu_background</item>
+</style>
 
     <style name="Theme.App.Black" parent="Theme.MaterialComponents">
         <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">@color/md_grey_900</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/md_red_300</item>
         <item name="colorSecondaryVariant">@color/md_red_500</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:colorBackground">@color/black</item>
         <item name="colorOnBackground">@color/white</item>
-        <item name="trackColor">@color/md_grey_900</item>
+        <item name="trackColor">@color/md_grey_950</item>
         <item name="colorSurface">@color/md_grey_950</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="colorError">@color/md_red_500</item>
@@ -150,6 +152,7 @@
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
         <item name="popupMenuBackground">@drawable/popup_menu_background</item>
+        <item name="navigationViewStyle">@drawable/session_menu_background</item>
     </style>
 
     <style name="Theme.App.DayNight" parent="Theme.App.Light" />
@@ -188,17 +191,17 @@
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:background">?attr/colorPrimaryVariant</item>
+        <item name="android:background">@color/white</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog.Dark" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:background">@color/md_grey_900</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog.Black" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:background">@color/md_grey_950</item>
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 

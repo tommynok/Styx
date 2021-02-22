@@ -247,7 +247,7 @@ class StyxView(
      * See: https://stackoverflow.com/q/58179733/3969362
      * TODO: Do we really need one of those per tab/WebView?
      */
-    private val iDownloadListener = StyxDownloadListener(activity)
+    private var iDownloadListener: StyxDownloadListener? = null
 
     init {
         activity.injector.inject(this)
@@ -276,6 +276,7 @@ class StyxView(
             webChromeClient = StyxChromeClient(activity, this@StyxView)
             webViewClient = styxWebClient
             // We want to receive download complete notifications
+            iDownloadListener = StyxDownloadListener(activity)
             setDownloadListener(iDownloadListener.also { activity.registerReceiver(it, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) })
             // For older devices show Tool Bar On Page Top won't work after fling to top.
             // Who cares? I mean those devices are probably from 2014 or older.
@@ -721,7 +722,10 @@ class StyxView(
     // is removed and would cause a memory leak if the parent check
     // was not in place.
     fun onDestroy() {
-        activity.unregisterReceiver(iDownloadListener)
+        if (iDownloadListener!=null) {
+            activity.unregisterReceiver(iDownloadListener)
+            iDownloadListener = null
+        }
         networkDisposable.dispose()
         webView?.let { tab ->
             // Check to make sure the WebView has been removed
@@ -767,18 +771,6 @@ class StyxView(
     }
 
     /**
-     * Start a print job, thus notably enabling saving a web page as PDF.
-     */
-    fun createWebPagePrint(webView: WebView): PrintJob {
-        val printManager: PrintManager = activity.getSystemService(Context.PRINT_SERVICE) as PrintManager
-        val printAdapter: PrintDocumentAdapter = webView.createPrintDocumentAdapter(title)
-        val jobName = title
-        val builder: PrintAttributes.Builder = PrintAttributes.Builder()
-        builder.setMediaSize(PrintAttributes.MediaSize.ISO_A4)
-        return printManager.print(jobName, printAdapter, builder.build())
-    }
-
-    /**
      * Handles a long click on the page and delegates the URL to the
      * proper dialog if it is not null, otherwise, it tries to get the
      * URL using HitTestResult.
@@ -787,7 +779,7 @@ class StyxView(
      * thingy, if it is null, this method tries to deal with it and find
      * a workaround.
      */
-    private fun longClickPage(url: String?, text: String?) {
+    private fun longClickPage(url: String?, text: String?, src: String?) {
         val result = webView?.hitTestResult
         val currentUrl = webView?.url
         val newUrl = result?.extra
@@ -807,9 +799,9 @@ class StyxView(
                 }
             } else if (currentUrl.isDownloadsUrl()) {
                 if (url != null) {
-                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController)
+                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController, url)
                 } else if (newUrl != null) {
-                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController)
+                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController, newUrl)
                 }
             }
         } else {
@@ -991,8 +983,10 @@ class StyxView(
         override fun onLongPress(e: MotionEvent) {
             if (canTriggerLongPress) {
                 val msg = webViewHandler.obtainMessage()
+                if (msg != null) {
                 msg.target = webViewHandler
                 webView?.requestFocusNodeHref(msg)
+                }
             }
         }
 
@@ -1026,12 +1020,14 @@ class StyxView(
 
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
+            // Fetch message data: url, text, image source
+            // See: https://developer.android.com/reference/android/webkit/WebView#requestFocusNodeHref(android.os.Message)
             val url = msg.data.getString("url")
 
             val title = msg.data.getString("title")
             val src = msg.data.getString("src")
             //
-            reference.get()?.longClickPage(url, title)
+            reference.get()?.longClickPage(url, title,src)
         }
     }
 

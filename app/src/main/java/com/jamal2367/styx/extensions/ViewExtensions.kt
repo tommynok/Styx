@@ -11,7 +11,9 @@ import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.PopupWindow
+import androidx.appcompat.widget.TooltipCompat
 import androidx.core.graphics.ColorUtils
+import androidx.databinding.BindingAdapter
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
@@ -182,6 +184,15 @@ fun ImageView.setImageForTheme(bitmap: Bitmap, isDarkTheme: Boolean) {
     }
 
     setImageBitmap(bitmap)
+}
+
+/**
+ * To be able to have tooltips working before API level 26
+ * See: https://stackoverflow.com/a/61873888/3969362
+ */
+@BindingAdapter("app:tooltipText")
+fun View.bindTooltipText(tooltipText: String) {
+    TooltipCompat.setTooltipText(this, tooltipText)
 }
 
 fun RectF.scale(factor: Float) {

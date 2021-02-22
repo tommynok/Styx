@@ -733,14 +733,23 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         val currentView = tabsManager.currentTab
         if (isColorMode() && currentView != null && currentView.htmlMetaThemeColor!=Color.TRANSPARENT) {
             // Web page does specify theme color, use it much like Google Chrome does
-            mainHandler.post {changeToolbarBackground(currentView.htmlMetaThemeColor)}
+            mainHandler.post {changeToolbarBackground(currentView.htmlMetaThemeColor, null)}
         }
         else if (isColorMode() && currentView?.favicon != null) {
             // Web page as favicon, use it to extract page theme color
             changeToolbarBackground(currentView.favicon, Color.TRANSPARENT, null)
         } else {
             // That should be the primary color from current theme
-            mainHandler.post {changeToolbarBackground(ThemeUtils.getPrimaryColor(this))}
+            mainHandler.post {changeToolbarBackground(primaryColor, null)}
+        }
+    }
+
+    private fun initFullScreen(configuration: Configuration) {
+        isFullScreen = if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            userPreferences.hideToolBarInPortrait
+        }
+        else {
+            userPreferences.hideToolBarInLandscape
         }
     }
 
@@ -748,6 +757,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      * Setup our tool bar as collapsible or always on according to orientation and user preferences
      */
     private fun setupToolBar(configuration: Configuration) {
+        initFullScreen(configuration)
         initializeToolbarHeight(configuration)
         showActionBar()
         setToolbarColor()
@@ -951,16 +961,8 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             // CTRL+TAB for tab cycling logic
             if (event.isCtrlPressed && event.keyCode == KeyEvent.KEYCODE_TAB) {
 
-                tabsManager.let { it ->
-
-                    if (iCapturedRecentTabsIndices==null)
-                    {
-                        // Entering CTRL+TAB mode
-                        // Fetch snapshot of our recent tab list
-                        iCapturedRecentTabsIndices = it.iRecentTabs.toSet()
-                        iRecentTabIndex = iCapturedRecentTabsIndices?.size?.minus(1) ?: -1
-                        //logger.log(TAG, "Recent indices snapshot: iCapturedRecentTabsIndices")
-                    }
+                // Entering CTRL+TAB mode
+                startCtrlTab()
 
                     iCapturedRecentTabsIndices?.let{
 
@@ -984,7 +986,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                             //mainHandler.postDelayed({presenter?.tabChanged(tabsManager.indexOfTab(it.elementAt(iRecentTabIndex)))}, 300)
                         }
                     }
-                }
 
                 //logger.log(TAG,"Tab: down discarded")
                 return true
@@ -1000,11 +1001,13 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                     KeyEvent.KEYCODE_T -> {
                         // Open new tab
                         presenter?.newTab(homePageInitializer, true)
+                        resetCtrlTab()
                         return true
                     }
                     KeyEvent.KEYCODE_W -> {
                         // Close current tab
                         tabsManager.let { presenter?.deleteTab(it.indexOfCurrentTab()) }
+                        resetCtrlTab()
                         return true
                     }
                     KeyEvent.KEYCODE_Q -> {
@@ -1079,15 +1082,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
         }
 
-/*
-        if (event.keyCode == KeyEvent.KEYCODE_TAB) {
-            logger.log(TAG,"Tab: NOT GOOD")
-            //return true
-        }
-*/
-
         return super.dispatchKeyEvent(event)
     }
+
 
     /**
      *
@@ -1154,7 +1151,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 return true
             }
             R.id.menuItemPrint -> {
-                currentView!!.webView?.let { currentView.createWebPagePrint(it) }
+                (currentTabView as WebViewEx).print()
                 return true
             }
             R.id.menuShortcutBookmarks -> {
@@ -1393,23 +1390,23 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      *
      * @param view Input is in fact a WebViewEx.
      */
-    override fun setTabView(view: View) {
-        if (currentTabView == view) {
+    override fun setTabView(aView: View) {
+        if (currentTabView == aView) {
             return
         }
 
         logger.log(TAG, "Setting the tab view")
-        view.removeFromParent()
+        aView.removeFromParent()
         currentTabView.removeFromParent()
 
         iBinding.contentFrame.resetTarget() // Needed to make it work together with swipe to refresh
-        iBinding.contentFrame.addView(view, 0, MATCH_PARENT)
-        view.requestFocus()
+        iBinding.contentFrame.addView(aView, 0, MATCH_PARENT)
+        aView.requestFocus()
 
         // Remove existing focus change observer before we change our tab
         currentTabView?.onFocusChangeListener = null
         // Change our tab
-        currentTabView = view
+        currentTabView = aView
         // Close virtual keyboard if we loose focus
         currentTabView.onFocusLost { inputMethodManager.hideSoftInputFromWindow(iBinding.uiLayout.windowToken, 0) }
         showActionBar()
@@ -1487,6 +1484,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         mainHandler.postDelayed({ closeDrawers(null) }, 150)
     }
 
+    /**
+     * Is that supposed to reload our history page if it changes?
+     * Are we rebuilding our history page every time our history is changing?
+     * Meaning every time we load a web page?
+     * Thankfully not, apparently.
+     */
     override fun handleHistoryChange() {
         historyPageFactory
             .buildPage()
@@ -1606,10 +1609,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         proxyUtils.onStop()
     }
 
+    /**
+     * Amazingly this is not called when closing our app from Task list.
+     * See: https://developer.android.com/reference/android/app/Activity.html#onDestroy()
+     */
     override fun onDestroy() {
         logger.log(TAG, "onDestroy")
-        // Should we remove saveOpenTabs from MainActivity.onPause then?
-        // Make sure we save our tabs before we are destroyed
 
         incognitoNotification?.hide()
 
@@ -1714,7 +1719,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     /**
      *
      */
-    private fun changeToolbarBackground(color: Int) {
+    private fun changeToolbarBackground(color: Int, tabBackground: Drawable?) {
 
         //Workout a foreground colour that will be working with our background color
         currentToolBarTextColor = foregroundColorFromBackgroundColor(color)
@@ -1723,7 +1728,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         searchView?.setHintTextColor(DrawableUtils.mixColor(0.5f, currentToolBarTextColor, color))
         // Change tab counter color
         tabsButton?.textColor = currentToolBarTextColor
-        tabsButton?.invalidate()
+        tabsButton?.invalidate();
         // Change tool bar home button color, needed when using desktop style tabs
         homeButton?.setColorFilter(currentToolBarTextColor)
         buttonBack?.setColorFilter(currentToolBarTextColor)
@@ -1831,23 +1836,23 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         if (!isColorMode()) {
             // Put back the theme color then
-            changeToolbarBackground(defaultColor)
+            changeToolbarBackground(defaultColor, tabBackground)
         }
         else if (color != Color.TRANSPARENT)
         {
             // We have a meta theme color specified in our page HTML, use it
-            changeToolbarBackground(color)
+            changeToolbarBackground(color, tabBackground)
         }
         else if (favicon==null)
         {
             // No HTML meta theme color and no favicon, use app theme color then
-            changeToolbarBackground(defaultColor)
+            changeToolbarBackground(defaultColor, tabBackground)
         }
         else {
             Palette.from(favicon).generate { palette ->
                 // OR with opaque black to remove transparency glitches
                 val color = Color.BLACK or (palette?.getVibrantColor(defaultColor) ?: defaultColor)
-                changeToolbarBackground(color)
+                changeToolbarBackground(color, tabBackground)
             }
         }
     }
@@ -2400,11 +2405,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
      */
     override fun showActionBar() {
         logger.log(TAG, "showActionBar")
-        iBinding.toolbarInclude.toolbarLayout.visibility = View.VISIBLE
+        iBinding.toolbarInclude.toolbarLayout.visibility = VISIBLE
     }
 
-    private fun doHideToolBar() { iBinding.toolbarInclude.toolbarLayout.visibility = View.GONE }
-    private fun isToolBarVisible() = iBinding.toolbarInclude.toolbarLayout.visibility == View.VISIBLE
+    private fun doHideToolBar() { iBinding.toolbarInclude.toolbarLayout.visibility = GONE }
+    private fun isToolBarVisible() = iBinding.toolbarInclude.toolbarLayout.visibility == VISIBLE
 
     private fun toggleToolBar() : Boolean
     {

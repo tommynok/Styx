@@ -19,7 +19,7 @@
             android:layout_height="@dimen/material_grid_touch_medium"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:background="?attr/trackColor">
+            android:background="?attr/colorPrimaryVariant">
 
             <TextView
                 android:id="@+id/text_name"

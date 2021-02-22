@@ -57,6 +57,7 @@
     <string name="android_open_source_project">Android Open Source Project</string>
     <string name="amp_to_html">AMP zu HTML (Beta)</string>
     <string name="apache">Apache License 2.0</string>
+    <string name="app_restart">Bitte starte die App neu, um die Änderungen zu übernehmen</string>
     <string name="black_theme">Schwarzes Design (AMOLED)</string>
     <string name="block_ad_refresh_hosts">Hosts-Liste wird aktualisiert…</string>
     <string name="block_ad_refresh_now">Hosts aktualisieren</string>
@@ -87,6 +88,8 @@
     <string name="close_tab">Aktuellen Tab schließen</string>
     <string name="color_mode">Farbmodus aktivieren</string>
     <string name="cookies">Cookies erlauben</string>
+    <string name="debug_leak_canary">LeakCanary</string>
+    <string name="debug_title">Debug</string>
     <string name="dark_theme">Dunkles Design</string>
     <string name="default_theme">Systemstandard</string>
     <string name="developer">Entwickler</string>
@@ -213,6 +216,7 @@
     <string name="pref_summary_webrtc">Ermöglicht die Kommunikation in Echtzeit über das Web mithilfe der Kamera und des Mikrofons Ihres Geräts</string>
     <string name="pref_title_desktop_width">Desktop-Breite</string>
     <string name="pref_title_hide_status_bar">Statusleiste ausblenden</string>
+    <string name="pref_title_hide_tool_bar">Toolbar beim Scrollen ausblenden</string>
     <string name="pref_title_locked_drawers">Drawer sperren</string>
     <string name="pref_title_pull_to_refresh">Pull-to-Refresh</string>
     <string name="pref_title_webrtc">WebRTC Unterstützung</string>

@@ -18,7 +18,7 @@ public final class WebUtils {
 
     private WebUtils() {}
 
-    public static void clearCookies() {
+    public static void clearCookies(@NonNull Context context) {
         CookieManager c = CookieManager.getInstance();
         c.removeAllCookies(null);
     }

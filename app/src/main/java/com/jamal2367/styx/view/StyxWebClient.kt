@@ -160,7 +160,7 @@ class StyxWebClient(
             uiController.setForwardButtonEnabled(view.canGoForward())
             view.postInvalidate()
         }
-        if (view.title.isNullOrEmpty()) {
+        if (view.title == null || view.title.isEmpty()) {
             styxView.titleInfo.setTitle(activity.getString(R.string.untitled))
         } else {
             styxView.titleInfo.setTitle(view.title)
@@ -267,13 +267,13 @@ class StyxWebClient(
             setOnCancelListener { handler.cancel() }
             setPositiveButton(activity.getString(R.string.action_yes)) { _, _ ->
                 if (dontAskAgain.isChecked) {
-                    sslWarningPreferences.rememberBehaviorForDomain(webView.url.orEmpty(), SslWarningPreferences.Behavior.PROCEED)
+                    sslWarningPreferences.rememberBehaviorForDomain(webView.url, SslWarningPreferences.Behavior.PROCEED)
                 }
                 handler.proceed()
             }
             setNegativeButton(activity.getString(R.string.action_no)) { _, _ ->
                 if (dontAskAgain.isChecked) {
-                    sslWarningPreferences.rememberBehaviorForDomain(webView.url.orEmpty(), SslWarningPreferences.Behavior.CANCEL)
+                    sslWarningPreferences.rememberBehaviorForDomain(webView.url, SslWarningPreferences.Behavior.CANCEL)
                 }
                 handler.cancel()
             }
@@ -399,8 +399,7 @@ class StyxWebClient(
             activity.startActivity(i)
             view.reload()
             return true
-        }
-        else if (url.startsWith("tel:")) {
+        } else if (url.startsWith("tel:")) {
             val i = Intent(Intent.ACTION_DIAL)
             i.data = Uri.parse(url)
             activity.startActivity(i)
