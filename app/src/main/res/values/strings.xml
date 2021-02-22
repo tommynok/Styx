@@ -223,6 +223,8 @@
     <string name="problem_download">Invalid URL encountered, cannot download</string>
     <string name="problem_location_download">Cannot download to the specified location</string>
     <string name="reading_mode">Reader mode</string>
+    <string name="reading_mode_image_caption">Image with caption</string>
+    <string name="reading_mode_image_copyright">Image attributed to</string>
     <string name="recommended">Recommended</string>
     <string name="reflow">Enable text reflow</string>
     <string name="remove_identifying_headers">Remove identifying headers</string>

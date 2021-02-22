@@ -73,6 +73,9 @@ dependencies {
     implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
+    // Reading mode //
+    implementation 'net.dankito.readability4j:readability4j:1.0.5'
+
     // HTML parsing for Reading Mode //
     implementation 'org.jsoup:jsoup:1.13.1'
 

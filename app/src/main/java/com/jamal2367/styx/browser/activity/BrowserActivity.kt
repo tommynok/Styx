@@ -1182,7 +1182,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
             R.id.menuItemReaderMode -> {
                 if (currentUrl != null) {
-                    ReadingActivity.launch(this, currentUrl)
+                    ReadingActivity.launch(this, currentUrl, false)
                 }
                 return true
             }

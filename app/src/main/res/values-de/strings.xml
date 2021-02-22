@@ -223,6 +223,8 @@
     <string name="problem_download">Ungültige URL, Download nicht möglich!</string>
     <string name="problem_location_download">Download in dieses Verzeichns nicht möglich!</string>
     <string name="reading_mode">Lesemodus</string>
+    <string name="reading_mode_image_caption">Bild mit Beschriftung</string>
+    <string name="reading_mode_image_copyright">Bild zurückzuführen auf</string>
     <string name="recommended">(Empfohlen)</string>
     <string name="reflow">Textfluss anpassen</string>
     <string name="remove_identifying_headers">Identifizierbare Header entfernen</string>
