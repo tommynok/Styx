@@ -82,7 +82,7 @@
         <SwitchPreferenceCompat
             app:key="@string/pref_key_landscape_hide_tool_bar"
             app:title="@string/pref_title_hide_tool_bar"
-            app:defaultValue="true"
+            app:defaultValue="false"
             app:icon="@drawable/ic_baseline_aspect_ratio_24" />
 
         <SeekBarPreference
