@@ -12,4 +12,45 @@
         <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
     </style>
 
+    <style name="Theme.App.Light" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/md_grey_300</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/md_red_500</item>
+        <item name="colorSecondaryVariant">@color/md_red_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+        <item name="trackColor">@color/md_grey_100</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorError">@color/md_red_500</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="appColorControlEnabled">@color/md_grey_650</item>
+        <item name="appColorControlSelected">?attr/colorOnPrimary</item>
+        <item name="appColorControlDisabled">@color/md_grey_400</item>
+        <item name="colorControlNormal">@color/state_color_control</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDisablePreview">false</item>
+        <item name="colorPrimaryDark">@color/transparent</item>
+        <item name="autoCompleteTitleColor">@color/black</item>
+        <item name="autoCompleteUrlColor">@color/hint_text_light_theme</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="snackbarStyle">@style/MaterialSnackbarTheme</item>
+        <item name="snackbarButtonStyle">@style/MaterialSnackbarTextButtonTheme</item>
+        <item name="appBarLayoutStyle">@style/Widget.App.AppBarLayout.Light</item>
+        <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="popupMenuBackground">@drawable/popup_menu_background</item>
+        <item name="navigationViewStyle">@drawable/session_menu_background</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
 </resources>
