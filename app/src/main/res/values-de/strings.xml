@@ -128,6 +128,8 @@
     <string name="download">Download-Verzeichnis</string>
     <string name="downloads_notification_description">Auslöser bei Abschluss des Downloads</string>
     <string name="downloads">Downloads</string>
+    <string name="error_reload">Neu laden</string>
+    <string name="error_title">Oh, Krümel! &lt;br&gt; Diese Seite kann nicht geladen werden.</string>
     <string name="example_text">Bespieltext</string>
     <string name="export_bookmarks">Lesezeichen exportieren</string>
     <string name="folder_custom">Andere</string>

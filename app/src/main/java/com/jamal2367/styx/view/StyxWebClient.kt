@@ -43,6 +43,7 @@ import com.jamal2367.styx.ssl.SslWarningPreferences
 import com.jamal2367.styx.utils.IntentUtils
 import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.Utils
+// import com.jamal2367.styx.utils.Utils.buildErrorPage
 import com.jamal2367.styx.utils.isSpecialUrl
 import com.jamal2367.styx.view.StyxView.Companion.KFetchMetaThemeColorTries
 import io.reactivex.Observable
@@ -63,6 +64,7 @@ class StyxWebClient(
     private val uiController: UIController
     private val intentUtils = IntentUtils(activity)
     private val emptyResponseByteArray: ByteArray = byteArrayOf()
+    // private var urlLoaded = ""
 
     @Inject internal lateinit var proxyUtils: ProxyUtils
     @Inject internal lateinit var userPreferences: UserPreferences
@@ -223,6 +225,24 @@ class StyxWebClient(
             }
         }.resizeAndShow()
     }
+
+//    override fun onReceivedError(webview: WebView, errorCode: Int, error: String, failingUrl: String) {
+//
+//        if(errorCode != -1) {
+//            Thread.sleep(500)
+//           webview.settings.javaScriptEnabled = true
+//            val reloadCode = "window.location.href = '" + failingUrl + "';"
+//            val title = activity.getString(R.string.error_title)
+//            val reload = activity.getString(R.string.error_reload)
+//            webview.loadUrl("about:blank")
+//            webview.loadDataWithBaseURL(failingUrl, buildErrorPage(color, title, error, reload, true, reloadCode), "text/html", "UTF-8", null)
+//            uiController.updateUrl(failingUrl, false)
+//            currentUrl = failingUrl
+//            urlLoaded = failingUrl
+//            webview.settings.javaScriptEnabled = userPreferences.javaScriptEnabled
+//        }
+//
+//    }
 
     override fun onScaleChanged(view: WebView, oldScale: Float, newScale: Float) {
         if (view.isShown && styxView.userPreferences.textReflowEnabled) {
