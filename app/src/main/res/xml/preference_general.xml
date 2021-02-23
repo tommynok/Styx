@@ -106,12 +106,6 @@
             android:title="@string/save_data"
             app:icon="@drawable/ic_data_save" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="amp"
-            android:icon="@drawable/ic_amp_stories_24"
-            android:title="@string/amp_to_html"/>
-
         <Preference
             android:key="download"
             android:title="@string/download"

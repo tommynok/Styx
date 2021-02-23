@@ -90,12 +90,6 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
             onClick = ::showSearchSuggestionsDialog
         )
 
-        switchPreference(
-                preference = AMP,
-                isChecked = userPreferences.noAmp,
-                onCheckChange = { userPreferences.noAmp = it }
-        )
-
         clickableDynamicPreference(
                 preference = getString(R.string.pref_key_default_text_encoding),
                 summary = userPreferences.textEncoding,
@@ -514,6 +508,5 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         private const val SETTINGS_HOME = "home"
         private const val SETTINGS_SEARCH_ENGINE = "search"
         private const val SETTINGS_SUGGESTIONS = "suggestions_choice"
-        private const val AMP = "amp"
     }
 }
