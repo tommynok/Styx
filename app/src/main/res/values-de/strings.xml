@@ -88,8 +88,6 @@
     <string name="close_tab">Aktuellen Tab schließen</string>
     <string name="color_mode">Farbmodus aktivieren</string>
     <string name="cookies">Cookies erlauben</string>
-    <string name="debug_leak_canary">LeakCanary</string>
-    <string name="debug_title">Debug</string>
     <string name="dark_theme">Dunkles Design</string>
     <string name="default_theme">Systemstandard</string>
     <string name="developer">Entwickler</string>
