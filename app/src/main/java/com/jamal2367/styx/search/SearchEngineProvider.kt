@@ -51,14 +51,16 @@ class SearchEngineProvider @Inject constructor(
             6 -> DuckNoJSSearch()
             7 -> DuckLiteSearch()
             8 -> DuckLiteNoJSSearch()
-            9 -> MojeekSearch()
-            10 -> NaverSearch()
-            11 -> SearxSearch()
-            12 -> StartPageSearch()
-            13 -> StartPageMobileSearch()
-            14 -> YahooSearch()
-            15 -> YahooNoJSSearch()
-            16 -> YandexSearch()
+			9 -> EcosiaSearch()
+			10 -> EkoruSearch()
+            11 -> MojeekSearch()
+            12 -> NaverSearch()
+            13 -> SearxSearch()
+            14 -> StartPageSearch()
+            15 -> StartPageMobileSearch()
+            16 -> YahooSearch()
+            17 -> YahooNoJSSearch()
+            18 -> YandexSearch()
             else -> GoogleSearch()
         }
 
@@ -76,14 +78,16 @@ class SearchEngineProvider @Inject constructor(
             is DuckNoJSSearch -> 6
             is DuckLiteSearch -> 7
             is DuckLiteNoJSSearch -> 8
-            is MojeekSearch -> 9
-            is NaverSearch -> 10
-            is SearxSearch -> 11
-            is StartPageSearch -> 12
-            is StartPageMobileSearch -> 13
-            is YahooSearch -> 14
-            is YahooNoJSSearch -> 15
-            is YandexSearch -> 16
+			is EcosiaSearch -> 9
+			is EkoruSearch -> 10
+            is MojeekSearch -> 11
+            is NaverSearch -> 12
+            is SearxSearch -> 13
+            is StartPageSearch -> 14
+            is StartPageMobileSearch -> 15
+            is YahooSearch -> 16
+            is YahooNoJSSearch -> 17
+            is YandexSearch -> 18
             else -> throw UnsupportedOperationException("Unknown search engine provided: " + searchEngine.javaClass)
         }
 
@@ -100,6 +104,8 @@ class SearchEngineProvider @Inject constructor(
         DuckNoJSSearch(),
         DuckLiteSearch(),
         DuckLiteNoJSSearch(),
+		EcosiaSearch(),
+		EkoruSearch(),
         MojeekSearch(),
         NaverSearch(),
         SearxSearch(),
