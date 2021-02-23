@@ -65,8 +65,6 @@ interface AppComponent {
 
     fun inject(fragment: PrivacySettingsFragment)
 
-    fun inject(fragment: DebugSettingsFragment)
-
     fun inject(suggestionsAdapter: SuggestionsAdapter)
 
     fun inject(chromeClient: StyxChromeClient)
