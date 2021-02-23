@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
+import androidx.webkit.WebViewFeature
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.R
@@ -32,10 +33,7 @@ import com.jamal2367.styx.di.UserPrefs
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.snackbar
-import com.jamal2367.styx.js.BlockAMP
-import com.jamal2367.styx.js.InvertPage
-import com.jamal2367.styx.js.SetMetaViewport
-import com.jamal2367.styx.js.TextReflow
+import com.jamal2367.styx.js.*
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.ssl.SslState
@@ -74,6 +72,7 @@ class StyxWebClient(
     @Inject internal lateinit var logger: Logger
     @Inject internal lateinit var textReflowJs: TextReflow
     @Inject internal lateinit var invertPageJs: InvertPage
+    @Inject internal lateinit var darkMode: DarkMode
     @Inject internal lateinit var setMetaViewport: SetMetaViewport
     @Inject internal lateinit var noAMP: BlockAMP
 
@@ -169,6 +168,9 @@ class StyxWebClient(
         }
         if (styxView.invertPage) {
             view.evaluateJavascript(invertPageJs.provideJs(), null)
+        }
+        if (userPreferences.darkModeExtension && !WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            view.evaluateJavascript(darkMode.provideJs(), null)
         }
         uiController.tabChanged(styxView)
     }

@@ -5,11 +5,6 @@ import com.jamal2367.styx.device.BuildType
 import com.jamal2367.styx.html.ListPageReader
 import com.jamal2367.styx.html.bookmark.BookmarkPageReader
 import com.jamal2367.styx.html.homepage.HomePageReader
-import com.jamal2367.styx.js.InvertPage
-import com.jamal2367.styx.js.TextReflow
-import com.jamal2367.styx.js.ThemeColor
-import com.jamal2367.styx.js.SetMetaViewport
-import com.jamal2367.styx.js.BlockAMP
 import com.jamal2367.styx.log.AndroidLogger
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.log.NoOpLogger
@@ -33,6 +28,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
 import com.anthonycr.mezzanine.MezzanineGenerator
+import com.jamal2367.styx.js.*
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -193,6 +189,9 @@ class AppModule {
 
     @Provides
     fun providesInvertPage(): InvertPage = MezzanineGenerator.InvertPage()
+
+    @Provides
+    fun providesDarkMode(): DarkMode = MezzanineGenerator.DarkMode()
 
     @Provides
     fun providesSetMetaViewport(): SetMetaViewport = MezzanineGenerator.SetMetaViewport()

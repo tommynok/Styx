@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/settings_extensions">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="dark_mode"
+            android:icon="@drawable/ic_dark_mode"
+            android:title="@string/dark_mode"
+            android:summary="@string/dark_mode_summary"/>
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="amp"
+            android:icon="@drawable/ic_amp_stories_24"
+            android:title="@string/amp_to_html" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

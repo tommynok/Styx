@@ -375,9 +375,14 @@ class UserPreferences @Inject constructor(
     var desktopWidthInLandscape by preferences.intPreference(R.string.pref_key_landscape_desktop_width, BrowserApp.instance.resources.getInteger(R.integer.pref_default_landscape_desktop_width))
 
     /**
-     * Redirect from AMP sites
+     * Redirect from AMP websites to HTML
      */
     var noAmp by preferences.booleanPreference(NO_AMP, false)
+
+    /**
+     * Dark Mode for websites
+     */
+    var darkModeExtension by preferences.booleanPreference(DARK_MODE, false)
 
 }
 
@@ -411,3 +416,4 @@ private const val HOSTS_SOURCE = "hostsSource"
 private const val HOSTS_LOCAL_FILE = "hostsLocalFile"
 private const val HOSTS_REMOTE_FILE = "hostsRemoteFile"
 private const val NO_AMP = "noAmp"
+private const val DARK_MODE = "darkmode"

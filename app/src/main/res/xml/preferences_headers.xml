@@ -36,6 +36,11 @@
         app:title="@string/settings_adblock"
         app:icon="@drawable/ic_block" />
 
+    <androidx.preference.Preference
+        app:fragment="com.jamal2367.styx.settings.fragment.ExtensionsSettingsFragment"
+        app:title="@string/settings_extensions"
+        app:icon="@drawable/ic_extension" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

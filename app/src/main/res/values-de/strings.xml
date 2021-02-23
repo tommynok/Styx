@@ -88,6 +88,8 @@
     <string name="close_tab">Aktuellen Tab schließen</string>
     <string name="color_mode">Farbmodus aktivieren</string>
     <string name="cookies">Cookies erlauben</string>
+    <string name="dark_mode">Dunkel-Modus</string>
+    <string name="dark_mode_summary">Erzwinge Dunkel-Modus für Webseiten</string>
     <string name="dark_theme">Dunkles Design</string>
     <string name="default_theme">Systemstandard</string>
     <string name="developer">Entwickler</string>
@@ -272,6 +274,7 @@
     <string name="settings_app_prefix">app_for_</string>
     <string name="settings_black_status_bar">Schwarze Statusleiste</string>
     <string name="settings_display">Darstellung</string>
+    <string name="settings_extensions">Erweiterungen</string>
     <string name="settings_general">Allgemein</string>
     <string name="settings_other">Sonstiges</string>
     <string name="settings_privacy">Privatsphäre</string>

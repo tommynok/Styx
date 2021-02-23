@@ -43,6 +43,8 @@ import android.webkit.WebSettings.LayoutAlgorithm
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.collection.ArrayMap
+import androidx.webkit.WebSettingsCompat
+import androidx.webkit.WebViewFeature
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -309,6 +311,10 @@ class StyxView(
         networkDisposable = networkConnectivityModel.connectivity()
             .observeOn(mainScheduler)
             .subscribe(::setNetworkAvailable)
+
+        if(WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK) && userPreferences.darkModeExtension) {
+            WebSettingsCompat.setForceDark(webView!!.getSettings(), WebSettingsCompat.FORCE_DARK_ON)
+        }
     }
 
     fun currentSslState(): SslState = styxWebClient.sslState
