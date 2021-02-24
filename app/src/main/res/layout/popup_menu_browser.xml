@@ -141,7 +141,7 @@
                 <TextView
                     android:id="@+id/menuItemAddBookmark"
                     style="@style/BrowserTextMenuItem"
-                    app:drawableStartCompat="@drawable/ic_bookmark_border"
+                    app:drawableStartCompat="@drawable/ic_bookmark_add"
                     android:text="@string/action_add_bookmark" />
 
                 <TextView
