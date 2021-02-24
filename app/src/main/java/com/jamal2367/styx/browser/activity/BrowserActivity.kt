@@ -306,6 +306,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(iBinding.menuItemReaderMode) { executeAction(R.id.menuItemReaderMode) }
             onMenuItemClicked(iBinding.menuItemSettings) { executeAction(R.id.menuItemSettings) }
             onMenuItemClicked(iBinding.menuItemDesktopMode) { executeAction(R.id.menuItemDesktopMode) }
+            onMenuItemClicked(iBinding.menuItemExit) { executeAction(R.id.menuItemExit) }
 
             // Popup menu action shortcut icons
             onMenuItemClicked(iBinding.menuShortcutRefresh) { executeAction(R.id.menuShortcutRefresh) }
@@ -1203,13 +1204,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 presenter?.closeAllOtherTabs()
                 return true
             }
-
             R.id.menuShortcutHome -> {
                 tabsManager.currentTab?.loadHomePage()
                 closeDrawers(null)
                 return true
             }
-
             R.id.menuItemDesktopMode -> {
                 tabsManager.currentTab?.apply {
                     toggleDesktopUserAgent()
@@ -1217,7 +1216,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 }
                 return true
             }
-
+            R.id.menuItemExit -> {
+                closeBrowser()
+                return true
+            }
             R.id.action_sessions -> {
                 // Show sessions menu
                 showSessions()

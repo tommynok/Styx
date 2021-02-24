@@ -131,6 +131,7 @@
     <string name="error_reload">Neu laden</string>
     <string name="error_title">Oh, Krümel! &lt;br&gt; Diese Seite kann nicht geladen werden.</string>
     <string name="example_text">Bespieltext</string>
+    <string name="exit">Beenden</string>
     <string name="export_bookmarks">Lesezeichen exportieren</string>
     <string name="folder_custom">Andere</string>
     <string name="folder_default">Standard</string>

@@ -202,6 +202,12 @@
                     app:drawableStartCompat="@drawable/ic_settings"
                     android:text="@string/settings" />
 
+                <TextView
+                    android:id="@+id/menuItemExit"
+                    style="@style/BrowserTextMenuItem"
+                    app:drawableStartCompat="@drawable/ic_action_delete"
+                    android:text="@string/exit" />
+
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
