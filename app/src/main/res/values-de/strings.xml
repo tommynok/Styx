@@ -174,7 +174,7 @@
     <string name="loading">Lade…</string>
     <string name="location">Standortzugriff erlauben</string>
     <string name="malware_message">Verbindung blockiert!</string>
-    <string name="malware_title">Oh, Mist! &lt;br&gt; Diese Webseite scheint unsicher zu sein.</string>
+    <string name="malware_title">Oh, Mist! &lt;br&gt; Diese Webseite scheint bösartig zu sein.</string>
     <string name="manual_proxy">Manueller Proxy</string>
     <string name="message_added_to_homescreen">Verknüpfung wurde zum Startbildschirm hinzugefügt</string>
     <string name="message_blocked_local">Lokale Datei wurde beim Laden blockiert</string>
