@@ -41,13 +41,13 @@ import com.jamal2367.styx.ssl.SslWarningPreferences
 import com.jamal2367.styx.utils.IntentUtils
 import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.Utils
-// import com.jamal2367.styx.utils.Utils.buildErrorPage
 import com.jamal2367.styx.utils.isSpecialUrl
 import com.jamal2367.styx.view.StyxView.Companion.KFetchMetaThemeColorTries
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import java.io.ByteArrayInputStream
 import java.io.File
+import java.io.InputStream
 import java.net.URISyntaxException
 import java.util.*
 import javax.inject.Inject
@@ -84,6 +84,8 @@ class StyxWebClient(
     private var zoomScale = 0.0f
 
     private var currentUrl: String = ""
+
+    private var color = ""
 
     var sslState: SslState = SslState.None
         private set(value) {
@@ -179,6 +181,21 @@ class StyxWebClient(
             val editor: SharedPreferences.Editor = activity.getSharedPreferences("com.jamal2367.styx", Context.MODE_PRIVATE).edit()
             editor.putString("source", it)
             editor.apply()
+        }
+
+        if (userPreferences.blockMalwareEnabled) {
+            val inputStream: InputStream = activity.assets.open("malware.txt")
+            val inputString = inputStream.bufferedReader().use { it.readText() }
+            val lines =  inputString.split(",").toTypedArray()
+            if (stringContainsItemFromList(url, lines)) {
+                view.settings.javaScriptEnabled = true
+                val title = activity.getString(R.string.malware_title)
+                val reload = activity.getString(R.string.error_reload)
+                val error = activity.getString(R.string.malware_message)
+                view.loadDataWithBaseURL(null, Utils.buildErrorPage(color, title, error, reload, false), "text/html; charset=utf-8", "UTF-8", null)
+                view.invalidate()
+                view.settings.javaScriptEnabled = userPreferences.javaScriptEnabled
+            }
         }
 
         uiController.tabChanged(styxView)

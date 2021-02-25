@@ -52,6 +52,12 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
         injector.inject(this)
 
         switchPreference(
+                preference = SETTINGS_BLOCKMALWARE,
+                isChecked = userPreferences.blockMalwareEnabled,
+                onCheckChange = { userPreferences.blockMalwareEnabled = it }
+        )
+
+        switchPreference(
             preference = "cb_block_ads",
             isChecked = userPreferences.adBlockEnabled,
             onCheckChange = { userPreferences.adBlockEnabled = it }
@@ -199,5 +205,6 @@ class AdBlockSettingsFragment : AbstractSettingsFragment() {
         private const val FILE_REQUEST_CODE = 100
         private const val AD_HOSTS_FILE = "local_hosts.txt"
         private const val TEXT_MIME_TYPE = "text/*"
+        private const val SETTINGS_BLOCKMALWARE = "block_malicious_sites"
     }
 }

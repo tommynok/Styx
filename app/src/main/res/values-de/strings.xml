@@ -66,6 +66,7 @@
     <string name="block_ad_source">Hosts-Datei Quelle</string>
     <string name="block_ads">Werbeblocker aktivieren</string>
     <string name="block_javascript">JavaScript für Webseiten blockieren</string>
+    <string name="block_malware">Bösartige Webseiten blockieren</string>
     <string name="block_sites_title">Webseiten mit einem Komma trennen!</string>
     <string name="block_source_default">Standard Hosts-Datei</string>
     <string name="block_source_local_description">Datei: %1$s</string>
@@ -172,6 +173,8 @@
     <string name="loading_failed">Es konnte nichts von der Seite geladen werden.</string>
     <string name="loading">Lade…</string>
     <string name="location">Standortzugriff erlauben</string>
+    <string name="malware_message">Verbindung blockiert!</string>
+    <string name="malware_title">Oh, Mist! &lt;br&gt; Diese Website scheint Malware zu haben.</string>
     <string name="manual_proxy">Manueller Proxy</string>
     <string name="message_added_to_homescreen">Verknüpfung wurde zum Startbildschirm hinzugefügt</string>
     <string name="message_blocked_local">Lokale Datei wurde beim Laden blockiert</string>
@@ -280,12 +283,14 @@
     <string name="settings_about_explain">Details über Autor und Lizenz</string>
     <string name="settings_about">Über</string>
     <string name="settings_adblock">Werbeblocker</string>
+    <string name="settings_admalwareblocker">Werbe &amp; Malwareblocker</string>
     <string name="settings_advanced">Erweitert</string>
     <string name="settings_app_prefix">app_for_</string>
     <string name="settings_black_status_bar">Schwarze Statusleiste</string>
     <string name="settings_display">Darstellung</string>
     <string name="settings_extensions">Erweiterungen</string>
     <string name="settings_general">Allgemein</string>
+    <string name="settings_malware">Malware</string>
     <string name="settings_other">Sonstiges</string>
     <string name="settings_privacy">Privatsphäre</string>
     <string name="settings_security">Sicherheit</string>

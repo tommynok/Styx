@@ -4,6 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
+        android:title="@string/settings_malware">
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="block_malicious_sites"
+        android:title="@string/block_malware"
+        app:icon="@drawable/ic_malware" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/settings_adblock">
 
         <SwitchPreferenceCompat

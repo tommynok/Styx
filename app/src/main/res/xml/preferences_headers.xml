@@ -33,7 +33,7 @@
 
     <androidx.preference.Preference
         app:fragment="com.jamal2367.styx.settings.fragment.AdBlockSettingsFragment"
-        app:title="@string/settings_adblock"
+        app:title="@string/settings_admalwareblocker"
         app:icon="@drawable/ic_block" />
 
     </PreferenceCategory>

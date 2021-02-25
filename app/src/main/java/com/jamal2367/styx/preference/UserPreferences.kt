@@ -391,6 +391,11 @@ class UserPreferences @Inject constructor(
 
     var siteBlockNames by preferences.stringPreference(USE_SITE_BLOCK, "")
 
+    /**
+     * Malware blocker
+     */
+    var blockMalwareEnabled by preferences.booleanPreference(BLOCK_MALWARE, true)
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -427,3 +432,4 @@ private const val DARK_MODE = "darkmode"
 private const val USE_JS_BLOCK = "useJSblock"
 private const val BLOCK_JS = "blockJS"
 private const val USE_SITE_BLOCK = "useSiteBlock"
+private const val BLOCK_MALWARE = "blockMalware"
