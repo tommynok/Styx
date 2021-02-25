@@ -154,6 +154,7 @@
     <string name="incognito_cookies">Cookies im Inkognito-Modus aktivieren</string>
     <string name="infinity">∞</string>
     <string name="install_orbot">Um Tor verwenden zu können, muss Orbot installiert sein!</string>
+    <string name="inspect">Javascript injizieren</string>
     <string name="invalid_character_removed">Ungültiges Zeichen entfernt!</string>
     <string name="invalid_characters_removed">Ungültige Zeichen entfernt!</string>
     <string name="invert_color">Farben invertieren</string>

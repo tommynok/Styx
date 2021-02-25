@@ -1,6 +1,7 @@
 package com.jamal2367.styx.browser.bookmarks
 
 import android.app.Activity
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
@@ -9,10 +10,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -251,7 +249,21 @@ class BookmarksDrawerView @JvmOverloads constructor(
                     val editText = dialogLayout.findViewById<CodeEditor>(R.id.dialog_multi_line)
                     editText.setText(name, 1)
                     builder.setView(dialogLayout)
-                    builder.setPositiveButton("OK") { dialogInterface, i -> editText.setText(editText.text?.toString()?.replace("\'", "\\\'"), 1); currentTab.loadUrl("javascript:(function() { document.documentElement.innerHTML = '" + editText.text.toString() + "'; })()") }
+                    builder.setPositiveButton("OK") { _, _ -> editText.setText(editText.text?.toString()?.replace("\'", "\\\'"), 1); currentTab.loadUrl("javascript:(function() { document.documentElement.innerHTML = '" + editText.text.toString() + "'; })()") }
+                    builder.show()
+                },
+                DialogItem(
+                        icon= context.drawable(R.drawable.ic_script_add),
+                        title = R.string.inspect
+
+                ){
+                    val builder = MaterialAlertDialogBuilder(context)
+                    val inflater = activity.layoutInflater
+                    builder.setTitle(R.string.inspect)
+                    val dialogLayout = inflater.inflate(R.layout.dialog_edit_text, null)
+                    val editText  = dialogLayout.findViewById<EditText>(R.id.dialog_edit_text)
+                    builder.setView(dialogLayout)
+                    builder.setPositiveButton("OK") { _, _ -> currentTab.loadUrl("javascript:(function() {" + editText.text.toString() + "})()") }
                     builder.show()
                 }
         )

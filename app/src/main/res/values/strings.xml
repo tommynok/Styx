@@ -154,6 +154,7 @@
     <string name="incognito_cookies">Enable cookies in incognito mode</string>
     <string name="infinity">∞</string>
     <string name="install_orbot">Please install Orbot in order to proxy with Tor.</string>
+    <string name="inspect">Inject Javascript</string>
     <string name="invalid_character_removed">Invalid character removed!</string>
     <string name="invalid_characters_removed">Invalid characters removed!</string>
     <string name="invert_color">Invert color</string>
