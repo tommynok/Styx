@@ -11,11 +11,15 @@
 * Desktop rendering.
 * Text To Speech (TTS)
 * Print mode.
+* Page-Tools.
+* Page source text editor.
+* 3rd party app forwarding.
 * Android desktop support (Samsung Dex, EMUI Desktop). 
 * Multiple search engines (Google, Bing, Yahoo, StartPage, DuckDuckGo, Mojeek, Searx etc.).
 * Incognito mode.
 * Orbot Proxy support and I2P support.
 * Ad-blocker.
+* Malware blocker.
 * Reader mode.
 * Various rendering mode: inverted, high contrast, grayscale.
 * Specific look & feel settings for portrait and landscape.
@@ -25,6 +29,7 @@
 * Tabs recovery.
 * Full screen arrangeable tabs panel.
 * Basic bookmarks panel, import and export.
+* and much more...
 
 ## Keyboard shortcuts
 * Ctrl + TAB : next tab.
