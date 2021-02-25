@@ -195,6 +195,12 @@
                     android:background="?android:attr/listDivider" />
 
                 <TextView
+                    android:id="@+id/menuItemPageTools"
+                    style="@style/BrowserTextMenuItem"
+                    app:drawableStartCompat="@drawable/ic_page_tools"
+                    android:text="@string/dialog_tools_title" />
+
+                <TextView
                     android:id="@+id/menuItemSettings"
                     style="@style/BrowserTextMenuItem"
                     app:drawableStartCompat="@drawable/ic_settings"

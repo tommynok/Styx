@@ -301,6 +301,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(iBinding.menuItemDownloads) { executeAction(R.id.menuItemDownloads) }
             onMenuItemClicked(iBinding.menuItemShare) { executeAction(R.id.menuItemShare) }
             onMenuItemClicked(iBinding.menuItemFind) { executeAction(R.id.menuItemFind) }
+            onMenuItemClicked(iBinding.menuItemPageTools) { executeAction(R.id.menuItemPageTools) }
             onMenuItemClicked(iBinding.menuItemAddToHome) { executeAction(R.id.menuItemAddToHome) }
             onMenuItemClicked(iBinding.menuItemReaderMode) { executeAction(R.id.menuItemReaderMode) }
             onMenuItemClicked(iBinding.menuItemSettings) { executeAction(R.id.menuItemSettings) }
@@ -1159,6 +1160,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
             R.id.menuItemSettings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
+                return true
+            }
+            R.id.menuItemPageTools -> {
+                (bookmarksView as BookmarksDrawerView).showPageToolsDialog(this, userPreferences)
                 return true
             }
             R.id.menuItemHistory -> {

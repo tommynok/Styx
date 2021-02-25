@@ -107,9 +107,6 @@ class BookmarksDrawerView @JvmOverloads constructor(
         addBookmarkView = findViewById(R.id.menuItemAddBookmark)
         addBookmarkView?.setOnClickListener { uiController.bookmarkButtonClicked() }
 
-
-        findViewById<View>(R.id.action_page_tools).setOnClickListener { showPageToolsDialog(context, userPreferences) }
-
         bookmarkAdapter = BookmarkListAdapter(
             context,
             faviconModel,
@@ -226,7 +223,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
     /**
      * Show the page tools dialog.
      */
-    private fun showPageToolsDialog(context: Context, userPreferences: UserPreferences) {
+    fun showPageToolsDialog(context: Context, userPreferences: UserPreferences) {
         val currentTab = getTabsManager().currentTab ?: return
         val isAllowedAds = allowListModel.isUrlAllowedAds(currentTab.url)
         val whitelistString = if (isAllowedAds) {
