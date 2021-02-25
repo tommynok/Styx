@@ -54,6 +54,7 @@
     <string name="agent_system">System</string>
     <string name="agent_web_view">WebView</string>
     <string name="agent_windows_desktop">Windows (Desktop)</string>
+    <string name="allow_javascript">Allow JavaScript for this site</string>
     <string name="android_open_source_project">Android Open Source Project</string>
     <string name="amp_to_html">AMP to HTML (Beta)</string>
     <string name="apache">Apache License 2.0</string>
@@ -71,6 +72,7 @@
     <string name="block_source_local">Local hosts file</string>
     <string name="block_source_remote_description">URL: %1$s</string>
     <string name="block_source_remote">Remote hosts file</string>
+    <string name="blocked_javascript">Block JavaScript for this site</string>
     <string name="bookmark_export_failure">Sorry, bookmarks could not be exported!</string>
     <string name="bookmark_export_path">Bookmarks exported to</string>
     <string name="bookmark_restore">Bookmarks restored</string>

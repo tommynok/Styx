@@ -54,6 +54,7 @@
     <string name="agent_system">System</string>
     <string name="agent_web_view">WebView</string>
     <string name="agent_windows_desktop">Windows (Desktop)</string>
+    <string name="allow_javascript">JavaScript für diese Webseite zulassen</string>
     <string name="android_open_source_project">Android Open Source Project</string>
     <string name="amp_to_html">AMP zu HTML (Beta)</string>
     <string name="apache">Apache License 2.0</string>
@@ -71,6 +72,7 @@
     <string name="block_source_local">Lokale Hosts-Datei</string>
     <string name="block_source_remote_description">URL: %1$s</string>
     <string name="block_source_remote">Online Hosts-Datei</string>
+    <string name="blocked_javascript">JavaScript für diese Webseite blockieren</string>
     <string name="bookmark_export_failure">Lesezeichen konnten nicht exportiert werden</string>
     <string name="bookmark_export_path">Lesezeichen exportiert nach</string>
     <string name="bookmark_restore">Lesezeichen wurden zurückgesetzt</string>

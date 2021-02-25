@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.allowlist.AllowListModel
 import com.jamal2367.styx.animation.AnimationUtils
 import com.jamal2367.styx.browser.BookmarksView
+import com.jamal2367.styx.browser.JavaScriptChoice
 import com.jamal2367.styx.browser.TabsManager
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
@@ -38,11 +40,13 @@ import com.jamal2367.styx.extensions.drawable
 import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.setImageForTheme
 import com.jamal2367.styx.favicon.FaviconModel
+import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.isSpecialUrl
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
+import java.net.URL
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
@@ -53,7 +57,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
         context: Context,
         private val activity: Activity,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+        defStyleAttr: Int = 0,
+        userPreferences: UserPreferences
 ) : LinearLayout(context, attrs, defStyleAttr), BookmarksView {
 
     @Inject internal lateinit var bookmarkModel: BookmarkRepository
@@ -93,7 +98,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
             }
         }
 
-        findViewById<View>(R.id.action_page_tools).setOnClickListener { showPageToolsDialog(context) }
+        findViewById<View>(R.id.action_page_tools).setOnClickListener { showPageToolsDialog(context, userPreferences) }
 
         bookmarkAdapter = BookmarkListAdapter(
             context,
@@ -101,7 +106,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
             networkScheduler,
             mainScheduler,
             ::handleItemLongPress,
-            ::handleItemClick
+            ::handleItemClick,
+            userPreferences
         )
 
         iBinding.bookmarkListView.let {
@@ -198,17 +204,37 @@ class BookmarksDrawerView @JvmOverloads constructor(
         is Bookmark.Entry -> uiController.bookmarkItemClicked(bookmark)
     }
 
+    fun stringContainsItemFromList(inputStr: String, items: Array<String>): Boolean {
+        for (i in items.indices) {
+            if (inputStr.contains(items[i])) {
+                return true
+            }
+        }
+        return false
+    }
 
     /**
      * Show the page tools dialog.
      */
-    private fun showPageToolsDialog(context: Context) {
+    private fun showPageToolsDialog(context: Context, userPreferences: UserPreferences) {
         val currentTab = getTabsManager().currentTab ?: return
         val isAllowedAds = allowListModel.isUrlAllowedAds(currentTab.url)
         val whitelistString = if (isAllowedAds) {
             R.string.dialog_adblock_enable_for_site
         } else {
             R.string.dialog_adblock_disable_for_site
+        }
+        val arrayOfURLs = userPreferences.javaScriptBlocked
+        val strgs: Array<String>
+        if (arrayOfURLs.contains(", ")) {
+            strgs = arrayOfURLs.split(", ".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+        } else {
+            strgs = arrayOfURLs.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+        }
+        var jsEnabledString = if (userPreferences.javaScriptChoice == JavaScriptChoice.BLACKLIST && !stringContainsItemFromList(currentTab.url, strgs) || userPreferences.javaScriptChoice == JavaScriptChoice.WHITELIST && stringContainsItemFromList(currentTab.url, strgs)) {
+            R.string.allow_javascript
+        } else{
+            R.string.blocked_javascript
         }
 
         BrowserDialog.showWithIcons(context, context.getString(R.string.dialog_tools_title),
@@ -265,6 +291,35 @@ class BookmarksDrawerView @JvmOverloads constructor(
                     builder.setView(dialogLayout)
                     builder.setPositiveButton("OK") { _, _ -> currentTab.loadUrl("javascript:(function() {" + editText.text.toString() + "})()") }
                     builder.show()
+                },
+                DialogItem(
+                        icon = context.drawable(R.drawable.ic_script_key),
+                        colorTint = context.color(R.color.error_red).takeIf { userPreferences.javaScriptChoice == JavaScriptChoice.BLACKLIST && !stringContainsItemFromList(currentTab.url, strgs) || userPreferences.javaScriptChoice == JavaScriptChoice.WHITELIST && stringContainsItemFromList(currentTab.url, strgs) },
+                        title = jsEnabledString,
+                        isConditionMet = !currentTab.url.isSpecialUrl()
+                ) {
+                    val url = URL(currentTab.url)
+                    if (userPreferences.javaScriptChoice != JavaScriptChoice.NONE) {
+                        if (!stringContainsItemFromList(currentTab.url, strgs)) {
+                            if (userPreferences.javaScriptBlocked.equals("")) {
+                                userPreferences.javaScriptBlocked = url.host
+                            } else {
+                                userPreferences.javaScriptBlocked = userPreferences.javaScriptBlocked + ", " + url.host
+                            }
+                        } else {
+                            if (!userPreferences.javaScriptBlocked.contains(", " + url.host)) {
+                                userPreferences.javaScriptBlocked = userPreferences.javaScriptBlocked.replace(url.host, "")
+                            } else {
+                                userPreferences.javaScriptBlocked = userPreferences.javaScriptBlocked.replace(", " + url.host, "")
+                            }
+                        }
+                    } else {
+                        userPreferences.javaScriptChoice = JavaScriptChoice.WHITELIST
+                    }
+                    getTabsManager().currentTab?.reload()
+                    Handler().postDelayed({
+                        getTabsManager().currentTab?.reload()
+                    }, 250)
                 }
         )
     }
@@ -288,7 +343,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
         itemView: View,
         private val adapter: BookmarkListAdapter,
         private val onItemLongClickListener: (Bookmark) -> Boolean,
-        private val onItemClickListener: (Bookmark) -> Unit
+        private val onItemClickListener: (Bookmark) -> Unit,
+        private val userPreferences: UserPreferences
     ) : RecyclerView.ViewHolder(itemView), OnClickListener, OnLongClickListener {
 
         val txtTitle: TextView = itemView.findViewById(R.id.textBookmark)
@@ -318,7 +374,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
         private val networkScheduler: Scheduler,
         private val mainScheduler: Scheduler,
         private val onItemLongClickListener: (Bookmark) -> Boolean,
-        private val onItemClickListener: (Bookmark) -> Unit
+        private val onItemClickListener: (Bookmark) -> Unit,
+        private val userPreferences: UserPreferences,
     ) : RecyclerView.Adapter<BookmarkViewHolder>() {
 
         private var bookmarks: List<BookmarksViewModel> = listOf()
@@ -363,7 +420,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
             val inflater = LayoutInflater.from(parent.context)
             val itemView = inflater.inflate(R.layout.bookmark_list_item, parent, false)
 
-            return BookmarkViewHolder(itemView, this, onItemLongClickListener, onItemClickListener)
+            return BookmarkViewHolder(itemView, this, onItemLongClickListener, onItemClickListener, userPreferences = userPreferences)
         }
 
         override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {

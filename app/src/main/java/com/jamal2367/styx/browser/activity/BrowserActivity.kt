@@ -382,7 +382,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         buttonSessions = (tabsView as View).findViewById(R.id.action_sessions)
 
-        bookmarksView = BookmarksDrawerView(this, this).also(findViewById<FrameLayout>(getBookmarksContainerId())::addView)
+        bookmarksView = BookmarksDrawerView(this, this, userPreferences = userPreferences).also(findViewById<FrameLayout>(getBookmarksContainerId())::addView)
 
         if (shouldShowTabsInDrawer) {
             iBinding.toolbarInclude.tabsToolbarContainer.visibility = GONE
