@@ -1,6 +1,7 @@
 package com.jamal2367.styx.view
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -171,6 +172,15 @@ class StyxWebClient(
         if (userPreferences.darkModeExtension && !WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
             view.evaluateJavascript(darkMode.provideJs(), null)
         }
+
+        view.evaluateJavascript("""(function() {
+        return "<html>" + document.getElementsByTagName('html')[0].innerHTML + "</html>";
+        })()""".trimMargin()) {
+            val editor: SharedPreferences.Editor = activity.getSharedPreferences("com.jamal2367.styx", Context.MODE_PRIVATE).edit()
+            editor.putString("source", it)
+            editor.apply()
+        }
+
         uiController.tabChanged(styxView)
     }
 

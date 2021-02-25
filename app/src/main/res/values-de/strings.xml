@@ -95,8 +95,8 @@
     <string name="dark_theme">Dunkles Design</string>
     <string name="default_theme">Systemstandard</string>
     <string name="developer">Entwickler</string>
-    <string name="dialog_adblock_disable_for_site">Werbeblocker für Website deaktivieren</string>
-    <string name="dialog_adblock_enable_for_site">Werbeblocker für Website aktivierung</string>
+    <string name="dialog_adblock_disable_for_site">Werbeblocker für diese Webseite deaktivieren</string>
+    <string name="dialog_adblock_enable_for_site">Werbeblocker für diese Webseite aktivieren</string>
     <string name="dialog_cookies">Möchten Sie alle Cookies löschen?</string>
     <string name="dialog_copy_link">Link kopieren</string>
     <string name="dialog_copy_text">Text kopieren</string>
@@ -208,6 +208,9 @@
     <string name="notification_incognito_running_message">Inkognito-Tab anzeigen</string>
     <string name="no_tts">Sprache wird nicht unterstützt</string>
     <string name="overViewMode">Seiten in der Übersicht öffnen</string>
+    <string name="page_source">Seitenquelltext anzeigen</string>
+    <string name="page_source_title">Seitenquelltext</string>
+    <string name="pagespeed_error">Diese Website verwendet PageSpeed. Die Quellbearbeitung funktioniert möglicherweise nicht wie erwartet.</string>
     <string name="password">Passwörter speichern</string>
     <string name="port">Port:</string>
     <string name="powered_by_baidu">Unterstützt durch Baidu</string>

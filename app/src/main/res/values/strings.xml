@@ -208,6 +208,9 @@
     <string name="notification_incognito_running_message">Touch to open</string>
     <string name="no_tts">Language is not supported</string>
     <string name="overViewMode">Load pages in overview mode</string>
+    <string name="page_source">View page source</string>
+    <string name="page_source_title">page source</string>
+    <string name="pagespeed_error">This website uses PageSpeed. Source editing may not work as expected.</string>
     <string name="password">Save your passwords</string>
     <string name="port">Port:</string>
     <string name="powered_by_baidu">Powered by Baidu</string>

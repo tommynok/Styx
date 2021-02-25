@@ -1,7 +1,10 @@
 package com.jamal2367.styx.browser.bookmarks
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +12,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.ahmadaghazadeh.editor.widget.CodeEditor
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.allowlist.AllowListModel
 import com.jamal2367.styx.animation.AnimationUtils
@@ -46,9 +52,10 @@ import javax.inject.Inject
  * The view that displays bookmarks in a list and some controls.
  */
 class BookmarksDrawerView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+        context: Context,
+        private val activity: Activity,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr), BookmarksView {
 
     @Inject internal lateinit var bookmarkModel: BookmarkRepository
@@ -87,6 +94,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 iBinding.bookmarkListView.layoutManager?.scrollToPosition(scrollIndex)
             }
         }
+
+        findViewById<View>(R.id.action_page_tools).setOnClickListener { showPageToolsDialog(context) }
 
         bookmarkAdapter = BookmarkListAdapter(
             context,
@@ -206,16 +215,6 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
         BrowserDialog.showWithIcons(context, context.getString(R.string.dialog_tools_title),
             DialogItem(
-                icon = context.drawable(R.drawable.ic_desktop),
-                title = R.string.dialog_toggle_desktop
-            ) {
-                getTabsManager().currentTab?.apply {
-                    toggleDesktopUserAgent()
-                    reload()
-                    // TODO add back drawer closing
-                }
-            },
-            DialogItem(
                 icon = context.drawable(R.drawable.ic_block),
                 colorTint = context.color(R.color.error_red).takeIf { isAllowedAds },
                 title = whitelistString,
@@ -227,7 +226,34 @@ class BookmarksDrawerView @JvmOverloads constructor(
                     allowListModel.addUrlToAllowList(currentTab.url)
                 }
                 getTabsManager().currentTab?.reload()
-            }
+            },
+                DialogItem(
+                        icon = context.drawable(R.drawable.ic_baseline_code_24),
+                        title = R.string.page_source
+
+                ) {
+                    val prefs: SharedPreferences = activity.getSharedPreferences("com.jamal2367.styx", MODE_PRIVATE)
+                    var name: String? = prefs.getString("source", "Source could not be extracted")
+
+                    // Hacky workaround for weird WebView encoding bug
+                    name = name?.replace("\\u003C", "<")
+                    name = name?.replace("\\n", System.getProperty("line.separator").toString())
+                    name = name?.replace("\\t", "")
+                    name = name?.replace("\\\"", "\"")
+                    name = name?.substring(1, name.length - 1)
+                    if (name?.contains("mod_pagespeed")!!) {
+                        Toast.makeText(activity as AppCompatActivity, R.string.pagespeed_error, Toast.LENGTH_LONG).show()
+                    }
+                    val builder = MaterialAlertDialogBuilder(context)
+                    val inflater = activity.layoutInflater
+                    builder.setTitle(R.string.page_source_title)
+                    val dialogLayout = inflater.inflate(R.layout.dialog_view_source, null)
+                    val editText = dialogLayout.findViewById<CodeEditor>(R.id.dialog_multi_line)
+                    editText.setText(name, 1)
+                    builder.setView(dialogLayout)
+                    builder.setPositiveButton("OK") { dialogInterface, i -> editText.setText(editText.text?.toString()?.replace("\'", "\\\'"), 1); currentTab.loadUrl("javascript:(function() { document.documentElement.innerHTML = '" + editText.text.toString() + "'; })()") }
+                    builder.show()
+                }
         )
     }
 

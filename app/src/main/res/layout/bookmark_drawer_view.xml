@@ -56,5 +56,24 @@
             android:divider="@null"
             android:dividerHeight="0dp"
             android:requiresFadingEdge="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/action_page_tools"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/dialog_tools_title"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_page_tools" />
+        </LinearLayout>
     </LinearLayout>
 </layout>
