@@ -84,10 +84,16 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
     private var iBinding: BookmarkDrawerViewBinding
 
+    private var addBookmarkView: ImageView? = null
+
     init {
+
         context.injector.inject(this)
+
         uiController = context as UIController
+
         iBinding = BookmarkDrawerViewBinding.inflate(context.inflater,this, true)
+
         iBinding.uiController = uiController
 
 
@@ -97,6 +103,10 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 iBinding.bookmarkListView.layoutManager?.scrollToPosition(scrollIndex)
             }
         }
+
+        addBookmarkView = findViewById(R.id.menuItemAddBookmark)
+        addBookmarkView?.setOnClickListener { uiController.bookmarkButtonClicked() }
+
 
         findViewById<View>(R.id.action_page_tools).setOnClickListener { showPageToolsDialog(context, userPreferences) }
 
@@ -138,8 +148,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
             .observeOn(mainScheduler)
             .subscribe { isBookmark ->
                 bookmarkUpdateSubscription = null
-                //addBookmarkView?.isSelected = isBookmark
-                //addBookmarkView?.isEnabled = !url.isSpecialUrl()
+                addBookmarkView?.isSelected = isBookmark
+                addBookmarkView?.isEnabled = !url.isSpecialUrl()
             }
     }
 

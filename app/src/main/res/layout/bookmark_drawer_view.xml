@@ -63,7 +63,7 @@
         android:background="?attr/colorPrimary"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="2">
 
         <ImageView
             android:id="@+id/action_page_tools"
@@ -74,6 +74,17 @@
             android:contentDescription="@string/dialog_tools_title"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_page_tools" />
+
+        <ImageView
+            android:id="@+id/menuItemAddBookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/action_add_bookmark"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_bookmark_add" />
+
         </LinearLayout>
     </LinearLayout>
 </layout>

@@ -81,7 +81,7 @@ class BrowserPopupMenu : PopupWindow {
                 // Blocking it is not nice and subscription is more involved I guess
                 // See BookmarksDrawerView.updateBookmarkIndicator
                 //contentView.menuItemAddBookmark.visibility = if (bookmarkModel.isBookmark(tab.url).blockingGet() || tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
-                iBinding.menuItemAddBookmark.visibility = if (tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
+                //iBinding.menuItemAddBookmark.visibility = if (tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
             }
         }
 

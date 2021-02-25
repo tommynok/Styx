@@ -296,7 +296,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(iBinding.menuItemNewTab) { executeAction(R.id.action_new_tab) }
             onMenuItemClicked(iBinding.menuItemIncognito) { executeAction(R.id.menuItemIncognito) }
             onMenuItemClicked(iBinding.menuItemCloseIncognito) { executeAction(R.id.menuItemCloseIncognito) }
-            onMenuItemClicked(iBinding.menuItemAddBookmark) { executeAction(R.id.menuItemAddBookmark) }
             onMenuItemClicked(iBinding.menuItemPrint) { executeAction(R.id.menuItemPrint) }
             onMenuItemClicked(iBinding.menuItemHistory) { executeAction(R.id.menuItemHistory) }
             onMenuItemClicked(iBinding.menuItemDownloads) { executeAction(R.id.menuItemDownloads) }
@@ -306,7 +305,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(iBinding.menuItemReaderMode) { executeAction(R.id.menuItemReaderMode) }
             onMenuItemClicked(iBinding.menuItemSettings) { executeAction(R.id.menuItemSettings) }
             onMenuItemClicked(iBinding.menuItemDesktopMode) { executeAction(R.id.menuItemDesktopMode) }
-            onMenuItemClicked(iBinding.menuItemExit) { executeAction(R.id.menuItemExit) }
 
             // Popup menu action shortcut icons
             onMenuItemClicked(iBinding.menuShortcutRefresh) { executeAction(R.id.menuShortcutRefresh) }
@@ -1171,12 +1169,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 openDownloads()
                 return true
             }
-            R.id.menuItemAddBookmark -> {
-                if (currentUrl != null && !currentUrl.isSpecialUrl()) {
-                    addBookmark(currentView.title, currentUrl)
-                }
-                return true
-            }
             R.id.menuItemFind -> {
                 findInPage()
                 return true
@@ -1214,10 +1206,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                     toggleDesktopUserAgent()
                     reload()
                 }
-                return true
-            }
-            R.id.menuItemExit -> {
-                closeBrowser()
                 return true
             }
             R.id.action_sessions -> {

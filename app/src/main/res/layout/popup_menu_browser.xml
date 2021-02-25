@@ -138,11 +138,9 @@
                     app:drawableStartCompat="@drawable/ic_file_download"
                     android:text="@string/action_downloads" />
 
-                <TextView
-                    android:id="@+id/menuItemAddBookmark"
-                    style="@style/BrowserTextMenuItem"
-                    app:drawableStartCompat="@drawable/ic_bookmark_add"
-                    android:text="@string/action_add_bookmark" />
+
+
+
 
                 <TextView
                     android:id="@+id/menuItemPrint"
@@ -201,12 +199,6 @@
                     style="@style/BrowserTextMenuItem"
                     app:drawableStartCompat="@drawable/ic_settings"
                     android:text="@string/settings" />
-
-                <TextView
-                    android:id="@+id/menuItemExit"
-                    style="@style/BrowserTextMenuItem"
-                    app:drawableStartCompat="@drawable/ic_action_delete"
-                    android:text="@string/exit" />
 
             </LinearLayout>
         </ScrollView>
