@@ -75,14 +75,6 @@ class BrowserPopupMenu : PopupWindow {
         (contentView.context as BrowserActivity).tabsManager.let {
             // Set desktop mode checkbox according to current tab
             iBinding.menuItemDesktopMode.isChecked = it.currentTab?.desktopMode ?: false
-
-            it.currentTab?.let { tab ->
-                // Let user add multiple times the same URL I guess, for now anyway
-                // Blocking it is not nice and subscription is more involved I guess
-                // See BookmarksDrawerView.updateBookmarkIndicator
-                //contentView.menuItemAddBookmark.visibility = if (bookmarkModel.isBookmark(tab.url).blockingGet() || tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
-                //iBinding.menuItemAddBookmark.visibility = if (tab.url.isSpecialUrl()) View.GONE else View.VISIBLE
-            }
         }
 
         //showAsDropDown(aAnchor, 0,-aAnchor.height)
