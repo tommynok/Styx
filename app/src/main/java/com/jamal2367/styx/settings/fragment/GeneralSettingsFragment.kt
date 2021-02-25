@@ -1,7 +1,9 @@
 package com.jamal2367.styx.settings.fragment
 
+import android.app.Activity
 import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.R
+import com.jamal2367.styx.browser.JavaScriptChoice
 import com.jamal2367.styx.browser.ProxyChoice
 import com.jamal2367.styx.constant.SCHEME_BLANK
 import com.jamal2367.styx.constant.SCHEME_BOOKMARKS
@@ -113,7 +115,6 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 onCheckChange = { userPreferences.incognitoCookiesEnabled = it }
         )
 
-
         switchPreference(
                 preference = getString(R.string.pref_key_cookies),
                 isChecked = userPreferences.cookiesEnabled,
@@ -123,6 +124,12 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                         incognitoCheckboxPreference.isChecked = it
                     }
                 }
+        )
+
+        clickableDynamicPreference(
+                preference = SETTINGS_BLOCK_JAVASCRIPT,
+                summary = userPreferences.javaScriptChoice.toSummary(),
+                onClick = ::showJavaScriptPicker
         )
     }
 
@@ -462,6 +469,69 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         }
     }
 
+    private fun JavaScriptChoice.toSummary(): String {
+        val stringArray = resources.getStringArray(R.array.block_javascript)
+        return when (this) {
+            JavaScriptChoice.NONE -> stringArray[0]
+            JavaScriptChoice.WHITELIST -> userPreferences.siteBlockNames
+            JavaScriptChoice.BLACKLIST -> userPreferences.siteBlockNames
+        }
+    }
+
+    private fun showJavaScriptPicker(summaryUpdater: SummaryUpdater) {
+        BrowserDialog.showCustomDialog(activity as AppCompatActivity) {
+            setTitle(R.string.block_javascript)
+            val stringArray = resources.getStringArray(R.array.block_javascript)
+            val values = JavaScriptChoice.values().map {
+                Pair(it, when (it) {
+                    JavaScriptChoice.NONE -> stringArray[0]
+                    JavaScriptChoice.WHITELIST -> stringArray[1]
+                    JavaScriptChoice.BLACKLIST -> stringArray[2]
+                })
+            }
+            withSingleChoiceItems(values, userPreferences.javaScriptChoice) {
+                updateJavaScriptChoice(it, activity as Activity, summaryUpdater)
+            }
+            setPositiveButton(R.string.action_ok, null)
+        }
+    }
+
+    private fun updateJavaScriptChoice(choice: JavaScriptChoice, activity: Activity, summaryUpdater: SummaryUpdater) {
+        if (choice == JavaScriptChoice.WHITELIST || choice == JavaScriptChoice.BLACKLIST) {
+            showManualJavaScriptPicker(activity, summaryUpdater, choice)
+        }
+
+        userPreferences.javaScriptChoice = choice
+        summaryUpdater.updateSummary(choice.toSummary())
+    }
+
+    private fun showManualJavaScriptPicker(activity: Activity, summaryUpdater: SummaryUpdater, choice: JavaScriptChoice) {
+        val v = activity.layoutInflater.inflate(R.layout.site_block, null)
+        val blockedSites = v.findViewById<TextView>(R.id.siteBlock)
+        // Limit the number of characters since the port needs to be of type int
+        // Use input filters to limit the EditText length and determine the max
+        // length by using length of integer MAX_VALUE
+        val maxCharacters = Integer.MAX_VALUE.toString().length
+
+        blockedSites.text = userPreferences.javaScriptBlocked
+
+        BrowserDialog.showCustomDialog(activity as AppCompatActivity) {
+            setTitle(R.string.block_sites_title)
+            setView(v)
+            setPositiveButton(R.string.action_ok) { _, _ ->
+                val proxyHost = blockedSites.text.toString()
+                userPreferences.javaScriptBlocked = proxyHost
+                if(choice.toString() == "BLACKLIST"){
+                    summaryUpdater.updateSummary(getText(R.string.listed_javascript).toString())
+                }
+                else{
+                    summaryUpdater.updateSummary(getText(R.string.unlisted_javascript).toString())
+                }
+
+            }
+        }
+    }
+
     private fun searchSuggestionChoiceToTitle(choice: Suggestions): String =
         when (choice) {
             Suggestions.NONE -> getString(R.string.search_suggestions_off)
@@ -508,5 +578,6 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         private const val SETTINGS_HOME = "home"
         private const val SETTINGS_SEARCH_ENGINE = "search"
         private const val SETTINGS_SUGGESTIONS = "suggestions_choice"
+        private const val SETTINGS_BLOCK_JAVASCRIPT = "block_javascript"
     }
 }

@@ -3,9 +3,7 @@ package com.jamal2367.styx.preference
 import com.jamal2367.styx.AppTheme
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
-import com.jamal2367.styx.browser.ProxyChoice
-import com.jamal2367.styx.browser.SearchBoxDisplayChoice
-import com.jamal2367.styx.browser.SearchBoxModel
+import com.jamal2367.styx.browser.*
 import com.jamal2367.styx.constant.DEFAULT_ENCODING
 import com.jamal2367.styx.constant.SCHEME_HOMEPAGE
 import com.jamal2367.styx.device.ScreenSize
@@ -384,6 +382,15 @@ class UserPreferences @Inject constructor(
      */
     var darkModeExtension by preferences.booleanPreference(DARK_MODE, false)
 
+    /**
+     * Block JavaScript for Websites
+     */
+    var javaScriptChoice by preferences.enumPreference(USE_JS_BLOCK, JavaScriptChoice.NONE)
+
+    var javaScriptBlocked by preferences.stringPreference(BLOCK_JS, "")
+
+    var siteBlockNames by preferences.stringPreference(USE_SITE_BLOCK, "")
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -417,3 +424,6 @@ private const val HOSTS_LOCAL_FILE = "hostsLocalFile"
 private const val HOSTS_REMOTE_FILE = "hostsRemoteFile"
 private const val NO_AMP = "noAmp"
 private const val DARK_MODE = "darkmode"
+private const val USE_JS_BLOCK = "useJSblock"
+private const val BLOCK_JS = "blockJS"
+private const val USE_SITE_BLOCK = "useSiteBlock"

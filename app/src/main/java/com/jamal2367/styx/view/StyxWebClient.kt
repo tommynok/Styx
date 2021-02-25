@@ -11,14 +11,12 @@ import android.net.Uri
 import android.net.http.SslError
 import android.os.Message
 import android.view.LayoutInflater
-import android.view.View
 import android.webkit.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import androidx.webkit.WebViewFeature
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -27,6 +25,7 @@ import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.AdBlocker
 import com.jamal2367.styx.adblock.allowlist.AllowListModel
 import com.jamal2367.styx.browser.activity.BrowserActivity
+import com.jamal2367.styx.browser.JavaScriptChoice
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.di.UserPrefs
@@ -193,9 +192,55 @@ class StyxWebClient(
         }
 
         // Try to fetch meta theme color a few times
-        styxView.fetchMetaThemeColorTries = KFetchMetaThemeColorTries;
+        styxView.fetchMetaThemeColorTries = KFetchMetaThemeColorTries
+
+        if (userPreferences.javaScriptChoice === JavaScriptChoice.BLACKLIST) {
+            if (userPreferences.javaScriptBlocked !== "" && userPreferences.javaScriptBlocked !== " ") {
+                val arrayOfURLs = userPreferences.javaScriptBlocked
+                var strgs: Array<String> = arrayOfURLs.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+                if (arrayOfURLs.contains(", ")) {
+                    strgs = arrayOfURLs.split(", ".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+                }
+                if (!stringContainsItemFromList(url, strgs)) {
+                    if (url.contains("file:///android_asset") or url.contains("about:blank")) {
+                        return
+                    } else {
+                        view.settings.javaScriptEnabled = false
+                    }
+                }
+                else{ return }
+            }
+        }
+        else  if (userPreferences.javaScriptChoice === JavaScriptChoice.WHITELIST) run {
+            if (userPreferences.javaScriptBlocked !== "" && userPreferences.javaScriptBlocked !== " ") {
+                val arrayOfURLs = userPreferences.javaScriptBlocked
+                var strgs: Array<String> = arrayOfURLs.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+                if (arrayOfURLs.contains(", ")) {
+                    strgs = arrayOfURLs.split(", ".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+                }
+                if (stringContainsItemFromList(url, strgs)) {
+                    if (url.contains("file:///android_asset") or url.contains("about:blank")) {
+                        return
+                    } else {
+                        view.settings.javaScriptEnabled = false
+                    }
+                }
+                else{
+                    return
+                }
+            }
+        }
 
         uiController.tabChanged(styxView)
+    }
+
+    fun stringContainsItemFromList(inputStr: String, items: Array<String>): Boolean {
+        for (i in items.indices) {
+            if (inputStr.contains(items[i])) {
+                return true
+            }
+        }
+        return false
     }
 
     override fun onReceivedHttpAuthRequest(

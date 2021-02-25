@@ -64,6 +64,8 @@
     <string name="block_ad_remote_refresh_frequency_description">For remote hosts file</string>
     <string name="block_ad_source">Hosts file source</string>
     <string name="block_ads">Block ads</string>
+    <string name="block_javascript">Block JavaScript for site</string>
+    <string name="block_sites_title">Separate sites with a comma</string>
     <string name="block_source_default">Default hosts</string>
     <string name="block_source_local_description">File: %1$s</string>
     <string name="block_source_local">Local hosts file</string>
@@ -162,6 +164,7 @@
     <string name="license_gnu">GNU Lesser General Public License</string>
     <string name="licenses">Open Source Licenses</string>
     <string name="light_theme">Light</string>
+    <string name="listed_javascript">Only allow JavaScript for listed sites</string>
     <string name="load_images">Load images</string>
     <string name="loading_failed">Couldn\'t load anything from the page.</string>
     <string name="loading">Loading&#8230;</string>
@@ -323,6 +326,7 @@
     <string name="tts">Read page</string>
     <string name="tts_initilization_failed">Initilization Failed</string>
     <string name="unknown_size">Unknown size</string>
+    <string name="unlisted_javascript">Block JavaScript for listed sites</string>
     <string name="untitled">Untitled</string>
     <string name="url_app_home_page">https://github.com/jamal2362/</string>
     <string name="url_contents">Tool bar shows</string>

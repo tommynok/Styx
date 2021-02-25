@@ -64,6 +64,8 @@
     <string name="block_ad_remote_refresh_frequency_description">(Online-Hosts Datei)</string>
     <string name="block_ad_source">Hosts-Datei Quelle</string>
     <string name="block_ads">Werbeblocker aktivieren</string>
+    <string name="block_javascript">JavaScript für Webseiten blockieren</string>
+    <string name="block_sites_title">Webseiten mit einem Komma trennen!</string>
     <string name="block_source_default">Standard Hosts-Datei</string>
     <string name="block_source_local_description">Datei: %1$s</string>
     <string name="block_source_local">Lokale Hosts-Datei</string>
@@ -162,6 +164,7 @@
     <string name="license_gnu">GNU Lesser General Public License</string>
     <string name="licenses">Open Source Lizenzen</string>
     <string name="light_theme">Helles Design</string>
+    <string name="listed_javascript">JavaScript nur für diese Webseiten zulassen</string>
     <string name="load_images">Bilder laden</string>
     <string name="loading_failed">Es konnte nichts von der Seite geladen werden.</string>
     <string name="loading">Lade…</string>
@@ -322,6 +325,7 @@
     <string name="tts">Seite lesen</string>
     <string name="tts_initilization_failed">Initilisierung fehlgeschlagen</string>
     <string name="unknown_size">Unbekannte Größe</string>
+    <string name="unlisted_javascript">JavaScript für diese Webseiten blockieren</string>
     <string name="untitled">Ohne Titel</string>
     <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>
     <string name="url_contents">URL-Box Inhalt</string>

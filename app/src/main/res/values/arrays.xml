@@ -12,6 +12,12 @@
         <item>@string/agent_custom</item>
     </string-array>
 
+    <string-array name="block_javascript">
+        <item>@string/no</item>
+        <item>@string/unlisted_javascript</item>
+        <item>@string/listed_javascript</item>
+    </string-array>
+
     <string-array name="download_folder">
         <item>@string/folder_default</item>
         <item>@string/folder_custom</item>
