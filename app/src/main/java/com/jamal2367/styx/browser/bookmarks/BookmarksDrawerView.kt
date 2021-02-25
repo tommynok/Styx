@@ -1,7 +1,6 @@
 package com.jamal2367.styx.browser.bookmarks
 
 import android.app.Activity
-import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
@@ -11,6 +10,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.CookieManager
 import android.widget.*
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -320,6 +320,30 @@ class BookmarksDrawerView @JvmOverloads constructor(
                     Handler().postDelayed({
                         getTabsManager().currentTab?.reload()
                     }, 250)
+                },
+                DialogItem(
+                        icon = context.drawable(R.drawable.ic_cookie),
+                        title = R.string.edit_cookies
+                ) {
+
+                    val cookieManager = CookieManager.getInstance()
+                    if (cookieManager.getCookie(currentTab.url) != null) {
+                        val builder = MaterialAlertDialogBuilder(context)
+                        val inflater = activity.layoutInflater
+                        builder.setTitle(R.string.site_cookies)
+                        val dialogLayout = inflater.inflate(R.layout.dialog_multi_line, null)
+                        val editText = dialogLayout.findViewById<EditText>(R.id.dialog_multi_line)
+                        editText.setText(cookieManager.getCookie(currentTab.url))
+                        builder.setView(dialogLayout)
+                        builder.setPositiveButton("OK") { _, _ ->
+                            val cookiesList = editText.text.toString().split(";")
+                            cookiesList.forEach { item ->
+                                CookieManager.getInstance().setCookie(currentTab.url, item)
+                            }
+                        }
+                        builder.show()
+                    }
+
                 }
         )
     }

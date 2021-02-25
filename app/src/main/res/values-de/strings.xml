@@ -132,6 +132,7 @@
     <string name="download">Download-Verzeichnis</string>
     <string name="downloads_notification_description">Auslöser bei Abschluss des Downloads</string>
     <string name="downloads">Downloads</string>
+    <string name="edit_cookies">Webseiten-Cookies anzeigen</string>
     <string name="error_reload">Neu laden</string>
     <string name="error_title">Oh, Krümel! &lt;br&gt; Diese Seite kann nicht geladen werden.</string>
     <string name="example_text">Bespieltext</string>
@@ -297,6 +298,7 @@
     <string name="settings">Einstellungen</string>
     <string name="shortcut_message_failed_to_add">Ihr Launcher unterstützt keine Verknüpfungen!</string>
     <string name="show">Zeigen</string>
+    <string name="site_cookies">Webseiten-Cookies</string>
     <string name="size">Textgröße:</string>
     <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Verfällt am:</string>

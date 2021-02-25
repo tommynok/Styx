@@ -132,6 +132,7 @@
     <string name="download">Download location</string>
     <string name="downloads_notification_description">Triggers upon download completion</string>
     <string name="downloads">Downloads</string>
+    <string name="edit_cookies">Show site cookies</string>
     <string name="error_reload">Reload</string>
     <string name="error_title">Oh crumbs! &lt;br&gt; That site can\'t be loaded.</string>
     <string name="example_text">Example text</string>
@@ -298,6 +299,7 @@
     <string name="settings">Settings</string>
     <string name="shortcut_message_failed_to_add">Sorry, your launcher does not support shortcuts.</string>
     <string name="show">Show</string>
+    <string name="site_cookies">Site cookies</string>
     <string name="size">Text size</string>
     <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Expires on:</string>
