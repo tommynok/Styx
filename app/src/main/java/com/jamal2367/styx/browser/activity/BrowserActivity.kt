@@ -1654,6 +1654,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             userPreferences.bookmarksChanged = false
         }
 
+        if (userPreferences.incognito) {
+            WebUtils.clearHistory(this, historyModel, databaseScheduler)
+            WebUtils.clearCookies(this)
+        }
+
         suggestionsAdapter?.let {
             it.refreshPreferences()
             it.refreshBookmarks()

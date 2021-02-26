@@ -314,6 +314,7 @@
     <string name="ssl_info_issued_on">Issued on:</string>
     <string name="ssl_info_issued_to">Issued to:</string>
     <string name="ssl_warning_dont_ask_again">Don\'t ask again for this browsing session.</string>
+    <string name="start_incognito">Permanently behave as if in incognito mode</string>
     <string name="stop_tts">Stop reading</string>
     <string name="suggestion">Search for</string>
     <string name="swap_bookmarks_and_tabs">Swap bookmark and tab drawers</string>

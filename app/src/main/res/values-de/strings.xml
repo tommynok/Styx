@@ -313,6 +313,7 @@
     <string name="ssl_info_issued_on">Ausgestellt am:</string>
     <string name="ssl_info_issued_to">Ausgestellt für:</string>
     <string name="ssl_warning_dont_ask_again">Während dieser Sitzung nicht mehr nachfragen</string>
+    <string name="start_incognito">Dauerhaft wie im Inkognito-Modus verhalten</string>
     <string name="stop_tts">Lesen beenden</string>
     <string name="suggestion">Suche nach</string>
     <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer tauschen</string>

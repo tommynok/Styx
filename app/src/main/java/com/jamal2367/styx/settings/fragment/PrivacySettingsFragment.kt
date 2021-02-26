@@ -105,6 +105,12 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
             onCheckChange = { userPreferences.removeIdentifyingHeadersEnabled = it }
         )
 
+        switchPreference(
+                preference = SETTINGS_INCOGNITO,
+                isChecked = userPreferences.incognito,
+                onCheckChange = { userPreferences.incognito = it }
+        )
+
     }
 
     private fun clearHistoryDialog() {
@@ -216,6 +222,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
         private const val SETTINGS_WEBSTORAGEEXIT = "clear_webstorage_exit"
         private const val SETTINGS_DONOTTRACK = "do_not_track"
         private const val SETTINGS_IDENTIFYINGHEADERS = "remove_identifying_headers"
+        private const val SETTINGS_INCOGNITO = "start_incognito"
     }
 
 }

@@ -401,6 +401,11 @@ class UserPreferences @Inject constructor(
      */
     var forceZoom by preferences.booleanPreference(FORCE_ZOOM, false)
 
+    /**
+     * Always in Incognito mode
+     */
+    var incognito by preferences.booleanPreference(ALWAYS_INCOGNITO, false)
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -439,3 +444,4 @@ private const val BLOCK_JS = "blockJS"
 private const val USE_SITE_BLOCK = "useSiteBlock"
 private const val BLOCK_MALWARE = "blockMalware"
 private const val FORCE_ZOOM = "forcezoom"
+private const val ALWAYS_INCOGNITO = "alwaysincognito"

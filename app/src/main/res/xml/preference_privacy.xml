@@ -45,6 +45,13 @@
         android:title="@string/remove_identifying_headers"
         app:icon="@drawable/ic_header" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="start_incognito"
+        android:singleLineTitle="false"
+        android:title="@string/start_incognito"
+        app:icon="@drawable/ic_incognito" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
