@@ -7,9 +7,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewDatabase;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import io.reactivex.Scheduler;
-
 import com.jamal2367.styx.database.history.HistoryRepository;
+import io.reactivex.Scheduler;
+import java.io.File;
 
 /**
  * Copyright 8/4/2015 Anthony Restaino
@@ -39,9 +39,34 @@ public final class WebUtils {
         Utils.trimCache(context);
     }
 
-    public static void clearCache(@Nullable WebView view) {
+    public static void clearCache(@Nullable WebView view, @NonNull Context context) {
         if (view == null) return;
         view.clearCache(true);
+        deleteCache(context);
+    }
+
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) { e.printStackTrace();}
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
     }
 
 }

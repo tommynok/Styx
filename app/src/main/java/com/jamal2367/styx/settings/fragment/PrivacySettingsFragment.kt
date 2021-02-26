@@ -1,5 +1,6 @@
 package com.jamal2367.styx.settings.fragment
 
+import android.content.Context
 import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.R
 import com.jamal2367.styx.database.history.HistoryRepository
@@ -19,6 +20,7 @@ import android.os.Bundle
 import android.webkit.WebView
 import io.reactivex.Completable
 import io.reactivex.Scheduler
+import java.io.File
 import javax.inject.Inject
 
 class PrivacySettingsFragment : AbstractSettingsFragment() {
@@ -146,7 +148,34 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
             clearCache(true)
             destroy()
         }
+        deleteCache(requireContext())
         (activity as AppCompatActivity).snackbar(R.string.message_cache_cleared)
+    }
+
+    fun deleteCache(context: Context) {
+        try {
+            val dir = context.cacheDir
+            deleteDir(dir)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun deleteDir(dir: File?): Boolean {
+        return if (dir != null && dir.isDirectory) {
+            val children = dir.list()
+            for (i in children.indices) {
+                val success = deleteDir(File(dir, children[i]))
+                if (!success) {
+                    return false
+                }
+            }
+            dir.delete()
+        } else if (dir != null && dir.isFile) {
+            dir.delete()
+        } else {
+            false
+        }
     }
 
     private fun clearHistory(): Completable = Completable.fromAction {
