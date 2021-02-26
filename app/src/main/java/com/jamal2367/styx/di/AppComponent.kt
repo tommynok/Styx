@@ -43,7 +43,7 @@ interface AppComponent {
 
     fun inject(activity: BrowserActivity)
 
-    fun inject(fragment: BookmarkSettingsFragment)
+    fun inject(fragment: ImportExportSettingsFragment)
 
     fun inject(builder: StyxDialogBuilder)
 

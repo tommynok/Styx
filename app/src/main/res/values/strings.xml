@@ -82,6 +82,7 @@
     <string name="busy">Busy, try again shortly."</string>
     <string name="cache">Clear cache on exit</string>
     <string name="cannot_download">Can only download \"http\" or \"https\" URLs.</string>
+    <string name="clean_settings">This will delete all data that Styx has stored on your device! The app will exit when you confirm it.</string>
     <string name="clear_cache">Clear cache</string>
     <string name="clear_cookies_exit">Clear cookies on exit</string>
     <string name="clear_cookies">Clear browser cookies</string>
@@ -98,6 +99,7 @@
     <string name="dark_mode_summary">Force dark mode for web pages</string>
     <string name="dark_theme">Dark</string>
     <string name="default_theme">Follow System</string>
+    <string name="delete_all_bookmarks">Delete all bookmarks?</string>
     <string name="developer">Developer</string>
     <string name="dialog_adblock_disable_for_site">Disable ad block for site</string>
     <string name="dialog_adblock_enable_for_site">Enable ad block for site</string>
@@ -139,6 +141,7 @@
     <string name="error_title">Oh crumbs! &lt;br&gt; That site can\'t be loaded.</string>
     <string name="example_text">Example text</string>
     <string name="export_bookmarks">Export bookmarks to backup</string>
+    <string name="export_settings">Export settings to backup</string>
     <string name="folder_custom">Custom</string>
     <string name="folder_default">Default</string>
     <string name="folder">Folder name</string>
@@ -156,6 +159,9 @@
     <string name="i2p_tunnels_not_ready">I2P tunnels are not ready yet.</string>
     <string name="import_backup">Import bookmarks from backup</string>
     <string name="import_bookmark_error">Could not import bookmarks from file</string>
+    <string name="import_export_settings">Import &amp; Export</string>
+    <string name="import_settings">Import settings from backup</string>
+    <string name="import_settings_error">Could not import settings from file</string>
     <string name="incognito_cookies_pie">Incognito mode runs in a separate process that is reset after each session. Incognito cookie preferences are now controlled by the regular cookie preferences.</string>
     <string name="incognito_cookies">Enable cookies in incognito mode</string>
     <string name="infinity">∞</string>
@@ -248,6 +254,7 @@
     <string name="remove_identifying_headers">Remove identifying headers</string>
     <string name="rendering_mode">Rendering mode</string>
     <string name="reopening_recent_tab">Tab recovered</string>
+    <string name="reset_settings">Reset settings</string>
     <string name="restore_tabs_on_startup">Restore tabs on startup</string>
     <string name="save_data">Request \'Save-Data\'</string>
     <string name="search_engine_ask">Ask</string>
@@ -269,6 +276,7 @@
     <string name="search_engine_yahoo">Yahoo</string>
     <string name="search_engine_yahoo_no_js">Yahoo - No JavaScript</string>
     <string name="search_engine_yandex">Yandex</string>
+    <string name="settings_exported">Settings exported to:</string>
     <string name="search_hint">Search</string>
     <string name="search_homepage">Search</string>
     <string name="search_in_new_tab">Search in new tab</string>
@@ -291,11 +299,14 @@
     <string name="settings_app_prefix">app_for_</string>
     <string name="settings_black_status_bar">Black status bar</string>
     <string name="settings_display">Look &amp; feel</string>
+    <string name="settings_export_failure">Sorry, settings could not be exported!</string>
     <string name="settings_extensions">Extensions</string>
     <string name="settings_general">General</string>
+    <string name="settings_imported">Settings from backup imported</string>
     <string name="settings_malware">Malware</string>
     <string name="settings_other">Other</string>
     <string name="settings_privacy">Privacy</string>
+    <string name="settings_reseted">All settings restored</string>
     <string name="settings_security">Security</string>
     <string name="settings_summary_apps">Enable third-party apps</string>
     <string name="settings_summary_desktop_mode_default">Define if new tabs use desktop mode by default</string>
@@ -316,6 +327,7 @@
     <string name="ssl_warning_dont_ask_again">Don\'t ask again for this browsing session.</string>
     <string name="start_incognito">Permanently behave as if in incognito mode</string>
     <string name="stop_tts">Stop reading</string>
+    <string name="success">Success</string>
     <string name="suggestion">Search for</string>
     <string name="swap_bookmarks_and_tabs">Swap bookmark and tab drawers</string>
     <string name="tabs_in_drawer">Show tabs in navigation drawer</string>

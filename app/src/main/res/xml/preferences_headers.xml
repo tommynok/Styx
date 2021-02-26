@@ -6,62 +6,67 @@
     <PreferenceCategory
         android:title="@string/settings_general">
 
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.GeneralSettingsFragment"
-        app:title="@string/settings_general"
-        app:icon="@drawable/ic_settings" />
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.GeneralSettingsFragment"
+            app:title="@string/settings_general"
+            app:icon="@drawable/ic_settings" />
 
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.DisplaySettingsFragment"
-        app:title="@string/settings_display"
-        app:icon="@drawable/ic_palette" />
-
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.BookmarkSettingsFragment"
-        app:title="@string/bookmark_settings"
-        app:icon="@drawable/ic_bookmark_border" />
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.DisplaySettingsFragment"
+            app:title="@string/settings_display"
+            app:icon="@drawable/ic_palette" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/settings_security">
 
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.PrivacySettingsFragment"
-        app:title="@string/settings_privacy"
-        app:icon="@drawable/ic_security" />
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.PrivacySettingsFragment"
+            app:title="@string/settings_privacy"
+            app:icon="@drawable/ic_security" />
 
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.AdBlockSettingsFragment"
-        app:title="@string/settings_admalwareblocker"
-        app:icon="@drawable/ic_block" />
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.AdBlockSettingsFragment"
+            app:title="@string/settings_admalwareblocker"
+            app:icon="@drawable/ic_block" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/settings_extensions">
 
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.ExtensionsSettingsFragment"
-        app:title="@string/settings_extensions"
-        app:icon="@drawable/ic_extension" />
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.ExtensionsSettingsFragment"
+            app:title="@string/settings_extensions"
+            app:icon="@drawable/ic_extension" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/import_export_settings">
+
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.ImportExportSettingsFragment"
+            app:title="@string/import_export_settings"
+            app:icon="@drawable/ic_import_export"  />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/settings_other">
 
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.AppsSettingsFragment"
-        app:summary="@string/settings_summary_apps"
-        app:title="@string/settings_title_apps"
-        app:icon="@drawable/ic_apps" />
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.AppsSettingsFragment"
+            app:summary="@string/settings_summary_apps"
+            app:title="@string/settings_title_apps"
+            app:icon="@drawable/ic_apps" />
 
-    <androidx.preference.Preference
-        app:fragment="com.jamal2367.styx.settings.fragment.AboutSettingsFragment"
-        app:summary="@string/settings_about_explain"
-        app:title="@string/settings_about"
-        app:icon="@drawable/ic_about" />
+        <androidx.preference.Preference
+            app:fragment="com.jamal2367.styx.settings.fragment.AboutSettingsFragment"
+            app:summary="@string/settings_about_explain"
+            app:title="@string/settings_about"
+            app:icon="@drawable/ic_about" />
 
     </PreferenceCategory>
 
