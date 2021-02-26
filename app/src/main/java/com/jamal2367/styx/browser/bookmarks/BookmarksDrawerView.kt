@@ -287,7 +287,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 },
                 DialogItem(
                         icon= context.drawable(R.drawable.ic_script_add),
-                        title = R.string.inspect
+                        title = R.string.inspect,
+                        isConditionMet = !currentTab.url.isSpecialUrl()
 
                 ){
                     val builder = MaterialAlertDialogBuilder(context)
@@ -330,7 +331,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 },
                 DialogItem(
                         icon = context.drawable(R.drawable.ic_cookie),
-                        title = R.string.edit_cookies
+                        title = R.string.edit_cookies,
+                        isConditionMet = !currentTab.url.isSpecialUrl()
                 ) {
 
                     val cookieManager = CookieManager.getInstance()
