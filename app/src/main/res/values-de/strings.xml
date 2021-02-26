@@ -54,7 +54,7 @@
     <string name="agent_system">System</string>
     <string name="agent_web_view">WebView</string>
     <string name="agent_windows_desktop">Windows (Desktop)</string>
-    <string name="algorithm">Algorithmus</string>
+    <string name="algorithm">Algorithmus:</string>
     <string name="allow_javascript">JavaScript für diese Webseite zulassen</string>
     <string name="android_open_source_project">Android Open Source Project</string>
     <string name="amp_to_html">AMP zu HTML (Beta)</string>
