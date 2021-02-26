@@ -81,6 +81,12 @@
             app:icon="@drawable/ic_baseline_open_in_new_24" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/pref_key_request_save_data"
+            android:title="@string/save_data"
+            app:icon="@drawable/ic_data_save" />
+
+        <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_cookies"
             android:summary="@string/recommended"
@@ -94,6 +100,13 @@
             app:icon="@drawable/ic_cookie" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="force_zoom"
+            android:summary="@string/force_zoom_summary"
+            android:title="@string/force_zoom"
+            app:icon="@drawable/ic_force_zoom" />
+
+        <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/pref_key_javascript"
             android:summary="@string/recommended"
@@ -104,12 +117,6 @@
             android:key="block_javascript"
             android:title="@string/block_javascript"
             app:icon="@drawable/ic_script_key"/>
-
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="@string/pref_key_request_save_data"
-            android:title="@string/save_data"
-            app:icon="@drawable/ic_data_save" />
 
         <Preference
             android:key="download"

@@ -142,6 +142,8 @@
     <string name="folder_custom">Custom</string>
     <string name="folder_default">Default</string>
     <string name="folder">Folder name</string>
+    <string name="force_zoom">Force zoom for websites</string>
+    <string name="force_zoom_summary">Does not work if JavaScript is not enabled</string>
     <string name="freeware">Freeware</string>
     <string name="hint_password">Password</string>
     <string name="hint_title">Title</string>

@@ -396,6 +396,11 @@ class UserPreferences @Inject constructor(
      */
     var blockMalwareEnabled by preferences.booleanPreference(BLOCK_MALWARE, true)
 
+    /**
+     * Force Zoom for Websites
+     */
+    var forceZoom by preferences.booleanPreference(FORCE_ZOOM, false)
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -433,3 +438,4 @@ private const val USE_JS_BLOCK = "useJSblock"
 private const val BLOCK_JS = "blockJS"
 private const val USE_SITE_BLOCK = "useSiteBlock"
 private const val BLOCK_MALWARE = "blockMalware"
+private const val FORCE_ZOOM = "forcezoom"

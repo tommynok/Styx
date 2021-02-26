@@ -142,6 +142,8 @@
     <string name="folder_custom">Andere</string>
     <string name="folder_default">Standard</string>
     <string name="folder">Ordnername</string>
+    <string name="force_zoom">Zoom auf Webseiten erzwingen</string>
+    <string name="force_zoom_summary">(JavaScript muss aktiviert sein)</string>
     <string name="freeware">Freeware</string>
     <string name="hint_password">Passwort</string>
     <string name="hint_title">Titel</string>

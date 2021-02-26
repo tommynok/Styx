@@ -171,6 +171,11 @@ class StyxWebClient(
         if (styxView.invertPage) {
             view.evaluateJavascript(invertPageJs.provideJs(), null)
         }
+        if(userPreferences.forceZoom){
+            view.loadUrl(
+                    "javascript:(function() { document.querySelector('meta[name=\"viewport\"]').setAttribute(\"content\",\"width=device-width\"); })();"
+            )
+        }
         if (userPreferences.darkModeExtension && !WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
             view.evaluateJavascript(darkMode.provideJs(), null)
         }

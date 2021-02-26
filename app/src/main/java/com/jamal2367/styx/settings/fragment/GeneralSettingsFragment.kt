@@ -131,6 +131,12 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 summary = userPreferences.javaScriptChoice.toSummary(),
                 onClick = ::showJavaScriptPicker
         )
+
+        switchPreference(
+                preference = SETTINGS_FORCE_ZOOM,
+                isChecked = userPreferences.forceZoom,
+                onCheckChange = { userPreferences.forceZoom = it }
+        )
     }
 
     /**
@@ -579,5 +585,6 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         private const val SETTINGS_SEARCH_ENGINE = "search"
         private const val SETTINGS_SUGGESTIONS = "suggestions_choice"
         private const val SETTINGS_BLOCK_JAVASCRIPT = "block_javascript"
+        private const val SETTINGS_FORCE_ZOOM = "force_zoom"
     }
 }
