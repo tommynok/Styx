@@ -260,7 +260,7 @@
     <string name="search_engine_ask">Ask</string>
     <string name="search_engine_baidu">Baidu</string>
     <string name="search_engine_bing">Bing</string>
-    <string name="search_engine_custom">Custom URL</string>
+    <string name="search_engine_custom">Benutzerdefiniert</string>
     <string name="search_engine_duckduckgo_lite">DuckDuckGo Lite</string>
     <string name="search_engine_duckduckgo_lite_no_js">DuckDuckGo Lite - Kein JavaScript</string>
     <string name="search_engine_duckduckgo">DuckDuckGo</string>
