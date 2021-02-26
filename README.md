@@ -1,3 +1,5 @@
+[![GitHub license](https://img.shields.io/github/license/jamal2362/Styx)](https://github.com/jamal2362/URL-Radio/blob/master/LICENSE.md) [![GitHub issues](https://img.shields.io/github/issues/jamal2362/Styx)](https://github.com/jamal2362/Styx/issues) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/jamal2362/Styx)](https://github.com/jamal2362/Styx/releases)
+
 # Styx Browser
 
 ## Features
