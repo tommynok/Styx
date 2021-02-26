@@ -7,6 +7,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.content.Context
 import android.net.http.SslCertificate
 import android.text.format.DateFormat
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 
@@ -27,6 +28,14 @@ fun Context.showSslDialog(sslCertificate: SslCertificate, sslState: SslState) {
             ?: to.cName
         findViewById<TextView>(R.id.ssl_layout_issue_date).text = dateFormat.format(issueDate)
         findViewById<TextView>(R.id.ssl_layout_expire_date).text = dateFormat.format(expireDate)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            val cert = sslCertificate.x509Certificate
+            findViewById<TextView>(R.id.ssl_layout_serial_number).text = cert?.sigAlgName
+        }
+        else{
+            findViewById<TextView>(R.id.ssl_layout_serial_number).visibility = View.GONE
+            findViewById<TextView>(R.id.algorithm).visibility = View.GONE
+        }
     }
 
     val icon = createSslDrawableForState(sslState)
