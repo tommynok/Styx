@@ -138,7 +138,11 @@
     <string name="downloads">Downloads</string>
     <string name="edit_cookies">Webseiten-Cookies anzeigen</string>
     <string name="error_reload">Neu laden</string>
-    <string name="error_title">Oh, Krümel! &lt;br&gt; Diese Seite kann nicht geladen werden.</string>
+    <string name="error_title">Verbindung fehlgeschlagen!</string>
+    <string name="error_tip">• Bitte überprüfen Sie die Adresse auf Tippfehler, wie ww.example.com statt www.example.com</string>
+    <string name="error_tip2">• Wenn Sie auch keine andere Website aufrufen können, überprüfen Sie bitte die Daten- oder WLAN-Verbindung.</string>
+    <string name="error_tip3">• Diese Webseite scheint bösartig zu sein.</string>
+    <string name="error_tip4">Verbindung blockiert!</string>
     <string name="example_text">Bespieltext</string>
     <string name="export_bookmarks">Lesezeichen exportieren</string>
     <string name="export_settings">Einstellungen exportieren</string>
@@ -182,8 +186,6 @@
     <string name="loading_failed">Es konnte nichts von der Seite geladen werden.</string>
     <string name="loading">Lade…</string>
     <string name="location">Standortzugriff erlauben</string>
-    <string name="malware_message">Verbindung blockiert!</string>
-    <string name="malware_title">Oh, Mist! &lt;br&gt; Diese Webseite scheint bösartig zu sein.</string>
     <string name="manual_proxy">Manueller Proxy</string>
     <string name="message_added_to_homescreen">Verknüpfung wurde zum Startbildschirm hinzugefügt</string>
     <string name="message_blocked_local">Lokale Datei wurde beim Laden blockiert</string>

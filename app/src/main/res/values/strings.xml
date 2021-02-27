@@ -138,7 +138,11 @@
     <string name="downloads">Downloads</string>
     <string name="edit_cookies">Show site cookies</string>
     <string name="error_reload">Reload</string>
-    <string name="error_title">Oh crumbs! &lt;br&gt; That site can\'t be loaded.</string>
+    <string name="error_title">Oh crumbs!</string>
+    <string name="error_tip">• Check the Address for typing errors such as ww.example.com instead of www.example.com</string>
+    <string name="error_tip2">• If you are unable to load any pages, check your device\'s data or Wi-Fi connection.</string>
+    <string name="error_tip3">• That site appears to be malware.</string>
+    <string name="error_tip4">Connection blocked!</string>
     <string name="example_text">Example text</string>
     <string name="export_bookmarks">Export bookmarks to backup</string>
     <string name="export_settings">Export settings to backup</string>
@@ -182,8 +186,6 @@
     <string name="loading_failed">Couldn\'t load anything from the page.</string>
     <string name="loading">Loading&#8230;</string>
     <string name="location">Location access</string>
-    <string name="malware_message">Connection blocked!</string>
-    <string name="malware_title">Oh crumbs! &lt;br&gt; That site appears to be malware.</string>
     <string name="manual_proxy">Manual proxy</string>
     <string name="message_added_to_homescreen">Shortcut added to home screen</string>
     <string name="message_blocked_local">Local file has been blocked from loading</string>

@@ -171,7 +171,7 @@ object Utils {
         return 0xff shl ALPHA_CHANNEL.toInt() or (r shl RED_CHANNEL.toInt()) or (g shl GREEN_CHANNEL.toInt()) or b
     }
 
-    fun buildErrorPage(color: String?, title: String?, error: String?, reload: String?, showButton: Boolean, reloadCode: String = "window.history.back();"): String {
+    fun buildErrorPage(color: String?, title: String?, error: String?, tip: String?, tip2: String?, reload: String?, showButton: Boolean, reloadCode: String = "window.history.back();"): String {
         var reloadButtonCode = "<button onclick=\"reload();\" id=\"reload-button\" class=\"blue-button text-button reload\">$reload</button>"
         val background = htmlColor(ThemeUtils.getSurfaceColor(BrowserApp.currentContext()))
         val text = htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorOnPrimary))
@@ -186,7 +186,7 @@ object Utils {
                 "function reload(){setTimeout(function(){$reloadCode}, 500);" +
                 "};</script>" +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
-                "<style>html{-webkit-text-size-adjust: 100%;font-size: 125%;}body{background-color: $background; color: $text; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"; font-size: 75%;}div{display:block;}h1{margin-top: 0; color: $text; font-size: 1.6em; font-weight: normal; line-height: 1.25em; margin-bottom: 16px;}button{border: solid 1px; border-radius: 4px; border-color: $accent; padding: 0 16px; min-width: 64px; line-height: 34px; background-color: transparent; -webkit-user-select: none; text-transform: uppercase; color: $accent; box-sizing: border-box; cursor: pointer; font-size: .875em; margin: 0; font-weight: 500;}button:hover{box-shadow: 0 1px 2px rgba(1, 1, 1, 0.5);}.error-code{color: $text; display: inline; font-size: .86667em; margin-top: 15px; opacity: .5; text-transform: uppercase;}.interstitial-wrapper{box-sizing: border-box;font-size: 1em;margin: 100px auto 0;max-width: 600px;width: 100%;}.offline .interstitial-wrapper{color: #2b2b2b;font-size: 1em;line-height: 1.55;margin: 0 auto;max-width: 600px;padding-top: 100px;width: 100%;}.hidden{display: none;}.nav-wrapper{margin-top: 51px; display:inline-block;}#buttons::after{clear: both; content: ''; display: block; width: 100%;}.nav-wrapper::after{clear: both; content: ''; display: table; width: 100%;}.small-link{color: #696969; font-size: .875em;}@media (max-width: 640px), (max-height: 640px){h1{margin: 0 0 15px;}button{width: 100%;}}" +
+                "<style>html{-webkit-text-size-adjust: 100%;font-size: 125%;}body{background-color: $background; color: $text; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"; font-size: 75%;}img{pointer-events: none;}.unselectable{-webkit-user-select: none; -webkit-touch-callout: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}div{display:block;}p{color: $text;}h1{margin-top: 0; color: $text; font-size: 1.6em; font-weight: normal; line-height: 1.25em; margin-bottom: 16px;}button{border: solid 1px; border-radius: 4px; border-color: $accent; padding: 0 16px; min-width: 64px; line-height: 34px; background-color: transparent; -webkit-user-select: none; text-transform: uppercase; color: $accent; box-sizing: border-box; cursor: pointer; font-size: .875em; margin: 0; font-weight: 500;}button:hover{box-shadow: 0 1px 2px rgba(1, 1, 1, 0.5);}.error-code{color: $text; display: inline; font-size: .86667em; margin-top: 15px; opacity: .5; text-transform: uppercase;}.interstitial-wrapper{box-sizing: border-box;font-size: 1em;margin: 100px auto 0;max-width: 600px;width: 100%;}.offline .interstitial-wrapper{color: #2b2b2b;font-size: 1em;line-height: 1.55;margin: 0 auto;max-width: 600px;padding-top: 100px;width: 100%;}.hidden{display: none;}.nav-wrapper{margin-top: 51px; display:inline-block;}#buttons::after{clear: both; content: ''; display: block; width: 100%;}.nav-wrapper::after{clear: both; content: ''; display: table; width: 100%;}.small-link{color: #696969; font-size: .875em;}@media (max-width: 640px), (max-height: 640px){h1{margin: 0 0 15px;}button{width: 100%;}}" +
                 "</style>" +
                 "</head>" +
                 "<center>" +
@@ -196,7 +196,10 @@ object Utils {
                 "<img src=\"file:///android_asset/warning.gif\" height=\"128\" width=\"128\"><br><br>" +
                 "<div class=\"icon icon-offline\"></div>" +
                 "<div id=\"main-message\">" +
-                "<h1>$title</h1>" +
+                "<h1 class=\"unselectable\">$title</h1>" +
+                "<p class=\"unselectable\">$tip</p>" +
+                "<p class=\"unselectable\">$tip2</p>" +
+                "<p>&nbsp;</p>" +
                 "</h1><p></p><div class=\"error-code\">$error" +
                 "</div></div></div><div id=\"buttons\" class=\"nav-wrapper\"><div id=\"control-buttons\">$reloadButtonCode" +
                 "</div></div></div></body></center></html>" +
@@ -204,6 +207,43 @@ object Utils {
 
         return page
     }
+
+
+    fun buildMalwarePage(color: String?, title: String?, error: String?, tip3: String?, reload: String?, showButton: Boolean, reloadCode: String = "window.history.back();"): String {
+        var reloadButtonCode = "<button onclick=\"reload();\" id=\"reload-button\" class=\"blue-button text-button reload\">$reload</button>"
+        val background = htmlColor(ThemeUtils.getSurfaceColor(BrowserApp.currentContext()))
+        val text = htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorOnPrimary))
+        val accent = htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorAccent))
+
+        when(showButton){
+            false -> reloadButtonCode = ""
+        }
+        val page = "<html>" +
+                "<head>" +
+                "<script language=\"javascript\"> " +
+                "function reload(){setTimeout(function(){$reloadCode}, 500);" +
+                "};</script>" +
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
+                "<style>html{-webkit-text-size-adjust: 100%;font-size: 125%;}body{background-color: $background; color: $text; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"; font-size: 75%;}img{pointer-events: none;}.unselectable{-webkit-user-select: none; -webkit-touch-callout: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}div{display:block;}p{color: $text;}h1{margin-top: 0; color: $text; font-size: 1.6em; font-weight: normal; line-height: 1.25em; margin-bottom: 16px;}button{border: solid 1px; border-radius: 4px; border-color: $accent; padding: 0 16px; min-width: 64px; line-height: 34px; background-color: transparent; -webkit-user-select: none; text-transform: uppercase; color: $accent; box-sizing: border-box; cursor: pointer; font-size: .875em; margin: 0; font-weight: 500;}button:hover{box-shadow: 0 1px 2px rgba(1, 1, 1, 0.5);}.error-code{color: $text; display: inline; font-size: .86667em; margin-top: 15px; opacity: .5; text-transform: uppercase;}.interstitial-wrapper{box-sizing: border-box;font-size: 1em;margin: 100px auto 0;max-width: 600px;width: 100%;}.offline .interstitial-wrapper{color: #2b2b2b;font-size: 1em;line-height: 1.55;margin: 0 auto;max-width: 600px;padding-top: 100px;width: 100%;}.hidden{display: none;}.nav-wrapper{margin-top: 51px; display:inline-block;}#buttons::after{clear: both; content: ''; display: block; width: 100%;}.nav-wrapper::after{clear: both; content: ''; display: table; width: 100%;}.small-link{color: #696969; font-size: .875em;}@media (max-width: 640px), (max-height: 640px){h1{margin: 0 0 15px;}button{width: 100%;}}" +
+                "</style>" +
+                "</head>" +
+                "<center>" +
+                "<body class=\"offline\">" +
+                "<div class=\"interstitial-wrapper\">" +
+                "<div id=\"main-content\">" +
+                "<img src=\"file:///android_asset/warning.gif\" height=\"128\" width=\"128\"><br><br>" +
+                "<div class=\"icon icon-offline\"></div>" +
+                "<div id=\"main-message\">" +
+                "<h1 class=\"unselectable\">$title</h1>" +
+                "<p class=\"unselectable\">$tip3</p>" +
+                "</h1><p></p><div class=\"error-code\">$error" +
+                "</div></div></div><div id=\"buttons\" class=\"nav-wrapper\"><div id=\"control-buttons\">$reloadButtonCode" +
+                "</div></div></div></body></center></html>" +
+                color
+
+        return page
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     @Throws(IOException::class)
