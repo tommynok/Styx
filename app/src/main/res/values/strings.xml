@@ -319,6 +319,7 @@
     <string name="settings">Settings</string>
     <string name="shortcut_message_failed_to_add">Sorry, your launcher does not support shortcuts.</string>
     <string name="show">Show</string>
+    <string name="site_ad_blocked">This website contains advertising. To continue anyway, use the \"Disable ad block for site\" option in Page-Tools.</string>
     <string name="site_cookies">Site cookies</string>
     <string name="size">Text size</string>
     <string name="snacktory">Snacktory</string>
