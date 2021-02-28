@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:title="@string/settings_extensions">
@@ -17,6 +18,35 @@
             android:key="amp"
             android:icon="@drawable/ic_amp_stories_24"
             android:title="@string/amp_to_html" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/scripts">
+
+        <Preference
+            android:title="@string/scripts_store"
+            android:key="scripts_store"
+            app:icon="@drawable/ic_script">
+
+            <intent
+
+                android:action="android.intent.action.VIEW"
+                android:data="https://styx-browser.de/">
+
+                <extra
+                    android:name="SOURCE"
+                    android:value="SELF" />
+
+            </intent>
+
+        </Preference>
+
+        <Preference
+
+            android:title="@string/remove_userscript"
+            android:key="remove_userscript"
+            app:icon="@drawable/ic_action_delete"/>
 
     </PreferenceCategory>
 

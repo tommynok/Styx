@@ -31,6 +31,7 @@
     <string name="action_open">Öffnen</string>
     <string name="action_reload">Neu laden</string>
     <string name="action_restore_all_tabs">Alle Tabs wiederherstellen</string>
+    <string name="action_remove">Entfernen</string>
     <string name="action_remove_bookmark">Lesezeichen entfernt</string>
     <string name="action_restore_tab">Tab wiederherstellen</string>
     <string name="action_print">Drucken</string>
@@ -170,6 +171,8 @@
     <string name="incognito_cookies">Cookies im Inkognito-Modus aktivieren</string>
     <string name="infinity">∞</string>
     <string name="install_orbot">Um Tor verwenden zu können, muss Orbot installiert sein!</string>
+    <string name="install_userscript">UserScript installieren</string>
+    <string name="install_userscript_description">Möchten Sie dieses UserScript installieren?</string>
     <string name="inspect">Javascript injizieren</string>
     <string name="invalid_character_removed">Ungültiges Zeichen entfernt!</string>
     <string name="invalid_characters_removed">Ungültige Zeichen entfernt!</string>
@@ -254,11 +257,15 @@
     <string name="recommended">(Empfohlen)</string>
     <string name="reflow">Textfluss anpassen</string>
     <string name="remove_identifying_headers">Identifizierbare Header entfernen</string>
+    <string name="remove_userscript">UserScript entfernen</string>
+    <string name="remove_userscript_description">Möchten Sie dieses UserScript entfernen?</string>
     <string name="rendering_mode">Rendering Modus</string>
     <string name="reopening_recent_tab">Alten Tab geöffnet</string>
     <string name="reset_settings">Einstellungen zurücksetzen</string>
     <string name="restore_tabs_on_startup">Tab beim Start wiederherstellen</string>
     <string name="save_data">\'Save-Data\' anfragen</string>
+    <string name="scripts">UserScripts</string>
+    <string name="scripts_store">UserScript Store</string>
     <string name="search_engine_ask">Ask</string>
     <string name="search_engine_baidu">Baidu</string>
     <string name="search_engine_bing">Bing</string>

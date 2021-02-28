@@ -11,6 +11,8 @@ import android.net.MailTo
 import android.net.Uri
 import android.net.http.SslError
 import android.os.Message
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.webkit.*
 import android.widget.CheckBox
@@ -31,6 +33,9 @@ import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.di.UserPrefs
 import com.jamal2367.styx.di.injector
+import com.jamal2367.styx.database.javascript.JavaScriptDatabase
+import com.jamal2367.styx.database.javascript.JavaScriptRepository
+import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.snackbar
 import com.jamal2367.styx.js.*
@@ -46,12 +51,14 @@ import com.jamal2367.styx.utils.Utils.buildMalwarePage
 import com.jamal2367.styx.utils.isSpecialUrl
 import com.jamal2367.styx.view.StyxView.Companion.KFetchMetaThemeColorTries
 import io.reactivex.Observable
+import io.reactivex.Scheduler
 import io.reactivex.subjects.PublishSubject
-import java.io.ByteArrayInputStream
-import java.io.File
-import java.io.InputStream
+import java.io.*
 import java.net.URISyntaxException
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+import java.util.regex.PatternSyntaxException
 import javax.inject.Inject
 import kotlin.math.abs
 
@@ -77,6 +84,8 @@ class StyxWebClient(
     @Inject internal lateinit var darkMode: DarkMode
     @Inject internal lateinit var setMetaViewport: SetMetaViewport
     @Inject internal lateinit var noAMP: BlockAMP
+    @Inject internal lateinit var javascriptRepository: JavaScriptRepository
+    @Inject @field:DatabaseScheduler internal lateinit var databaseScheduler: Scheduler
 
     private var adBlock: AdBlocker
 
@@ -135,6 +144,130 @@ class StyxWebClient(
         return null
     }
 
+    var name: String? = null
+    var version: String? = null
+    var author: String? = null
+    var description: String? = null
+    val include = ArrayList<Pattern>(0)
+
+    private fun installExtension(text: String){
+        var tx = text.replace("""\"""", """"""")
+                .replace("\\n", System.lineSeparator())
+                .replace("\\t", "")
+                .replace("\\u003C", "<")
+                .replace("""/"""", """"""")
+                .replace("""//"""", """/"""")
+                .replace("""\\'""", """\'""")
+                .replace("""\\""""", """\""""")
+
+        val headerRegex = Pattern.compile("\\s*//\\s*==UserScript==\\s*", Pattern.CASE_INSENSITIVE)
+        val headerEndRegex = Pattern.compile("\\s*//\\s*==/UserScript==\\s*", Pattern.CASE_INSENSITIVE)
+        val mainRegex = Pattern.compile("\\s*//\\s*@(\\S+)(?:\\s+(.*))?", Pattern.CASE_INSENSITIVE)
+
+        val reader = BufferedReader(StringReader(tx))
+
+        if (reader.readLine()?.let { headerRegex.matcher(it).matches() } != true) {
+            Log.d(TAG, "Header (start) parser error")
+        }
+
+        reader.forEachLine { line ->
+            val matcher = mainRegex.matcher(line)
+            if (!matcher.matches()) {
+                if (headerEndRegex.matcher(line).matches()) {
+                    return@forEachLine
+                }
+            } else {
+                val field = matcher.group(1)
+                val value = matcher.group(2)
+                if(field != null){
+                    parseLine(field, value)
+                }
+            }
+        }
+
+        val metadataRegex: Pattern = Pattern.compile("==UserScript==(.*?)==\\/UserScript==", Pattern.DOTALL)
+
+        val metadataMatcher: Matcher = metadataRegex.matcher(text)
+        var code = ""
+
+        if (metadataMatcher.find()) {
+            code = text.replace(metadataMatcher.group(0), "")
+        }
+
+        val inc = TextUtils.join(",", include)
+
+        javascriptRepository.addJavaScriptIfNotExists(JavaScriptDatabase.JavaScriptEntry(name!!, "", version, author, inc, "", "", "", code, ""))
+                .subscribeOn(databaseScheduler)
+                .subscribe { aBoolean: Boolean? ->
+                    if (!aBoolean!!) {
+                        logger.log("StyxWebClient", "error saving script to database")
+                    }
+                }
+    }
+
+    private fun parseLine(field: String?, value: String?) {
+        if ("name".equals(field, ignoreCase = true)) {
+            name = value
+        } else if ("version".equals(field, ignoreCase = true)) {
+            version = value
+        } else if ("author".equals(field, ignoreCase = true)) {
+            author = value
+        } else if ("description".equals(field, ignoreCase = true)) {
+            description = value
+        } else if ("include".equals(field, ignoreCase = true)) {
+            urlToPattern(value)?.let {
+                include.add(it)
+            }
+        } else if ("match".equals(field, ignoreCase = true) && value != null) {
+            val urlPattern = "^" + value.replace("?", "\\?").replace(".", "\\.")
+                    .replace("*", ".*").replace("+", ".+")
+                    .replace("://.*\\.", "://((?![\\./]).)*\\.").replace("^\\.\\*://".toRegex(), "https?://")
+            urlToParsedPattern(urlPattern)?.let {
+                include.add(it)
+            }
+        }
+    }
+
+    val TLD_REGEX = "^([^:]+://[^/]+)\\\\.tld(/.*)?\$".toRegex()
+    val schemeContainsPattern = Pattern.compile("^\\w+:", Pattern.CASE_INSENSITIVE)
+
+    fun urlToPattern(patternUrl: String?): Pattern? {
+        if (patternUrl == null) return null
+        try {
+            val builder = StringBuilder(patternUrl)
+            builder.toString().replace("?", "\\?").replace(".", "\\.").replace("*", ".*?").replace("+", ".+?")
+            var converted = builder.toString()
+
+            if (converted.contains(".tld", true)) {
+                converted = TLD_REGEX.replaceFirst(converted, "$1(.[a-z]{1,6}){1,3}$2")
+            }
+
+            return if (schemeContainsPattern.matcher(converted).find())
+                Pattern.compile("^$converted")
+            else
+                Pattern.compile("^\\w+://$converted")
+        } catch (e: PatternSyntaxException) {
+            Log.d(TAG, "Error: " + e)
+        }
+
+        return null
+    }
+
+    fun urlToParsedPattern(patternUrl: String): Pattern? {
+        try {
+            val converted = if (patternUrl.contains(".tld", true)) {
+                TLD_REGEX.replaceFirst(patternUrl, "$1(.[a-z]{1,6}){1,3}$2")
+            } else {
+                patternUrl
+            }
+            return Pattern.compile(converted)
+        } catch (e: PatternSyntaxException) {
+            Log.d(TAG, "Error: " + e)
+        }
+
+        return null
+    }
+
     override fun onLoadResource(view: WebView, url: String?) {
         super.onLoadResource(view, url)
         if(userPreferences.noAmp){
@@ -180,6 +313,46 @@ class StyxWebClient(
         }
         if (userPreferences.darkModeExtension && !WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
             view.evaluateJavascript(darkMode.provideJs(), null)
+        }
+        if(url.contains(".user.js") && view.isShown){
+            val builder = MaterialAlertDialogBuilder(activity)
+            builder.setTitle(activity.resources.getString(R.string.install_userscript))
+            builder.setMessage(activity.resources.getString(R.string.install_userscript_description))
+            builder.setPositiveButton(R.string.yes){ _, _ ->
+                view.evaluateJavascript("""(function() {
+                return document.body.innerText;
+                })()""".trimMargin()) {
+                    val extensionSource = it.substring(1, it.length - 1)
+                    installExtension(extensionSource)
+                }
+            }
+            builder.setNegativeButton(R.string.no){ _, _ ->
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+
+        var jsList = emptyList<JavaScriptDatabase.JavaScriptEntry>()
+        javascriptRepository.lastHundredVisitedJavaScriptEntries()
+                .subscribe { list ->
+                    jsList = list
+                }
+        for(i in jsList){
+            for(x in i.include!!.split(",")){
+                if(view.url.matches(x.toRegex())){
+                    view.evaluateJavascript(
+                            i.code.replace("""\"""", """"""")
+                                    .replace("\\n", System.lineSeparator())
+                                    .replace("\\t", "")
+                                    .replace("\\u003C", "<")
+                                    .replace("""/"""", """"""")
+                                    .replace("""//"""", """/"""")
+                                    .replace("""\\'""", """\'""")
+                                    .replace("""\\""""", """\""""")
+                            , null)
+                    break
+                }
+            }
         }
 
         view.evaluateJavascript("""(function() {

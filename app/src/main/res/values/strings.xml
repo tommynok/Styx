@@ -31,6 +31,7 @@
     <string name="action_open">Open</string>
     <string name="action_reload">Reload</string>
     <string name="action_restore_all_tabs">Restore all tabs</string>
+    <string name="action_remove">Remove</string>
     <string name="action_remove_bookmark">Bookmark removed</string>
     <string name="action_restore_tab">Restore tab</string>
     <string name="action_print">Print</string>
@@ -170,6 +171,8 @@
     <string name="incognito_cookies">Enable cookies in incognito mode</string>
     <string name="infinity">∞</string>
     <string name="install_orbot">Please install Orbot in order to proxy with Tor.</string>
+    <string name="install_userscript">Install UserScript</string>
+    <string name="install_userscript_description">Do you want to install this UserScript?</string>
     <string name="inspect">Inject Javascript</string>
     <string name="invalid_character_removed">Invalid character removed!</string>
     <string name="invalid_characters_removed">Invalid characters removed!</string>
@@ -254,11 +257,15 @@
     <string name="recommended">Recommended</string>
     <string name="reflow">Enable text reflow</string>
     <string name="remove_identifying_headers">Remove identifying headers</string>
+    <string name="remove_userscript">Remove UserScript</string>
+    <string name="remove_userscript_description">Möchten Sie dieses UserScript entfernen?</string>
     <string name="rendering_mode">Rendering mode</string>
     <string name="reopening_recent_tab">Tab recovered</string>
     <string name="reset_settings">Reset settings</string>
     <string name="restore_tabs_on_startup">Restore tabs on startup</string>
     <string name="save_data">Request \'Save-Data\'</string>
+    <string name="scripts">UserScripts</string>
+    <string name="scripts_store">UserScript Store</string>
     <string name="search_engine_ask">Ask</string>
     <string name="search_engine_baidu">Baidu</string>
     <string name="search_engine_bing">Bing</string>
