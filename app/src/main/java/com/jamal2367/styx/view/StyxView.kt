@@ -103,8 +103,10 @@ class StyxView(
     var webView: WebView? = null
         private set
 
+    private lateinit var styxWebClient: StyxWebClient
+
     private val uiController: UIController
-    private val gestureDetector: GestureDetector
+    private lateinit var gestureDetector: GestureDetector
     private val paint = Paint()
 
     /**
@@ -119,8 +121,9 @@ class StyxView(
         set(aIsForeground) {
             field = aIsForeground
             if (isForeground) {
-                webView?.let {
-                    latentTabInitializer?.initialize(it, requestHeaders)
+                if (webView==null) {
+                    createWebView()
+                    latentTabInitializer?.initialize(webView!!, requestHeaders)
                     latentTabInitializer = null
                 }
             }
@@ -172,8 +175,6 @@ class StyxView(
     @Inject @field:DatabaseScheduler internal lateinit var databaseScheduler: Scheduler
     @Inject @field:MainScheduler internal lateinit var mainScheduler: Scheduler
     @Inject lateinit var networkConnectivityModel: NetworkConnectivityModel
-
-    private val styxWebClient: StyxWebClient
 
     private val networkDisposable: Disposable
 
@@ -251,13 +252,37 @@ class StyxView(
      */
     private var iDownloadListener: StyxDownloadListener? = null
 
+    /**
+     * Constructor
+     */
     init {
         activity.injector.inject(this)
         uiController = activity as UIController
-
         titleInfo = StyxViewTitle(activity)
-
         maxFling = ViewConfiguration.get(activity).scaledMaximumFlingVelocity.toFloat()
+
+        if (tabInitializer !is FreezableBundleInitializer) {
+            // Create our WebView now
+            createWebView()
+            tabInitializer.initialize(webView!!, requestHeaders)
+            desktopMode = userPreferences.desktopModeDefault
+        } else {
+            // Our WebView will only be created whenever our tab goes to the foreground
+            latentTabInitializer = tabInitializer
+            titleInfo.setTitle(tabInitializer.tabModel.title)
+            titleInfo.setFavicon(tabInitializer.tabModel.favicon)
+            desktopMode = tabInitializer.tabModel.desktopMode
+        }
+
+        networkDisposable = networkConnectivityModel.connectivity()
+                .observeOn(mainScheduler)
+                .subscribe(::setNetworkAvailable)
+    }
+
+    /**
+     * Create our WebView.
+     */
+    private fun createWebView() {
         styxWebClient = StyxWebClient(activity, this)
         // Inflate our WebView as loading it from XML layout is needed to be able to set scrollbars color
         val tab = activity.layoutInflater.inflate(R.layout.webview, null) as WebView;
@@ -267,7 +292,8 @@ class StyxView(
 
             isFocusableInTouchMode = true
             isFocusable = true
-            setBackgroundColor(Color.WHITE)
+
+            setBackgroundColor(ThemeUtils.getBackgroundColor(activity))
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_YES
@@ -288,33 +314,6 @@ class StyxView(
         }
 
         initializePreferences()
-
-        // We did not manage to set scrollbar color in code
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            //tab.verticalScrollbarThumbDrawable?.colorFilter = PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
-            //tab.verticalScrollbarThumbDrawable = ThemeUtils.getVectorDrawable(activity, R.drawable.scrollbar)
-            //tab.verticalScrollbarThumbDrawable = activity.getDrawable(R.drawable.scrollbar)
-            //tab.isVerticalScrollBarEnabled = true
-        //}
-
-
-        if (tabInitializer !is FreezableBundleInitializer) {
-            tabInitializer.initialize(tab, requestHeaders)
-            desktopMode = userPreferences.desktopModeDefault
-        } else {
-            latentTabInitializer = tabInitializer
-            titleInfo.setTitle(tabInitializer.tabModel.title)
-            titleInfo.setFavicon(tabInitializer.tabModel.favicon)
-            desktopMode = tabInitializer.tabModel.desktopMode
-        }
-
-        networkDisposable = networkConnectivityModel.connectivity()
-            .observeOn(mainScheduler)
-            .subscribe(::setNetworkAvailable)
-
-        if(WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK) && userPreferences.darkModeExtension) {
-            WebSettingsCompat.setForceDark(webView!!.getSettings(), WebSettingsCompat.FORCE_DARK_ON)
-        }
     }
 
     fun currentSslState(): SslState = styxWebClient.sslState

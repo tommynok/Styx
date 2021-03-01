@@ -66,6 +66,20 @@ object ThemeUtils {
     }
 
     /**
+     * Get background color from current theme.
+     * Though in fact this should be the same as surface color anyway.
+     * I believe that attribute is mostly used for backward compatibility issues.
+     *
+     * @param context the context to get the theme from.
+     * @return the background color as defined in the current theme.
+     */
+    @JvmStatic
+    @ColorInt
+    fun getBackgroundColor(context: Context): Int {
+        return ThemeUtils.getColor(context, android.R.attr.colorBackground)
+    }
+
+    /**
      * Gets the accent color of the current theme.
      *
      * @param context the context to get the theme from.

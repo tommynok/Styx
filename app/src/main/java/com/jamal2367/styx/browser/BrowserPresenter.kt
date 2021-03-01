@@ -116,50 +116,51 @@ class BrowserPresenter(
         view.notifyTabViewChanged(tabsModel.indexOfTab(it))
     }
 
+    /**
+     *
+     */
     private fun onTabChanged(newTab: StyxView?) {
         logger.log(TAG, "On tab changed")
-        view.updateSslState(newTab?.currentSslState() ?: SslState.None)
-
-        sslStateSubscription?.dispose()
-        sslStateSubscription = newTab
-            ?.sslStateObservable()
-            ?.observeOn(mainScheduler)
-            ?.subscribe(view::updateSslState)
-
-        val webView = newTab?.webView
 
         if (newTab == null) {
             view.removeTabView()
-            currentTab?.pauseTimers()
-        } else {
-            if (webView == null) {
-                view.removeTabView()
-                currentTab?.let {
-                    it.pauseTimers()
-                    it.onDestroy()
-                }
-            } else {
-                currentTab.let {
-                    // TODO: Restore this when Google fixes the bug where the WebView is
-                    // blank after calling onPause followed by onResume.
-                    // currentTab.onPause();
-                    it?.isForeground = false
-                }
-
-                newTab.resumeTimers()
-                newTab.onResume()
-                newTab.isForeground = true
-
-                view.updateProgress(newTab.progress)
-                view.setBackButtonEnabled(newTab.canGoBack())
-                view.setForwardButtonEnabled(newTab.canGoForward())
-                view.updateUrl(newTab.url, false)
-                view.setTabView(webView)
-                val index = tabsModel.indexOfTab(newTab)
-                if (index >= 0) {
-                    view.notifyTabViewChanged(tabsModel.indexOfTab(newTab))
-                }
+            currentTab?.let {
+                it.pauseTimers()
+                it.onDestroy()
             }
+        }  else {
+
+            currentTab?.let {
+                // TODO: Restore this when Google fixes the bug where the WebView is
+                // blank after calling onPause followed by onResume.
+                // it.onPause();
+                it.isForeground = false
+            }
+
+            // Must come first so that frozen tabs are unfrozen
+            // This will create frozen tab WebView, before that WebView is not available
+            newTab.isForeground = true
+
+            newTab.resumeTimers()
+            newTab.onResume()
+
+            view.updateProgress(newTab.progress)
+            view.setBackButtonEnabled(newTab.canGoBack())
+            view.setForwardButtonEnabled(newTab.canGoForward())
+            view.updateUrl(newTab.url, false)
+            view.setTabView(newTab.webView!!)
+            val index = tabsModel.indexOfTab(newTab)
+            if (index >= 0) {
+                view.notifyTabViewChanged(tabsModel.indexOfTab(newTab))
+            }
+
+            // Must come late as it needs a webview
+            view.updateSslState(newTab.currentSslState() ?: SslState.None)
+            sslStateSubscription?.dispose()
+            sslStateSubscription = newTab
+                    .sslStateObservable()
+                    .observeOn(mainScheduler)
+                    ?.subscribe(view::updateSslState)
         }
 
         currentTab = newTab
