@@ -80,6 +80,12 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
             onClick = ::showHomePageDialog
         )
 
+        switchPreference(
+            preference = SETTINGS_SHOW_SSL,
+            isChecked = userPreferences.ssl,
+            onCheckChange = { userPreferences.ssl = it }
+        )
+
         clickableDynamicPreference(
             preference = SETTINGS_SEARCH_ENGINE,
             summary = getSearchEngineSummary(searchEngineProvider.provideSearchEngine()),
@@ -586,5 +592,6 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         private const val SETTINGS_SUGGESTIONS = "suggestions_choice"
         private const val SETTINGS_BLOCK_JAVASCRIPT = "block_javascript"
         private const val SETTINGS_FORCE_ZOOM = "force_zoom"
+        private const val SETTINGS_SHOW_SSL = "show_ssl"
     }
 }

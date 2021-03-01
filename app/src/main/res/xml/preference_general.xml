@@ -88,6 +88,12 @@
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
+            android:key="show_ssl"
+            android:title="@string/show_ssl"
+            app:icon="@drawable/ic_warn" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
             android:key="@string/pref_key_cookies"
             android:summary="@string/recommended"
             android:title="@string/cookies"

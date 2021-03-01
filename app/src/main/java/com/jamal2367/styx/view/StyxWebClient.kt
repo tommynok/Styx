@@ -18,11 +18,13 @@ import android.webkit.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.webkit.WebViewFeature
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.AdBlocker
@@ -541,6 +543,12 @@ class StyxWebClient(
             stringBuilder.append(" - ").append(activity.getString(messageCode)).append('\n')
         }
         val alertMessage = activity.getString(R.string.message_insecure_connection, stringBuilder.toString())
+
+        if (!userPreferences.ssl) {
+            handler.proceed()
+            (activity)snackbar(errorCodeMessageCodes[0])
+            return
+        }
 
         MaterialAlertDialogBuilder(activity).apply {
             val view = LayoutInflater.from(activity).inflate(R.layout.dialog_ssl_warning, null)

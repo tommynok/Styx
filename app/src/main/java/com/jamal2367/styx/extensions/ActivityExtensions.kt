@@ -17,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar
  *
  * @param resource the string resource to display to the user.
  */
-fun AppCompatActivity.snackbar(@StringRes resource: Int) {
+infix fun AppCompatActivity.snackbar(@StringRes resource: Int) {
     makeSnackbar(getString(resource)).show()
 }
 
