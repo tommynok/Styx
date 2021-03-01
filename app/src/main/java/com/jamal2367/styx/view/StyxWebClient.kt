@@ -130,8 +130,8 @@ class StyxWebClient(
 
     override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
         if (shouldRequestBeBlocked(currentUrl, request.url.toString())) {
-            val string = ByteArrayInputStream(activity.resources.getString(R.string.site_ad_blocked).toByteArray())
-            return WebResourceResponse("text/plain", "utf-8", string)
+            val empty = ByteArrayInputStream(emptyResponseByteArray)
+            return WebResourceResponse("text/plain", "utf-8", empty)
         }
         return super.shouldInterceptRequest(view, request)
     }
