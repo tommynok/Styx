@@ -96,6 +96,7 @@
     <string name="close_tab">Aktuellen Tab schließen</string>
     <string name="color_mode">Farbmodus aktivieren</string>
     <string name="cookies">Cookies erlauben</string>
+    <string name="cookie_category">Cookie-Dialogblocker (Beta)</string>
     <string name="dark_mode">Dunkel-Modus</string>
     <string name="dark_mode_summary">Erzwinge Dunkel-Modus für Webseiten</string>
     <string name="dark_theme">Dunkles Design</string>

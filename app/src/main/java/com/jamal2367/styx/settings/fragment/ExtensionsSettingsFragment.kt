@@ -43,6 +43,11 @@ class ExtensionsSettingsFragment : AbstractSettingsFragment() {
                 onCheckChange = { userPreferences.darkModeExtension = it; (activity as AppCompatActivity).snackbar(R.string.app_restart)}
         )
         switchPreference(
+                preference = BLOCK_COOKIES,
+                isChecked = userPreferences.cookieBlockEnabled,
+                onCheckChange = { userPreferences.cookieBlockEnabled = it }
+        )
+        switchPreference(
                 preference = AMP,
                 isChecked = userPreferences.noAmp,
                 onCheckChange = { userPreferences.noAmp = it }
@@ -83,6 +88,7 @@ class ExtensionsSettingsFragment : AbstractSettingsFragment() {
 
     companion object {
         private const val DARK_MODE = "dark_mode"
+        private const val BLOCK_COOKIES = "block_cookies"
         private const val AMP = "amp"
         private const val SCRIPT_UNINSTALL = "remove_userscript"
     }

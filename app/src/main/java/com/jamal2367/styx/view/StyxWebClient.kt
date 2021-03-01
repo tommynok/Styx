@@ -84,6 +84,7 @@ class StyxWebClient(
     @Inject internal lateinit var darkMode: DarkMode
     @Inject internal lateinit var setMetaViewport: SetMetaViewport
     @Inject internal lateinit var noAMP: BlockAMP
+    @Inject internal lateinit var cookieBlock: CookieBlock
     @Inject internal lateinit var javascriptRepository: JavaScriptRepository
     @Inject @field:DatabaseScheduler internal lateinit var databaseScheduler: Scheduler
 
@@ -332,6 +333,10 @@ class StyxWebClient(
             dialog.show()
         }
 
+        if(userPreferences.cookieBlockEnabled){
+            view.evaluateJavascript(cookieBlock.provideJs(), null)
+        }
+
         var jsList = emptyList<JavaScriptDatabase.JavaScriptEntry>()
         javascriptRepository.lastHundredVisitedJavaScriptEntries()
                 .subscribe { list ->
@@ -401,6 +406,10 @@ class StyxWebClient(
 
         // Try to fetch meta theme color a few times
         styxView.fetchMetaThemeColorTries = KFetchMetaThemeColorTries
+
+        if(userPreferences.cookieBlockEnabled){
+            view.evaluateJavascript(cookieBlock.provideJs(), null)
+        }
 
         if (userPreferences.javaScriptChoice === JavaScriptChoice.BLACKLIST) {
             if (userPreferences.javaScriptBlocked !== "" && userPreferences.javaScriptBlocked !== " ") {

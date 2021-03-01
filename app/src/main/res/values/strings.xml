@@ -96,6 +96,7 @@
     <string name="close_tab">Close current tab</string>
     <string name="color_mode">Enable color mode</string>
     <string name="cookies">Enable cookies</string>
+    <string name="cookie_category">Cookie dialog block (Beta)</string>
     <string name="dark_mode">Dark mode</string>
     <string name="dark_mode_summary">Force dark mode for web pages</string>
     <string name="dark_theme">Dark</string>

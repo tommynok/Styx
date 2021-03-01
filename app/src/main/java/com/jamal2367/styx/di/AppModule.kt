@@ -194,6 +194,9 @@ class AppModule {
     fun providesDarkMode(): DarkMode = MezzanineGenerator.DarkMode()
 
     @Provides
+    fun providesCookieBlock(): CookieBlock = MezzanineGenerator.CookieBlock()
+
+    @Provides
     fun providesSetMetaViewport(): SetMetaViewport = MezzanineGenerator.SetMetaViewport()
 
     @Provides

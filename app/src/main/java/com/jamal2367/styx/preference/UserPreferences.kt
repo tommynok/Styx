@@ -406,6 +406,11 @@ class UserPreferences @Inject constructor(
      */
     var incognito by preferences.booleanPreference(ALWAYS_INCOGNITO, false)
 
+    /**
+     * Cookie Dialog Blocker
+     */
+    var cookieBlockEnabled by preferences.booleanPreference(COOKIE_BLOCK, false)
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -445,3 +450,4 @@ private const val USE_SITE_BLOCK = "useSiteBlock"
 private const val BLOCK_MALWARE = "blockMalware"
 private const val FORCE_ZOOM = "forcezoom"
 private const val ALWAYS_INCOGNITO = "alwaysincognito"
+private const val COOKIE_BLOCK = "blockCookieDialogs"
