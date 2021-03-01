@@ -26,6 +26,7 @@
 
         <Preference
             android:title="@string/scripts_store"
+            android:summary="@string/force_zoom_summary"
             android:key="scripts_store"
             app:icon="@drawable/ic_script">
 
