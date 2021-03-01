@@ -326,7 +326,7 @@
     <string name="shortcut_message_failed_to_add">Ihr Launcher unterstützt keine Verknüpfungen!</string>
     <string name="show">Zeigen</string>
     <string name="show_second_bar">Zweite Navigationsleiste anzeigen</string>
-    <string name="show_ssl">SSL Warndialog anzeigen</string>
+    <string name="show_ssl">SSL-Warndialog anzeigen</string>
     <string name="site_cookies">Webseiten-Cookies</string>
     <string name="size">Textgröße:</string>
     <string name="snacktory">Snacktory</string>
