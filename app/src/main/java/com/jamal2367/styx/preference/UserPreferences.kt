@@ -416,6 +416,11 @@ class UserPreferences @Inject constructor(
      */
     var ssl by preferences.booleanPreference(SSL, true)
 
+    /**
+     * Show second navbar at the bottom of the screen
+     */
+    var navbar by preferences.booleanPreference(SECOND_BAR, false)
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -457,3 +462,4 @@ private const val FORCE_ZOOM = "forcezoom"
 private const val ALWAYS_INCOGNITO = "alwaysincognito"
 private const val COOKIE_BLOCK = "blockCookieDialogs"
 private const val SSL = "ssl"
+private const val SECOND_BAR = "secondBar"

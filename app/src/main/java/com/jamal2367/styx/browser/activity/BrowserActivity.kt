@@ -94,6 +94,7 @@ import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.anthonycr.grant.PermissionsManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.Completable
 import io.reactivex.Scheduler
@@ -774,6 +775,44 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         updateCookiePreference().subscribeOn(diskScheduler).subscribe()
         proxyUtils.updateProxySettings(this)
+
+        val extraBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        if (!userPreferences.navbar) {
+            extraBar.visibility = GONE
+        } else {
+            extraBar.visibility = VISIBLE
+            if(!userPreferences.showTabsInDrawer){
+                extraBar.menu.removeItem(R.id.tabs)
+            }
+            extraBar.setOnNavigationItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.tabs -> {
+                        iBinding.drawerLayout.closeDrawer(getBookmarkDrawer())
+                        iBinding.drawerLayout.openDrawer(getTabDrawer())
+                        true
+                    }
+                    R.id.bookmarks -> {
+                        iBinding.drawerLayout.closeDrawer(getTabDrawer())
+                        iBinding.drawerLayout.openDrawer(getBookmarkDrawer())
+                        true
+                    }
+                    R.id.forward -> {
+                        tabsManager.currentTab?.goForward()
+                        true
+                    }
+                    R.id.back -> {
+                        tabsManager.currentTab?.goBack()
+                        true
+                    }
+                    R.id.home -> {
+                        tabsManager.currentTab?.loadHomePage()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
     }
 
     public override fun onWindowVisibleToUserAfterResume() {
