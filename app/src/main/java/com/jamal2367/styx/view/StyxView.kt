@@ -22,7 +22,6 @@ import com.jamal2367.styx.utils.*
 import com.jamal2367.styx.view.find.FindResults
 import android.annotation.SuppressLint
 import android.app.DownloadManager
-import android.content.Context
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.content.res.Resources
@@ -359,6 +358,10 @@ class StyxView(
         val modifiesHeaders = userPreferences.doNotTrackEnabled
             || userPreferences.saveDataEnabled
             || userPreferences.removeIdentifyingHeadersEnabled
+
+        if (userPreferences.darkModeExtension && WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            WebSettingsCompat.setForceDark(webView!!.settings, WebSettingsCompat.FORCE_DARK_ON)
+        }
 
         if (userPreferences.doNotTrackEnabled) {
             requestHeaders[HEADER_DNT] = "1"

@@ -191,9 +191,6 @@ class AppModule {
     fun providesInvertPage(): InvertPage = MezzanineGenerator.InvertPage()
 
     @Provides
-    fun providesDarkMode(): DarkMode = MezzanineGenerator.DarkMode()
-
-    @Provides
     fun providesCookieBlock(): CookieBlock = MezzanineGenerator.CookieBlock()
 
     @Provides

@@ -18,13 +18,10 @@ import android.webkit.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.webkit.WebViewFeature
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.AdBlocker
@@ -83,7 +80,6 @@ class StyxWebClient(
     @Inject internal lateinit var logger: Logger
     @Inject internal lateinit var textReflowJs: TextReflow
     @Inject internal lateinit var invertPageJs: InvertPage
-    @Inject internal lateinit var darkMode: DarkMode
     @Inject internal lateinit var setMetaViewport: SetMetaViewport
     @Inject internal lateinit var noAMP: BlockAMP
     @Inject internal lateinit var cookieBlock: CookieBlock
@@ -313,9 +309,6 @@ class StyxWebClient(
             view.loadUrl(
                     "javascript:(function() { document.querySelector('meta[name=\"viewport\"]').setAttribute(\"content\",\"width=device-width\"); })();"
             )
-        }
-        if (userPreferences.darkModeExtension && !WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
-            view.evaluateJavascript(darkMode.provideJs(), null)
         }
         if(url.contains(".user.js") && view.isShown){
             val builder = MaterialAlertDialogBuilder(activity)
