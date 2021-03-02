@@ -26,9 +26,15 @@
         android:title="@string/url_contents"
         app:icon="@drawable/ic_short_text" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/home">
+
     <Preference
         android:key="image_url"
-        android:title="@string/image_url"/>
+        android:title="@string/image_url"
+        app:icon="@drawable/ic_image" />
 
     </PreferenceCategory>
 
