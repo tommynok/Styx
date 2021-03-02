@@ -40,13 +40,25 @@ class HomePageFactory @Inject constructor(
                 ) andBuild {
                     charset { UTF8 }
                     body {
-                        if(userPreferences.imageUrlString != ""){ tag("body") { attr("style", "background: url('" + userPreferences.imageUrlString + "') no-repeat scroll;") } }
-                        id("image_url") { attr("src", iconUrl) }
+                        if (userPreferences.imageUrlString != "") {
+                            tag("body") {
+                                attr("style", "background: url('" + userPreferences.imageUrlString + "') no-repeat scroll; background-size: 100%; ") }
+
+                            tag("img") {
+                                attr("style", "display: none") }
+
+                            tag("form") {
+                                attr("style", "opacity: 0.7;") }
+                        }
+
+                        id("image_url") {
+                            attr("src", iconUrl)
+                        }
                         tag("script") {
                             html(
-                                    html()
-                                            .replace("\${BASE_URL}", queryUrl)
-                                            .replace("&", "\\u0026")
+                                html()
+                                    .replace("\${BASE_URL}", queryUrl)
+                                    .replace("&", "\\u0026")
                             )
                         }
                     }
