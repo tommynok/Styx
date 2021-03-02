@@ -216,10 +216,7 @@ class BrowserPresenter(
         val shouldClose = shouldClose && isShown && tabToDelete.isNewTab
         val currentTab = tabsModel.currentTab
 
-        if(userPreferences.closeOnLastTab) {
-            view.closeActivity()
-        }
-        else if(!userPreferences.closeOnLastTab && tabsModel.currentTab == null) {
+        if(!userPreferences.closeOnLastTab && tabsModel.currentTab == null) {
             newTab(UrlInitializer(mapHomepageToCurrentUrl()), true)
         }
 
