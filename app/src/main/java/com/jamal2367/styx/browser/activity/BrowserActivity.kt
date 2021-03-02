@@ -58,6 +58,7 @@ import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Point
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
@@ -68,6 +69,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.provider.MediaStore
+import android.util.TypedValue
 import android.view.*
 import android.view.View.*
 import android.view.ViewGroup.LayoutParams
@@ -103,7 +105,7 @@ import java.io.IOException
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
-abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIController, OnClickListener {
+abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIController, OnClickListener, OnKeyboardVisibilityListener {
 
     // Notifications
     lateinit var CHANNEL_ID: String
@@ -260,10 +262,45 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 logger
         )
 
+        setKeyboardVisibilityListener(this)
+
         initialize(savedInstanceState)
 
         // Hook in buttons with onClick handler
         iBindingToolbarContent.buttonReload.setOnClickListener(this)
+    }
+
+    private fun setKeyboardVisibilityListener(onKeyboardVisibilityListener: OnKeyboardVisibilityListener) {
+        val parentView = (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0)
+        parentView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            private var alreadyOpen = false
+            private val defaultKeyboardHeightDP = 100
+            private val EstimatedKeyboardDP = defaultKeyboardHeightDP + 48
+            private val rect: Rect = Rect()
+            override fun onGlobalLayout() {
+                val estimatedKeyboardHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, EstimatedKeyboardDP.toFloat(), parentView.resources.displayMetrics).toInt()
+                parentView.getWindowVisibleDisplayFrame(rect)
+                val heightDiff: Int = parentView.rootView.height - (rect.bottom - rect.top)
+                val isShown = heightDiff >= estimatedKeyboardHeight
+                if (isShown == alreadyOpen) {
+                    return
+                }
+                alreadyOpen = isShown
+                onKeyboardVisibilityListener.onVisibilityChanged(isShown)
+            }
+        })
+    }
+
+    override fun onVisibilityChanged(visible: Boolean) {
+        if(userPreferences.navbar){
+            val extraBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+            if(visible){
+                extraBar.visibility = View.GONE
+            }
+            else{
+                extraBar.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun createSessionsMenu() {

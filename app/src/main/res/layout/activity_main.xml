@@ -6,7 +6,6 @@
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navigation"
         tools:context=".browser.activity.BrowserActivity">
 
         <androidx.drawerlayout.widget.DrawerLayout
@@ -24,7 +23,7 @@
                 android:animateLayoutChanges="true">
 
                 <include android:id="@+id/toolbar_include"
-                    layout="@layout/toolbar"/>
+                    layout="@layout/toolbar" />
 
                 <com.jamal2367.styx.view.PullRefreshLayout
                     android:id="@+id/content_frame"
@@ -34,6 +33,18 @@
                     android:background="?android:attr/colorBackground"
                     android:clipChildren="true"
                     android:animateLayoutChanges="true" />
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:background="?attr/colorPrimary"
+                    app:itemIconTint="@drawable/toolbar_color"
+                    app:itemTextColor="?attr/colorControlNormal"
+                    app:elevation="8dp"
+                    app:labelVisibilityMode="unlabeled"
+                    app:menu="@menu/bottom_menu" />
 
                 <include layout="@layout/search_interface" />
             </LinearLayout>
@@ -58,19 +69,6 @@
                 android:weightSum="1"
                 android:layout_marginLeft="-64dp" />
         </androidx.drawerlayout.widget.DrawerLayout>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:itemIconTint="@drawable/toolbar_color"
-            app:itemTextColor="?attr/colorControlNormal"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="?attr/colorPrimary"
-            android:elevation="3dp"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_menu" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
