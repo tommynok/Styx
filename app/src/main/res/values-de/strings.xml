@@ -92,6 +92,7 @@
     <string name="clear_web_storage_exit">Webinhalte beim Beenden löschen</string>
     <string name="clear_web_storage">Webinhalte löschen</string>
     <string name="close_all_tabs">Alle Tabs schließen</string>
+    <string name="close_on_last_tab">Browser mit letztem Tab beenden</string>
     <string name="close_other_tabs">Andere Tabs schließen</string>
     <string name="close_tab">Aktuellen Tab schließen</string>
     <string name="color_mode">Farbmodus aktivieren</string>

@@ -34,6 +34,12 @@
             app:icon="@drawable/ic_save" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="last_tab"
+            android:title="@string/close_on_last_tab"
+            app:icon="@drawable/ic_apps" />
+
+        <SwitchPreferenceCompat
             app:key="@string/pref_key_search_in_new_tab"
             app:title="@string/search_in_new_tab"
             app:defaultValue="false"

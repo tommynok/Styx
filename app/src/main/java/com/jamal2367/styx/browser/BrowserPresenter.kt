@@ -215,31 +215,34 @@ class BrowserPresenter(
         val isShown = tabToDelete.isShown
         val shouldClose = shouldClose && isShown && tabToDelete.isNewTab
         val currentTab = tabsModel.currentTab
-        /*
-        // SL: That special case is apparently not needed
-        // It lead to an empty tab list after removing the last tab if it was the home page
-        if (tabsModel.size() == 1
-            && currentTab != null
-            && URLUtil.isFileUrl(currentTab.url)
-            && currentTab.url == mapHomepageToCurrentUrl()) {
+
+        if(userPreferences.closeOnLastTab) {
             view.closeActivity()
-            return
-        } else {
-        */
-            if (isShown) {
-                view.removeTabView()
-            }
-            val currentDeleted = tabsModel.deleteTab(position)
-            if (currentDeleted) {
-                tabChanged(tabsModel.indexOfCurrentTab())
-            }
-        //}
+        }
+        else if(!userPreferences.closeOnLastTab && tabsModel.currentTab == null) {
+            newTab(UrlInitializer(mapHomepageToCurrentUrl()), true)
+        }
+
+        if (isShown) {
+            view.removeTabView()
+        }
+
+        val currentDeleted = tabsModel.deleteTab(position)
+
+        if (currentDeleted) {
+            tabChanged(tabsModel.indexOfCurrentTab())
+        }
 
         val afterTab = tabsModel.currentTab
         view.notifyTabViewRemoved(position)
 
         if (afterTab == null) {
-            view.closeBrowser()
+            if(userPreferences.closeOnLastTab){
+                view.closeBrowser()
+            }
+            else{
+                newTab(UrlInitializer(mapHomepageToCurrentUrl()), true)
+            }
             return
         } else if (afterTab !== currentTab) {
             view.notifyTabViewChanged(tabsModel.indexOfCurrentTab())

@@ -92,6 +92,7 @@
     <string name="clear_web_storage_exit">Clear web storage on exit</string>
     <string name="clear_web_storage">Clear web storage</string>
     <string name="close_all_tabs">Close all tabs</string>
+    <string name="close_on_last_tab">Close browser with last tab</string>
     <string name="close_other_tabs">Close other tabs</string>
     <string name="close_tab">Close current tab</string>
     <string name="color_mode">Enable color mode</string>
