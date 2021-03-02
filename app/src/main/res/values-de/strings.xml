@@ -163,6 +163,7 @@
     <string name="http_proxy">HTTP Proxy</string>
     <string name="i2p_not_running">I2P ist nicht gestartet.</string>
     <string name="i2p_tunnels_not_ready">I2P Tunnel sind noch nicht bereit.</string>
+    <string name="image_url">Hintergrundbild für Startseite festlegen</string>
     <string name="import_backup">Lesezeichen importieren</string>
     <string name="import_bookmark_error">Lesezeichen konnten nicht importiert werden</string>
     <string name="import_export_settings">Importieren &amp; Exportieren</string>

@@ -426,6 +426,8 @@ class UserPreferences @Inject constructor(
      */
     var closeOnLastTab by preferences.booleanPreference(LAST_TAB, true)
 
+    var imageUrlString by preferences.stringPreference(IMAGE_URL, "")
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -469,3 +471,4 @@ private const val COOKIE_BLOCK = "blockCookieDialogs"
 private const val SSL = "ssl"
 private const val SECOND_BAR = "secondBar"
 private const val LAST_TAB = "lastTab"
+private const val IMAGE_URL = "imageUrl"

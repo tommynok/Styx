@@ -5,6 +5,7 @@ import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.constant.UTF8
 import com.jamal2367.styx.html.HtmlPageFactory
 import com.jamal2367.styx.html.jsoup.*
+import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.search.SearchEngineProvider
 import android.app.Application
 import com.jamal2367.styx.BrowserApp
@@ -23,7 +24,8 @@ import javax.inject.Inject
 class HomePageFactory @Inject constructor(
         private val application: Application,
         private val searchEngineProvider: SearchEngineProvider,
-        private val homePageReader: HomePageReader
+        private val homePageReader: HomePageReader,
+        private var userPreferences: UserPreferences
 ) : HtmlPageFactory {
 
     override fun buildPage(): Single<String> = Single
@@ -38,6 +40,7 @@ class HomePageFactory @Inject constructor(
                 ) andBuild {
                     charset { UTF8 }
                     body {
+                        if(userPreferences.imageUrlString != ""){ tag("body") { attr("style", "background: url('" + userPreferences.imageUrlString + "') no-repeat scroll;") } }
                         id("image_url") { attr("src", iconUrl) }
                         tag("script") {
                             html(

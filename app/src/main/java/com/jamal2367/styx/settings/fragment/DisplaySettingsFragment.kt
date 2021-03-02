@@ -22,6 +22,7 @@ import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.view.RenderingMode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.jamal2367.styx.dialog.BrowserDialog
 import javax.inject.Inject
 
 class DisplaySettingsFragment : AbstractSettingsFragment() {
@@ -67,6 +68,11 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
                 preference = SETTINGS_NAVBAR,
                 isChecked = userPreferences.navbar,
                 onCheckChange = { userPreferences.navbar = it }
+        )
+
+        clickablePreference(
+                preference = SETTINGS_IMAGE_URL,
+                onClick = ::showImageUrlPicker
         )
 
     }
@@ -128,6 +134,18 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
         RenderingMode.INVERTED_GRAYSCALE -> R.string.name_inverted_grayscale
         RenderingMode.INCREASE_CONTRAST -> R.string.name_increase_contrast
     })
+
+    private fun showImageUrlPicker() {
+        activity?.let {
+            BrowserDialog.showEditText(it as AppCompatActivity,
+                    R.string.image_url,
+                    R.string.hint_url,
+                    userPreferences.imageUrlString,
+                    R.string.action_ok) { s ->
+                userPreferences.imageUrlString = s
+            }
+        }
+    }
 
     private fun showTextSizePicker(summaryUpdater: SummaryUpdater) {
         MaterialAlertDialogBuilder(activity as AppCompatActivity).apply {
@@ -204,6 +222,7 @@ class DisplaySettingsFragment : AbstractSettingsFragment() {
     companion object {
 
         private const val SETTINGS_NAVBAR = "second_bar"
+        private const val SETTINGS_IMAGE_URL = "image_url"
 
         private const val XX_LARGE = 30.0f
         private const val X_SMALL = 10.0f
