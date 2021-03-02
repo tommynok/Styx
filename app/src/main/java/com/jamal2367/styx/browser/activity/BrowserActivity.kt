@@ -819,8 +819,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             extraBar.visibility = GONE
         } else {
             extraBar.visibility = VISIBLE
-            if(!userPreferences.showTabsInDrawer){
+            if (!userPreferences.showTabsInDrawer) {
                 extraBar.menu.removeItem(R.id.tabs)
+                extraBar.menu.removeItem(R.id.home)
             }
             extraBar.setOnNavigationItemSelectedListener { item ->
                 when(item.itemId) {
