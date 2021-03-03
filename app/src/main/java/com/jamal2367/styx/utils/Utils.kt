@@ -193,7 +193,7 @@ object Utils {
                 "<body class=\"offline\">" +
                 "<div class=\"interstitial-wrapper\">" +
                 "<div id=\"main-content\">" +
-                "<img src=\"file:///android_asset/warning.gif\" height=\"128\" width=\"128\"><br><br>" +
+                "<img src=\"file:///android_asset/warning.webp\" height=\"128\" width=\"128\"><br><br>" +
                 "<div class=\"icon icon-offline\"></div>" +
                 "<div id=\"main-message\">" +
                 "<h1 class=\"unselectable\">$title</h1>" +
@@ -231,7 +231,7 @@ object Utils {
                 "<body class=\"offline\">" +
                 "<div class=\"interstitial-wrapper\">" +
                 "<div id=\"main-content\">" +
-                "<img src=\"file:///android_asset/warning.gif\" height=\"128\" width=\"128\"><br><br>" +
+                "<img src=\"file:///android_asset/warning.webp\" height=\"128\" width=\"128\"><br><br>" +
                 "<div class=\"icon icon-offline\"></div>" +
                 "<div id=\"main-message\">" +
                 "<h1 class=\"unselectable\">$title</h1>" +

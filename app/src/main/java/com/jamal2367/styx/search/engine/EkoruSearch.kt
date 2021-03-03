@@ -6,7 +6,7 @@ import com.jamal2367.styx.R
  * The Ekoru search engine.
  */
 class EkoruSearch : BaseSearchEngine(
-    "file:///android_asset/ekoru.png",
+    "file:///android_asset/ekoru.webp",
     "https://www.ekoru.org/?ext=styx&q=",
     R.string.search_engine_ekoru
 )
