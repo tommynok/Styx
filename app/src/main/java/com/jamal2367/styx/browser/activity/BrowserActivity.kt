@@ -33,7 +33,7 @@ import com.jamal2367.styx.html.homepage.HomePageFactory
 import com.jamal2367.styx.icon.TabCountView
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.notifications.IncognitoNotification
-import com.jamal2367.styx.reading.activity.ReadingActivity
+import com.jamal2367.styx.reading.ReadingActivity
 import com.jamal2367.styx.search.SearchEngineProvider
 import com.jamal2367.styx.search.SuggestionsAdapter
 import com.jamal2367.styx.settings.NewTabPosition

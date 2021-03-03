@@ -1,4 +1,4 @@
-package com.jamal2367.styx.reading.activity
+package com.jamal2367.styx.reading
 
 import android.annotation.SuppressLint
 import android.app.Dialog

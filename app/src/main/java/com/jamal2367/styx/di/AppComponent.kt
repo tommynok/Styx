@@ -12,7 +12,7 @@ import com.jamal2367.styx.browser.bookmarks.BookmarksDrawerView
 import com.jamal2367.styx.device.BuildInfo
 import com.jamal2367.styx.dialog.StyxDialogBuilder
 import com.jamal2367.styx.download.StyxDownloadListener
-import com.jamal2367.styx.reading.activity.ReadingActivity
+import com.jamal2367.styx.reading.ReadingActivity
 import com.jamal2367.styx.search.SuggestionsAdapter
 import com.jamal2367.styx.settings.activity.SettingsActivity
 import com.jamal2367.styx.settings.fragment.*

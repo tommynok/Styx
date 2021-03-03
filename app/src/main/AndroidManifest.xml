@@ -162,7 +162,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".reading.activity.ReadingActivity"
+            android:name=".reading.ReadingActivity"
             android:label="@string/reading_mode"
             android:theme="@style/Theme.App.DayNight.Settings">
             <intent-filter>
