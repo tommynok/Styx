@@ -5,15 +5,17 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-
     <EditText
         android:id="@+id/dialog_multi_line"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="top"
         android:inputType="textMultiLine"
-        android:lines="8"
+        android:lines="24"
         android:maxLines="3"
         android:minLines="6"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset" />
+
 </LinearLayout>

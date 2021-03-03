@@ -15,7 +15,6 @@ import android.widget.*
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.ahmadaghazadeh.editor.widget.CodeEditor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.allowlist.AllowListModel
@@ -278,11 +277,11 @@ class BookmarksDrawerView @JvmOverloads constructor(
                     val builder = MaterialAlertDialogBuilder(context)
                     val inflater = activity.layoutInflater
                     builder.setTitle(R.string.page_source_title)
-                    val dialogLayout = inflater.inflate(R.layout.dialog_view_source, null)
-                    val editText = dialogLayout.findViewById<CodeEditor>(R.id.dialog_multi_line)
-                    editText.setText(name, 1)
+                    val dialogLayout = inflater.inflate(R.layout.dialog_multi_line, null)
+                    val editText = dialogLayout.findViewById<EditText>(R.id.dialog_multi_line)
+                    editText.setText(name)
                     builder.setView(dialogLayout)
-                    builder.setPositiveButton("OK") { _, _ -> editText.setText(editText.text?.toString()?.replace("\'", "\\\'"), 1); currentTab.loadUrl("javascript:(function() { document.documentElement.innerHTML = '" + editText.text.toString() + "'; })()") }
+                    builder.setPositiveButton("OK") { _, _ -> editText.setText(editText.text?.toString()?.replace("\'", "\\\'")); currentTab.loadUrl("javascript:(function() { document.documentElement.innerHTML = '" + editText.text.toString() + "'; })()") }
                     builder.show()
                 },
                 DialogItem(
