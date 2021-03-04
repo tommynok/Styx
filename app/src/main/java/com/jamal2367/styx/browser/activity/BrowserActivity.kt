@@ -1726,7 +1726,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         if (userPreferences.incognito) {
             WebUtils.clearHistory(this, historyModel, databaseScheduler)
-            WebUtils.clearCookies(this)
+            WebUtils.clearCookies()
         }
 
         suggestionsAdapter?.let {
