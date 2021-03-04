@@ -216,25 +216,18 @@ class BrowserPresenter(
         val shouldClose = shouldClose && isShown && tabToDelete.isNewTab
         val currentTab = tabsModel.currentTab
 
-        if (tabsModel.size() == 1
-                && currentTab != null
-                && URLUtil.isFileUrl(currentTab.url)
-                && currentTab.url == mapHomepageToCurrentUrl()) {
-            if(userPreferences.closeOnLastTab) {
-                view.closeActivity()
-            }
-            else if(!userPreferences.closeOnLastTab && tabsModel.currentTab == null && !isIncognito) {
-                newTab(UrlInitializer(mapHomepageToCurrentUrl()), true)
-            }
-            return
-        } else {
-            if (isShown) {
-                view.removeTabView()
-            }
-            val currentDeleted = tabsModel.deleteTab(position)
-            if (currentDeleted) {
-                tabChanged(tabsModel.indexOfCurrentTab())
-            }
+        if(!userPreferences.closeOnLastTab && tabsModel.currentTab == null && !isIncognito) {
+            newTab(UrlInitializer(mapHomepageToCurrentUrl()), true)
+        }
+
+        if (isShown) {
+            view.removeTabView()
+        }
+
+        val currentDeleted = tabsModel.deleteTab(position)
+
+        if (currentDeleted) {
+            tabChanged(tabsModel.indexOfCurrentTab())
         }
 
         val afterTab = tabsModel.currentTab
