@@ -1,7 +1,6 @@
 package com.jamal2367.styx.view
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -150,7 +149,7 @@ class StyxWebClient(
     val include = ArrayList<Pattern>(0)
 
     private fun installExtension(text: String){
-        var tx = text.replace("""\"""", """"""")
+        val tx = text.replace("""\"""", """"""")
                 .replace("\\n", System.lineSeparator())
                 .replace("\\t", "")
                 .replace("\\u003C", "<")
@@ -230,7 +229,7 @@ class StyxWebClient(
     val TLD_REGEX = "^([^:]+://[^/]+)\\\\.tld(/.*)?\$".toRegex()
     val schemeContainsPattern = Pattern.compile("^\\w+:", Pattern.CASE_INSENSITIVE)
 
-    fun urlToPattern(patternUrl: String?): Pattern? {
+    private fun urlToPattern(patternUrl: String?): Pattern? {
         if (patternUrl == null) return null
         try {
             val builder = StringBuilder(patternUrl)
@@ -252,7 +251,7 @@ class StyxWebClient(
         return null
     }
 
-    fun urlToParsedPattern(patternUrl: String): Pattern? {
+    private fun urlToParsedPattern(patternUrl: String): Pattern? {
         try {
             val converted = if (patternUrl.contains(".tld", true)) {
                 TLD_REGEX.replaceFirst(patternUrl, "$1(.[a-z]{1,6}){1,3}$2")
@@ -353,14 +352,6 @@ class StyxWebClient(
                     break
                 }
             }
-        }
-
-        view.evaluateJavascript("""(function() {
-        return "<html>" + document.getElementsByTagName('html')[0].innerHTML + "</html>";
-        })()""".trimMargin()) {
-            val editor: SharedPreferences.Editor = activity.getSharedPreferences("com.jamal2367.styx", Context.MODE_PRIVATE).edit()
-            editor.putString("source", it)
-            editor.apply()
         }
 
         if (userPreferences.blockMalwareEnabled) {
