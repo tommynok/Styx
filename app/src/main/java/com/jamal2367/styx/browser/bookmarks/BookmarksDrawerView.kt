@@ -269,7 +269,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                         name = name?.replace("\\n", System.getProperty("line.separator").toString())
                         name = name?.replace("\\t", "")
                         name = name?.replace("\\\"", "\"")
-                        name = name?.substring(1, name.length - 1);
+                        name = name?.substring(1, name.length - 1)
 
                         val builder = MaterialAlertDialogBuilder(context)
                         val inflater = activity.layoutInflater
@@ -278,8 +278,9 @@ class BookmarksDrawerView @JvmOverloads constructor(
                         val editText = dialogLayout.findViewById<CodeEditor>(R.id.dialog_multi_line)
                         editText.setText(name, 1)
                         builder.setView(dialogLayout)
+                        builder.setNegativeButton(R.string.action_cancel) { _, _ -> }
                         builder.setPositiveButton(R.string.action_ok) { _, _ ->
-                            editText.setText(editText.text?.toString()?.replace("\'", "\\\'"), 1);
+                            editText.setText(editText.text?.toString()?.replace("\'", "\\\'"), 1)
                             currentTab.loadUrl("javascript:(function() { document.documentElement.innerHTML = '" + editText.text.toString() + "'; })()")
                         }
                         builder.show()
@@ -298,6 +299,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                     val editText = dialogLayout.findViewById<CodeEditor>(R.id.dialog_multi_line)
                     editText.setText(editText.text.toString(),1)
                     builder.setView(dialogLayout)
+                    builder.setNegativeButton(R.string.action_cancel) { _, _ -> }
                     builder.setPositiveButton(R.string.action_ok) { _, _ -> currentTab.loadUrl("javascript:(function() {" + editText.text.toString() + "})()") }
                     builder.show()
                 },
@@ -345,6 +347,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                         val editText = dialogLayout.findViewById<CodeEditor>(R.id.dialog_multi_line)
                         editText.setText(cookieManager.getCookie(currentTab.url), 1)
                         builder.setView(dialogLayout)
+                        builder.setNegativeButton(R.string.action_cancel) { _, _ -> }
                         builder.setPositiveButton(R.string.action_ok) { _, _ ->
                             val cookiesList = editText.text.toString().split(";")
                             cookiesList.forEach { item ->
