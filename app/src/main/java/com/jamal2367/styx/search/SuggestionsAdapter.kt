@@ -22,6 +22,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Filter
 import android.widget.Filterable
+import com.jamal2367.styx.browser.SuggestionNumChoice
 import io.reactivex.*
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
@@ -151,12 +152,15 @@ class SuggestionsAdapter(
     }
 
     private fun getBookmarksForQuery(query: String): Single<List<Bookmark.Entry>> =
-        Single.fromCallable {
+            Single.fromCallable {
+                var choice = 5
+                choice = userPreferences.suggestionChoice.value + 3
+
             (allBookmarks.filter {
                 it.title.toLowerCase(Locale.getDefault()).startsWith(query)
             } + allBookmarks.filter {
                 it.url.contains(query)
-            }).distinct().take(MAX_SUGGESTIONS)
+            }).distinct().take(choice)
         }
 
     private fun Observable<CharSequence>.results(): Flowable<List<WebPage>> = this
@@ -204,17 +208,15 @@ class SuggestionsAdapter(
                     }
                 }
         }
-        .map { (bookmarks, history, searches) ->
-            val bookmarkCount = MAX_SUGGESTIONS - 2.coerceAtMost(history.size) - 1.coerceAtMost(searches.size)
-            val historyCount = MAX_SUGGESTIONS - bookmarkCount.coerceAtMost(bookmarks.size) - 1.coerceAtMost(searches.size)
-            val searchCount = MAX_SUGGESTIONS - bookmarkCount.coerceAtMost(bookmarks.size) - historyCount.coerceAtMost(history.size)
+            .map { (bookmarks, history, searches) ->
+                var choice = 5
+                choice = userPreferences.suggestionChoice.value + 3
+                val bookmarkCount = choice - 2.coerceAtMost(history.size) - 1.coerceAtMost(searches.size)
+                val historyCount = choice - bookmarkCount.coerceAtMost(bookmarks.size) - 1.coerceAtMost(searches.size)
+                val searchCount = choice - bookmarkCount.coerceAtMost(bookmarks.size) - historyCount.coerceAtMost(history.size)
 
-            bookmarks.take(bookmarkCount) + history.take(historyCount) + searches.take(searchCount)
+                bookmarks.take(bookmarkCount) + history.take(historyCount) + searches.take(searchCount)
         }
-
-    companion object {
-        private const val MAX_SUGGESTIONS = 5
-    }
 
     private class SearchFilter(
         private val suggestionsAdapter: SuggestionsAdapter

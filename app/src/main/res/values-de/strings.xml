@@ -128,6 +128,7 @@
     <string name="dialog_toggle_desktop">Umschalten des Desktop-Benutzeragenten</string>
     <string name="dialog_tools_title">Seiten-Tools</string>
     <string name="do_not_track">\"Nicht verfolgen\"-Funktion anfordern</string>
+    <string name="domain">Domain</string>
     <string name="download_complete">Download abgeschlossen</string>
     <string name="download_failed">Download fehlgeschlagen</string>
     <string name="download_no_sdcard_dlg_msg">USB-Speicher ist für das Herunterladen der Datei notwendig!</string>
@@ -139,6 +140,7 @@
     <string name="downloads_notification_description">Auslöser bei Abschluss des Downloads</string>
     <string name="downloads">Downloads</string>
     <string name="edit_cookies">Webseiten-Cookies anzeigen</string>
+    <string name="eight">Acht (8)</string>
     <string name="error_reload">Neu laden</string>
     <string name="error_title">Verbindung fehlgeschlagen!</string>
     <string name="error_tip">• Bitte überprüfen Sie die Adresse auf Tippfehler, wie ww.example.com statt www.example.com</string>
@@ -148,9 +150,11 @@
     <string name="example_text">Bespieltext</string>
     <string name="export_bookmarks">Lesezeichen exportieren</string>
     <string name="export_settings">Einstellungen exportieren</string>
+    <string name="five">Fünf (5)</string>
     <string name="folder_custom">Andere</string>
     <string name="folder_default">Standard</string>
     <string name="folder">Ordnername</string>
+    <string name="four">Vier (4)</string>
     <string name="force_zoom">Zoom auf Webseiten erzwingen</string>
     <string name="force_zoom_summary">(JavaScript muss aktiviert sein)</string>
     <string name="freeware">Freeware</string>
@@ -161,6 +165,7 @@
     <string name="home">Startseite</string>
     <string name="host">Host:</string>
     <string name="http_proxy">HTTP Proxy</string>
+    <string name="i2p">I2P</string>
     <string name="i2p_not_running">I2P ist nicht gestartet.</string>
     <string name="i2p_tunnels_not_ready">I2P Tunnel sind noch nicht bereit.</string>
     <string name="image_url">Hintergrundbild der Startseite festlegen</string>
@@ -191,6 +196,7 @@
     <string name="loading_failed">Es konnte nichts von der Seite geladen werden.</string>
     <string name="loading">Lade…</string>
     <string name="location">Standortzugriff erlauben</string>
+    <string name="manual">Manuell</string>
     <string name="manual_proxy">Manueller Proxy</string>
     <string name="message_added_to_homescreen">Verknüpfung wurde zum Startbildschirm hinzugefügt</string>
     <string name="message_blocked_local">Lokale Datei wurde beim Laden blockiert</string>
@@ -226,9 +232,13 @@
     <string name="new_tab_position_start">Am Start der Tabliste</string>
     <string name="new_tab_position">Neue Tabposition</string>
     <string name="no">Nein</string>
+    <string name="none">Kein (Standard)</string>
     <string name="notification_incognito_running_description">Dauerhafte Inkognito-Benachrichtigung</string>
     <string name="notification_incognito_running_message">Inkognito-Tab anzeigen</string>
     <string name="no_tts">Sprache wird nicht unterstützt</string>
+    <string name="one">%1$d Inkognito-Tab geöffnet</string>
+    <string name="orbot">Orbot</string>
+    <string name="other">%1$d Inkognito-Tabs geöffnet</string>
     <string name="overViewMode">Seiten in der Übersicht öffnen</string>
     <string name="page_source">Seitenquelltext anzeigen</string>
     <string name="page_source_title">Seitenquelltext</string>
@@ -325,11 +335,13 @@
     <string name="settings_title_apps">Apps</string>
     <string name="settings_title_desktop_mode_default">Desktop-Modus</string>
     <string name="settings">Einstellungen</string>
+    <string name="seven">Sieben (7)</string>
     <string name="shortcut_message_failed_to_add">Ihr Launcher unterstützt keine Verknüpfungen!</string>
     <string name="show">Zeigen</string>
     <string name="show_second_bar">Zweite Navigationsleiste anzeigen</string>
     <string name="show_ssl">SSL-Warndialog anzeigen</string>
     <string name="site_cookies">Webseiten-Cookies</string>
+    <string name="six">Sechs (6)</string>
     <string name="size">Textgröße:</string>
     <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Verfällt am:</string>
@@ -340,6 +352,7 @@
     <string name="start_incognito">Dauerhaft wie im Inkognito-Modus verhalten</string>
     <string name="stop_tts">Lesen beenden</string>
     <string name="success">Erfolg</string>
+    <string name="suggest">Suchvorschläge (Anzahl)</string>
     <string name="suggestion">Suche nach</string>
     <string name="swap_bookmarks_and_tabs">Lesezeichen und Tab-Drawer tauschen</string>
     <string name="tabs_in_drawer">Desktop Tab-Drawer</string>
@@ -347,6 +360,7 @@
     <string name="text_encoding">Text Enkodierung</string>
     <string name="theme">App-Design</string>
     <string name="third_party">Drittanbieter Cookies blockieren</string>
+    <string name="three">Drei (3)</string>
     <string name="title_chooser">Wähle Datei aus</string>
     <string name="title_clear_cookies">Cookies löschen</string>
     <string name="title_clear_history">Verlauf löschen</string>
@@ -360,6 +374,7 @@
     <string name="title_rename_folder">Ordner umbenennen</string>
     <string name="title_search_engine">Suchmaschine</string>
     <string name="title_sign_in">Anmelden</string>
+    <string name="title_standard">Titel (Standard)</string>
     <string name="title_text_size">Textgröße</string>
     <string name="title_user_agent">User-Agent</string>
     <string name="title_warning">Warnung</string>
@@ -368,6 +383,7 @@
     <string name="unknown_size">Unbekannte Größe</string>
     <string name="unlisted_javascript">JavaScript für diese Webseiten blockieren</string>
     <string name="untitled">Ohne Titel</string>
+    <string name="url">URL</string>
     <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>
     <string name="url_contents">URL-Box Inhalt</string>
     <string name="url_in_new_tab">URL in neuem Tab</string>
@@ -377,22 +393,4 @@
     <string name="wideViewPort">Breiten Anzeigebereich verwenden</string>
     <string name="window">Seiten erlauben einen neuen Tab zu öffnen</string>
     <string name="yes">Ja</string>
-
-    <plurals name="notification_incognito_running_title">
-        <item quantity="one">%1$d Inkognito-Tab geöffnet</item>
-        <item quantity="other">%1$d Inkognito-Tabs geöffnet</item>
-    </plurals>
-	
-	<string-array name="proxy_choices_array">
-        <item>Kein (Standard)</item>
-        <item>Orbot</item>
-        <item>I2P</item>
-        <item>Manuell</item>
-    </string-array>
-	
-	<string-array name="url_content_array">
-        <item>Domain</item>
-        <item>URL</item>
-        <item>Titel (Standard)</item>
-    </string-array>
 </resources>

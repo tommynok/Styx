@@ -21,6 +21,11 @@
         android:title="@string/search_suggestions"
         app:icon="@drawable/ic_list" />
 
+    <Preference
+        android:key="suggestions_number"
+        android:title="@string/suggest"
+        app:icon="@drawable/ic_list_number" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

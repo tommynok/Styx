@@ -1,8 +1,10 @@
 package com.jamal2367.styx.search.suggestions
 
+import com.jamal2367.styx.browser.SuggestionNumChoice
 import com.jamal2367.styx.database.SearchSuggestion
 import com.jamal2367.styx.extensions.safeUse
 import com.jamal2367.styx.log.Logger
+import com.jamal2367.styx.preference.UserPreferences
 import io.reactivex.Single
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -22,7 +24,8 @@ abstract class BaseSuggestionsModel internal constructor(
     private val requestFactory: RequestFactory,
     private val encoding: String,
     locale: Locale,
-    private val logger: Logger
+    private val logger: Logger,
+    private val userPreferences: UserPreferences
 ) : SuggestionsRepository {
 
     private val language = locale.language.takeIf(String::isNotEmpty) ?: DEFAULT_LANGUAGE
@@ -54,11 +57,12 @@ abstract class BaseSuggestionsModel internal constructor(
 
                     return@fromCallable emptyList<SearchSuggestion>()
                 }
-
+                var choice = 5
+                choice = userPreferences.suggestionChoice.value + 3
                 return@fromCallable client.downloadSuggestionsForQuery(query, language)
                         ?.body
                     ?.safeUse(::parseResults)
-                    ?.take(MAX_RESULTS) ?: emptyList()
+                    ?.take(choice) ?: emptyList()
             }
         }
 

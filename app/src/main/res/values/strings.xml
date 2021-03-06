@@ -128,6 +128,7 @@
     <string name="dialog_toggle_desktop">Toggle desktop user agent</string>
     <string name="dialog_tools_title">Page tools</string>
     <string name="do_not_track">Request \'Do Not Track\'</string>
+    <string name="domain">Domain</string>
     <string name="download_complete">Download complete</string>
     <string name="download_failed">Download failed</string>
     <string name="download_no_sdcard_dlg_msg">USB storage is required to download the file.</string>
@@ -139,6 +140,7 @@
     <string name="downloads_notification_description">Triggers upon download completion</string>
     <string name="downloads">Downloads</string>
     <string name="edit_cookies">Show site cookies</string>
+    <string name="eight">Eight (8)</string>
     <string name="error_reload">Reload</string>
     <string name="error_title">Oh crumbs!</string>
     <string name="error_tip">• Check the Address for typing errors such as ww.example.com instead of www.example.com</string>
@@ -148,9 +150,11 @@
     <string name="example_text">Example text</string>
     <string name="export_bookmarks">Export bookmarks to backup</string>
     <string name="export_settings">Export settings to backup</string>
+    <string name="five">Five (5)</string>
     <string name="folder_custom">Custom</string>
     <string name="folder_default">Default</string>
     <string name="folder">Folder name</string>
+    <string name="four">Four (4)</string>
     <string name="force_zoom">Force zoom for websites</string>
     <string name="force_zoom_summary">Does not work if JavaScript is not enabled</string>
     <string name="freeware">Freeware</string>
@@ -161,6 +165,7 @@
     <string name="home">Homepage</string>
     <string name="host">Host:</string>
     <string name="http_proxy">HTTP proxy</string>
+    <string name="i2p">I2P</string>
     <string name="i2p_not_running">I2P is not running.</string>
     <string name="i2p_tunnels_not_ready">I2P tunnels are not ready yet.</string>
     <string name="image_url">Set a homepage background image</string>
@@ -191,6 +196,7 @@
     <string name="loading_failed">Couldn\'t load anything from the page.</string>
     <string name="loading">Loading&#8230;</string>
     <string name="location">Location access</string>
+    <string name="manual">Manual</string>
     <string name="manual_proxy">Manual proxy</string>
     <string name="message_added_to_homescreen">Shortcut added to home screen</string>
     <string name="message_blocked_local">Local file has been blocked from loading</string>
@@ -226,9 +232,13 @@
     <string name="new_tab_position_start">Start of tab list</string>
     <string name="new_tab_position">New tab position</string>
     <string name="no">No</string>
+    <string name="none">None</string>
     <string name="notification_incognito_running_description">Ongoing incognito notification</string>
     <string name="notification_incognito_running_message">Touch to open</string>
     <string name="no_tts">Language is not supported</string>
+    <string name="one">%1$d incognito tab open</string>
+    <string name="orbot">Orbot</string>
+    <string name="other">%1$d incognito tabs open</string>
     <string name="overViewMode">Load pages in overview mode</string>
     <string name="page_source">View page source</string>
     <string name="page_source_title">page source</string>
@@ -326,11 +336,13 @@
     <string name="settings_title_debug">Debug</string>
     <string name="settings_title_desktop_mode_default">Desktop mode</string>
     <string name="settings">Settings</string>
+    <string name="seven">Seven (7)</string>
     <string name="shortcut_message_failed_to_add">Sorry, your launcher does not support shortcuts.</string>
     <string name="show">Show</string>
     <string name="show_second_bar">Show secondary navigation bar</string>
     <string name="show_ssl">Show SSL warning dialogs</string>
     <string name="site_cookies">Site cookies</string>
+    <string name="six">Six (6)</string>
     <string name="size">Text size</string>
     <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Expires on:</string>
@@ -341,6 +353,7 @@
     <string name="start_incognito">Permanently behave as if in incognito mode</string>
     <string name="stop_tts">Stop reading</string>
     <string name="success">Success</string>
+    <string name="suggest">Suggestion amount</string>
     <string name="suggestion">Search for</string>
     <string name="swap_bookmarks_and_tabs">Swap bookmark and tab drawers</string>
     <string name="tabs_in_drawer">Show tabs in navigation drawer</string>
@@ -348,6 +361,7 @@
     <string name="text_encoding">Text encoding</string>
     <string name="theme">Theme</string>
     <string name="third_party">Block 3rd party cookies</string>
+    <string name="three">Three (3)</string>
     <string name="title_chooser">Choose a file</string>
     <string name="title_clear_cookies">Clear cookies</string>
     <string name="title_clear_history">Clear history</string>
@@ -361,6 +375,7 @@
     <string name="title_rename_folder">Rename folder</string>
     <string name="title_search_engine">Search engine</string>
     <string name="title_sign_in">Sign in</string>
+    <string name="title_standard">Title (Standard)</string>
     <string name="title_text_size">Text size</string>
     <string name="title_user_agent">User agent</string>
     <string name="title_warning">Warning</string>
@@ -369,7 +384,8 @@
     <string name="unknown_size">Unknown size</string>
     <string name="unlisted_javascript">Block JavaScript for listed sites</string>
     <string name="untitled">Untitled</string>
-    <string name="url_app_home_page">https://github.com/jamal2362/</string>
+    <string name="url">URL</string>
+    <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>
     <string name="url_contents">Tool bar shows</string>
     <string name="url_in_new_tab">URL in new tab</string>
     <string name="use_i2p_prompt">It looks like you have I2P installed. Do you want to use I2P?</string>
@@ -380,21 +396,82 @@
     <string name="yes">Yes</string>
 
 	<plurals name="notification_incognito_running_title">
-        <item quantity="one">%1$d incognito tab open</item>
-        <item quantity="other">%1$d incognito tabs open</item>
+        <item quantity="one">@string/one</item>
+        <item quantity="other">@string/other</item>
     </plurals>
 	
 	<string-array name="proxy_choices_array">
-        <item>None</item>
-        <item>Orbot</item>
-        <item>I2P</item>
-        <item>Manual</item>
+        <item>@string/none</item>
+        <item>@string/orbot</item>
+        <item>@string/i2p</item>
+        <item>@string/manual</item>
     </string-array>
 	
 	<string-array name="url_content_array">
-        <item>Domain</item>
-        <item>URL</item>
-        <item>Title (Standard)</item>
+        <item>@string/domain</item>
+        <item>@string/url</item>
+        <item>@string/title_standard</item>
+    </string-array>
+
+    <string-array name="user_agent">
+        <item>@string/agent_default</item>
+        <item>@string/agent_windows_desktop</item>
+        <item>@string/agent_linux_desktop</item>
+        <item>@string/agent_macos_desktop</item>
+        <item>@string/agent_android_mobile</item>
+        <item>@string/agent_ios_mobile</item>
+        <item>@string/agent_system</item>
+        <item>@string/agent_web_view</item>
+        <item>@string/agent_custom</item>
+    </string-array>
+
+    <string-array name="suggestion_name_array">
+        <item>@string/three</item>
+        <item>@string/four</item>
+        <item>@string/five</item>
+        <item>@string/six</item>
+        <item>@string/seven</item>
+        <item>@string/eight</item>
+    </string-array>
+
+    <string-array name="block_javascript">
+        <item>@string/no</item>
+        <item>@string/unlisted_javascript</item>
+        <item>@string/listed_javascript</item>
+    </string-array>
+
+    <string-array name="download_folder">
+        <item>@string/folder_default</item>
+        <item>@string/folder_custom</item>
+    </string-array>
+
+    <string-array name="homepage">
+        <item>@string/action_homepage</item>
+        <item>@string/action_blank</item>
+        <item>@string/action_bookmarks</item>
+        <item>@string/action_webpage</item>
+    </string-array>
+
+    <string-array name="suggestions">
+        <item>@string/powered_by_google</item>
+        <item>@string/powered_by_duck</item>
+        <item>@string/powered_by_naver</item>
+        <item>@string/powered_by_baidu</item>
+        <item>@string/search_suggestions_off</item>
+    </string-array>
+
+    <string-array name="new_tab_positions">
+        <item>@string/new_tab_position_before</item>
+        <item>@string/new_tab_position_after</item>
+        <item>@string/new_tab_position_start</item>
+        <item>@string/new_tab_position_end</item>
+    </string-array>
+
+    <string-array name="new_tab_position_values">
+        <item>@string/new_tab_position_before_value</item>
+        <item>@string/new_tab_position_after_value</item>
+        <item>@string/new_tab_position_start_value</item>
+        <item>@string/new_tab_position_end_value</item>
     </string-array>
 
     <!-- No Translated Strings -->

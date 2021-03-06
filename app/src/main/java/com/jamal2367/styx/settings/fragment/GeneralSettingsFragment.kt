@@ -35,6 +35,7 @@ import android.webkit.URLUtil
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.jamal2367.styx.browser.SuggestionNumChoice
 import javax.inject.Inject
 
 /**
@@ -96,6 +97,14 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
             preference = SETTINGS_SUGGESTIONS,
             summary = searchSuggestionChoiceToTitle(Suggestions.from(userPreferences.searchSuggestionChoice)),
             onClick = ::showSearchSuggestionsDialog
+        )
+
+        val stringArray = resources.getStringArray(R.array.suggestion_name_array)
+
+        clickableDynamicPreference(
+                preference = SETTINGS_SUGGESTIONS_NUM,
+                summary = stringArray[userPreferences.suggestionChoice.value],
+                onClick = ::showSuggestionNumPicker
         )
 
         clickableDynamicPreference(
@@ -170,6 +179,36 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                 setPositiveButton(resources.getString(R.string.action_ok), null)
             }.resizeAndShow()
         }
+    }
+
+
+    private fun showSuggestionNumPicker(summaryUpdater: SummaryUpdater) {
+        BrowserDialog.showCustomDialog(activity as AppCompatActivity) {
+            setTitle(R.string.suggest)
+            val stringArray = resources.getStringArray(R.array.suggestion_name_array)
+            val values = SuggestionNumChoice.values().map {
+                Pair(it, when (it) {
+                    SuggestionNumChoice.THREE -> stringArray[0]
+                    SuggestionNumChoice.FOUR -> stringArray[1]
+                    SuggestionNumChoice.FIVE -> stringArray[2]
+                    SuggestionNumChoice.SIX -> stringArray[3]
+                    SuggestionNumChoice.SEVEN -> stringArray[4]
+                    SuggestionNumChoice.EIGHT -> stringArray[5]
+                    else -> stringArray[2]
+                })
+            }
+            withSingleChoiceItems(values, userPreferences.suggestionChoice) {
+                updateSearchNum(it, activity as AppCompatActivity, summaryUpdater)
+            }
+            setPositiveButton(R.string.action_ok, null)
+        }
+    }
+
+    private fun updateSearchNum(choice: SuggestionNumChoice, activity: Activity, summaryUpdater: SummaryUpdater) {
+        val stringArray = resources.getStringArray(R.array.suggestion_name_array)
+
+        userPreferences.suggestionChoice = choice
+        summaryUpdater.updateSummary(stringArray[choice.value])
     }
 
 
@@ -258,10 +297,10 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         3 -> resources.getString(R.string.agent_linux_desktop)
         4 -> resources.getString(R.string.agent_macos_desktop)
         5 -> resources.getString(R.string.agent_android_mobile)
-        5 -> resources.getString(R.string.agent_ios_mobile)
-        6 -> resources.getString(R.string.agent_system)
-        7 -> resources.getString(R.string.agent_web_view)
-        8 -> resources.getString(R.string.agent_custom)
+        6 -> resources.getString(R.string.agent_ios_mobile)
+        7 -> resources.getString(R.string.agent_system)
+        8 -> resources.getString(R.string.agent_web_view)
+        9 -> resources.getString(R.string.agent_custom)
         else -> resources.getString(R.string.agent_default)
     }
 
@@ -591,6 +630,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
 
     companion object {
         private const val SETTINGS_PROXY = "proxy"
+        private const val SETTINGS_SUGGESTIONS_NUM = "suggestions_number"
         private const val SETTINGS_USER_AGENT = "agent"
         private const val SETTINGS_DOWNLOAD = "download"
         private const val SETTINGS_HOME = "home"

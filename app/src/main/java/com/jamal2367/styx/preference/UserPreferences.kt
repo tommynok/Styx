@@ -428,6 +428,11 @@ class UserPreferences @Inject constructor(
 
     var imageUrlString by preferences.stringPreference(IMAGE_URL, "")
 
+    /**
+     * Define Suggestion number Choice
+     */
+    var suggestionChoice by preferences.enumPreference(SEARCH_SUGGESTIONS_NUM, SuggestionNumChoice.FIVE)
+
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -472,3 +477,4 @@ private const val SSL = "ssl"
 private const val SECOND_BAR = "secondBar"
 private const val LAST_TAB = "lastTab"
 private const val IMAGE_URL = "imageUrl"
+private const val SEARCH_SUGGESTIONS_NUM = "suggNum"

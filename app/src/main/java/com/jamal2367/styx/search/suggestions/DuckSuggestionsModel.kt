@@ -7,6 +7,7 @@ import com.jamal2367.styx.extensions.map
 import com.jamal2367.styx.extensions.preferredLocale
 import com.jamal2367.styx.log.Logger
 import android.app.Application
+import com.jamal2367.styx.preference.UserPreferences
 import io.reactivex.Single
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -21,8 +22,9 @@ class DuckSuggestionsModel(
     okHttpClient: Single<OkHttpClient>,
     requestFactory: RequestFactory,
     application: Application,
-    logger: Logger
-) : BaseSuggestionsModel(okHttpClient, requestFactory, UTF8, application.preferredLocale, logger) {
+    logger: Logger,
+    userPreferences: UserPreferences
+) : BaseSuggestionsModel(okHttpClient, requestFactory, UTF8, application.preferredLocale, logger, userPreferences) {
 
     private val searchSubtitle = application.getString(R.string.suggestion)
 
