@@ -3,33 +3,35 @@
     package="com.jamal2367.styx">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false"/>
+        android:required="false" />
     <uses-feature
         android:name="android.hardware.camera.autofocus"
-        android:required="false"/>
+        android:required="false" />
 
     <uses-feature
         android:name="android.hardware.location.gps"
-        android:required="false"/>
+        android:required="false" />
+
     <uses-feature
         android:name="android.hardware.location"
-        android:required="false"/>
+        android:required="false" />
+
     <uses-feature
         android:name="android.hardware.touchscreen"
-        android:required="false"/>
+        android:required="false" />
 
     <application
         android:name=".BrowserApp"
@@ -43,10 +45,10 @@
 
         <meta-data
             android:name="android.webkit.WebView.MetricsOptOut"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="android.max_aspect"
-            android:value="2.1"/>
+            android:value="2.1" />
 
         <activity
             android:name=".MainActivity"
@@ -57,83 +59,80 @@
             android:launchMode="singleTask"
             android:theme="@style/Theme.App.DayNight"
             android:windowSoftInputMode="stateHidden|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.APP_BROWSER"/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.APP_BROWSER" />
             </intent-filter>
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="file"/>
-                <data android:mimeType="text/html"/>
-                <data android:mimeType="text/plain"/>
-                <data android:mimeType="application/xhtml+xml"/>
-                <data android:mimeType="application/vnd.wap.xhtml+xml"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="file" />
+                <data android:mimeType="text/html" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="application/xhtml+xml" />
+                <data android:mimeType="application/vnd.wap.xhtml+xml" />
             </intent-filter>
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="about"/>
-                <data android:scheme="javascript"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="about" />
+                <data android:scheme="javascript" />
                 <data android:scheme="styx" />
             </intent-filter>
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="inline"/>
-                <data android:mimeType="text/html"/>
-                <data android:mimeType="text/plain"/>
-                <data android:mimeType="application/xhtml+xml"/>
-                <data android:mimeType="application/vnd.wap.xhtml+xml"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="inline" />
+                <data android:mimeType="text/html" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="application/xhtml+xml" />
+                <data android:mimeType="application/vnd.wap.xhtml+xml" />
             </intent-filter>
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="file"/>
-                <data android:mimeType="application/x-webarchive-xml"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="file" />
+                <data android:mimeType="application/x-webarchive-xml" />
             </intent-filter>
+
             <intent-filter>
-                <action android:name="android.intent.action.WEB_SEARCH"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
+                <action android:name="android.intent.action.WEB_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
             </intent-filter>
+
             <intent-filter>
-                <action android:name="android.intent.action.WEB_SEARCH"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.WEB_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <intent-filter>
-                <action android:name="info.guardianproject.panic.action.TRIGGER"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="info.guardianproject.panic.action.TRIGGER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
+
         <activity
             android:name=".IncognitoActivity"
             android:alwaysRetainTaskState="true"
@@ -144,12 +143,15 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.App.DayNight"
             android:windowSoftInputMode="stateHidden|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.INCOGNITO"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
+            <intent-filter>
+                <action android:name="android.intent.action.INCOGNITO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
+
         <activity
             android:name=".settings.activity.SettingsActivity"
             android:parentActivityName=".MainActivity"
@@ -157,20 +159,22 @@
             android:theme="@style/Theme.App.DayNight.Settings">
 
             <intent-filter>
-                <action android:name="android.intent.action.SETTINGS"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
+
         <activity
             android:name=".reading.ReadingActivity"
             android:label="@string/reading_mode"
             android:theme="@style/Theme.App.DayNight.Settings">
-            <intent-filter>
-                <action android:name="android.intent.action.READING"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
+            <intent-filter>
+                <action android:name="android.intent.action.READING" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
 
         <provider
@@ -178,10 +182,12 @@
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
+
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths"/>
+                android:resource="@xml/filepaths" />
         </provider>
+
     </application>
 
 </manifest>
