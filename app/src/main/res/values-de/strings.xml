@@ -95,7 +95,7 @@
     <string name="close_on_last_tab">Browser mit letztem Tab beenden</string>
     <string name="close_other_tabs">Andere Tabs schließen</string>
     <string name="close_tab">Aktuellen Tab schließen</string>
-    <string name="color_mode">Farbmodus aktivieren</string>
+    <string name="color_mode">Farbmodus</string>
     <string name="cookies">Cookies erlauben</string>
     <string name="cookie_category">Cookie-Dialogblocker (Beta)</string>
     <string name="dark_mode">Dunkel-Modus für Webseiten</string>
