@@ -243,20 +243,20 @@ class BookmarksDrawerView @JvmOverloads constructor(
         }
 
         BrowserDialog.showWithIcons(context, context.getString(R.string.dialog_tools_title),
-            DialogItem(
-                icon = context.drawable(R.drawable.ic_block),
-                colorTint = context.color(R.color.error_red).takeIf { isAllowedAds },
-                title = whitelistString,
-                isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
+                DialogItem(
+                        icon = context.drawable(R.drawable.ic_block),
+                        colorTint = context.color(R.color.error_red).takeIf { isAllowedAds },
+                        title = whitelistString,
+                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
 
-            ) {
-                if (isAllowedAds) {
-                    allowListModel.removeUrlFromAllowList(currentTab.url)
-                } else {
-                    allowListModel.addUrlToAllowList(currentTab.url)
-                }
-                getTabsManager().currentTab?.reload()
-            },
+                ) {
+                    if (isAllowedAds) {
+                        allowListModel.removeUrlFromAllowList(currentTab.url)
+                    } else {
+                        allowListModel.addUrlToAllowList(currentTab.url)
+                    }
+                    getTabsManager().currentTab?.reload()
+                },
                 DialogItem(
                         icon = context.drawable(R.drawable.ic_baseline_code_24),
                         title = R.string.page_source
@@ -360,6 +360,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
                 }
         )
+
     }
 
     override fun navigateBack() {
