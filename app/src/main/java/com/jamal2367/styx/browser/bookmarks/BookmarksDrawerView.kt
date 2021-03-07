@@ -39,7 +39,7 @@ import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.setImageForTheme
 import com.jamal2367.styx.favicon.FaviconModel
 import com.jamal2367.styx.preference.UserPreferences
-import com.jamal2367.styx.utils.isSpecialUrl
+import com.jamal2367.styx.utils.*
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
@@ -247,7 +247,8 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 icon = context.drawable(R.drawable.ic_block),
                 colorTint = context.color(R.color.error_red).takeIf { isAllowedAds },
                 title = whitelistString,
-                isConditionMet = !currentTab.url.isSpecialUrl()
+                isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
+
             ) {
                 if (isAllowedAds) {
                     allowListModel.removeUrlFromAllowList(currentTab.url)
@@ -289,7 +290,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 DialogItem(
                         icon= context.drawable(R.drawable.ic_script_add),
                         title = R.string.inspect,
-                        isConditionMet = !currentTab.url.isSpecialUrl()
+                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
 
                 ){
                     val builder = MaterialAlertDialogBuilder(context)
@@ -307,7 +308,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                         icon = context.drawable(R.drawable.ic_script_key),
                         colorTint = context.color(R.color.error_red).takeIf { userPreferences.javaScriptChoice == JavaScriptChoice.BLACKLIST && !stringContainsItemFromList(currentTab.url, strgs) || userPreferences.javaScriptChoice == JavaScriptChoice.WHITELIST && stringContainsItemFromList(currentTab.url, strgs) },
                         title = jsEnabledString,
-                        isConditionMet = !currentTab.url.isSpecialUrl()
+                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
                 ) {
                     val url = URL(currentTab.url)
                     if (userPreferences.javaScriptChoice != JavaScriptChoice.NONE) {
@@ -335,7 +336,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 DialogItem(
                         icon = context.drawable(R.drawable.ic_cookie),
                         title = R.string.edit_cookies,
-                        isConditionMet = !currentTab.url.isSpecialUrl()
+                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
                 ) {
 
                     val cookieManager = CookieManager.getInstance()
