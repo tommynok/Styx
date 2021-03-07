@@ -1,6 +1,7 @@
 package com.jamal2367.styx.view
 
 import android.content.ActivityNotFoundException
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -36,6 +37,7 @@ import com.jamal2367.styx.database.javascript.JavaScriptRepository
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.snackbar
+import com.jamal2367.styx.html.homepage.HomePageFactory
 import com.jamal2367.styx.js.*
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
@@ -80,6 +82,7 @@ class StyxWebClient(
     @Inject internal lateinit var textReflowJs: TextReflow
     @Inject internal lateinit var invertPageJs: InvertPage
     @Inject internal lateinit var setMetaViewport: SetMetaViewport
+    @Inject internal lateinit var homePageFactory: HomePageFactory
     @Inject internal lateinit var noAMP: BlockAMP
     @Inject internal lateinit var cookieBlock: CookieBlock
     @Inject internal lateinit var javascriptRepository: JavaScriptRepository
@@ -131,15 +134,6 @@ class StyxWebClient(
             return WebResourceResponse("text/plain", "utf-8", empty)
         }
         return super.shouldInterceptRequest(view, request)
-    }
-
-    @Suppress("OverridingDeprecatedMember")
-    override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
-        if (shouldRequestBeBlocked(currentUrl, url)) {
-            val empty = ByteArrayInputStream(emptyResponseByteArray)
-            return WebResourceResponse("text/plain", "utf-8", empty)
-        }
-        return null
     }
 
     var name: String? = null
@@ -289,9 +283,22 @@ class StyxWebClient(
         }
     }
 
+    /**
+     *
+     */
+    private fun updateUrlIfNeeded(url: String, isLoading: Boolean) {
+        // Update URL unless we are dealing with our special internal URL
+        (styxView.iHideActualUrl). let { dontDoUpdate ->
+            uiController.updateUrl(if (dontDoUpdate) styxView.url else url, isLoading)
+        }
+    }
+
+    /**
+     * Overrides [WebViewClient.onPageFinished]
+     */
     override fun onPageFinished(view: WebView, url: String) {
         if (view.isShown) {
-            uiController.updateUrl(url, false)
+            updateUrlIfNeeded(url, false)
             uiController.setBackButtonEnabled(view.canGoBack())
             uiController.setForwardButtonEnabled(view.canGoForward())
             view.postInvalidate()
@@ -386,7 +393,7 @@ class StyxWebClient(
         }
         styxView.titleInfo.setFavicon(null)
         if (styxView.isShown) {
-            uiController.updateUrl(url, true)
+            updateUrlIfNeeded(url, true)
             uiController.showActionBar()
         }
 
@@ -446,6 +453,9 @@ class StyxWebClient(
         return false
     }
 
+    /**
+     *
+     */
     override fun onReceivedHttpAuthRequest(
             view: WebView,
             handler: HttpAuthHandler,
@@ -477,6 +487,10 @@ class StyxWebClient(
     }
 
     override fun onReceivedError(webview: WebView, errorCode: Int, error: String, failingUrl: String) {
+
+        // Not sure that's still needed then, sigh...
+        styxView.iHideActualUrl = true
+
         if(errorCode != -1) {
             Thread.sleep(500)
            webview.settings.javaScriptEnabled = true
@@ -571,23 +585,20 @@ class StyxWebClient(
         }.resizeAndShow()
     }
 
-    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =
-        shouldOverrideLoading(view, request.url.toString()) || super.shouldOverrideUrlLoading(view, request)
-
-    @Suppress("OverridingDeprecatedMember", "DEPRECATION")
-    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean =
-        shouldOverrideLoading(view, url) || super.shouldOverrideUrlLoading(view, url)
-
     // We use this to prevent opening such dialogs multiple times
     var exAppLaunchDialog: AlertDialog? = null
 
-    private fun shouldOverrideLoading(view: WebView, url: String): Boolean {
+    /**
+     * Overrides [WebViewClient.shouldOverrideUrlLoading].
+     */
+    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
         // Check if configured proxy is available
         if (!proxyUtils.isProxyReady(activity)) {
             // User has been notified
             return true
         }
 
+        val url = request.url.toString()
         val headers = styxView.requestHeaders
 
         if (styxView.isIncognito) {
@@ -623,24 +634,22 @@ class StyxWebClient(
             // We will keep loading even if an external app is available the first time we encounter it.
             (activity as BrowserActivity).mainHandler.postDelayed({
                 if (exAppLaunchDialog == null) {
-                    exAppLaunchDialog = MaterialAlertDialogBuilder(activity)
-                            .setTitle(R.string.dialog_title_third_party_app)
-                            .setMessage(R.string.dialog_message_third_party_app)
-                            .setPositiveButton(R.string.yes) { dialog, _ ->
+                    exAppLaunchDialog = MaterialAlertDialogBuilder(activity).setTitle(R.string.dialog_title_third_party_app).setMessage(R.string.dialog_message_third_party_app)
+                            .setPositiveButton(activity.getText(R.string.yes), DialogInterface.OnClickListener { dialog, _ ->
                                 // Handle Ok
                                 intentUtils.startActivityForIntent(intent)
                                 dialog.dismiss()
                                 exAppLaunchDialog = null
                                 // Remember user choice
                                 preferences.edit().putBoolean(prefKey, true).apply()
-                            }
-                            .setNegativeButton(R.string.no) { dialog, _ ->
+                            })
+                            .setNegativeButton(activity.getText(R.string.no), DialogInterface.OnClickListener { dialog, _ ->
                                 // Handle Cancel
                                 dialog.dismiss()
                                 exAppLaunchDialog = null
                                 // Remember user choice
                                 preferences.edit().putBoolean(prefKey, false).apply()
-                            }
+                            })
                             .create()
                     exAppLaunchDialog?.show()
                 }

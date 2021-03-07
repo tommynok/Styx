@@ -9,8 +9,7 @@ import com.jamal2367.styx.R
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.constant.INTENT_ORIGIN
-import com.jamal2367.styx.constant.SCHEME_BOOKMARKS
-import com.jamal2367.styx.constant.SCHEME_HOMEPAGE
+import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
@@ -126,7 +125,7 @@ class BrowserPresenter(
             view.removeTabView()
             currentTab?.let {
                 it.pauseTimers()
-                it.onDestroy()
+                it.destroy()
             }
         }  else {
 
@@ -196,8 +195,8 @@ class BrowserPresenter(
     }
 
     private fun mapHomepageToCurrentUrl(): String = when (val homepage = userPreferences.homepage) {
-        SCHEME_HOMEPAGE -> "$FILE${homePageFactory.createHomePage()}"
-        SCHEME_BOOKMARKS -> "$FILE${bookmarkPageFactory.createBookmarkPage(null)}"
+        Uris.AboutHome -> "$FILE${homePageFactory.createHomePage()}"
+        Uris.AboutBookmarks -> "$FILE${bookmarkPageFactory.createBookmarkPage(null)}"
         else -> homepage
     }
 

@@ -5,9 +5,8 @@ import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.JavaScriptChoice
 import com.jamal2367.styx.browser.ProxyChoice
-import com.jamal2367.styx.constant.SCHEME_BLANK
-import com.jamal2367.styx.constant.SCHEME_BOOKMARKS
-import com.jamal2367.styx.constant.SCHEME_HOMEPAGE
+import com.jamal2367.styx.browser.SuggestionNumChoice
+import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.constant.TEXT_ENCODINGS
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog
@@ -35,7 +34,6 @@ import android.webkit.URLUtil
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.jamal2367.styx.browser.SuggestionNumChoice
 import javax.inject.Inject
 
 /**
@@ -408,9 +406,9 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
     }
 
     private fun homePageUrlToDisplayTitle(url: String): String = when (url) {
-        SCHEME_HOMEPAGE -> resources.getString(R.string.action_homepage)
-        SCHEME_BLANK -> resources.getString(R.string.action_blank)
-        SCHEME_BOOKMARKS -> resources.getString(R.string.action_bookmarks)
+        Uris.AboutHome -> resources.getString(R.string.action_homepage)
+        Uris.AboutBlank -> resources.getString(R.string.action_blank)
+        Uris.AboutBookmarks -> resources.getString(R.string.action_bookmarks)
         else -> url
     }
 
@@ -419,24 +417,24 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
             BrowserDialog.showCustomDialog(it as AppCompatActivity) {
             setTitle(R.string.home)
             val n = when (userPreferences.homepage) {
-                SCHEME_HOMEPAGE -> 0
-                SCHEME_BLANK -> 1
-                SCHEME_BOOKMARKS -> 2
+                Uris.AboutHome -> 0
+                Uris.AboutBlank -> 1
+                Uris.AboutBookmarks -> 2
                 else -> 3
             }
 
             setSingleChoiceItems(R.array.homepage, n) { _, which ->
                 when (which) {
                     0 -> {
-                        userPreferences.homepage = SCHEME_HOMEPAGE
+                        userPreferences.homepage = Uris.AboutHome
                         summaryUpdater.updateSummary(resources.getString(R.string.action_homepage))
                     }
                     1 -> {
-                        userPreferences.homepage = SCHEME_BLANK
+                        userPreferences.homepage = Uris.AboutBlank
                         summaryUpdater.updateSummary(resources.getString(R.string.action_blank))
                     }
                     2 -> {
-                        userPreferences.homepage = SCHEME_BOOKMARKS
+                        userPreferences.homepage = Uris.AboutBookmarks
                         summaryUpdater.updateSummary(resources.getString(R.string.action_bookmarks))
                     }
                     3 -> {

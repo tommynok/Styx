@@ -3,7 +3,7 @@ package com.jamal2367.styx.view
 import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.TabModel
-import com.jamal2367.styx.constant.WINDOWS_DESKTOP_USER_AGENT
+import com.jamal2367.styx.constant.*
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.MainScheduler
@@ -26,6 +26,7 @@ import android.content.IntentFilter
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.*
+import android.net.Uri
 import android.net.http.SslCertificate
 import android.os.Build
 import android.os.Bundle
@@ -63,6 +64,7 @@ class StyxView(
         private val homePageInitializer: HomePageInitializer,
         private val bookmarkPageInitializer: BookmarkPageInitializer,
         private val downloadPageInitializer: DownloadPageInitializer,
+        private val historyPageInitializer: HistoryPageInitializer,
         private val logger: Logger
 ) {
 
@@ -104,6 +106,11 @@ class StyxView(
 
     private lateinit var styxWebClient: StyxWebClient
 
+    /**
+     * The URL we tried to load
+     */
+    private var iTargetUrl: Uri = Uri.parse("")
+
     private val uiController: UIController
     private lateinit var gestureDetector: GestureDetector
     private val paint = Paint()
@@ -120,9 +127,13 @@ class StyxView(
         set(aIsForeground) {
             field = aIsForeground
             if (isForeground) {
-                if (webView==null) {
+                // When frozen tab goes foreground we need to load its bundle in webView
+                latentTabInitializer?.apply {
+                    // Lazy creation of our WebView
                     createWebView()
-                    latentTabInitializer?.initialize(webView!!, requestHeaders)
+                    // Load bundle in WebView
+                    initializeContent(this)
+                    // Discard tab initializer since we just consumed it
                     latentTabInitializer = null
                 }
             }
@@ -233,7 +244,20 @@ class StyxView(
      * @return the current URL or an empty string.
      */
     val url: String
-        get() = webView?.url ?: ""
+        get() {
+            //TODO: One day find a way to write this expression without !! and without duplicating iTargetUrl.toString(), Kotlin is so weird
+            return if (iHideActualUrl || webView == null || webView!!.url.isNullOrBlank()) {
+                iTargetUrl.toString()
+            } else  {
+                webView!!.url
+            }
+        }
+
+    /**
+     * Set that flag when the displayed URL differs from the actual URL loaded in our webView?.
+     * That's notably the case for error pages.
+     */
+    var iHideActualUrl = false
 
     /**
      * Return true if this tab is frozen, meaning it was not yet loaded from its bundle
@@ -260,10 +284,13 @@ class StyxView(
         titleInfo = StyxViewTitle(activity)
         maxFling = ViewConfiguration.get(activity).scaledMaximumFlingVelocity.toFloat()
 
+        // Mark our URL
+        iTargetUrl = Uri.parse(tabInitializer.url())
+
         if (tabInitializer !is FreezableBundleInitializer) {
             // Create our WebView now
             createWebView()
-            tabInitializer.initialize(webView!!, requestHeaders)
+            initializeContent(tabInitializer)
             desktopMode = userPreferences.desktopModeDefault
         } else {
             // Our WebView will only be created whenever our tab goes to the foreground
@@ -284,8 +311,8 @@ class StyxView(
     private fun createWebView() {
         styxWebClient = StyxWebClient(activity, this)
         // Inflate our WebView as loading it from XML layout is needed to be able to set scrollbars color
-        val tab = activity.layoutInflater.inflate(R.layout.webview, null) as WebView;
-        tab.also { webView = it }.apply {
+        webView = activity.layoutInflater.inflate(R.layout.webview, null) as WebView;
+        webView?.apply {
             //id = this@StyxView.id
             gestureDetector = GestureDetector(activity, CustomGestureListener(this))
 
@@ -324,25 +351,48 @@ class StyxView(
      * homepage, or loads the startpage or bookmark page if either of those are set as the homepage.
      */
     fun loadHomePage() {
-        reinitialize(homePageInitializer)
-    }
-
-    private fun reinitialize(tabInitializer: TabInitializer) {
-        webView?.let { tabInitializer.initialize(it, requestHeaders) }
+        iTargetUrl = Uri.parse(Uris.StyxHome)
+        initializeContent(homePageInitializer)
     }
 
     /**
      * This function loads the bookmark page via the [BookmarkPageInitializer].
      */
     fun loadBookmarkPage() {
-        reinitialize(bookmarkPageInitializer)
+        iTargetUrl = Uri.parse(Uris.StyxBookmarks)
+        initializeContent(bookmarkPageInitializer)
     }
 
     /**
      * This function loads the download page via the [DownloadPageInitializer].
      */
     fun loadDownloadsPage() {
-        reinitialize(downloadPageInitializer)
+        iTargetUrl = Uri.parse(Uris.StyxDownloads)
+        initializeContent(downloadPageInitializer)
+    }
+
+    /**
+     *
+     */
+    fun loadHistoryPage() {
+        iTargetUrl = Uri.parse(Uris.StyxHistory)
+        initializeContent(historyPageInitializer)
+    }
+
+    /**
+     * Basically activate our tab initializer which typically loads something in our WebView.
+     * [ResultMessageInitializer] being a notable exception as it will only send a message to something to load target URL at a later stage.
+     */
+    private fun initializeContent(tabInitializer: TabInitializer) {
+        webView?.let { tabInitializer.initialize(it, requestHeaders) }
+        // Now that something was potentially loaded in our WebView...
+        if (iTargetUrl.toString().isNullOrBlank()) {
+            // Unknown URL, don't hide it when it eventually becomes available
+            iHideActualUrl = false
+        } else {
+            // ...check if we should hide our actual URL
+            iHideActualUrl = iTargetUrl.toString() != webView?.url
+        }
     }
 
     /**
@@ -689,7 +739,7 @@ class StyxView(
             return
         }
 
-        webView?.reload()
+        loadUrl(url)
     }
 
     /**
@@ -729,29 +779,27 @@ class StyxView(
     // TODO fix bug where WebView.destroy is being called before the tab
     // is removed and would cause a memory leak if the parent check
     // was not in place.
-    fun onDestroy() {
+    fun destroy() {
         if (iDownloadListener!=null) {
             activity.unregisterReceiver(iDownloadListener)
             iDownloadListener = null
         }
         networkDisposable.dispose()
-        webView?.let { tab ->
+        webView?.let {
             // Check to make sure the WebView has been removed
             // before calling destroy() so that a memory leak is not created
-            val parent = tab.parent as? ViewGroup
+            val parent = it.parent as? ViewGroup
             if (parent != null) {
-                logger.log(TAG, "WebView was not detached from window before onDestroy")
-                parent.removeView(webView)
+                logger.log(TAG, "WebView was not detached from window before destroy")
+                parent.removeView(it)
             }
-            tab.stopLoading()
-            tab.onPause()
-            tab.clearHistory()
-            tab.visibility = View.GONE
-            tab.removeAllViews()
-            tab.destroyDrawingCache()
-            tab.destroy()
-
-            webView = null
+            it.stopLoading()
+            it.onPause()
+            it.clearHistory()
+            it.visibility = View.GONE
+            it.removeAllViews()
+            it.destroyDrawingCache()
+            it.destroy()
         }
     }
 
@@ -858,13 +906,27 @@ class StyxView(
      * @param url the non-null URL to attempt to load in
      * the WebView.
      */
-    fun loadUrl(url: String) {
+    fun loadUrl(aUrl: String) {
         // Check if configured proxy is available
         if (!proxyUtils.isProxyReady(activity)) {
             return
         }
 
-        webView?.loadUrl(url, requestHeaders)
+        iHideActualUrl = false
+        iTargetUrl = Uri.parse(aUrl)
+
+        if (iTargetUrl.scheme == Schemes.Styx || iTargetUrl.scheme == Schemes.About) {
+            //TODO: support more of our custom URLs?
+            if (iTargetUrl.host == Hosts.Home) {
+                loadHomePage()
+            } else if (iTargetUrl.host == Hosts.Bookmarks) {
+                loadBookmarkPage()
+            } else if (iTargetUrl.host == Hosts.History) {
+                loadHistoryPage()
+            }
+        } else {
+            webView?.loadUrl(aUrl, requestHeaders)
+        }
     }
 
     /**

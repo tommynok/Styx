@@ -1,23 +1,10 @@
-/*
- * Copyright (C) 2010 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 @file:JvmName("UrlUtils")
 
 package com.jamal2367.styx.utils
 
+import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.constant.FILE
+import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.html.download.DownloadPageFactory
 import com.jamal2367.styx.html.history.HistoryPageFactory
@@ -70,13 +57,36 @@ fun smartUrlFilter(url: String, canBeSearch: Boolean, searchUrl: String): Pair<S
     }
 }
 
+/**
+ * Determines if the url is a url for the bookmark page.
+ *
+ * @return true if the url is a bookmark url, false otherwise.
+ */
+fun String?.isBookmarkUri(): Boolean =
+        this == Uris.StyxBookmarks || this == Uris.AboutBookmarks
+
+/**
+ * Determines if the url is a url for the bookmark page.
+ *
+ * @return true if the url is a bookmark url, false otherwise.
+ */
+fun String?.isHomeUri(): Boolean =
+        this == Uris.StyxHome || this == Uris.AboutHome
+
+/**
+ * Determines if the url is a url for the bookmark page.
+ *
+ * @return true if the url is a bookmark url, false otherwise.
+ */
+fun String?.isHistoryUri(): Boolean =
+        this == Uris.StyxHistory || this == Uris.AboutHistory
 
 /**
  * Returns whether the given url is the bookmarks/history page or a normal website
  */
 fun String?.isSpecialUrl(): Boolean =
     this != null
-        && this.startsWith(FILE)
+        && this.startsWith(FILE + BrowserApp.instance.filesDir)
         && (this.endsWith(BookmarkPageFactory.FILENAME)
         || this.endsWith(DownloadPageFactory.FILENAME)
         || this.endsWith(HistoryPageFactory.FILENAME)
@@ -114,7 +124,7 @@ fun String?.isHistoryUrl(): Boolean =
 fun String?.isStartPageUrl(): Boolean =
     this != null && this.startsWith(FILE) && this.endsWith(HomePageFactory.FILENAME)
 
-private val ACCEPTED_URI_SCHEMA = Pattern.compile("(?i)((?:http|https|file)://|(?:inline|data|about|javascript):|(?:.*:.*@))(.*)")
+private val ACCEPTED_URI_SCHEMA = Pattern.compile("(?i)((?:http|https|file)://|(?:inline|data|about|javascript|styx):|(?:.*:.*@))(.*)")
 const val QUERY_PLACE_HOLDER = "%s"
 private const val URL_ENCODED_SPACE = "%20"
 

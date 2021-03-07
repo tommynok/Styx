@@ -16,13 +16,36 @@ const val IOS_MOBILE_USER_AGENT = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like 
 const val HTTP = "http://"
 const val HTTPS = "https://"
 const val FILE = "file://"
-const val ABOUT = "about:"
 const val FOLDER = "folder://"
 
-// Custom local page schemes
-const val SCHEME_HOMEPAGE = "${ABOUT}home"
-const val SCHEME_BLANK = "${ABOUT}blank"
-const val SCHEME_BOOKMARKS = "${ABOUT}bookmarks"
+object Schemes {
+    const val Styx = "styx"
+    const val About = "about"
+}
+
+object Hosts {
+    const val Home = "home"
+    const val Start = "start"
+    const val Bookmarks = "bookmarks"
+    const val History = "history"
+    const val Downloads = "downloads"
+    const val Noop = "noop"
+    const val Blank = "blank"
+}
+
+object Uris {
+    const val StyxHome = "${Schemes.Styx}://${Hosts.Home}"
+    const val StyxStart = "${Schemes.Styx}://${Hosts.Start}"
+    const val StyxBookmarks = "${Schemes.Styx}://${Hosts.Bookmarks}"
+    const val StyxDownloads = "${Schemes.Styx}://${Hosts.Downloads}"
+    const val StyxHistory = "${Schemes.Styx}://${Hosts.History}"
+    const val StyxNoop = "${Schemes.Styx}://${Hosts.Noop}"
+    // Custom local page schemes
+    const val AboutHome = "${Schemes.About}:${Hosts.Home}"
+    const val AboutBlank = "${Schemes.About}:${Hosts.Blank}"
+    const val AboutBookmarks = "${Schemes.About}:${Hosts.Bookmarks}"
+    const val AboutHistory = "${Schemes.About}:${Hosts.History}"
+}
 
 const val UTF8 = "UTF-8"
 

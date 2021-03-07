@@ -2,8 +2,7 @@ package com.jamal2367.styx.view
 
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.TabModel
-import com.jamal2367.styx.constant.SCHEME_BOOKMARKS
-import com.jamal2367.styx.constant.SCHEME_HOMEPAGE
+import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.di.DiskScheduler
 import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.extensions.resizeAndShow
@@ -34,6 +33,12 @@ interface TabInitializer {
      */
     fun initialize(webView: WebView, headers: Map<String, String>)
 
+    /**
+     * Tab can't be initialized without a URL.
+     * That's just how browsers work: one tab, one URL.
+     */
+    fun url(): String
+
 }
 
 /**
@@ -43,6 +48,10 @@ class UrlInitializer(private val url: String) : TabInitializer {
 
     override fun initialize(webView: WebView, headers: Map<String, String>) {
         webView.loadUrl(url, headers)
+    }
+
+    override fun url(): String {
+        return url
     }
 
 }
@@ -61,10 +70,14 @@ class HomePageInitializer @Inject constructor(
         val homepage = userPreferences.homepage
 
         when (homepage) {
-            SCHEME_HOMEPAGE -> startPageInitializer
-            SCHEME_BOOKMARKS -> bookmarkPageInitializer
+            Uris.AboutHome -> startPageInitializer
+            Uris.AboutBookmarks -> bookmarkPageInitializer
             else -> UrlInitializer(homepage)
         }.initialize(webView, headers)
+    }
+
+    override fun url(): String {
+        return Uris.StyxHome
     }
 
 }
@@ -77,7 +90,11 @@ class StartPageInitializer @Inject constructor(
     homePageFactory: HomePageFactory,
     @DiskScheduler diskScheduler: Scheduler,
     @MainScheduler foregroundScheduler: Scheduler
-) : HtmlPageFactoryInitializer(homePageFactory, diskScheduler, foregroundScheduler)
+) : HtmlPageFactoryInitializer(homePageFactory, diskScheduler, foregroundScheduler) {
+    override fun url(): String {
+        return Uris.StyxStart
+    }
+}
 
 /**
  * An initializer that displays the bookmark page.
@@ -87,7 +104,11 @@ class BookmarkPageInitializer @Inject constructor(
     bookmarkPageFactory: BookmarkPageFactory,
     @DiskScheduler diskScheduler: Scheduler,
     @MainScheduler foregroundScheduler: Scheduler
-) : HtmlPageFactoryInitializer(bookmarkPageFactory, diskScheduler, foregroundScheduler)
+) : HtmlPageFactoryInitializer(bookmarkPageFactory, diskScheduler, foregroundScheduler) {
+    override fun url(): String {
+        return Uris.StyxBookmarks
+    }
+}
 
 /**
  * An initializer that displays the download page.
@@ -97,7 +118,11 @@ class DownloadPageInitializer @Inject constructor(
     downloadPageFactory: DownloadPageFactory,
     @DiskScheduler diskScheduler: Scheduler,
     @MainScheduler foregroundScheduler: Scheduler
-) : HtmlPageFactoryInitializer(downloadPageFactory, diskScheduler, foregroundScheduler)
+) : HtmlPageFactoryInitializer(downloadPageFactory, diskScheduler, foregroundScheduler) {
+    override fun url(): String {
+        return Uris.StyxDownloads
+    }
+}
 
 /**
  * An initializer that displays the history page.
@@ -107,7 +132,11 @@ class HistoryPageInitializer @Inject constructor(
     historyPageFactory: HistoryPageFactory,
     @DiskScheduler diskScheduler: Scheduler,
     @MainScheduler foregroundScheduler: Scheduler
-) : HtmlPageFactoryInitializer(historyPageFactory, diskScheduler, foregroundScheduler)
+) : HtmlPageFactoryInitializer(historyPageFactory, diskScheduler, foregroundScheduler) {
+    override fun url(): String {
+        return Uris.StyxHistory
+    }
+}
 
 /**
  * An initializer that loads the url built by the [HtmlPageFactory].
@@ -140,12 +169,19 @@ class ResultMessageInitializer(private val resultMessage: Message) : TabInitiali
         }.sendToTarget()
     }
 
+    override fun url(): String {
+        /** We don't know our URL at this stage, it will only be loaded in the WebView by whatever is handling the message sent above.
+         * That's ok though as we implemented a special case to handle this situation in [StyxView.initializeContent]
+         */
+        return ""
+    }
+
 }
 
 /**
  * An initializer that restores the [WebView] state using the [bundle].
  */
-open class BundleInitializer(private val bundle: Bundle?) : TabInitializer {
+abstract class BundleInitializer(private val bundle: Bundle?) : TabInitializer {
 
     override fun initialize(webView: WebView, headers: Map<String, String>) {
         bundle?.let { webView.restoreState(it) }
@@ -159,7 +195,11 @@ open class BundleInitializer(private val bundle: Bundle?) : TabInitializer {
  */
 class FreezableBundleInitializer(
         val tabModel: TabModel
-) : BundleInitializer(tabModel.webView)
+) : BundleInitializer(tabModel.webView) {
+    override fun url(): String {
+        return tabModel.url
+    }
+}
 
 /**
  * An initializer that does not load anything into the [WebView].
@@ -167,6 +207,10 @@ class FreezableBundleInitializer(
 class NoOpInitializer : TabInitializer {
 
     override fun initialize(webView: WebView, headers: Map<String, String>) = Unit
+
+    override fun url(): String {
+        return Uris.StyxNoop
+    }
 
 }
 
@@ -194,6 +238,10 @@ class PermissionInitializer(
                 UrlInitializer(url).initialize(webView, headers)
             }
         }.resizeAndShow()
+    }
+
+    override fun url(): String {
+        return url
     }
 
 }

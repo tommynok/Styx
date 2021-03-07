@@ -5,7 +5,7 @@ import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.*
 import com.jamal2367.styx.constant.DEFAULT_ENCODING
-import com.jamal2367.styx.constant.SCHEME_HOMEPAGE
+import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.device.ScreenSize
 import com.jamal2367.styx.di.UserPrefs
 import com.jamal2367.styx.preference.delegates.*
@@ -130,7 +130,7 @@ class UserPreferences @Inject constructor(
     /**
      * The URL of the selected homepage.
      */
-    var homepage by preferences.stringPreference(HOMEPAGE, SCHEME_HOMEPAGE)
+    var homepage by preferences.stringPreference(HOMEPAGE, Uris.AboutHome)
 
     /**
      * True if the browser should allow execution of javascript, false otherwise.
