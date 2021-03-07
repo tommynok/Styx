@@ -2,19 +2,22 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
         <variable
             name="uiController"
-            type="com.jamal2367.styx.controller.UIController"/>
+            type="com.jamal2367.styx.controller.UIController" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:id="@+id/bookmark_title_layout"
                 android:layout_width="match_parent"
@@ -76,5 +79,7 @@
             app:srcCompat="@drawable/ic_bookmark_add" />
 
         </LinearLayout>
+
     </LinearLayout>
+
 </layout>
