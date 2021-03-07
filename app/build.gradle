@@ -100,7 +100,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
     // Code Editor //
-    implementation 'com.github.jamal2362:CodeEditor:1.0.21'
+    implementation 'com.github.jamal2362:CodeEditor:2.0.0'
 }
 
 kapt {
