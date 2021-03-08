@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:maxHeight="@dimen/dialog_max_size"
+    android:maxHeight="350dp"
     android:orientation="vertical">
 
     <TextView
@@ -13,9 +13,9 @@
         android:gravity="start"
         android:maxLines="2"
         android:paddingStart="?attr/listPreferredItemPaddingStart"
-        android:paddingTop="@dimen/material_grid_margin"
+        android:paddingTop="16dp"
         android:paddingEnd="?attr/listPreferredItemPaddingEnd"
-        android:paddingBottom="@dimen/material_grid_unit"
+        android:paddingBottom="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <androidx.recyclerview.widget.RecyclerView

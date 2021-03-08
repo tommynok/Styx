@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/material_grid_touch_medium"
+            android:layout_height="48dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:background="?attr/colorPrimaryVariant">
@@ -25,8 +25,8 @@
                 android:id="@+id/text_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/material_grid_margin"
-                android:layout_marginRight="@dimen/material_grid_margin"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:maxLines="1"
@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/text_tab_count"
-                android:layout_width="@dimen/material_grid_touch_large"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="1"
@@ -48,7 +48,7 @@
             <ImageButton
                 android:id="@+id/button_edit"
                 style="?android:attr/actionButtonStyle"
-                android:layout_width="@dimen/material_grid_touch_large"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_edit"
@@ -57,12 +57,14 @@
             <ImageButton
                 android:id="@+id/button_delete"
                 style="?android:attr/actionButtonStyle"
-                android:layout_width="@dimen/material_grid_touch_large"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 app:tooltipText="@{@string/action_delete}"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_delete_forever"
                 android:contentDescription="@null" />
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
+
 </layout>

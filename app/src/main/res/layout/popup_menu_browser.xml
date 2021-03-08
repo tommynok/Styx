@@ -207,6 +207,9 @@
                     android:text="@string/settings" />
 
             </LinearLayout>
+
         </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

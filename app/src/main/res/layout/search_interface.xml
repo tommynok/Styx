@@ -7,7 +7,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/material_grid_touch_medium"
+        android:layout_height="48dp"
         android:visibility="gone"
         android:background="?attr/colorPrimary">
 
@@ -30,13 +30,13 @@
                 android:ellipsize="end"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
-                android:paddingLeft="@dimen/material_grid_margin"
+                android:paddingStart="16dp"
                 android:maxLines="1"/>
 
             <ImageButton
                 android:id="@+id/button_back"
                 style="?android:attr/actionButtonStyle"
-                android:layout_width="@dimen/material_grid_touch_large"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_action_collapse"
                 tools:targetApi="o"
@@ -45,7 +45,7 @@
             <ImageButton
                 android:id="@+id/button_next"
                 style="?android:attr/actionButtonStyle"
-                android:layout_width="@dimen/material_grid_touch_large"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_action_expand"
                 tools:targetApi="o"
@@ -54,11 +54,13 @@
             <ImageButton
                 android:id="@+id/button_quit"
                 style="?android:attr/actionButtonStyle"
-                android:layout_width="@dimen/material_grid_touch_large"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_action_delete"
                 tools:targetApi="o"
                 android:contentDescription="@null"/>
         </LinearLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
+
 </layout>

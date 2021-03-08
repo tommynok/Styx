@@ -9,7 +9,7 @@
     </data>
     <merge
         android:layout_width="match_parent"
-        android:layout_height="@dimen/desktop_tab_height"
+        android:layout_height="42dp"
         tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -89,6 +89,9 @@
                     android:visibility="gone"
                     android:onClick="@{(view) -> uiController.executeAction(view.id)}" />
             </LinearLayout>
+
         </com.google.android.material.appbar.AppBarLayout>
+
     </merge>
+
 </layout>

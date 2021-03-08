@@ -7,9 +7,9 @@
         android:layout_weight="1"
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/address_bar_background"
         android:clipChildren="false"
@@ -22,7 +22,7 @@
 
         <ImageView
             android:id="@+id/search_ssl_status"
-            android:layout_width="@dimen/material_grid_touch_small"
+            android:layout_width="36dp"
             android:layout_height="match_parent"
             android:background="@color/transparent"
             android:padding="8dp"

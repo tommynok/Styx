@@ -6,13 +6,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="@dimen/dialog_padding">
+        android:padding="24dp">
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            android:paddingRight="@dimen/dialog_padding" />
+            android:paddingEnd="24dp" />
 
         <TextView
             android:id="@+id/text_progress_bar"

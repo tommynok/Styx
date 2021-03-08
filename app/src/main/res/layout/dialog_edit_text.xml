@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/dialog_padding">
+    android:padding="24dp">
 
     <EditText
         android:id="@+id/dialog_edit_text"
@@ -14,4 +14,5 @@
         android:maxLines="1">
         <requestFocus/>
     </EditText>
+
 </LinearLayout>

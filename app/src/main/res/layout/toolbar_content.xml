@@ -5,9 +5,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height_portrait"
+        android:layout_height="56dp"
         android:orientation="horizontal"
-        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         android:animateLayoutChanges="true">
 
         <include
@@ -59,8 +59,8 @@
         <com.jamal2367.styx.icon.TabCountView
             android:id="@+id/tabs_button"
             style="?android:attr/actionButtonStyle"
-            android:layout_width="@dimen/material_grid_touch_medium"
-            android:layout_height="@dimen/material_grid_touch_medium"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             app:tabIconBorderRadius="3dp"
             app:tabIconBorderWidth="2dp"
