@@ -99,12 +99,14 @@
                 <TextView
                     android:id="@+id/menuItemNewTab"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_action_plus"
                     android:text="@string/action_new_tab" />
 
                 <TextView
                     android:id="@+id/menuItemCloseIncognito"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_action_delete"
                     android:text="@string/action_close_incognito"
                     android:enabled="true" />
@@ -112,6 +114,7 @@
                 <TextView
                     android:id="@+id/menuItemIncognito"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_incognito"
                     android:text="@string/action_incognito"
                     android:enabled="true" />
@@ -119,6 +122,7 @@
                 <TextView
                     android:id="@+id/menuItemSessions"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_sessions"
                     android:text="@string/action_sessions" />
 
@@ -130,18 +134,21 @@
                 <TextView
                     android:id="@+id/menuItemHistory"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_history"
                     android:text="@string/action_history" />
 
                 <TextView
                     android:id="@+id/menuItemDownloads"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_file_download"
                     android:text="@string/action_downloads" />
 
                 <TextView
                     android:id="@+id/menuItemPrint"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_action_print"
                     android:text="@string/action_print" />
 
@@ -153,18 +160,21 @@
                 <TextView
                     android:id="@+id/menuItemShare"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_share"
                     android:text="@string/action_share" />
 
                 <TextView
                     android:id="@+id/menuItemFind"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_find_in_page"
                     android:text="@string/action_find" />
 
                 <TextView
                     android:id="@+id/menuItemAddToHome"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_add_to_home_screen"
                     android:text="@string/action_add_to_homescreen" />
 
@@ -177,12 +187,14 @@
                     android:text="@string/agent_desktop"
                     android:gravity="center_vertical"
                     android:enabled="true"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableEndCompat="?android:attr/listChoiceIndicatorMultiple"
                     app:drawableStartCompat="@drawable/ic_desktop" />
 
                 <TextView
                     android:id="@+id/menuItemReaderMode"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_action_reading"
                     android:text="@string/reading_mode" />
 
@@ -194,12 +206,14 @@
                 <TextView
                     android:id="@+id/menuItemPageTools"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_page_tools"
                     android:text="@string/dialog_tools_title" />
 
                 <TextView
                     android:id="@+id/menuItemSettings"
                     style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
                     app:drawableStartCompat="@drawable/ic_settings"
                     android:text="@string/settings" />
 
