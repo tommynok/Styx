@@ -12,7 +12,7 @@ import java.text.NumberFormat
 
 /**
  * A view that draws a count enclosed by a border. Defaults to drawing zero, draws infinity if the
- * number is greater than 99.
+ * number is greater than 999.
  *
  * Attributes:
  * - [R.styleable.TabCountView_tabIconColor] - The color used to draw the number and border.
@@ -39,7 +39,7 @@ class TabCountView @JvmOverloads constructor(
     private val workingRect = RectF()
 
     private var count: Int = 0
-    public var textColor: Int = Color.BLACK
+    var textColor: Int = Color.BLACK
 
     private var bitmap: Bitmap? = null
     private var bitmapCanvas: Canvas? = null
@@ -60,11 +60,9 @@ class TabCountView @JvmOverloads constructor(
     {
         // Assuming the size will never change
         if (bitmap==null) {
-            val localBitmap = Bitmap.createBitmap(width ,
-                    height,
-                    Bitmap.Config.ARGB_8888);
+            val localBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
 
-            bitmapCanvas = Canvas(localBitmap);
+            bitmapCanvas = Canvas(localBitmap)
             bitmap = localBitmap
             workingRect.set( 0f, 0f, width.toFloat(), height.toFloat())
             workingRect.scale(0.45f)
@@ -99,7 +97,7 @@ class TabCountView @JvmOverloads constructor(
         bitmapCanvas?.drawRoundRect(workingRect, borderRadius, borderRadius, paint)
 
         // Draw that bitmap in our canvas using a local variable to make Kotlin happy
-        val localBitmap = bitmap;
+        val localBitmap = bitmap
         if (localBitmap!=null)
         {
             canvas.drawBitmap(localBitmap, 0f, 0f, paint);
