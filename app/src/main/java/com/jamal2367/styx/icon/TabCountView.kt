@@ -11,9 +11,6 @@ import com.jamal2367.styx.extensions.scale
 import java.text.NumberFormat
 
 /**
- * A view that draws a count enclosed by a border. Defaults to drawing zero, draws infinity if the
- * number is greater than 999.
- *
  * Attributes:
  * - [R.styleable.TabCountView_tabIconColor] - The color used to draw the number and border.
  * Defaults to black.
@@ -79,16 +76,12 @@ class TabCountView @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        val text: String = if (count > MAX_DISPLAYABLE_NUMBER) {
-            context.getString(R.string.infinity)
-        } else {
-            numberFormat.format(count)
-        }
+        val text: String = numberFormat.format(count)
 
         // Create our bitmap first time around
         updateBitmap()
         // Reset our bitmap
-        bitmapCanvas?.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+        bitmapCanvas?.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
         // Make sure we reset our text color in case it did change
         paint.color = textColor
         paint.style = Paint.Style.STROKE
@@ -100,7 +93,7 @@ class TabCountView @JvmOverloads constructor(
         val localBitmap = bitmap
         if (localBitmap!=null)
         {
-            canvas.drawBitmap(localBitmap, 0f, 0f, paint);
+            canvas.drawBitmap(localBitmap, 0f, 0f, paint)
         }
 
         // Now render our text
@@ -111,10 +104,6 @@ class TabCountView @JvmOverloads constructor(
         canvas.drawText(text, xPos, yPos, paint)
 
         super.onDraw(canvas)
-    }
-
-    companion object {
-        private const val MAX_DISPLAYABLE_NUMBER = 999
     }
 
 }
