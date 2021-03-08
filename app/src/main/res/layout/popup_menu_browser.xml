@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,10 +138,6 @@
                     style="@style/BrowserTextMenuItem"
                     app:drawableStartCompat="@drawable/ic_file_download"
                     android:text="@string/action_downloads" />
-
-
-
-
 
                 <TextView
                     android:id="@+id/menuItemPrint"

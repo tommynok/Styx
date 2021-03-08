@@ -69,6 +69,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.*
 import android.view.View.*
@@ -1213,7 +1215,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
             R.id.menuShortcutRefresh -> {
                 if (searchView?.hasFocus() == true) {
-                    // SL: Not sure why?
                     searchView?.setText("")
                 } else {
                     refreshOrStop()
@@ -1276,10 +1277,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
 
             R.id.action_close_all_tabs -> {
-                // TODO: consider just closing all tabs
-                // TODO: Confirmation dialog
-                //closeBrowser()
-                //presenter?.closeAllTabs()
                 presenter?.closeAllOtherTabs()
                 return true
             }
@@ -1296,7 +1293,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 return true
             }
             R.id.action_sessions -> {
-                // Show sessions menu
                 showSessions()
                 return true
             }
@@ -1351,6 +1347,20 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         findViewById<ImageButton>(R.id.button_next).setOnClickListener(this)
         findViewById<ImageButton>(R.id.button_back).setOnClickListener(this)
         findViewById<ImageButton>(R.id.button_quit).setOnClickListener(this)
+        findViewById<ImageButton>(R.id.button_search).setOnClickListener(this)
+
+
+        findViewById<TextView>(R.id.search_query).addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
     }
 
 
@@ -2642,6 +2652,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 findResult?.clearResults()
                 findResult = null
                 findViewById<View>(R.id.search_bar).visibility = GONE
+            }
+            R.id.button_search -> {
+                showFindInPageControls(findViewById<EditText>(R.id.search_query).text.toString())
+                findResult = presenter?.findInPage(findViewById<EditText>(R.id.search_query).text.toString())
             }
         }
     }
