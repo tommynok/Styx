@@ -176,7 +176,6 @@
     <string name="import_settings_error">Einstellungen konnten nicht importiert werden</string>
     <string name="incognito_cookies_pie">Der Inkognito-Modus läuft in einem separaten Prozess, der nach jeder Sitzung zurückgesetzt wird. Die Incognito-Cookie-Einstellungen werden jetzt durch die regulären Cookie-Einstellungen gesteuert.</string>
     <string name="incognito_cookies">Cookies im Inkognito-Modus aktivieren</string>
-    <string name="infinity">∞</string>
     <string name="install_orbot">Um Tor verwenden zu können, muss Orbot installiert sein!</string>
     <string name="install_userscript">UserScript installieren</string>
     <string name="install_userscript_description">Möchten Sie dieses UserScript installieren?</string>

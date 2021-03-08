@@ -176,7 +176,6 @@
     <string name="import_settings_error">Could not import settings from file</string>
     <string name="incognito_cookies_pie">Incognito mode runs in a separate process that is reset after each session. Incognito cookie preferences are now controlled by the regular cookie preferences.</string>
     <string name="incognito_cookies">Enable cookies in incognito mode</string>
-    <string name="infinity">∞</string>
     <string name="install_orbot">Please install Orbot in order to proxy with Tor.</string>
     <string name="install_userscript">Install UserScript</string>
     <string name="install_userscript_description">Do you want to install this UserScript?</string>
