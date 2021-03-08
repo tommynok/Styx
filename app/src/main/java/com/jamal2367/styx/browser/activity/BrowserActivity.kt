@@ -398,7 +398,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         // TODO: disable those for incognito mode?
         showCloseTabButton = userPreferences.showCloseTabButton
-        shouldShowTabsInDrawer = userPreferences.showTabsInDrawer
         swapBookmarksAndTabs = userPreferences.bookmarksAndTabsSwapped
 
         // initialize background ColorDrawable
@@ -413,20 +412,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         iBinding.drawerLayout.addDrawerListener(DrawerLocker())
 
         webPageBitmap = drawable(R.drawable.ic_webpage).toBitmap()
-
-        tabsView = if (shouldShowTabsInDrawer) {
-            TabsDrawerView(this).also(findViewById<FrameLayout>(getTabsContainerId())::addView)
-        } else {
-            TabsDesktopView(this).also(findViewById<FrameLayout>(getTabsContainerId())::addView)
-        }
-
-        buttonSessions = (tabsView as View).findViewById(R.id.action_sessions)
-
-        bookmarksView = BookmarksDrawerView(this, this, userPreferences = userPreferences).also(findViewById<FrameLayout>(getBookmarksContainerId())::addView)
-
-        if (shouldShowTabsInDrawer) {
-            iBinding.toolbarInclude.tabsToolbarContainer.visibility = GONE
-        }
 
         // Is that still needed
         val customView = iBinding.toolbarInclude.toolbar
@@ -451,17 +436,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         buttonForward = customView.findViewById(R.id.button_action_forward)
         buttonForward?.setOnClickListener{executeAction(R.id.menuShortcutForward)}
 
-        if (shouldShowTabsInDrawer) {
-            tabsButton?.visibility = VISIBLE
-            homeButton?.visibility = GONE
-        } else {
-            tabsButton?.visibility = GONE
-            homeButton?.visibility = VISIBLE
-        }
+        createTabView()
 
-        if (userPreferences.navbar) {
-            tabsButton?.visibility = GONE
-        }
+        bookmarksView = BookmarksDrawerView(this, this, userPreferences = userPreferences).also(findViewById<FrameLayout>(getBookmarksContainerId())::addView)
 
         // create the search EditText in the ToolBar
         searchView = customView.findViewById<SearchView>(R.id.search).apply {
@@ -540,6 +517,41 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 showPopupMenu()
             }
         })
+
+    }
+
+    /**
+     * Used to create or recreate our tab view according to current settings.
+     */
+    private fun createTabView() {
+
+        shouldShowTabsInDrawer = userPreferences.showTabsInDrawer
+
+        // Remove existing tab view if any
+        tabsView?.let {
+            (it as View).removeFromParent()
+        }
+
+        tabsView = if (shouldShowTabsInDrawer) {
+            TabsDrawerView(this).also(findViewById<FrameLayout>(getTabsContainerId())::addView)
+        } else {
+            TabsDesktopView(this).also(findViewById<FrameLayout>(getTabsContainerId())::addView)
+        }
+        buttonSessions = (tabsView as View).findViewById(R.id.action_sessions)
+
+        if (shouldShowTabsInDrawer) {
+            tabsButton?.isVisible = true
+            homeButton?.isVisible = false
+            iBinding.toolbarInclude.tabsToolbarContainer.isVisible = false
+        } else {
+            tabsButton?.isVisible = false
+            homeButton?.isVisible = true
+            iBinding.toolbarInclude.tabsToolbarContainer.isVisible = true
+        }
+
+        if (userPreferences.navbar) {
+            tabsButton?.visibility = GONE
+        }
 
     }
 
@@ -1754,6 +1766,14 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         setupToolBar(resources.configuration)
         setupPullToRefresh(resources.configuration)
 
+        // Check if our tab bar style changed
+        if (shouldShowTabsInDrawer!=userPreferences.showTabsInDrawer) {
+            // Tab bar style changed recreate our tab bar then
+            createTabView()
+            tabsView?.tabsInitialized()
+            mainHandler.postDelayed({scrollToCurrentTab()},1000)
+        }
+
         // We think that's needed in case there was a rotation while in the background
         iBinding.drawerLayout.requestLayout()
 
@@ -1993,9 +2013,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
     }
 
     override fun updateTabNumber(number: Int) {
-        if (shouldShowTabsInDrawer) {
             tabsButton?.updateCount(number)
-        }
     }
 
     override fun updateProgress(progress: Int) {
