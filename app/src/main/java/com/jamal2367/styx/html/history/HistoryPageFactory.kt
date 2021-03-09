@@ -35,9 +35,9 @@ class HistoryPageFactory @Inject constructor(
             parse(listPageReader.provideHtml()
                     .replace("\${pageTitle}", application.getString(R.string.action_history))
                     .replace("\${backgroundColor}", htmlColor(ThemeUtils.getPrimaryColor(BrowserApp.currentContext())))
-                    .replace("\${textColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorOnBackground)))
-                    .replace("\${secondaryTextColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorSecondary)))
-                    .replace("\${dividerColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.appColorControlDisabled)))
+                    .replace("\${searchBarColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.trackColor)))
+                    .replace("\${textColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorSecondary)))
+                    .replace("\${secondaryTextColor}", htmlColor(ThemeUtils.getColor(BrowserApp.currentContext(),R.attr.colorOnBackground)))
             ) andBuild {
                 title { title }
                 body {
