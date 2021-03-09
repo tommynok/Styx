@@ -57,16 +57,16 @@ class BrowserPopupMenu
             iBinding.menuItemDesktopMode.isChecked = it.currentTab?.desktopMode ?: false
 
             it.currentTab?.let { tab ->
-                iBinding.menuItemAddToHome.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.menuItemShare.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.menuItemPrint.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.menuItemPageTools.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.menuItemFind.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.menuItemTranslate.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.menuItemReaderMode.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.menuItemDesktopMode.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.divider.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
-                iBinding.divider1.visibility = if (tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemAddToHome.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemShare.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemPrint.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemPageTools.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemFind.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemTranslate.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemReaderMode.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.menuItemDesktopMode.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.divider.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
+                iBinding.divider1.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) View.GONE else View.VISIBLE
             }
         }
 
