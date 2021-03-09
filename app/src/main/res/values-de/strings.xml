@@ -78,6 +78,7 @@
     <string name="blocked_javascript">JavaScript für diese Webseite blockieren</string>
     <string name="bookmark_export_failure">Lesezeichen konnten nicht exportiert werden</string>
     <string name="bookmark_export_path">Lesezeichen exportiert nach:</string>
+    <string name="bookmark_in_new_tab">Lesezeichen in neuem Tab öffnen</string>
     <string name="bookmark_restore">Lesezeichen wurden zurückgesetzt</string>
     <string name="bookmark_settings">Lesezeichen</string>
     <string name="busy">Besetzt, versuchen Sie es in Kürze wieder."</string>
@@ -162,6 +163,7 @@
     <string name="hint_title">Titel</string>
     <string name="hint_url">URL</string>
     <string name="hint_username">Benutzername</string>
+    <string name="homepage_in_new_tab">Startseite in neuem Tab öffnen</string>
     <string name="home">Startseite</string>
     <string name="host">Host:</string>
     <string name="http_proxy">HTTP Proxy</string>
@@ -300,7 +302,7 @@
     <string name="search_engine_yandex">Yandex</string>
     <string name="search_hint">Suche</string>
     <string name="search_homepage">Suchen</string>
-    <string name="search_in_new_tab">Suche im neuen Tab</string>
+    <string name="search_in_new_tab">Suche im neuen Tab öffnen</string>
     <string name="search_insert_suggestion">Vorschlag einfügen</string>
     <string name="search_suggestions_off">Keine Suchvorschläge</string>
     <string name="search_suggestions">Suchvorschläge</string>
@@ -388,7 +390,7 @@
     <string name="url">URL</string>
     <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>
     <string name="url_contents">URL-Box Inhalt</string>
-    <string name="url_in_new_tab">URL in neuem Tab</string>
+    <string name="url_in_new_tab">URL in neuem Tab öffnen</string>
     <string name="use_i2p_prompt">I2P ist installiert. Soll I2P verwendet werden?</string>
     <string name="use_tor_prompt">Orbot ist installiert. Soll Tor verwendet werden?</string>
     <string name="version">App-Version</string>

@@ -78,6 +78,7 @@
     <string name="blocked_javascript">Block JavaScript for this site</string>
     <string name="bookmark_export_failure">Sorry, bookmarks could not be exported!</string>
     <string name="bookmark_export_path">Bookmarks exported to</string>
+    <string name="bookmark_in_new_tab">Bookmark in new tab</string>
     <string name="bookmark_restore">Bookmarks restored</string>
     <string name="bookmark_settings">Bookmarks</string>
     <string name="busy">Busy, try again shortly."</string>
@@ -163,6 +164,7 @@
     <string name="hint_url">URL</string>
     <string name="hint_username">Username</string>
     <string name="home">Homepage</string>
+    <string name="homepage_in_new_tab">Homepage in new tab</string>
     <string name="host">Host:</string>
     <string name="http_proxy">HTTP proxy</string>
     <string name="i2p">I2P</string>
@@ -482,11 +484,13 @@
     <string name="new_tab_position_end_value" translatable="false">END_OF_TAB_LIST</string>
     <string name="new_tab_position_start_value" translatable="false">START_OF_TAB_LIST</string>
     <string name="pref_key_black_status_bar" translatable="false">pref_key_black_status_bar</string>
+    <string name="pref_key_bookmark_in_new_tab">pref_key_bookmark_in_new_tab</string>
     <string name="pref_key_browser_text_size" translatable="false">pref_key_browser_text_size</string>
     <string name="pref_key_cookies" translatable="false">pref_key_cookies</string>
     <string name="pref_key_cookies_incognito" translatable="false">pref_key_cookies_incognito</string>
     <string name="pref_key_default_text_encoding" translatable="false">pref_key_default_text_encoding</string>
     <string name="pref_key_desktop_mode_default" translatable="false">pref_key_desktop_mode_default</string>
+    <string name="pref_key_homepage_in_new_tab">pref_key_homepage_in_new_tab</string>
     <string name="pref_key_javascript" translatable="false">pref_key_javascript</string>
     <string name="pref_key_landscape_desktop_width" translatable="false">pref_key_landscape_desktop_width</string>
     <string name="pref_key_landscape_hide_status_bar" translatable="false">pref_key_landscape_hide_status_bar</string>
