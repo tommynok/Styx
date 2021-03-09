@@ -153,6 +153,7 @@
                     android:text="@string/action_print" />
 
                 <TextView
+                    android:id="@+id/divider"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="?android:attr/listDivider" />
@@ -190,6 +191,19 @@
                     android:background="?attr/selectableItemBackground"
                     app:drawableEndCompat="?android:attr/listChoiceIndicatorMultiple"
                     app:drawableStartCompat="@drawable/ic_desktop" />
+
+                <TextView
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/menuItemTranslate"
+                    style="@style/BrowserTextMenuItem"
+                    android:background="?attr/selectableItemBackground"
+                    app:drawableStartCompat="@drawable/ic_translate"
+                    android:text="@string/translator" />
 
                 <TextView
                     android:id="@+id/menuItemReaderMode"

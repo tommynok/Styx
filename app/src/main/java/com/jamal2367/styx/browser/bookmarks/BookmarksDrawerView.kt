@@ -144,7 +144,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
             .subscribe { isBookmark ->
                 bookmarkUpdateSubscription = null
                 addBookmarkView?.isSelected = isBookmark
-                addBookmarkView?.isEnabled = !url.isSpecialUrl()
+                addBookmarkView?.isEnabled = !url.isSpecialUrl() && !url.isHomeUri() && !url.isBookmarkUri() && !url.isHistoryUri()
             }
     }
 
@@ -246,9 +246,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 DialogItem(
                         icon = context.drawable(R.drawable.ic_block),
                         colorTint = context.color(R.color.error_red).takeIf { isAllowedAds },
-                        title = whitelistString,
-                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
-
+                        title = whitelistString
                 ) {
                     if (isAllowedAds) {
                         allowListModel.removeUrlFromAllowList(currentTab.url)
@@ -260,7 +258,6 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 DialogItem(
                         icon = context.drawable(R.drawable.ic_baseline_code_24),
                         title = R.string.page_source
-
                 ) {
                     currentTab.webView?.evaluateJavascript("""(function() {
                         return "<html>" + document.getElementsByTagName('html')[0].innerHTML + "</html>";
@@ -289,9 +286,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 },
                 DialogItem(
                         icon= context.drawable(R.drawable.ic_script_add),
-                        title = R.string.inspect,
-                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
-
+                        title = R.string.inspect
                 ){
                     val builder = MaterialAlertDialogBuilder(context)
                     val inflater = activity.layoutInflater
@@ -307,8 +302,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 DialogItem(
                         icon = context.drawable(R.drawable.ic_script_key),
                         colorTint = context.color(R.color.error_red).takeIf { userPreferences.javaScriptChoice == JavaScriptChoice.BLACKLIST && !stringContainsItemFromList(currentTab.url, strgs) || userPreferences.javaScriptChoice == JavaScriptChoice.WHITELIST && stringContainsItemFromList(currentTab.url, strgs) },
-                        title = jsEnabledString,
-                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
+                        title = jsEnabledString
                 ) {
                     val url = URL(currentTab.url)
                     if (userPreferences.javaScriptChoice != JavaScriptChoice.NONE) {
@@ -335,8 +329,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 },
                 DialogItem(
                         icon = context.drawable(R.drawable.ic_cookie),
-                        title = R.string.edit_cookies,
-                        isConditionMet = !currentTab.url.isHomeUri() && !currentTab.url.isBookmarkUri() && !currentTab.url.isHistoryUri()
+                        title = R.string.edit_cookies
                 ) {
 
                     val cookieManager = CookieManager.getInstance()

@@ -39,7 +39,7 @@ class BrowserPresenter(
         @MainScheduler private val mainScheduler: Scheduler,
         private val homePageFactory: HomePageFactory,
         private val bookmarkPageFactory: BookmarkPageFactory,
-        public val closedTabs: RecentTabsModel,
+        val closedTabs: RecentTabsModel,
         private val logger: Logger
 ) {
 

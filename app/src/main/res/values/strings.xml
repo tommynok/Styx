@@ -380,6 +380,7 @@
     <string name="title_text_size">Text size</string>
     <string name="title_user_agent">User agent</string>
     <string name="title_warning">Warning</string>
+    <string name="translator">Translate</string>
     <string name="tts">Read page</string>
     <string name="tts_initilization_failed">Initilization Failed</string>
     <string name="unknown_size">Unknown size</string>

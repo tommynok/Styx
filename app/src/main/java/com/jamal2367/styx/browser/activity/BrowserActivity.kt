@@ -104,6 +104,7 @@ import io.reactivex.Completable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy
 import java.io.IOException
+import java.util.*
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
@@ -298,10 +299,10 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         if(userPreferences.navbar){
             val extraBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
             if(visible){
-                extraBar.visibility = View.GONE
+                extraBar.visibility = GONE
             }
             else{
-                extraBar.visibility = View.VISIBLE
+                extraBar.visibility = VISIBLE
             }
         }
     }
@@ -344,6 +345,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(iBinding.menuItemFind) { executeAction(R.id.menuItemFind) }
             onMenuItemClicked(iBinding.menuItemPageTools) { executeAction(R.id.menuItemPageTools) }
             onMenuItemClicked(iBinding.menuItemAddToHome) { executeAction(R.id.menuItemAddToHome) }
+            onMenuItemClicked(iBinding.menuItemTranslate) { executeAction(R.id.menuItemTranslate) }
             onMenuItemClicked(iBinding.menuItemReaderMode) { executeAction(R.id.menuItemReaderMode) }
             onMenuItemClicked(iBinding.menuItemSettings) { executeAction(R.id.menuItemSettings) }
             onMenuItemClicked(iBinding.menuItemDesktopMode) { executeAction(R.id.menuItemDesktopMode) }
@@ -1211,9 +1213,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 return true
             }
             R.id.menuItemAddToHome -> {
-                if (currentView != null
-                        && currentView.url.isNotBlank()
-                        && !currentView.url.isSpecialUrl()) {
+                if (currentView != null) {
                     HistoryEntry(currentView.url, currentView.title).also {
                         Utils.createShortcut(this, it, currentView.favicon ?: webPageBitmap!!)
                         logger.log(TAG, "Creating shortcut: ${it.title} ${it.url}")
@@ -1271,6 +1271,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             }
             R.id.menuItemFind -> {
                 findInPage()
+                return true
+            }
+            R.id.menuItemTranslate -> {
+                val locale = Locale.getDefault()
+                // currentView.loadUrl("https://translatetheweb.com/?from=&to=$locale&a=" + currentUrl!!)
+                currentView?.loadUrl("https://translate.google.com/translate?sl=auto&tl=$locale&u=" + currentUrl!!)
                 return true
             }
             R.id.menuItemReaderMode -> {
@@ -1390,7 +1396,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             return
         }
         iBinding.contentFrame.isEnabled = currentTabView?.canScrollVertically()?:false
-        iBindingToolbarContent.buttonReload.visibility = if (iBinding.contentFrame.isEnabled && !isLoading()) View.GONE else View.VISIBLE
+        iBindingToolbarContent.buttonReload.visibility = if (iBinding.contentFrame.isEnabled && !isLoading()) GONE else VISIBLE
     }
 
     /**
