@@ -385,14 +385,8 @@ class StyxView(
      */
     private fun initializeContent(tabInitializer: TabInitializer) {
         webView?.let { tabInitializer.initialize(it, requestHeaders) }
-        // Now that something was potentially loaded in our WebView...
-        if (iTargetUrl.toString().isNullOrBlank()) {
-            // Unknown URL, don't hide it when it eventually becomes available
-            iHideActualUrl = false
-        } else {
-            // ...check if we should hide our actual URL
-            iHideActualUrl = iTargetUrl.toString() != webView?.url
-        }
+
+        iHideActualUrl = false
     }
 
     /**
