@@ -1889,7 +1889,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             mainHandler.postDelayed({
                 currentTabView?.setBackgroundColor(Color.WHITE)
                 currentTabView?.invalidate()
-            },500)
+            },100)
         } else {
             currentTabView?.setBackgroundColor(color)
             currentTabView?.invalidate()
