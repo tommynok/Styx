@@ -1098,7 +1098,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 isCtrlOnly -> when (event.keyCode) {
                     KeyEvent.KEYCODE_F -> {
                         // Search in page
-                        findInPage()
+                        showFindInPageControls(findViewById<EditText>(R.id.search_query).text.toString())
                         return true
                     }
                     KeyEvent.KEYCODE_T -> {
@@ -1275,7 +1275,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 return true
             }
             R.id.menuItemFind -> {
-                findInPage()
+                showFindInPageControls(findViewById<EditText>(R.id.search_query).text.toString())
                 return true
             }
             R.id.menuItemTranslate -> {
@@ -1350,23 +1350,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                     handleBookmarksChange()
                 }
             }
-    }
-
-
-    /**
-     * method that shows a dialog asking what string the user wishes to search
-     * for. It highlights the text entered.
-     */
-    private fun findInPage() = BrowserDialog.showEditText(
-            this,
-            R.string.action_find,
-            R.string.search_hint,
-            R.string.search_hint
-    ) { text ->
-        if (text.isNotEmpty()) {
-            findResult = presenter?.findInPage(text)
-            showFindInPageControls(text)
-        }
     }
 
     private fun showFindInPageControls(text: String) {
