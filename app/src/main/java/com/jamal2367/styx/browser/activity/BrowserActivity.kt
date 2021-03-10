@@ -1884,12 +1884,12 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         // This one is going to be a problem as it will break some websites such as bbc.com.
         // Make sure we reset our background color after page load, thanks bbc.com and bbc.com/news for not defining background color.
         // TODO: Do we really need to invalidate here?
-        if (iBinding.toolbarInclude.progressView.progress >= 100) {
+        if (iBinding.toolbarInclude.progressView.progress >= 1) {
             // We delay that to avoid some web sites including default startup page to flash white on app startup
             mainHandler.postDelayed({
                 currentTabView?.setBackgroundColor(Color.WHITE)
                 currentTabView?.invalidate()
-            },500);
+            },500)
         } else {
             currentTabView?.setBackgroundColor(color)
             currentTabView?.invalidate()
