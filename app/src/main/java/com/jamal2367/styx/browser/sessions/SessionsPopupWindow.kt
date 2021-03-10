@@ -142,9 +142,9 @@ class SessionsPopupWindow : PopupWindow {
                 // Change button icon
                 // TODO: change the text too?
                 if (!editModeEnabled) {
-                    aBinding.buttonEditSessions.setImageResource(R.drawable.ic_secured);
+                    aBinding.buttonEditSessions.setImageResource(R.drawable.ic_secured)
                 } else {
-                    aBinding.buttonEditSessions.setImageResource(R.drawable.ic_edit);
+                    aBinding.buttonEditSessions.setImageResource(R.drawable.ic_edit)
                 }
                 // Notify our observers of edit mode change
                 iAdapter.iEditModeEnabledObservable.onNext(!editModeEnabled)
