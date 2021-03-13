@@ -7,7 +7,7 @@ android {
     buildToolsVersion '30.0.3'
 
     defaultConfig {
-        applicationId 'com.jamal2367.stxy'
+        applicationId 'com.jamal2367.styx'
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 78
