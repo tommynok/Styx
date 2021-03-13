@@ -331,7 +331,7 @@ class StyxView(
             webViewClient = styxWebClient
             // We want to receive download complete notifications
             iDownloadListener = StyxDownloadListener(activity)
-            setDownloadListener(iDownloadListener.also { activity.registerReceiver(it, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) })
+            setDownloadListener(StyxDownloadListener(activity))
             // For older devices show Tool Bar On Page Top won't work after fling to top.
             // Who cares? I mean those devices are probably from 2014 or older.
             val tl = TouchListener().also { setOnScrollChangeListener(it) }
@@ -774,10 +774,6 @@ class StyxView(
     // is removed and would cause a memory leak if the parent check
     // was not in place.
     fun destroy() {
-        if (iDownloadListener!=null) {
-            activity.unregisterReceiver(iDownloadListener)
-            iDownloadListener = null
-        }
         networkDisposable.dispose()
         webView?.let {
             // Check to make sure the WebView has been removed

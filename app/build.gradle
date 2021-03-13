@@ -10,8 +10,8 @@ android {
         applicationId 'com.jamal2367.stxy'
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 77
-        versionName '7.7.0'
+        versionCode 78
+        versionName '7.8.0'
         resConfigs 'en', 'de'
         setProperty("archivesBaseName", 'Styx_v' + versionName)
     }
@@ -101,6 +101,9 @@ dependencies {
 
     // Code Editor //
     implementation 'com.github.jamal2362:CodeEditor:2.0.0'
+
+    // downloader
+    implementation'com.huxq17.pump:download:1.3.10'
 }
 
 kapt {

@@ -14,7 +14,6 @@ import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.download.DownloadHandler
 import com.jamal2367.styx.extensions.copyToClipboard
 import com.jamal2367.styx.extensions.resizeAndShow
-import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.IntentUtils

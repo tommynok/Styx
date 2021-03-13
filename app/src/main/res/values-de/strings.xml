@@ -129,8 +129,11 @@
     <string name="dialog_toggle_desktop">Umschalten des Desktop-Benutzeragenten</string>
     <string name="dialog_tools_title">Seiten-Tools</string>
     <string name="do_not_track">\"Nicht verfolgen\"-Funktion anfordern</string>
+    <string name="dont_ask_again">Nicht noch einmal fragen</string>
     <string name="domain">Domain</string>
+    <string name="download_channel">Downloads</string>
     <string name="download_complete">Download abgeschlossen</string>
+    <string name="download_description">Informationen zum Download-Fortschritt</string>
     <string name="download_failed">Download fehlgeschlagen</string>
     <string name="download_no_sdcard_dlg_msg">USB-Speicher ist für das Herunterladen der Datei notwendig!</string>
     <string name="download_no_sdcard_dlg_title">Keine SD-Karte</string>

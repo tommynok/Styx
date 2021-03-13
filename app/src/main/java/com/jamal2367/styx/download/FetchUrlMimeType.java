@@ -7,6 +7,7 @@ import android.app.DownloadManager;
 import android.os.Environment;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
+import android.webkit.URLUtil;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -15,8 +16,6 @@ import java.net.URL;
 import com.jamal2367.styx.utils.Utils;
 import androidx.annotation.NonNull;
 import io.reactivex.Single;
-
-import static com.jamal2367.styx.utils.UrlUtils.guessFileName;
 
 /**
  * This class is used to pull down the http headers of a given URL so that we
@@ -88,52 +87,38 @@ class FetchUrlMimeType {
                     connection.disconnect();
             }
 
-            Result res = new Result();
-
             if (mimeType != null) {
                 if (mimeType.equalsIgnoreCase("text/plain")
-                    || mimeType.equalsIgnoreCase("application/octet-stream")) {
+                        || mimeType.equalsIgnoreCase("application/octet-stream")) {
                     String newMimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
-                        Utils.guessFileExtension(mUri));
+                            Utils.guessFileExtension(mUri));
                     if (newMimeType != null) {
                         mRequest.setMimeType(newMimeType);
                     }
                 }
-                res.iFilename = guessFileName(mUri, contentDisposition, mimeType);
-                mRequest.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, res.iFilename);
+                final String filename = URLUtil.guessFileName(mUri, contentDisposition, mimeType);
+                mRequest.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
             }
 
             // Start the download
             try {
-                res.iDownloadId = mDownloadManager.enqueue(mRequest);
-                res.iCode = ResultCode.SUCCESS;
-                emitter.onSuccess(res);
+                mDownloadManager.enqueue(mRequest);
+                emitter.onSuccess(Result.SUCCESS);
             } catch (IllegalArgumentException e) {
                 // Probably got a bad URL or something
                 Log.e(TAG, "Unable to enqueue request", e);
-                res.iCode = ResultCode.FAILURE_ENQUEUE;
-                emitter.onSuccess(res);
+                emitter.onSuccess(Result.FAILURE_ENQUEUE);
             } catch (SecurityException e) {
                 // TODO write a download utility that downloads files rather than rely on the system
                 // because the system can only handle Environment.getExternal... as a path
-                res.iCode = ResultCode.FAILURE_LOCATION;
-                emitter.onSuccess(res);
+                emitter.onSuccess(Result.FAILURE_LOCATION);
             }
         });
     }
 
-    enum ResultCode {
+    enum Result {
         FAILURE_ENQUEUE,
         FAILURE_LOCATION,
         SUCCESS
-    }
-
-    /**
-     * Our download results providing filename, response code and download ID if any.
-     */
-    class Result {
-        String iFilename;
-        ResultCode iCode = ResultCode.FAILURE_ENQUEUE;
-        long iDownloadId = 0;
     }
 }

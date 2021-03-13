@@ -443,6 +443,10 @@ class UserPreferences @Inject constructor(
      */
     var suggestionChoice by preferences.enumPreference(SEARCH_SUGGESTIONS_NUM, SuggestionNumChoice.FIVE)
 
+    /**
+     * Show download dialog before downloading a file
+     */
+    var showDownloadConfirmation by preferences.booleanPreference(SHOW_DOWNLOAD_CONFIRMATION, true)
 }
 
 // SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
@@ -488,3 +492,4 @@ private const val SECOND_BAR = "secondBar"
 private const val LAST_TAB = "lastTab"
 private const val IMAGE_URL = "imageUrl"
 private const val SEARCH_SUGGESTIONS_NUM = "suggNum"
+private const val SHOW_DOWNLOAD_CONFIRMATION = "showDownloadConfirmation"

@@ -3,7 +3,6 @@
  */
 package com.jamal2367.styx.download;
 
-
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,12 +36,12 @@ class WebAddress {
     private static final int MATCH_GROUP_PORT = 4;
     private static final int MATCH_GROUP_PATH = 5;
     private static final Pattern sAddressPattern = Pattern.compile(
-    /* scheme */"(?:(http|https|file)://)?" +
-    /* authority */"(?:([-A-Za-z0-9$_.+!*'(),;?&=]+(?::[-A-Za-z0-9$_.+!*'(),;?&=]+)?)@)?" +
-    /* host */"([" + GOOD_IRI_CHAR + "%_-][" + GOOD_IRI_CHAR + "%_\\.-]*|\\[[0-9a-fA-F:\\.]+\\])?" +
-    /* port */"(?::([0-9]*))?" +
-    /* path */"(/?[^#]*)?" +
-    /* anchor */".*", Pattern.CASE_INSENSITIVE);
+            /* scheme */"(?:(http|https|file)://)?" +
+                    /* authority */"(?:([-A-Za-z0-9$_.+!*'(),;?&=]+(?::[-A-Za-z0-9$_.+!*'(),;?&=]+)?)@)?" +
+                    /* host */"([" + GOOD_IRI_CHAR + "%_-][" + GOOD_IRI_CHAR + "%_\\.-]*|\\[[0-9a-fA-F:\\.]+\\])?" +
+                    /* port */"(?::([0-9]*))?" +
+                    /* path */"(/?[^#]*)?" +
+                    /* anchor */".*", Pattern.CASE_INSENSITIVE);
 
     /**
      * Parses given URI-like string.

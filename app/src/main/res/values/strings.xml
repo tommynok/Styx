@@ -129,8 +129,11 @@
     <string name="dialog_toggle_desktop">Toggle desktop user agent</string>
     <string name="dialog_tools_title">Page tools</string>
     <string name="do_not_track">Request \'Do Not Track\'</string>
+    <string name="dont_ask_again">Don\'t ask again</string>
     <string name="domain">Domain</string>
+    <string name="download_channel">Downloads</string>
     <string name="download_complete">Download complete</string>
+    <string name="download_description">Information about download progress</string>
     <string name="download_failed">Download failed</string>
     <string name="download_no_sdcard_dlg_msg">USB storage is required to download the file.</string>
     <string name="download_no_sdcard_dlg_title">No SD card</string>
