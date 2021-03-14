@@ -19,6 +19,7 @@ import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.di.injector
+import com.jamal2367.styx.utils.guessFileName
 import javax.inject.Inject
 
 class StyxDownloadListener(context: Activity) : DownloadListener {
@@ -45,7 +46,7 @@ class StyxDownloadListener(context: Activity) : DownloadListener {
         PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(mActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 object : PermissionsResultAction() {
                     override fun onGranted() {
-                        val fileName = URLUtil.guessFileName(url, contentDisposition, mimetype)
+                        val fileName = guessFileName(url, contentDisposition, mimetype)
                         val downloadSize: String = if (contentLength > 0) {
                             Formatter.formatFileSize(mActivity, contentLength)
                         } else {
