@@ -59,7 +59,7 @@ class StyxDownloadListener(context: Activity) : DownloadListener {
                         val dialogClickListener = DialogInterface.OnClickListener { _: DialogInterface?, which: Int ->
                             when (which) {
                                 DialogInterface.BUTTON_POSITIVE ->
-                                    downloadHandler!!.legacyDownloadStart(mActivity as AppCompatActivity, userPreferences!!, url, userAgent, contentDisposition, mimetype, downloadSize)
+                                    downloadHandler?.legacyDownloadStart(mActivity as AppCompatActivity, userPreferences!!, url, userAgent, contentDisposition, mimetype, downloadSize)
                                 DialogInterface.BUTTON_NEGATIVE -> {
                                 }
                             }

@@ -11,7 +11,7 @@ import android.os.Environment
 import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
-import android.webkit.MimeTypeMap
+
 import androidx.appcompat.app.AppCompatActivity
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -31,7 +31,6 @@ import com.jamal2367.styx.extensions.snackbar
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.FileUtils
-import com.jamal2367.styx.utils.Utils.guessFileExtension
 import com.jamal2367.styx.utils.guessFileName
 
 import io.reactivex.Scheduler
@@ -45,14 +44,14 @@ import javax.inject.Singleton
  * Handle download requests
  */
 @Singleton
-class DownloadHandler @Inject constructor(private val downloadsRepository: DownloadsRepository,
+class DownloadHandler @Inject constructor (private val downloadsRepository: DownloadsRepository,
                                           private val downloadManager: DownloadManager,
                                           @param:DatabaseScheduler private val databaseScheduler: Scheduler,
                                           @param:NetworkScheduler private val networkScheduler: Scheduler,
                                           @param:MainScheduler private val mainScheduler: Scheduler,
                                           private val logger: Logger) {
-    fun legacyDownloadStart(context: AppCompatActivity, manager: UserPreferences, url: String, userAgent: String,
-            contentDisposition: String?, mimeType: String, contentSize: String) {
+    fun legacyDownloadStart(context: AppCompatActivity, manager: UserPreferences, url: String, userAgent: String, contentDisposition: String?, mimeType: String, contentSize: String) {
+
         logger.log(TAG, "DOWNLOAD: Trying to download from URL: $url")
         logger.log(TAG, "DOWNLOAD: Content disposition: $contentDisposition")
         logger.log(TAG, "DOWNLOAD: MimeType: $mimeType")
@@ -112,8 +111,7 @@ class DownloadHandler @Inject constructor(private val downloadsRepository: Downl
      */
     /* package */
     private fun onDownloadStartNoStream(context: Activity, preferences: UserPreferences,
-            url: String, userAgent: String,
-            contentDisposition: String?, mimetype: String?, contentSize: String) {
+            url: String, userAgent: String, contentDisposition: String?, mimetype: String?, contentSize: String) {
         val filename = guessFileName(contentDisposition, null, url, mimetype)
 
         // Check to see if we have an SDCard
@@ -169,9 +167,6 @@ class DownloadHandler @Inject constructor(private val downloadsRepository: Downl
             (context as AppCompatActivity).snackbar(R.string.problem_location_download)
             return
         }
-        val newMimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(guessFileExtension(filename))
-        logger.log(TAG, "New mimetype: $newMimeType")
-        request.setMimeType(newMimeType)
         request.setDestinationUri(Uri.parse(FILE + location + filename))
         // let this downloaded file be scanned by MediaScanner - so that it can
         // show up in Gallery app, for example.
