@@ -1085,7 +1085,6 @@ class StyxView(
             val url = msg.data.getString("url")
 
             val title = msg.data.getString("title")
-            val src = msg.data.getString("src")
             //
             reference.get()?.longClickPage(url, title)
         }
