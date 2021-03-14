@@ -98,7 +98,7 @@ class FetchUrlMimeType {
                         mRequest.setMimeType(newMimeType);
                     }
                 }
-                final String filename = guessFileName(mUri, contentDisposition, mimeType);
+                final String filename = URLUtil.guessFileName(mUri, contentDisposition, mimeType);
                 mRequest.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
             }
 

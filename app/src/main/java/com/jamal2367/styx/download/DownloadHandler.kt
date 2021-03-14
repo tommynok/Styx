@@ -114,7 +114,7 @@ class DownloadHandler @Inject constructor(private val downloadsRepository: Downl
     private fun onDownloadStartNoStream(context: Activity, preferences: UserPreferences,
             url: String, userAgent: String,
             contentDisposition: String?, mimetype: String?, contentSize: String) {
-        val filename = guessFileName(url, contentDisposition, mimetype)
+        val filename = guessFileName(contentDisposition, null, url, mimetype)
 
         // Check to see if we have an SDCard
         val status = Environment.getExternalStorageState()
