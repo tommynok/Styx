@@ -329,15 +329,15 @@ class StyxDialogBuilder @Inject constructor(
             clipboardManager.copyToClipboard(url)
             (activity).snackbar(R.string.message_link_copied)
         },
-            DialogItem(title = R.string.dialog_download_image) {
-                val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(imageUrl).toLowerCase())
+        DialogItem(title = R.string.dialog_download_image) {
+            val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(imageUrl).toLowerCase())
 
-                if (mimeType != null) {
-                        downloadHandler.legacyDownloadStart(activity, userPreferences, imageUrl, userAgent, "attachment", mimeType, "")
-                } else {
-                        downloadHandler.legacyDownloadStart(activity, userPreferences, imageUrl, userAgent, "attachment", "image/png", "")
-                }
-            })
+            if (mimeType != null) {
+                downloadHandler.legacyDownloadStart(activity, userPreferences, imageUrl, userAgent, "attachment", mimeType, "")
+            } else {
+                downloadHandler.legacyDownloadStart(activity, userPreferences, imageUrl, userAgent, "attachment", "image/png", "")
+            }
+        })
 
     fun showLongPressLinkDialog(
             activity: AppCompatActivity,
