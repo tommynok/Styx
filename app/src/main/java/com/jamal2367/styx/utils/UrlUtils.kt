@@ -194,7 +194,7 @@ fun guessFileName(
         if (mimeType != null) {
             // Compare the last segment of the extension against the mime type.
             // If there's a mismatch, discard the entire extension.
-            val lastDotIndex = filename.lastIndexOf('.')
+            val lastDotIndex = filename.indexOf('.')
             val typeFromExt = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
                     filename.substring(lastDotIndex + 1))
             if (typeFromExt != null && !typeFromExt.equals(mimeType, ignoreCase = true) && !"application/octet-stream".equals(mimeType, ignoreCase = true)) {
