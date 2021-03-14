@@ -339,7 +339,7 @@ object Utils {
 
     @JvmStatic
     fun guessFileExtension(filename: String): String? {
-        val lastIndex = filename.lastIndexOf('.') + 1
+        val lastIndex = filename.indexOf('.') + 1
         return if (lastIndex > 0 && filename.length > lastIndex) {
             filename.substring(lastIndex)
         } else null

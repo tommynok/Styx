@@ -99,7 +99,7 @@ class DownloadHandler @Inject constructor(private val downloadsRepository: Downl
         onDownloadStartNoStream(context, manager, url, userAgent, contentDisposition, mimeType, contentSize)
     }
 
-    private fun createAndSaveFileFromBase64Url(url: String, context: Context): String? {
+    private fun createAndSaveFileFromBase64Url(url: String, context: Context): String {
             val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             val filetype = url.substring(url.indexOf("/") + 1, url.indexOf(";"))
             val filename = System.currentTimeMillis().toString() + "." + filetype

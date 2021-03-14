@@ -23,6 +23,7 @@ import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.content.ClipboardManager
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
@@ -306,6 +307,7 @@ class StyxDialogBuilder @Inject constructor(
             activity: AppCompatActivity,
             uiController: UIController,
             url: String,
+            imageUrl: String,
             userAgent: String
     ) = BrowserDialog.show(activity, url.replace(HTTP, ""),
         DialogItem(title = R.string.dialog_open_new_tab) {
@@ -328,16 +330,13 @@ class StyxDialogBuilder @Inject constructor(
             (activity).snackbar(R.string.message_link_copied)
         },
             DialogItem(title = R.string.dialog_download_image) {
-                // Ask for required permissions before starting our download
-                PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        object : PermissionsResultAction() {
-                            override fun onGranted() {
-                                downloadHandler.onDownloadStart(activity, userPreferences, url, userAgent, "attachment", null, "")
-                            }
-                            override fun onDenied(permission: String) {
-                                //TODO show message
-                            }
-                        })
+                val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(MimeTypeMap.getFileExtensionFromUrl(imageUrl).toLowerCase())
+
+                if (mimeType != null) {
+                        downloadHandler.legacyDownloadStart(activity, userPreferences, imageUrl, userAgent, "attachment", mimeType, "")
+                } else {
+                        downloadHandler.legacyDownloadStart(activity, userPreferences, imageUrl, userAgent, "attachment", "image/png", "")
+                }
             })
 
     fun showLongPressLinkDialog(
