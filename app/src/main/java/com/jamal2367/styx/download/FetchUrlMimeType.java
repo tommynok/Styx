@@ -17,8 +17,6 @@ import com.jamal2367.styx.utils.Utils;
 import androidx.annotation.NonNull;
 import io.reactivex.Single;
 
-import static com.jamal2367.styx.utils.UrlUtils.guessFileName;
-
 /**
  * This class is used to pull down the http headers of a given URL so that we
  * can analyse the mimetype and make any correction needed before we give the

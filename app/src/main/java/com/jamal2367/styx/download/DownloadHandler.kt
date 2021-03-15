@@ -177,6 +177,8 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
         // old percent-encoded url.
         val cookies = CookieManager.getInstance().getCookie(url)
         request.addRequestHeader(COOKIE_REQUEST_HEADER, cookies)
+        request.addRequestHeader(REFERER_REQUEST_HEADER, url)
+        request.addRequestHeader(USERAGENT_REQUEST_HEADER, userAgent)
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         if (mimetype == null) {
             logger.log(TAG, "Mimetype is null")
@@ -229,6 +231,8 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
     companion object {
         private const val TAG = "DownloadHandler"
         private const val COOKIE_REQUEST_HEADER = "Cookie"
+        private const val REFERER_REQUEST_HEADER = "Referer"
+        private const val USERAGENT_REQUEST_HEADER = "User-Agent"
 
         private fun isWriteAccessAvailable(fileUri: Uri): Boolean {
             if (fileUri.path == null) {
