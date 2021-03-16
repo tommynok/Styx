@@ -16,6 +16,7 @@
     <color name="bookmark_default_blue">#FF2196F3</color>
     <color name="bookmark_default_red">#FFF44336</color>
 
+    <color name="md_red_200">#EF9A9A</color>
     <color name="md_red_300">#E57373</color>
     <color name="md_red_500">#F44336</color>
     <color name="md_red_700">#D32F2F</color>
