@@ -3,7 +3,6 @@ package com.jamal2367.styx.extensions
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Dialog
-import androidx.appcompat.app.AlertDialog
 
 /**
  * Show single choice items.

@@ -37,7 +37,6 @@ import com.jamal2367.styx.utils.Utils
 import io.reactivex.Scheduler
 import io.reactivex.disposables.Disposable
 import net.dankito.readability4j.Readability4J
-import okhttp3.*
 import org.jsoup.Jsoup
 import java.io.*
 import java.net.URL
