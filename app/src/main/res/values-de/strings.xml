@@ -252,6 +252,7 @@
     <string name="powered_by_duck">Unterstützt durch DuckDuckGo</string>
     <string name="powered_by_google">Unterstützt durch Google</string>
     <string name="powered_by_naver">Unterstützt durch Naver</string>
+    <string name="pref_app_version_summary">Version:</string>
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_landscape">Querformat</string>
     <string name="pref_category_portrait">Hochformat</string>

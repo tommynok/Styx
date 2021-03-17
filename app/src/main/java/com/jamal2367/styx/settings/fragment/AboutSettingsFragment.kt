@@ -28,7 +28,7 @@ class AboutSettingsFragment : AbstractSettingsFragment() {
 
         clickablePreference(
             preference = SETTINGS_VERSION,
-            summary = BuildConfig.VERSION_NAME
+            summary = "${getString(R.string.pref_app_version_summary)} ${BuildConfig.VERSION_NAME} (${getString(R.string.app_version_name)})"
         )
 
         clickablePreference(
