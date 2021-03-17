@@ -255,6 +255,8 @@
     <string name="pref_category_general">General</string>
     <string name="pref_category_landscape">Landscape</string>
     <string name="pref_category_portrait">Portrait</string>
+    <string name="pref_report_issue_summary">Report bugs and suggest improvements on GitHub.</string>
+    <string name="pref_report_issue_title">Report Issue</string>
     <string name="pref_summary_desktop_width">Desktop mode viewport width, set it higher for smaller content</string>
     <string name="pref_summary_locked_drawers">Tabs and Bookmarks drawers are locked</string>
     <string name="pref_summary_tab_list_item_show_close_button">Display close tab buttons on tab list items</string>
@@ -349,7 +351,6 @@
     <string name="site_cookies">Site cookies</string>
     <string name="six">Six (6)</string>
     <string name="size">Text size</string>
-    <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Expires on:</string>
     <string name="ssl_info_issued_by">Issued by:</string>
     <string name="ssl_info_issued_on">Issued on:</string>
@@ -387,16 +388,17 @@
     <string name="translator">Translate</string>
     <string name="tts">Read page</string>
     <string name="tts_initilization_failed">Initilization Failed</string>
+    <string name="unknown">Unknown</string>
     <string name="unknown_size">Unknown size</string>
     <string name="unlisted_javascript">Block JavaScript for listed sites</string>
     <string name="untitled">Untitled</string>
     <string name="url">URL</string>
-    <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>
     <string name="url_contents">Tool bar shows</string>
     <string name="url_in_new_tab">URL in new tab</string>
     <string name="use_i2p_prompt">It looks like you have I2P installed. Do you want to use I2P?</string>
     <string name="use_tor_prompt">It looks like you have Orbot installed. Do you want to use Tor?</string>
     <string name="version">Application version</string>
+    <string name="webview_version">WebView version</string>
     <string name="wideViewPort">Use wide viewport</string>
     <string name="window">Allow sites to open new windows</string>
     <string name="yes">Yes</string>

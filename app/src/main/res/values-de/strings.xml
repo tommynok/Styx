@@ -255,6 +255,8 @@
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_landscape">Querformat</string>
     <string name="pref_category_portrait">Hochformat</string>
+    <string name="pref_report_issue_summary">Fehler auf GitHub melden und Verbesserungen vorschlagen</string>
+    <string name="pref_report_issue_title">Fehler melden</string>
     <string name="pref_summary_desktop_width">Breite des Desktop-Modus, für kleinere Inhalte höher einstellen</string>
     <string name="pref_summary_locked_drawers">Tabs- und Lesezeichen-Drawer sperren</string>
     <string name="pref_summary_tab_list_item_show_close_button">Schaltfläche zum Schließen von Tabs im Tab-Drawer anzeigen</string>
@@ -348,7 +350,6 @@
     <string name="site_cookies">Webseiten-Cookies</string>
     <string name="six">Sechs (6)</string>
     <string name="size">Textgröße:</string>
-    <string name="snacktory">Snacktory</string>
     <string name="ssl_info_expires_on">Verfällt am:</string>
     <string name="ssl_info_issued_by">Ausgestellt von:</string>
     <string name="ssl_info_issued_on">Ausgestellt am:</string>
@@ -386,16 +387,17 @@
     <string name="translator">Übersetzen</string>
     <string name="tts">Seite lesen</string>
     <string name="tts_initilization_failed">Initilisierung fehlgeschlagen</string>
+    <string name="unknown">Unbekannt</string>
     <string name="unknown_size">Unbekannte Größe</string>
     <string name="unlisted_javascript">JavaScript für diese Webseiten blockieren</string>
     <string name="untitled">Ohne Titel</string>
     <string name="url">URL</string>
-    <string name="url_app_home_page">https://github.com/jamal2362/Styx</string>
     <string name="url_contents">URL-Box Inhalt</string>
     <string name="url_in_new_tab">URL in neuem Tab öffnen</string>
     <string name="use_i2p_prompt">I2P ist installiert. Soll I2P verwendet werden?</string>
     <string name="use_tor_prompt">Orbot ist installiert. Soll Tor verwendet werden?</string>
     <string name="version">App-Version</string>
+    <string name="webview_version">WebView-Version</string>
     <string name="wideViewPort">Breiten Anzeigebereich verwenden</string>
     <string name="window">Seiten erlauben einen neuen Tab zu öffnen</string>
     <string name="yes">Ja</string>
