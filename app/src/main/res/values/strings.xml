@@ -43,7 +43,7 @@
     <string name="action_webpage">Webpage</string>
     <string name="action_yes">Yes</string>
     <string name="ad_block_load_failure">Failed to load hosts from ad blocking source.</string>
-    <string name="ad_server_list">StevenBlack Ad-Server List</string>
+    <string name="ad_server_list">AdGuard Ad-Server List</string>
     <string name="agent">User agent</string>
     <string name="agent_android_mobile">Android (Mobile)</string>
     <string name="agent_custom">Custom</string>
@@ -161,7 +161,6 @@
     <string name="four">Four (4)</string>
     <string name="force_zoom">Force zoom for websites</string>
     <string name="force_zoom_summary">Does not work if JavaScript is not enabled</string>
-    <string name="freeware">Freeware</string>
     <string name="hint_password">Password</string>
     <string name="hint_title">Title</string>
     <string name="hint_url">URL</string>

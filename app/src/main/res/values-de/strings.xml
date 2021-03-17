@@ -43,7 +43,7 @@
     <string name="action_webpage">Webseite</string>
     <string name="action_yes">Ja</string>
     <string name="ad_block_load_failure">Das Laden der Online-Hosts ist fehlgeschlagen.</string>
-    <string name="ad_server_list">StevenBlack Ad-Server Liste</string>
+    <string name="ad_server_list">AdGuard Ad-Server Liste</string>
     <string name="agent">User-Agent</string>
     <string name="agent_android_mobile">Android (Mobile)</string>
     <string name="agent_custom">Benutzerdefiniert</string>
@@ -161,7 +161,6 @@
     <string name="four">Vier (4)</string>
     <string name="force_zoom">Zoom auf Webseiten erzwingen</string>
     <string name="force_zoom_summary">(JavaScript muss aktiviert sein)</string>
-    <string name="freeware">Freeware</string>
     <string name="hint_password">Passwort</string>
     <string name="hint_title">Titel</string>
     <string name="hint_url">URL</string>

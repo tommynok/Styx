@@ -63,13 +63,13 @@
         </Preference>
 
         <Preference
-            android:summary="@string/freeware"
+            android:summary="@string/license_gnu"
             android:title="@string/ad_server_list"
             app:icon="@drawable/ic_library">
 
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/StevenBlack/hosts">
+                android:data="http://www.gnu.org/licenses/lgpl-3.0.html">
                 <extra
                     android:name="SOURCE"
                     android:value="SELF" />
@@ -84,7 +84,7 @@
 
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="http://www.gnu.org/licenses/lgpl.html">
+                android:data="http://www.gnu.org/licenses/lgpl-3.0.html">
                 <extra
                     android:name="SOURCE"
                     android:value="SELF" />
