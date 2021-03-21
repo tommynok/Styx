@@ -70,10 +70,6 @@
     public static ** valueOf(java.lang.String);
 }
 
--keep public class org.jsoup.** {
-    public *;
-}
-
 -dontwarn android.support.**
 -dontwarn com.jamal2367.styx.**
 -dontwarn net.i2p.crypto.CertUtil
