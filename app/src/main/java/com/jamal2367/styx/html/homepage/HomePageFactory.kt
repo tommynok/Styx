@@ -1,5 +1,7 @@
 package com.jamal2367.styx.html.homepage
 
+import android.app.Application
+import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.constant.UTF8
@@ -7,8 +9,6 @@ import com.jamal2367.styx.html.HtmlPageFactory
 import com.jamal2367.styx.html.jsoup.*
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.search.SearchEngineProvider
-import android.app.Application
-import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.utils.ThemeUtils
 import com.jamal2367.styx.utils.htmlColor
 import dagger.Reusable

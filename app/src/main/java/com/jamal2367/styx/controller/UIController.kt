@@ -3,10 +3,6 @@
  */
 package com.jamal2367.styx.controller
 
-import com.jamal2367.styx.browser.TabsManager
-import com.jamal2367.styx.database.Bookmark
-import com.jamal2367.styx.dialog.StyxDialogBuilder
-import com.jamal2367.styx.view.StyxView
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -17,6 +13,10 @@ import android.webkit.ValueCallback
 import android.webkit.WebChromeClient.CustomViewCallback
 import androidx.annotation.ColorInt
 import androidx.annotation.IdRes
+import com.jamal2367.styx.browser.TabsManager
+import com.jamal2367.styx.database.Bookmark
+import com.jamal2367.styx.dialog.StyxDialogBuilder
+import com.jamal2367.styx.view.StyxView
 
 /**
  * The monolithic controller that routes events between views in the browser.

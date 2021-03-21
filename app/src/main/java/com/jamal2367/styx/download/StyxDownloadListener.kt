@@ -7,18 +7,17 @@ import android.content.DialogInterface
 import android.text.format.Formatter
 import android.view.View
 import android.webkit.DownloadListener
-import android.webkit.URLUtil
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import com.anthonycr.grant.PermissionsManager
 import com.anthonycr.grant.PermissionsResultAction
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
 import com.jamal2367.styx.database.downloads.DownloadsRepository
+import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog.setDialogSize
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.utils.guessFileName
 import javax.inject.Inject
 

@@ -1,11 +1,9 @@
 package com.jamal2367.styx.browser.tabs
 
-import com.jamal2367.styx.controller.UIController
-import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
+import com.jamal2367.styx.controller.UIController
+import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
 import java.util.*
 
 /**

@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.jamal2367.styx.R
-import com.jamal2367.styx.utils.DrawableUtils
 
 /**
  * Creates the proper [Drawable] to represent the [SslState].

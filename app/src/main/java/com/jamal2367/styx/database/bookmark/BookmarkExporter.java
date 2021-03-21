@@ -5,6 +5,14 @@ import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
+
+import com.jamal2367.styx.database.Bookmark;
+import com.jamal2367.styx.database.WebPageKt;
+import com.jamal2367.styx.utils.Preconditions;
+import com.jamal2367.styx.utils.Utils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,13 +26,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jamal2367.styx.R;
-import com.jamal2367.styx.database.Bookmark;
-import com.jamal2367.styx.database.WebPageKt;
-import com.jamal2367.styx.utils.Preconditions;
-import com.jamal2367.styx.utils.Utils;
-import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 import io.reactivex.Completable;
 
 /**

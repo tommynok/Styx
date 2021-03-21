@@ -15,15 +15,6 @@
  */
 package com.jamal2367.styx.dialog
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.extensions.dimen
-import com.jamal2367.styx.extensions.inflater
-import com.jamal2367.styx.extensions.resizeAndShow
-import com.jamal2367.styx.list.RecyclerViewDialogItemAdapter
-import com.jamal2367.styx.list.RecyclerViewStringAdapter
-import com.jamal2367.styx.utils.DeviceUtils
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import androidx.appcompat.app.AppCompatActivity
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -31,8 +22,17 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.jamal2367.styx.R
+import com.jamal2367.styx.extensions.dimen
+import com.jamal2367.styx.extensions.inflater
+import com.jamal2367.styx.extensions.resizeAndShow
+import com.jamal2367.styx.list.RecyclerViewDialogItemAdapter
+import com.jamal2367.styx.list.RecyclerViewStringAdapter
+import com.jamal2367.styx.utils.DeviceUtils
 
 object BrowserDialog {
 

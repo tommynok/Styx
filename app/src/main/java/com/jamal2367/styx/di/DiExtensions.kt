@@ -2,9 +2,9 @@
 
 package com.jamal2367.styx.di
 
-import com.jamal2367.styx.BrowserApp
 import android.content.Context
 import androidx.fragment.app.Fragment
+import com.jamal2367.styx.BrowserApp
 
 /**
  * The [AppComponent] attached to the application [Context].

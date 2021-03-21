@@ -1,10 +1,10 @@
 package com.jamal2367.styx.utils
 
+import android.text.InputFilter
+import android.text.Spanned
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
 import com.jamal2367.styx.extensions.toast
-import android.text.InputFilter
-import android.text.Spanned
 
 /**
  * An input filter which can be attached to an EditText widget to filter out invalid filename characters

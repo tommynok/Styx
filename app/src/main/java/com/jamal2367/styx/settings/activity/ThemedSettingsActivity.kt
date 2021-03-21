@@ -1,12 +1,12 @@
 package com.jamal2367.styx.settings.activity
 
+import android.graphics.Color
 import com.jamal2367.styx.AppTheme
 import com.jamal2367.styx.R
 import com.jamal2367.styx.ThemedActivity
 import com.jamal2367.styx.extensions.setStatusBarIconsColor
 import com.jamal2367.styx.utils.ThemeUtils
 import com.jamal2367.styx.utils.foregroundColorFromBackgroundColor
-import android.graphics.Color
 
 
 abstract class ThemedSettingsActivity : ThemedActivity() {

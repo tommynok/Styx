@@ -1,17 +1,16 @@
 package com.jamal2367.styx.browser
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.browser.activity.BrowserActivity
-import com.jamal2367.styx.database.bookmark.BookmarkRepository
-import com.jamal2367.styx.databinding.PopupMenuBrowserBinding
-import com.jamal2367.styx.di.injector
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.PopupWindow
-import androidx.core.view.isVisible
+import com.jamal2367.styx.R
+import com.jamal2367.styx.browser.activity.BrowserActivity
+import com.jamal2367.styx.database.bookmark.BookmarkRepository
+import com.jamal2367.styx.databinding.PopupMenuBrowserBinding
+import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.utils.*
 import javax.inject.Inject
 

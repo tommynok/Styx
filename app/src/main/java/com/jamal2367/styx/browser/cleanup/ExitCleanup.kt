@@ -1,7 +1,7 @@
 package com.jamal2367.styx.browser.cleanup
 
-import com.jamal2367.styx.browser.activity.BrowserActivity
 import android.webkit.WebView
+import com.jamal2367.styx.browser.activity.BrowserActivity
 
 /**
  * A command that runs as the browser instance is shutting down to clean up anything that needs to

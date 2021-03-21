@@ -1,6 +1,5 @@
 package com.jamal2367.styx.search.suggestions
 
-import com.jamal2367.styx.browser.SuggestionNumChoice
 import com.jamal2367.styx.database.SearchSuggestion
 import com.jamal2367.styx.extensions.safeUse
 import com.jamal2367.styx.log.Logger

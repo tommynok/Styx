@@ -3,11 +3,11 @@
  */
 package com.jamal2367.styx.settings.activity
 
-import com.jamal2367.styx.R
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.jamal2367.styx.R
 
 private const val TITLE_TAG = "settingsActivityTitle"
 

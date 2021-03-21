@@ -1,5 +1,19 @@
 package com.jamal2367.styx.view
 
+import android.Manifest
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.net.Uri
+import android.os.Message
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.webkit.*
+import androidx.appcompat.app.AppCompatActivity
+import com.anthonycr.grant.PermissionsManager
+import com.anthonycr.grant.PermissionsResultAction
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.di.DiskScheduler
@@ -11,20 +25,6 @@ import com.jamal2367.styx.favicon.FaviconModel
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.view.webrtc.WebRtcPermissionsModel
 import com.jamal2367.styx.view.webrtc.WebRtcPermissionsView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.Manifest
-import androidx.appcompat.app.AppCompatActivity
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.net.Uri
-import android.os.Message
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.webkit.*
-import com.anthonycr.grant.PermissionsManager
-import com.anthonycr.grant.PermissionsResultAction
 import io.reactivex.Scheduler
 import javax.inject.Inject
 

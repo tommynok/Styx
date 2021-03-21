@@ -1,7 +1,7 @@
 package com.jamal2367.styx.browser
 
-import com.jamal2367.styx.extensions.popIfNotEmpty
 import android.os.Bundle
+import com.jamal2367.styx.extensions.popIfNotEmpty
 import java.util.*
 
 /**

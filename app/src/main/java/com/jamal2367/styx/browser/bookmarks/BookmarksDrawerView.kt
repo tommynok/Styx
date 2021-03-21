@@ -1,7 +1,6 @@
 package com.jamal2367.styx.browser.bookmarks
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.os.Handler
 import android.util.AttributeSet
@@ -9,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.CookieManager
-import android.widget.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,7 +41,10 @@ import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.setImageForTheme
 import com.jamal2367.styx.favicon.FaviconModel
 import com.jamal2367.styx.preference.UserPreferences
-import com.jamal2367.styx.utils.*
+import com.jamal2367.styx.utils.isBookmarkUri
+import com.jamal2367.styx.utils.isHistoryUri
+import com.jamal2367.styx.utils.isHomeUri
+import com.jamal2367.styx.utils.isSpecialUrl
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable

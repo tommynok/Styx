@@ -1,14 +1,14 @@
 package com.jamal2367.styx.list
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.dialog.DialogItem
-import com.jamal2367.styx.extensions.inflater
 import android.graphics.PorterDuff
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.jamal2367.styx.R
+import com.jamal2367.styx.dialog.DialogItem
+import com.jamal2367.styx.extensions.inflater
 
 /**
  * A [RecyclerView.Adapter] that displays [DialogItem] with icons.

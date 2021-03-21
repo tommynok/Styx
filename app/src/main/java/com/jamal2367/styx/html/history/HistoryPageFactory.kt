@@ -1,5 +1,6 @@
 package com.jamal2367.styx.html.history
 
+import android.app.Application
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
 import com.jamal2367.styx.constant.FILE
@@ -9,7 +10,6 @@ import com.jamal2367.styx.html.ListPageReader
 import com.jamal2367.styx.html.jsoup.*
 import com.jamal2367.styx.utils.ThemeUtils
 import com.jamal2367.styx.utils.htmlColor
-import android.app.Application
 import dagger.Reusable
 import io.reactivex.Completable
 import io.reactivex.Single

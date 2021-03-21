@@ -1,7 +1,7 @@
 package com.jamal2367.styx.extensions
 
-import com.jamal2367.styx.utils.Utils.mixTwoColors
 import android.graphics.*
+import com.jamal2367.styx.utils.Utils.mixTwoColors
 import kotlin.math.tan
 
 /**

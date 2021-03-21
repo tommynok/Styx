@@ -1,11 +1,5 @@
 package com.jamal2367.styx.favicon
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.extensions.pad
-import com.jamal2367.styx.extensions.safeUse
-import com.jamal2367.styx.log.Logger
-import com.jamal2367.styx.utils.DrawableUtils
-import com.jamal2367.styx.utils.FileUtils
 import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,6 +7,12 @@ import android.util.LruCache
 import androidx.annotation.ColorInt
 import androidx.annotation.WorkerThread
 import androidx.core.net.toUri
+import com.jamal2367.styx.R
+import com.jamal2367.styx.extensions.pad
+import com.jamal2367.styx.extensions.safeUse
+import com.jamal2367.styx.log.Logger
+import com.jamal2367.styx.utils.DrawableUtils
+import com.jamal2367.styx.utils.FileUtils
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import java.io.File

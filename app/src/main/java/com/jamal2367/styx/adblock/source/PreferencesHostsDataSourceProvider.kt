@@ -1,10 +1,10 @@
 package com.jamal2367.styx.adblock.source
 
+import android.app.Application
+import android.content.res.AssetManager
 import com.jamal2367.styx.di.HostsClient
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
-import android.app.Application
-import android.content.res.AssetManager
 import dagger.Reusable
 import io.reactivex.Single
 import okhttp3.OkHttpClient

@@ -1,13 +1,25 @@
 package com.jamal2367.styx.settings.fragment
 
 import android.app.Activity
+import android.os.Bundle
+import android.os.Environment
+import android.text.Editable
+import android.text.InputFilter
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.webkit.URLUtil
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.JavaScriptChoice
 import com.jamal2367.styx.browser.ProxyChoice
 import com.jamal2367.styx.browser.SuggestionNumChoice
-import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.constant.TEXT_ENCODINGS
+import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.extensions.resizeAndShow
@@ -22,18 +34,6 @@ import com.jamal2367.styx.search.engine.CustomSearch
 import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.ProxyUtils
 import com.jamal2367.styx.utils.ThemeUtils
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Environment
-import android.text.Editable
-import android.text.InputFilter
-import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.webkit.URLUtil
-import android.widget.EditText
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import javax.inject.Inject
 
 /**

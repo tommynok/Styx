@@ -1,9 +1,9 @@
 package com.jamal2367.styx.settings.fragment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.BloomFilterAdBlocker

@@ -1,8 +1,8 @@
 package com.jamal2367.styx.browser
 
-import com.jamal2367.styx.ssl.SslState
 import android.view.View
 import androidx.annotation.StringRes
+import com.jamal2367.styx.ssl.SslState
 
 interface BrowserView {
 

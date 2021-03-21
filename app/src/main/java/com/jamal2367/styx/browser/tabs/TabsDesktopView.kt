@@ -1,13 +1,5 @@
 package com.jamal2367.styx.browser.tabs
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.browser.TabsView
-import com.jamal2367.styx.browser.activity.BrowserActivity
-import com.jamal2367.styx.controller.UIController
-import com.jamal2367.styx.databinding.TabDesktopViewBinding
-import com.jamal2367.styx.extensions.inflater
-import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
-import com.jamal2367.styx.view.StyxView
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -16,7 +8,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.lang.Exception
+import com.jamal2367.styx.R
+import com.jamal2367.styx.browser.TabsView
+import com.jamal2367.styx.browser.activity.BrowserActivity
+import com.jamal2367.styx.controller.UIController
+import com.jamal2367.styx.databinding.TabDesktopViewBinding
+import com.jamal2367.styx.extensions.inflater
+import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
+import com.jamal2367.styx.view.StyxView
 
 /**
  * A view which displays browser tabs in a horizontal [RecyclerView].

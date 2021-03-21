@@ -4,6 +4,9 @@ package com.jamal2367.styx.utils
 
 import android.net.Uri
 import android.os.Environment
+import android.util.Patterns
+import android.webkit.MimeTypeMap
+import android.webkit.URLUtil
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.constant.Uris
@@ -11,14 +14,10 @@ import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.html.download.DownloadPageFactory
 import com.jamal2367.styx.html.history.HistoryPageFactory
 import com.jamal2367.styx.html.homepage.HomePageFactory
-import android.util.Patterns
-import android.webkit.MimeTypeMap
-import android.webkit.URLUtil
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.UnsupportedEncodingException
 import java.util.*
-import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 /**

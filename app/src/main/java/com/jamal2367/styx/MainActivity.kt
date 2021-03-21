@@ -1,9 +1,9 @@
 package com.jamal2367.styx
 
-import com.jamal2367.styx.browser.activity.BrowserActivity
 import android.content.Intent
 import android.view.KeyEvent
 import android.webkit.CookieManager
+import com.jamal2367.styx.browser.activity.BrowserActivity
 import io.reactivex.Completable
 
 class MainActivity : BrowserActivity() {

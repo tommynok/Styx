@@ -1,21 +1,21 @@
 package com.jamal2367.styx.browser.tabs
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.browser.activity.BrowserActivity
-import com.jamal2367.styx.controller.UIController
-import com.jamal2367.styx.extensions.*
-import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
-import com.jamal2367.styx.utils.ThemeUtils
-import com.jamal2367.styx.view.BackgroundDrawable
 import android.content.res.ColorStateList
 import android.content.res.Resources
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.graphics.ColorUtils
 import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.jamal2367.styx.R
+import com.jamal2367.styx.browser.activity.BrowserActivity
+import com.jamal2367.styx.controller.UIController
+import com.jamal2367.styx.extensions.inflater
+import com.jamal2367.styx.extensions.setImageForTheme
+import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
+import com.jamal2367.styx.utils.ThemeUtils
+import com.jamal2367.styx.view.BackgroundDrawable
 
 /**
  * The adapter for horizontal desktop style browser tabs.

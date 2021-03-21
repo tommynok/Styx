@@ -1,12 +1,11 @@
 package com.jamal2367.styx.browser
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.webkit.URLUtil
-
-import com.jamal2367.styx.R
+import androidx.appcompat.app.AppCompatActivity
 import com.jamal2367.styx.BrowserApp
+import com.jamal2367.styx.R
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.constant.INTENT_ORIGIN
 import com.jamal2367.styx.constant.Uris

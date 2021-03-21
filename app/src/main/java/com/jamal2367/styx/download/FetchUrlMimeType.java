@@ -9,12 +9,14 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 
+import androidx.annotation.NonNull;
+
+import com.jamal2367.styx.utils.Utils;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.jamal2367.styx.utils.Utils;
-import androidx.annotation.NonNull;
 import io.reactivex.Single;
 
 /**

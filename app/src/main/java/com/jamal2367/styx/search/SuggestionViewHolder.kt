@@ -1,9 +1,9 @@
 package com.jamal2367.styx.search
 
-import com.jamal2367.styx.R
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.jamal2367.styx.R
 
 class SuggestionViewHolder(view: View) {
     val imageView: ImageView = view.findViewById(R.id.suggestionIcon)

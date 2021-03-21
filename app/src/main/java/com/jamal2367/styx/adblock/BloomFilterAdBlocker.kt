@@ -1,5 +1,7 @@
 package com.jamal2367.styx.adblock
 
+import android.app.Application
+import android.net.Uri
 import com.jamal2367.styx.R
 import com.jamal2367.styx.adblock.source.HostsDataSourceProvider
 import com.jamal2367.styx.adblock.source.HostsResult
@@ -17,8 +19,6 @@ import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.log.Logger
-import android.app.Application
-import android.net.Uri
 import io.reactivex.Maybe
 import io.reactivex.Scheduler
 import io.reactivex.Single

@@ -1,5 +1,6 @@
 package com.jamal2367.styx.di
 
+import android.app.Application
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.ThemedActivity
 import com.jamal2367.styx.adblock.BloomFilterAdBlocker
@@ -15,12 +16,11 @@ import com.jamal2367.styx.download.StyxDownloadListener
 import com.jamal2367.styx.reading.ReadingActivity
 import com.jamal2367.styx.search.SuggestionsAdapter
 import com.jamal2367.styx.settings.activity.SettingsActivity
+import com.jamal2367.styx.settings.activity.ThemedSettingsActivity
 import com.jamal2367.styx.settings.fragment.*
 import com.jamal2367.styx.view.StyxChromeClient
 import com.jamal2367.styx.view.StyxView
 import com.jamal2367.styx.view.StyxWebClient
-import android.app.Application
-import com.jamal2367.styx.settings.activity.ThemedSettingsActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

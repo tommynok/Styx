@@ -11,8 +11,8 @@ import com.jamal2367.styx.database.javascript.JavaScriptRepository
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.di.injector
-import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.extensions.snackbar
+import com.jamal2367.styx.preference.UserPreferences
 import javax.inject.Inject
 
 /**

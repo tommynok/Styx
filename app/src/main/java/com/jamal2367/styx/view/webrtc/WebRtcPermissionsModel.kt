@@ -1,7 +1,7 @@
 package com.jamal2367.styx.view.webrtc
 
-import com.jamal2367.styx.extensions.requiredPermissions
 import android.webkit.PermissionRequest
+import com.jamal2367.styx.extensions.requiredPermissions
 import javax.inject.Inject
 import javax.inject.Singleton
 

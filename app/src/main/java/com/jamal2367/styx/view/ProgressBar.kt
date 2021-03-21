@@ -16,8 +16,6 @@
 
 package com.jamal2367.styx.view
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.utils.BezierEaseInterpolator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -31,6 +29,8 @@ import android.view.animation.Animation
 import android.view.animation.Interpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.Transformation
+import com.jamal2367.styx.R
+import com.jamal2367.styx.utils.BezierEaseInterpolator
 import java.util.*
 
 class ProgressBar : View {

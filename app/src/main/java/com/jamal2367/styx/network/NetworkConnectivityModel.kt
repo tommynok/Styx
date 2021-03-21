@@ -1,8 +1,8 @@
 package com.jamal2367.styx.network
 
-import com.jamal2367.styx.rx.BroadcastReceiverObservable
 import android.app.Application
 import android.net.ConnectivityManager
+import com.jamal2367.styx.rx.BroadcastReceiverObservable
 import dagger.Reusable
 import io.reactivex.Observable
 import javax.inject.Inject

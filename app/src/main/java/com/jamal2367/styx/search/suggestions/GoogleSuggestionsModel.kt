@@ -1,11 +1,11 @@
 package com.jamal2367.styx.search.suggestions
 
+import android.app.Application
 import com.jamal2367.styx.R
 import com.jamal2367.styx.constant.UTF8
 import com.jamal2367.styx.database.SearchSuggestion
 import com.jamal2367.styx.extensions.preferredLocale
 import com.jamal2367.styx.log.Logger
-import android.app.Application
 import com.jamal2367.styx.preference.UserPreferences
 import io.reactivex.Single
 import okhttp3.HttpUrl

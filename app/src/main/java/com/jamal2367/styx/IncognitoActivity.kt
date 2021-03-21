@@ -1,10 +1,10 @@
 package com.jamal2367.styx
 
-import com.jamal2367.styx.browser.activity.BrowserActivity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.webkit.CookieManager
+import com.jamal2367.styx.browser.activity.BrowserActivity
 import io.reactivex.Completable
 
 class IncognitoActivity : BrowserActivity() {

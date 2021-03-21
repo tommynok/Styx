@@ -3,12 +3,10 @@
  */
 package com.jamal2367.styx.settings.fragment
 
+import android.os.Bundle
+import androidx.webkit.WebViewCompat
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.R
-import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
-import androidx.webkit.WebViewCompat
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class AboutSettingsFragment : AbstractSettingsFragment() {

@@ -1,15 +1,15 @@
 package com.jamal2367.styx.browser.tabs
 
+import android.graphics.Bitmap
+import android.view.ViewGroup
+import androidx.core.widget.TextViewCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.extensions.dimen
 import com.jamal2367.styx.extensions.inflater
 import com.jamal2367.styx.extensions.setImageForTheme
-import android.graphics.Bitmap
-import android.view.ViewGroup
-import androidx.core.widget.TextViewCompat
-import androidx.recyclerview.widget.RecyclerView
 
 /**
  * The adapter for vertical mobile style browser tabs.

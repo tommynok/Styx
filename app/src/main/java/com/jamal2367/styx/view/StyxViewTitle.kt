@@ -1,9 +1,9 @@
 package com.jamal2367.styx.view
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.extensions.pad
 import android.content.Context
 import android.graphics.Bitmap
+import com.jamal2367.styx.R
+import com.jamal2367.styx.extensions.pad
 
 /**
  * [StyxViewTitle] acts as a container class

@@ -1,11 +1,11 @@
 package com.jamal2367.styx.browser
 
-import androidx.appcompat.app.AppCompatActivity
 import android.app.Application
 import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.webkit.URLUtil
+import androidx.appcompat.app.AppCompatActivity
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.sessions.Session
 import com.jamal2367.styx.di.DatabaseScheduler

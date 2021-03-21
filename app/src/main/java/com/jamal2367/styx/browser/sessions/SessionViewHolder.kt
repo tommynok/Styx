@@ -1,5 +1,15 @@
 package com.jamal2367.styx.browser.sessions
 
+import android.text.InputFilter
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
@@ -8,17 +18,6 @@ import com.jamal2367.styx.extensions.resizeAndShow
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeViewHolder
-import com.google.android.material.card.MaterialCardView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import androidx.appcompat.app.AppCompatActivity
-import android.app.Dialog
-import android.text.InputFilter
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

@@ -1,5 +1,6 @@
 package com.jamal2367.styx.preference
 
+import android.content.SharedPreferences
 import com.jamal2367.styx.AppTheme
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
@@ -14,7 +15,6 @@ import com.jamal2367.styx.search.engine.GoogleSearch
 import com.jamal2367.styx.settings.NewTabPosition
 import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.view.RenderingMode
-import android.content.SharedPreferences
 import javax.inject.Inject
 import javax.inject.Singleton
 

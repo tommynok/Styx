@@ -1,6 +1,13 @@
 package com.jamal2367.styx
 
 import android.app.Activity
+import android.app.Application
+import android.content.Context
+import android.os.Build
+import android.os.StrictMode
+import android.webkit.WebView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.library.BuildConfig
 import com.jamal2367.styx.database.bookmark.BookmarkExporter
 import com.jamal2367.styx.database.bookmark.BookmarkRepository
 import com.jamal2367.styx.device.BuildInfo
@@ -13,13 +20,6 @@ import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.DeveloperPreferences
 import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.MemoryLeakUtils
-import androidx.appcompat.app.AppCompatActivity
-import android.app.Application
-import android.content.Context
-import android.os.Build
-import android.os.StrictMode
-import android.webkit.WebView
-import androidx.databinding.library.BuildConfig
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.plugins.RxJavaPlugins

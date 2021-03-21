@@ -1,6 +1,8 @@
 package com.jamal2367.styx.download
 
-import android.app.*
+import android.app.Activity
+import android.app.Dialog
+import android.app.DownloadManager
 import android.content.ActivityNotFoundException
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,11 +13,8 @@ import android.os.Environment
 import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
-
 import androidx.appcompat.app.AppCompatActivity
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.MainActivity
 import com.jamal2367.styx.R
@@ -32,9 +31,7 @@ import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.FileUtils
 import com.jamal2367.styx.utils.guessFileName
-
 import io.reactivex.Scheduler
-
 import java.io.File
 import java.io.IOException
 import javax.inject.Inject

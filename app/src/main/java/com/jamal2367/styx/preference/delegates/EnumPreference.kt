@@ -1,9 +1,9 @@
 package com.jamal2367.styx.preference.delegates
 
-import com.jamal2367.styx.BrowserApp
-import com.jamal2367.styx.preference.IntEnum
 import android.content.SharedPreferences
 import androidx.annotation.StringRes
+import com.jamal2367.styx.BrowserApp
+import com.jamal2367.styx.preference.IntEnum
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

@@ -1,8 +1,8 @@
 package com.jamal2367.styx.database.adblock
 
+import android.content.SharedPreferences
 import com.jamal2367.styx.di.AdBlockPrefs
 import com.jamal2367.styx.preference.delegates.nullableStringPreference
-import android.content.SharedPreferences
 import javax.inject.Inject
 
 /**

@@ -1,8 +1,8 @@
 package com.jamal2367.styx.preference
 
+import android.content.SharedPreferences
 import com.jamal2367.styx.di.DevPrefs
 import com.jamal2367.styx.preference.delegates.booleanPreference
-import android.content.SharedPreferences
 import javax.inject.Inject
 import javax.inject.Singleton
 

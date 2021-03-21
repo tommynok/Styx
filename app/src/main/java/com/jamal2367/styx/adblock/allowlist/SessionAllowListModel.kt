@@ -1,10 +1,10 @@
 package com.jamal2367.styx.adblock.allowlist
 
+import androidx.core.net.toUri
 import com.jamal2367.styx.database.allowlist.AdBlockAllowListRepository
 import com.jamal2367.styx.database.allowlist.AllowListEntry
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.log.Logger
-import androidx.core.net.toUri
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import javax.inject.Inject

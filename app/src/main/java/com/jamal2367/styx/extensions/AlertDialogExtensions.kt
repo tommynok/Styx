@@ -1,8 +1,8 @@
 package com.jamal2367.styx.extensions
 
-import com.jamal2367.styx.dialog.BrowserDialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.app.Dialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.jamal2367.styx.dialog.BrowserDialog
 
 /**
  * Show single choice items.

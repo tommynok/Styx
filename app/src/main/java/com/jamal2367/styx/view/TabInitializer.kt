@@ -1,5 +1,10 @@
 package com.jamal2367.styx.view
 
+import android.os.Bundle
+import android.os.Message
+import android.webkit.WebView
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.TabModel
 import com.jamal2367.styx.constant.Uris
@@ -12,11 +17,6 @@ import com.jamal2367.styx.html.download.DownloadPageFactory
 import com.jamal2367.styx.html.history.HistoryPageFactory
 import com.jamal2367.styx.html.homepage.HomePageFactory
 import com.jamal2367.styx.preference.UserPreferences
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Message
-import android.webkit.WebView
 import dagger.Reusable
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.subscribeBy

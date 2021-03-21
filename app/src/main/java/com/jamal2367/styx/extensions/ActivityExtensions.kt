@@ -3,9 +3,9 @@
 package com.jamal2367.styx.extensions
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 
 /**

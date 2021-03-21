@@ -1,12 +1,8 @@
 package com.jamal2367.styx.preference
 
-import com.jamal2367.styx.constant.WINDOWS_DESKTOP_USER_AGENT
-import com.jamal2367.styx.constant.LINUX_DESKTOP_USER_AGENT
-import com.jamal2367.styx.constant.MACOS_DESKTOP_USER_AGENT
-import com.jamal2367.styx.constant.ANDROID_MOBILE_USER_AGENT
-import com.jamal2367.styx.constant.IOS_MOBILE_USER_AGENT
 import android.app.Application
 import android.webkit.WebSettings
+import com.jamal2367.styx.constant.*
 
 /**
  * Return the user agent chosen by the user or the custom user agent entered by the user.

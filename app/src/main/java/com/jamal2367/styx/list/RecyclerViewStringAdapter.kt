@@ -1,11 +1,11 @@
 package com.jamal2367.styx.list
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.extensions.inflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.jamal2367.styx.R
+import com.jamal2367.styx.extensions.inflater
 
 /**
  * A simple [RecyclerView.Adapter] that displays a [List] of [String].

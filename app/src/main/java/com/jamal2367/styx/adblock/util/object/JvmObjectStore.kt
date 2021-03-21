@@ -1,8 +1,8 @@
 package com.jamal2367.styx.adblock.util.`object`
 
+import android.app.Application
 import com.jamal2367.styx.adblock.util.hash.HashingAlgorithm
 import com.jamal2367.styx.extensions.safeUse
-import android.app.Application
 import java.io.*
 
 /**

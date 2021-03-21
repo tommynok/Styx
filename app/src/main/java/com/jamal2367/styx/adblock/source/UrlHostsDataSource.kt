@@ -1,11 +1,11 @@
 package com.jamal2367.styx.adblock.source
 
+import android.app.Application
 import com.jamal2367.styx.adblock.parser.HostsFileParser
 import com.jamal2367.styx.extensions.onIOExceptionResumeNext
 import com.jamal2367.styx.log.Logger
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.preference.userAgent
-import android.app.Application
 import io.reactivex.Single
 import okhttp3.*
 import java.io.IOException

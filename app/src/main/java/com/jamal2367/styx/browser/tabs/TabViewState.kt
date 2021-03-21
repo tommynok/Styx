@@ -1,8 +1,8 @@
 package com.jamal2367.styx.browser.tabs
 
-import com.jamal2367.styx.view.StyxView
 import android.graphics.Bitmap
 import android.graphics.Color
+import com.jamal2367.styx.view.StyxView
 
 /**
  * @param id The unique id of the tab.

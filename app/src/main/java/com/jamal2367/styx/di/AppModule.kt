@@ -1,15 +1,5 @@
 package com.jamal2367.styx.di
 
-import com.jamal2367.styx.device.BuildInfo
-import com.jamal2367.styx.device.BuildType
-import com.jamal2367.styx.html.ListPageReader
-import com.jamal2367.styx.html.bookmark.BookmarkPageReader
-import com.jamal2367.styx.html.homepage.HomePageReader
-import com.jamal2367.styx.log.AndroidLogger
-import com.jamal2367.styx.log.Logger
-import com.jamal2367.styx.log.NoOpLogger
-import com.jamal2367.styx.search.suggestions.RequestFactory
-import com.jamal2367.styx.utils.FileUtils
 import android.app.Application
 import android.app.DownloadManager
 import android.app.NotificationManager
@@ -28,7 +18,17 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 import androidx.preference.PreferenceManager
 import com.anthonycr.mezzanine.MezzanineGenerator
+import com.jamal2367.styx.device.BuildInfo
+import com.jamal2367.styx.device.BuildType
+import com.jamal2367.styx.html.ListPageReader
+import com.jamal2367.styx.html.bookmark.BookmarkPageReader
+import com.jamal2367.styx.html.homepage.HomePageReader
 import com.jamal2367.styx.js.*
+import com.jamal2367.styx.log.AndroidLogger
+import com.jamal2367.styx.log.Logger
+import com.jamal2367.styx.log.NoOpLogger
+import com.jamal2367.styx.search.suggestions.RequestFactory
+import com.jamal2367.styx.utils.FileUtils
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler

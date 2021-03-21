@@ -1,5 +1,17 @@
 package com.jamal2367.styx.browser.sessions
 
+import android.graphics.drawable.ColorDrawable
+import android.text.InputFilter
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.EditText
+import android.widget.PopupWindow
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
@@ -9,16 +21,6 @@ import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
 import com.jamal2367.styx.utils.Utils
-import androidx.appcompat.app.AppCompatActivity
-import android.graphics.drawable.ColorDrawable
-import android.text.InputFilter
-import android.view.*
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.widget.EditText
-import android.widget.PopupWindow
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 
 class SessionsPopupWindow : PopupWindow {

@@ -1,6 +1,10 @@
 package com.jamal2367.styx.settings.fragment
 
 import android.content.Context
+import android.os.Build
+import android.os.Bundle
+import android.webkit.WebView
+import androidx.appcompat.app.AppCompatActivity
 import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.R
 import com.jamal2367.styx.database.history.HistoryRepository
@@ -14,10 +18,6 @@ import com.jamal2367.styx.isSupported
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.WebUtils
 import com.jamal2367.styx.view.StyxView
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Build
-import android.os.Bundle
-import android.webkit.WebView
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import java.io.File

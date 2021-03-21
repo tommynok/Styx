@@ -1,5 +1,12 @@
 package com.jamal2367.styx.search
 
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.Filter
+import android.widget.Filterable
 import com.jamal2367.styx.R
 import com.jamal2367.styx.database.Bookmark
 import com.jamal2367.styx.database.HistoryEntry
@@ -15,14 +22,6 @@ import com.jamal2367.styx.extensions.drawable
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.search.suggestions.NoOpSuggestionsRepository
 import com.jamal2367.styx.search.suggestions.SuggestionsRepository
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Filter
-import android.widget.Filterable
-import com.jamal2367.styx.browser.SuggestionNumChoice
 import io.reactivex.*
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject

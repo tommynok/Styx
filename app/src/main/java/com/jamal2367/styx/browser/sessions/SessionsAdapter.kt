@@ -1,15 +1,15 @@
 package com.jamal2367.styx.browser.sessions
 
-import com.jamal2367.styx.R
-import com.jamal2367.styx.controller.UIController
-import com.jamal2367.styx.extensions.inflater
-import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jamal2367.styx.R
+import com.jamal2367.styx.controller.UIController
+import com.jamal2367.styx.extensions.inflater
+import com.jamal2367.styx.utils.ItemDragDropSwipeAdapter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 import java.util.*

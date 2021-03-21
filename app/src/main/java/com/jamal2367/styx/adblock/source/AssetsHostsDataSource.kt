@@ -1,9 +1,9 @@
 package com.jamal2367.styx.adblock.source
 
+import android.content.res.AssetManager
 import com.jamal2367.styx.BuildConfig
 import com.jamal2367.styx.adblock.parser.HostsFileParser
 import com.jamal2367.styx.log.Logger
-import android.content.res.AssetManager
 import io.reactivex.Single
 import java.io.InputStreamReader
 

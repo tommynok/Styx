@@ -1,14 +1,14 @@
 package com.jamal2367.styx.database.allowlist
 
-import com.jamal2367.styx.database.databaseDelegate
-import com.jamal2367.styx.extensions.firstOrNullMap
-import com.jamal2367.styx.extensions.useMap
 import android.app.Application
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.annotation.WorkerThread
+import com.jamal2367.styx.database.databaseDelegate
+import com.jamal2367.styx.extensions.firstOrNullMap
+import com.jamal2367.styx.extensions.useMap
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

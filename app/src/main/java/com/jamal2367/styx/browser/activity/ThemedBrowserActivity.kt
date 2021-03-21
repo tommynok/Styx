@@ -1,11 +1,11 @@
 package com.jamal2367.styx.browser.activity
 
+import android.content.Intent
+import android.os.Bundle
 import com.jamal2367.styx.AppTheme
 import com.jamal2367.styx.R
 import com.jamal2367.styx.ThemedActivity
 import com.jamal2367.styx.di.injector
-import android.content.Intent
-import android.os.Bundle
 
 
 abstract class ThemedBrowserActivity : ThemedActivity() {

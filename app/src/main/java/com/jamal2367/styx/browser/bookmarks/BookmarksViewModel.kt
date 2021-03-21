@@ -1,7 +1,7 @@
 package com.jamal2367.styx.browser.bookmarks
 
-import com.jamal2367.styx.database.Bookmark
 import android.graphics.Bitmap
+import com.jamal2367.styx.database.Bookmark
 
 /**
  * The data model representing a [Bookmark] in a list.

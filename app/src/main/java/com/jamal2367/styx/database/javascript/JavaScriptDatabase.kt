@@ -1,8 +1,5 @@
 package com.jamal2367.styx.database.javascript
 
-import com.jamal2367.styx.database.databaseDelegate
-import com.jamal2367.styx.extensions.firstOrNullMap
-import com.jamal2367.styx.extensions.useMap
 import android.app.Application
 import android.content.ContentValues
 import android.database.Cursor
@@ -10,6 +7,9 @@ import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.annotation.WorkerThread
+import com.jamal2367.styx.database.databaseDelegate
+import com.jamal2367.styx.extensions.firstOrNullMap
+import com.jamal2367.styx.extensions.useMap
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject

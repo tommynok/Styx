@@ -5,7 +5,6 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
 import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import com.jamal2367.styx.R
 import com.jamal2367.styx.utils.ThemeUtils
 

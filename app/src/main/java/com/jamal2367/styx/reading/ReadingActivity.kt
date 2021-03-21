@@ -38,7 +38,10 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.Disposable
 import net.dankito.readability4j.Readability4J
 import org.jsoup.Jsoup
-import java.io.*
+import java.io.BufferedReader
+import java.io.FileInputStream
+import java.io.IOException
+import java.io.InputStreamReader
 import java.net.URL
 import java.util.*
 import javax.inject.Inject

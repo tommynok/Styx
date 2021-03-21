@@ -1,7 +1,7 @@
 package com.jamal2367.styx.database.bookmark
 
-import com.jamal2367.styx.database.Bookmark
 import androidx.annotation.WorkerThread
+import com.jamal2367.styx.database.Bookmark
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

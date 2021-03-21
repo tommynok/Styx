@@ -1,5 +1,6 @@
 package com.jamal2367.styx.html.download
 
+import android.app.Application
 import com.jamal2367.styx.R
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.database.downloads.DownloadEntry
@@ -8,7 +9,6 @@ import com.jamal2367.styx.html.HtmlPageFactory
 import com.jamal2367.styx.html.ListPageReader
 import com.jamal2367.styx.html.jsoup.*
 import com.jamal2367.styx.preference.UserPreferences
-import android.app.Application
 import dagger.Reusable
 import io.reactivex.Single
 import java.io.File

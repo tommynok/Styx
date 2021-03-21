@@ -1,5 +1,9 @@
 package com.jamal2367.styx.html.bookmark
 
+import android.app.Application
+import android.graphics.Bitmap
+import androidx.core.net.toUri
+import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
 import com.jamal2367.styx.constant.FILE
 import com.jamal2367.styx.database.Bookmark
@@ -12,10 +16,6 @@ import com.jamal2367.styx.favicon.toValidUri
 import com.jamal2367.styx.html.HtmlPageFactory
 import com.jamal2367.styx.html.jsoup.*
 import com.jamal2367.styx.utils.ThemeUtils
-import android.app.Application
-import android.graphics.Bitmap
-import androidx.core.net.toUri
-import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.utils.htmlColor
 import dagger.Reusable
 import io.reactivex.Scheduler

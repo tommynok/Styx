@@ -1,8 +1,6 @@
 package com.jamal2367.styx.extensions
 
 import android.Manifest
-import android.annotation.TargetApi
-import android.os.Build
 import android.webkit.PermissionRequest
 
 /**

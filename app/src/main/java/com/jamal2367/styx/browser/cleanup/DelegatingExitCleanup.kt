@@ -1,10 +1,10 @@
 package com.jamal2367.styx.browser.cleanup
 
+import android.webkit.WebView
 import com.jamal2367.styx.Capabilities
 import com.jamal2367.styx.MainActivity
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.isSupported
-import android.webkit.WebView
 import javax.inject.Inject
 
 /**

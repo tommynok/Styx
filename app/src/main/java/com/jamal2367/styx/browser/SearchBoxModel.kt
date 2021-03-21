@@ -1,10 +1,10 @@
 package com.jamal2367.styx.browser
 
+import android.app.Application
 import com.jamal2367.styx.R
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.Utils
 import com.jamal2367.styx.utils.isSpecialUrl
-import android.app.Application
 import dagger.Reusable
 import javax.inject.Inject
 
