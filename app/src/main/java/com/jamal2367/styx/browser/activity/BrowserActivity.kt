@@ -357,7 +357,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             onMenuItemClicked(iBinding.menuShortcutBack) { executeAction(R.id.menuShortcutBack) }
             onMenuItemClicked(iBinding.menuShortcutBookmarks) { executeAction(R.id.menuShortcutBookmarks) }
 
-
         }
     }
 
@@ -555,6 +554,9 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             tabsButton?.visibility = GONE
         }
 
+        if (userPreferences.navbar && !userPreferences.showTabsInDrawer) {
+            homeButton?.visibility = GONE
+        }
     }
 
     private fun getBookmarksContainerId(): Int = if (swapBookmarksAndTabs) {
@@ -836,13 +838,17 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
 
         val extraBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
+        if (!userPreferences.showTabsInDrawer) {
+            iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, getTabDrawer())
+        }
+
         if (!userPreferences.navbar) {
             extraBar.visibility = GONE
         } else {
             extraBar.visibility = VISIBLE
             if (!userPreferences.showTabsInDrawer) {
                 extraBar.menu.removeItem(R.id.tabs)
-                extraBar.menu.removeItem(R.id.home)
+                iBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, getTabDrawer())
             }
             extraBar.setOnNavigationItemSelectedListener { item ->
                 when(item.itemId) {
@@ -1860,6 +1866,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         (iBinding.toolbarInclude.toolbar.width>threshold).let{
             buttonBack?.isVisible = it
             buttonForward?.isVisible = it
+        }
+
+        if (userPreferences.navbar) {
+            buttonBack?.visibility = GONE
+            buttonForward?.visibility = GONE
         }
 
         // Needed to delay that as otherwise disabled alpha state didn't get applied
