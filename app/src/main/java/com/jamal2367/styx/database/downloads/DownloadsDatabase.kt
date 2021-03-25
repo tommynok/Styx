@@ -20,7 +20,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class DownloadsDatabase @Inject constructor(
-    application: Application
+        application: Application
 ) : SQLiteOpenHelper(application, DATABASE_NAME, null, DATABASE_VERSION), DownloadsRepository {
 
     private val database: SQLiteDatabase by databaseDelegate()
@@ -28,11 +28,11 @@ class DownloadsDatabase @Inject constructor(
     // Creating Tables
     override fun onCreate(db: SQLiteDatabase) {
         val createDownloadsTable = "CREATE TABLE ${DatabaseUtils.sqlEscapeString(TABLE_DOWNLOADS)}(" +
-            "${DatabaseUtils.sqlEscapeString(KEY_ID)} INTEGER PRIMARY KEY," +
-            "${DatabaseUtils.sqlEscapeString(KEY_URL)} TEXT," +
-            "${DatabaseUtils.sqlEscapeString(KEY_TITLE)} TEXT," +
-            "${DatabaseUtils.sqlEscapeString(KEY_SIZE)} TEXT" +
-            ')'
+                "${DatabaseUtils.sqlEscapeString(KEY_ID)} INTEGER PRIMARY KEY," +
+                "${DatabaseUtils.sqlEscapeString(KEY_URL)} TEXT," +
+                "${DatabaseUtils.sqlEscapeString(KEY_TITLE)} TEXT," +
+                "${DatabaseUtils.sqlEscapeString(KEY_SIZE)} TEXT" +
+                ')'
         db.execSQL(createDownloadsTable)
     }
 
@@ -46,26 +46,26 @@ class DownloadsDatabase @Inject constructor(
 
     override fun findDownloadForUrl(url: String): Maybe<DownloadEntry> = Maybe.fromCallable {
         database.query(
-            TABLE_DOWNLOADS,
-            null,
-            "$KEY_URL=?",
-            arrayOf(url),
-            null,
-            null,
-            "1"
+                TABLE_DOWNLOADS,
+                null,
+                "$KEY_URL=?",
+                arrayOf(url),
+                null,
+                null,
+                "1"
         ).firstOrNullMap { it.bindToDownloadItem() }
     }
 
     override fun isDownload(url: String): Single<Boolean> = Single.fromCallable {
         database.query(
-            TABLE_DOWNLOADS,
-            null,
-            "$KEY_URL=?",
-            arrayOf(url),
-            null,
-            null,
-            null,
-            "1"
+                TABLE_DOWNLOADS,
+                null,
+                "$KEY_URL=?",
+                arrayOf(url),
+                null,
+                null,
+                null,
+                "1"
         ).use {
             return@fromCallable it.moveToFirst()
         }
@@ -73,13 +73,13 @@ class DownloadsDatabase @Inject constructor(
 
     override fun addDownloadIfNotExists(entry: DownloadEntry): Single<Boolean> = Single.fromCallable {
         database.query(
-            TABLE_DOWNLOADS,
-            null,
-            "$KEY_URL=?",
-            arrayOf(entry.url),
-            null,
-            null,
-            "1"
+                TABLE_DOWNLOADS,
+                null,
+                "$KEY_URL=?",
+                arrayOf(entry.url),
+                null,
+                null,
+                "1"
         ).use {
             if (it.moveToFirst()) {
                 return@fromCallable false
@@ -117,13 +117,13 @@ class DownloadsDatabase @Inject constructor(
 
     override fun getAllDownloads(): Single<List<DownloadEntry>> = Single.fromCallable {
         return@fromCallable database.query(
-            TABLE_DOWNLOADS,
-            null,
-            null,
-            null,
-            null,
-            null,
-            "$KEY_ID DESC"
+                TABLE_DOWNLOADS,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "$KEY_ID DESC"
         ).useMap { it.bindToDownloadItem() }
     }
 
@@ -142,9 +142,9 @@ class DownloadsDatabase @Inject constructor(
      * Binds a [Cursor] to a single [DownloadEntry].
      */
     private fun Cursor.bindToDownloadItem() = DownloadEntry(
-        url = getString(getColumnIndex(KEY_URL)),
-        title = getString(getColumnIndex(KEY_TITLE)),
-        contentSize = getString(getColumnIndex(KEY_SIZE))
+            url = getString(getColumnIndexOrThrow(KEY_URL)),
+            title = getString(getColumnIndexOrThrow(KEY_TITLE)),
+            contentSize = getString(getColumnIndexOrThrow(KEY_SIZE))
     )
 
     companion object {
