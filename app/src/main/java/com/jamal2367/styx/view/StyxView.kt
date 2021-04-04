@@ -244,7 +244,7 @@ class StyxView(
     val url: String
         get() {
             //TODO: One day find a way to write this expression without !! and without duplicating iTargetUrl.toString(), Kotlin is so weird
-            return if (iHideActualUrl || webView == null || webView!!.url.isNullOrBlank()) {
+            return if (iHideActualUrl || webView == null || webView!!.url.isNullOrBlank() || webView!!.url.isSpecialUrl()) {
                 iTargetUrl.toString()
             } else  {
                 webView!!.url
@@ -383,8 +383,6 @@ class StyxView(
      */
     private fun initializeContent(tabInitializer: TabInitializer) {
         webView?.let { tabInitializer.initialize(it, requestHeaders) }
-
-        iHideActualUrl = false
     }
 
     /**
@@ -900,7 +898,6 @@ class StyxView(
             return
         }
 
-        iHideActualUrl = false
         iTargetUrl = Uri.parse(aUrl)
 
         if (iTargetUrl.scheme == Schemes.Styx || iTargetUrl.scheme == Schemes.About) {

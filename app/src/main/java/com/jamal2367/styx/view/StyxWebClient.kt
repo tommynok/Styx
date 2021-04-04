@@ -288,7 +288,7 @@ class StyxWebClient(
      */
     private fun updateUrlIfNeeded(url: String, isLoading: Boolean) {
         // Update URL unless we are dealing with our special internal URL
-        (styxView.iHideActualUrl). let { dontDoUpdate ->
+        (url.isSpecialUrl()). let { dontDoUpdate ->
             uiController.updateUrl(if (dontDoUpdate) styxView.url else url, isLoading)
         }
     }
