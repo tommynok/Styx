@@ -311,12 +311,12 @@ class StyxWebClient(
         if (styxView.invertPage) {
             view.evaluateJavascript(invertPageJs.provideJs(), null)
         }
-        if(userPreferences.forceZoom){
+        if (userPreferences.forceZoom){
             view.loadUrl(
                     "javascript:(function() { document.querySelector('meta[name=\"viewport\"]').setAttribute(\"content\",\"width=device-width\"); })();"
             )
         }
-        if(url.contains(".user.js") && view.isShown){
+        if (url.contains(".user.js") && view.isShown){
             val builder = MaterialAlertDialogBuilder(activity)
             builder.setTitle(activity.resources.getString(R.string.install_userscript))
             builder.setMessage(activity.resources.getString(R.string.install_userscript_description))
@@ -334,18 +334,19 @@ class StyxWebClient(
             dialog.show()
         }
 
-        if(userPreferences.cookieBlockEnabled){
+        if (userPreferences.cookieBlockEnabled){
             view.evaluateJavascript(cookieBlock.provideJs(), null)
         }
 
         var jsList = emptyList<JavaScriptDatabase.JavaScriptEntry>()
         javascriptRepository.lastHundredVisitedJavaScriptEntries()
-                .subscribe { list ->
-                    jsList = list
-                }
-        for(i in jsList){
-            for(x in i.include!!.split(",")){
-                if(view.url.matches(x.toRegex())){
+            .subscribe { list ->
+            jsList = list
+        }
+
+        for (i in jsList) {
+            for (x in i.include!!.split(",")) {
+                if (url.matches(x.toRegex())) {
                     view.evaluateJavascript(
                             i.code.replace("""\"""", """"""")
                                     .replace("\\n", System.lineSeparator())
@@ -400,7 +401,7 @@ class StyxWebClient(
         // Try to fetch meta theme color a few times
         styxView.fetchMetaThemeColorTries = KFetchMetaThemeColorTries
 
-        if(userPreferences.cookieBlockEnabled){
+        if (userPreferences.cookieBlockEnabled){
             view.evaluateJavascript(cookieBlock.provideJs(), null)
         }
 
