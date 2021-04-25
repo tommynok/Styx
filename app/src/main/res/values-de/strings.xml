@@ -201,6 +201,7 @@
     <string name="message_added_to_homescreen">Verknüpfung wurde zum Startbildschirm hinzugefügt</string>
     <string name="message_blocked_local">Lokale Datei wurde beim Laden blockiert</string>
     <string name="message_bookmark_added">Lesezeichen gespeichert</string>
+    <string name="message_bookmark_not_added">Lesezeichen bereits vorhanden</string>
     <string name="message_cache_cleared">Cache gelöscht</string>
     <string name="message_certificate_date_invalid">Datum des Zertifikats ungültig</string>
     <string name="message_certificate_domain_mismatch">Domain des Zertifikats stimmt nicht mit der Domain der aktuellen Seite überein</string>

@@ -9,6 +9,7 @@ import com.jamal2367.styx.browser.BrowserPopupMenu
 import com.jamal2367.styx.browser.SearchBoxModel
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.browser.activity.ThemedBrowserActivity
+import com.jamal2367.styx.browser.bookmarks.BookmarksAdapter
 import com.jamal2367.styx.browser.bookmarks.BookmarksDrawerView
 import com.jamal2367.styx.device.BuildInfo
 import com.jamal2367.styx.dialog.StyxDialogBuilder
@@ -86,6 +87,8 @@ interface AppComponent {
     fun inject(appsSettingsFragment: AppsSettingsFragment)
 
     fun inject(themedActivity: ThemedActivity)
+
+    fun inject(bookmarksAdapter: BookmarksAdapter)
 
     fun provideBloomFilterAdBlocker(): BloomFilterAdBlocker
 

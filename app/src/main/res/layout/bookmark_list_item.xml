@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
@@ -30,7 +31,7 @@
 
             <TextView
                 android:id="@+id/textBookmark"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="16dp"
@@ -40,7 +41,18 @@
                 android:maxLines="1"
                 android:minHeight="?attr/listPreferredItemHeightSmall"
                 android:singleLine="true"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/button_edit"
+                style="?android:attr/actionButtonStyle"
+                android:layout_width="@dimen/material_grid_touch_large"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/title_edit_bookmark"
+                app:tooltipText="@{@string/title_edit_bookmark}"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_edit_note" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
