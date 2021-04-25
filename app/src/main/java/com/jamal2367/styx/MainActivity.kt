@@ -42,7 +42,7 @@ class MainActivity : BrowserActivity() {
 
     override fun isIncognito() = false
 
-    override fun closeActivity() = closeDrawers {
+    override fun closeActivity() = closePanels {
         performExitCleanUp()
         moveTaskToBack(true)
     }

@@ -51,6 +51,7 @@
         <item name="navigationViewStyle">@drawable/session_menu_background</item>
         <item name="android:navigationBarColor">@android:color/white</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="enableEdgeToEdge">true</item>
     </style>
 
 </resources>

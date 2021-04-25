@@ -19,8 +19,10 @@ import android.os.Build
 import android.os.Environment
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
@@ -30,6 +32,7 @@ import com.jamal2367.styx.extensions.snackbar
 import java.io.Closeable
 import java.io.File
 import java.io.IOException
+import java.lang.reflect.Method
 import java.net.URI
 import java.net.URISyntaxException
 import java.text.SimpleDateFormat
@@ -367,5 +370,21 @@ object Utils {
             // Just launch system download manager activity if no custom file explorer found
             Intent(DownloadManager.ACTION_VIEW_DOWNLOADS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         }
+    }
+
+    fun adjustBottomSheet(aDialog : BottomSheetDialog) {
+        // Get our private class
+        val classEdgeToEdgeCallback = Class.forName("com.google.android.material.bottomsheet.BottomSheetDialog\$EdgeToEdgeCallback")
+        // Get our private method
+        val methodSetPaddingForPosition: Method = classEdgeToEdgeCallback.getDeclaredMethod("setPaddingForPosition", View::class.java)
+        methodSetPaddingForPosition.isAccessible = true
+        // Get private field containing our EdgeToEdgeCallback instance
+        val fieldEdgeToEdgeCallback = BottomSheetDialog::class.java.getDeclaredField("edgeToEdgeCallback")
+        fieldEdgeToEdgeCallback.isAccessible = true
+        // Get our bottom sheet view field
+        val fieldBottomField = BottomSheetDialog::class.java.getDeclaredField("bottomSheet")
+        fieldBottomField.isAccessible = true
+        // Eventually call setPaddingForPosition from EdgeToEdgeCallback instance passing bottom sheet view as parameter
+        methodSetPaddingForPosition.invoke(fieldEdgeToEdgeCallback.get(aDialog),fieldBottomField.get(aDialog))
     }
 }

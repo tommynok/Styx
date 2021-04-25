@@ -75,7 +75,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
     private val uiModel = BookmarkUiModel()
 
-    private var iBinding: BookmarkDrawerViewBinding
+    var iBinding: BookmarkDrawerViewBinding
 
     private var addBookmarkView: ImageView? = null
 
@@ -150,7 +150,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
     override fun handleBookmarkDeleted(bookmark: Bookmark) = when (bookmark) {
         is Bookmark.Folder -> setBookmarksShown(null, false)
-        is Bookmark.Entry -> iAdapter?.deleteItem(BookmarksViewModel(bookmark)) ?: Unit
+        is Bookmark.Entry -> iAdapter.deleteItem(BookmarksViewModel(bookmark)) ?: Unit
     }
 
     /**

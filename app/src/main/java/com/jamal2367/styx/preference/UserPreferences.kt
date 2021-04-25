@@ -1,6 +1,8 @@
 package com.jamal2367.styx.preference
 
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.content.res.Resources
 import com.jamal2367.styx.AppTheme
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.R
@@ -281,7 +283,12 @@ class UserPreferences @Inject constructor(
      * True if the app should use the navigation drawer UI, false if it should use the traditional
      * desktop browser tabs UI.
      */
-    var showTabsInDrawer by preferences.booleanPreference(R.string.pref_key_tabs_in_drawer, !screenSize.isTablet())
+    var verticalTabBarInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_tab_bar_vertical, !screenSize.isTablet())
+    var verticalTabBarInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_tab_bar_vertical, !screenSize.isTablet())
+
+    var verticalTabBar : Boolean = false
+        get() = if (Resources.getSystem().configuration.orientation == Configuration.ORIENTATION_PORTRAIT) verticalTabBarInPortrait else verticalTabBarInLandscape
+        private set
 
     /**
      * True if the browser should send a do not track (DNT) header with every GET request, false
@@ -308,9 +315,14 @@ class UserPreferences @Inject constructor(
     var bookmarksAndTabsSwapped by preferences.booleanPreference(R.string.pref_key_swap_tabs_and_bookmarks, false)
 
     /**
-     *
+     * Disable gesture actions on drawer.
      */
     var lockedDrawers by preferences.booleanPreference(R.string.pref_key_locked_drawers, R.bool.pref_default_locked_drawers)
+
+    /**
+     * Use bottom sheets instead of drawers to display tabs and bookmarks.
+     */
+    var useBottomSheets by preferences.booleanPreference(R.string.pref_key_use_bottom_sheets, R.bool.pref_default_use_bottom_sheets)
 
     /**
      *

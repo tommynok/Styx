@@ -51,32 +51,34 @@
             app:icon="@drawable/ic_phone" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="@bool/pref_default_use_bottom_sheets"
+            android:key="@string/pref_key_use_bottom_sheets"
+            android:title="@string/pref_title_use_bottom_sheets"
+            android:summary="@string/pref_summary_use_bottom_sheets"
+            android:disableDependentsState="true"
+            app:icon="@drawable/ic_fullscreen"/>
+
+        <SwitchPreferenceCompat
             android:defaultValue="@bool/pref_default_locked_drawers"
             android:key="@string/pref_key_locked_drawers"
             android:title="@string/pref_title_locked_drawers"
             android:summary="@string/pref_summary_locked_drawers"
+            android:dependency="@string/pref_key_use_bottom_sheets"
             app:icon="@drawable/ic_block" />
-
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="@string/pref_key_tabs_in_drawer"
-            android:summary="@string/settings_summary_vertical_tab_bar"
-            android:title="@string/tabs_in_drawer"
-            app:icon="@drawable/ic_desktop" />
-
-        <SwitchPreferenceCompat
-            android:defaultValue="@bool/pref_default_tab_list_item_show_close_button"
-            android:key="@string/pref_key_tab_list_item_show_close_button"
-            android:dependency="@string/pref_key_tabs_in_drawer"
-            android:title="@string/pref_title_tab_list_item_show_close_button"
-            android:summary="@string/pref_summary_tab_list_item_show_close_button"
-            app:icon="@drawable/ic_action_delete" />
 
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/pref_key_swap_tabs_and_bookmarks"
             android:title="@string/swap_bookmarks_and_tabs"
+            android:dependency="@string/pref_key_use_bottom_sheets"
             app:icon="@drawable/ic_cache" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/pref_default_tab_list_item_show_close_button"
+            android:key="@string/pref_key_tab_list_item_show_close_button"
+            android:title="@string/pref_title_tab_list_item_show_close_button"
+            android:summary="@string/pref_summary_tab_list_item_show_close_button"
+            app:icon="@drawable/ic_action_delete" />
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
@@ -121,6 +123,13 @@
             app:icon="@drawable/ic_action_refresh" />
 
         <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/pref_key_portrait_tab_bar_vertical"
+            android:title="@string/tabs_in_drawer"
+            android:summary="@string/settings_summary_vertical_tab_bar"
+            app:icon="@drawable/ic_desktop" />
+
+        <SwitchPreferenceCompat
             app:key="@string/pref_key_portrait_hide_status_bar"
             app:title="@string/pref_title_hide_status_bar"
             app:defaultValue="false"
@@ -154,6 +163,13 @@
             android:summary="@string/recommended"
             android:title="@string/pref_title_pull_to_refresh"
             app:icon="@drawable/ic_action_refresh" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="@string/pref_key_landscape_tab_bar_vertical"
+            android:title="@string/tabs_in_drawer"
+            android:summary="@string/settings_summary_vertical_tab_bar"
+            app:icon="@drawable/ic_desktop" />
 
         <SwitchPreferenceCompat
             app:key="@string/pref_key_landscape_hide_status_bar"

@@ -1,10 +1,7 @@
 package com.jamal2367.styx.extensions
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.RectF
+import android.graphics.*
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -107,6 +104,38 @@ inline fun View?.onceOnLayoutChange(crossinline runnable: () -> Unit) = this?.ap
         }
     })
 }
+
+/**
+ * Performs an action whenever view layout is changing.
+ *
+ * @param runnable the runnable to run.
+ */
+inline fun View?.onLayoutChange(crossinline runnable: () -> Unit) = this?.apply {
+    addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+        override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int,
+                                    oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int)
+        {
+            runnable();
+        }
+    })
+}
+
+/**
+ * Performs an action whenever view layout size is changing.
+ *
+ * @param runnable the runnable to run.
+ */
+inline fun View?.onSizeChange(crossinline runnable: () -> Unit) = this?.apply {
+    addOnLayoutChangeListener { _, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+        val rect = Rect(left, top, right, bottom)
+        val oldRect = Rect(oldLeft, oldTop, oldRight, oldBottom)
+        if (rect.width() != oldRect.width() || rect.height() != oldRect.height()) {
+            runnable();
+        }
+    }
+}
+
+
 
 /**
  * Performs an action once next time a drawer is opened.

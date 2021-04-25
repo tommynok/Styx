@@ -45,6 +45,10 @@
     void openFileChooser(android.webkit.ValueCallback, java.lang.String, java.lang.String);
 }
 
+-keep class com.google.android.material.bottomsheet.BottomSheetDialog$EdgeToEdgeCallback {
+    private void setPaddingForPosition(android.view.View);
+}
+
 -keep class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator *;
 }

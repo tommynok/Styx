@@ -6,9 +6,11 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.PopupWindowCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +18,7 @@ import com.jamal2367.styx.R
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.SessionListBinding
+import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.extensions.toast
 import com.jamal2367.styx.utils.FileNameInputFilter
@@ -35,7 +38,8 @@ class SessionsPopupWindow : PopupWindow {
                 aBinding: SessionListBinding = SessionListBinding.inflate(layoutInflater))
             : super(aBinding.root, WRAP_CONTENT, WRAP_CONTENT, true) {
 
-        //view.context.injector.inject(this)
+        // Needed to make sure our bottom sheet shows below our session pop-up
+        PopupWindowCompat.setWindowLayoutType(this, WindowManager.LayoutParams.FIRST_SUB_WINDOW + 5);
 
         // Elevation just need to be high enough not to cut the effect defined in our layout
         elevation = 100F
@@ -180,7 +184,7 @@ class SessionsPopupWindow : PopupWindow {
             //(itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = iAdapter
-            setHasFixedSize(true)
+            setHasFixedSize(false)
         }
 
         // Enable drag & drop but not swipe

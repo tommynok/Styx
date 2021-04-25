@@ -4,6 +4,7 @@ package com.jamal2367.styx.extensions
 
 import android.annotation.SuppressLint
 import android.view.View
+import android.view.Window
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -47,11 +48,11 @@ fun AppCompatActivity.makeSnackbar(message: String): Snackbar {
  *
  */
 
-fun AppCompatActivity.setStatusBarIconsColor(dark: Boolean)
+fun Window.setStatusBarIconsColor(dark: Boolean)
 {
         if (dark) {
-            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            decorView.systemUiVisibility = decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         } else {
-            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+            decorView.systemUiVisibility = decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         }
 }

@@ -259,6 +259,7 @@
     <string name="pref_summary_desktop_width">Breite des Desktop-Modus, für kleinere Inhalte höher einstellen</string>
     <string name="pref_summary_locked_drawers">Tabs- und Lesezeichen-Drawer sperren</string>
     <string name="pref_summary_tab_list_item_show_close_button">Schaltfläche zum Schließen von Tabs im Tab-Drawer anzeigen</string>
+    <string name="pref_summary_use_bottom_sheets">Tabs und Lesezeichen werden unten anstatt in den seitlichen Drawern angezeigt</string>
     <string name="pref_summary_webrtc">Ermöglicht die Kommunikation in Echtzeit über das Web mithilfe der Kamera und des Mikrofons Ihres Geräts</string>
     <string name="pref_title_desktop_width">Desktop-Breite</string>
     <string name="pref_title_hide_status_bar">Statusleiste ausblenden</string>
@@ -266,6 +267,7 @@
     <string name="pref_title_locked_drawers">Drawer sperren</string>
     <string name="pref_title_pull_to_refresh">Pull-to-Refresh</string>
     <string name="pref_title_tab_list_item_show_close_button">Tab schließen Schaltfläche anzeigen</string>
+    <string name="pref_title_use_bottom_sheets">Bottom Sheets verwenden</string>
     <string name="pref_title_webrtc">WebRTC Unterstützung</string>
     <string name="problem_download">Ungültige URL, Download nicht möglich!</string>
     <string name="problem_location_download">Download in dieses Verzeichns nicht möglich!</string>

@@ -49,7 +49,7 @@ class TabsDrawerView @JvmOverloads constructor(
             (itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = tabsAdapter
-            setHasFixedSize(true)
+            setHasFixedSize(false)
         }
 
         val callback: ItemTouchHelper.Callback = ItemDragDropSwipeHelper(tabsAdapter)

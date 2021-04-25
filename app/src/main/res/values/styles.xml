@@ -74,6 +74,7 @@
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
         <item name="popupMenuBackground">@drawable/popup_menu_background</item>
         <item name="navigationViewStyle">@drawable/session_menu_background</item>
+        <item name="enableEdgeToEdge">true</item>
     </style>
 
     <style name="Theme.App.Dark" parent="Theme.MaterialComponents">
@@ -114,6 +115,7 @@
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
         <item name="popupMenuBackground">@drawable/popup_menu_background</item>
         <item name="navigationViewStyle">@drawable/session_menu_background</item>
+        <item name="enableEdgeToEdge">true</item>
 </style>
 
     <style name="Theme.App.Black" parent="Theme.MaterialComponents">
@@ -153,6 +155,7 @@
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
         <item name="popupMenuBackground">@drawable/popup_menu_background</item>
         <item name="navigationViewStyle">@drawable/session_menu_background</item>
+        <item name="enableEdgeToEdge">true</item>
     </style>
 
     <style name="Theme.App.DayNight" parent="Theme.App.Light" />
