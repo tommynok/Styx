@@ -4,17 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.webkit.CookieManager
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.github.ahmadaghazadeh.editor.widget.CodeEditor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
@@ -23,7 +17,6 @@ import com.jamal2367.styx.animation.AnimationUtils
 import com.jamal2367.styx.browser.BookmarksView
 import com.jamal2367.styx.browser.JavaScriptChoice
 import com.jamal2367.styx.browser.TabsManager
-import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.database.Bookmark
 import com.jamal2367.styx.database.bookmark.BookmarkRepository
@@ -38,7 +31,6 @@ import com.jamal2367.styx.dialog.StyxDialogBuilder
 import com.jamal2367.styx.extensions.color
 import com.jamal2367.styx.extensions.drawable
 import com.jamal2367.styx.extensions.inflater
-import com.jamal2367.styx.extensions.setImageForTheme
 import com.jamal2367.styx.favicon.FaviconModel
 import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.isBookmarkUri
@@ -48,9 +40,7 @@ import com.jamal2367.styx.utils.isSpecialUrl
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.subscribeBy
 import java.net.URL
-import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
 /**
@@ -75,7 +65,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
     private val uiController: UIController
 
     // Adapter
-    private var bookmarkAdapter: BookmarkListAdapter? = null
+    private var bookmarkAdapter: BookmarksAdapter? = null
 
     // Colors
     private var scrollIndex: Int = 0
@@ -110,14 +100,13 @@ class BookmarksDrawerView @JvmOverloads constructor(
         addBookmarkView = findViewById(R.id.menuItemAddBookmark)
         addBookmarkView?.setOnClickListener { uiController.bookmarkButtonClicked() }
 
-        bookmarkAdapter = BookmarkListAdapter(
+        bookmarkAdapter = BookmarksAdapter(
             context,
             faviconModel,
             networkScheduler,
             mainScheduler,
             ::handleItemLongPress,
-            ::handleItemClick,
-            userPreferences
+            ::handleItemClick
         )
 
         iBinding.bookmarkListView.let {
@@ -374,130 +363,6 @@ class BookmarksDrawerView @JvmOverloads constructor(
         updateBookmarkIndicator(url)
         val folder = uiModel.currentFolder
         setBookmarksShown(folder, false)
-    }
-
-    private class BookmarkViewHolder(
-        itemView: View,
-        private val adapter: BookmarkListAdapter,
-        private val onItemLongClickListener: (Bookmark) -> Boolean,
-        private val onItemClickListener: (Bookmark) -> Unit,
-        private val userPreferences: UserPreferences
-    ) : RecyclerView.ViewHolder(itemView), OnClickListener, OnLongClickListener {
-
-        val txtTitle: TextView = itemView.findViewById(R.id.textBookmark)
-        val favicon: ImageView = itemView.findViewById(R.id.faviconBookmark)
-
-        init {
-            itemView.setOnLongClickListener(this)
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {
-            val index = adapterPosition
-            if (index.toLong() != RecyclerView.NO_ID) {
-                onItemClickListener(adapter.itemAt(index).bookmark)
-            }
-        }
-
-        override fun onLongClick(v: View): Boolean {
-            val index = adapterPosition
-            return index != RecyclerView.NO_POSITION && onItemLongClickListener(adapter.itemAt(index).bookmark)
-        }
-    }
-
-    private class BookmarkListAdapter(
-        val context: Context,
-        private val faviconModel: FaviconModel,
-        private val networkScheduler: Scheduler,
-        private val mainScheduler: Scheduler,
-        private val onItemLongClickListener: (Bookmark) -> Boolean,
-        private val onItemClickListener: (Bookmark) -> Unit,
-        private val userPreferences: UserPreferences,
-    ) : RecyclerView.Adapter<BookmarkViewHolder>() {
-
-        private var bookmarks: List<BookmarksViewModel> = listOf()
-        private val faviconFetchSubscriptions = ConcurrentHashMap<String, Disposable>()
-        private val folderIcon = context.drawable(R.drawable.ic_folder)
-        private val webpageIcon = context.drawable(R.drawable.ic_webpage)
-
-        fun itemAt(position: Int): BookmarksViewModel = bookmarks[position]
-
-        fun deleteItem(item: BookmarksViewModel) {
-            val newList = bookmarks - item
-            updateItems(newList)
-        }
-
-        fun updateItems(newList: List<BookmarksViewModel>) {
-            val oldList = bookmarks
-            bookmarks = newList
-
-            val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-                override fun getOldListSize() = oldList.size
-
-                override fun getNewListSize() = bookmarks.size
-
-                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-                    oldList[oldItemPosition].bookmark.url == bookmarks[newItemPosition].bookmark.url
-
-                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-                    oldList[oldItemPosition] == bookmarks[newItemPosition]
-            })
-
-            diffResult.dispatchUpdatesTo(this)
-        }
-
-        fun cleanupSubscriptions() {
-            for (subscription in faviconFetchSubscriptions.values) {
-                subscription.dispose()
-            }
-            faviconFetchSubscriptions.clear()
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
-            val inflater = LayoutInflater.from(parent.context)
-            val itemView = inflater.inflate(R.layout.bookmark_list_item, parent, false)
-
-            return BookmarkViewHolder(itemView, this, onItemLongClickListener, onItemClickListener, userPreferences = userPreferences)
-        }
-
-        override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
-            holder.itemView.jumpDrawablesToCurrentState()
-
-            val viewModel = bookmarks[position]
-            holder.txtTitle.text = viewModel.bookmark.title
-
-            val url = viewModel.bookmark.url
-            holder.favicon.tag = url
-
-            viewModel.icon?.let {
-                holder.favicon.setImageBitmap(it)
-                return
-            }
-
-            val imageDrawable = when (viewModel.bookmark) {
-                is Bookmark.Folder -> folderIcon
-                is Bookmark.Entry -> webpageIcon.also {
-                    faviconFetchSubscriptions[url]?.dispose()
-                    faviconFetchSubscriptions[url] = faviconModel
-                        .faviconForUrl(url, viewModel.bookmark.title)
-                        .subscribeOn(networkScheduler)
-                        .observeOn(mainScheduler)
-                        .subscribeBy(
-                            onSuccess = { bitmap ->
-                                viewModel.icon = bitmap
-                                if (holder.favicon.tag == url) {
-                                    val ba = context as BrowserActivity
-                                    holder.favicon.setImageForTheme(bitmap, ba.useDarkTheme)
-                                }
-                            }
-                        )
-                }
-            }
-
-            holder.favicon.setImageDrawable(imageDrawable)
-        }
-
-        override fun getItemCount() = bookmarks.size
     }
 
 }
