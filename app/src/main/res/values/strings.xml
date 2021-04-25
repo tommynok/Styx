@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
     <string name="app_name">Styx</string>
-    <string name="app_version_name" translatable="false">\"Gytha\"</string>
+    <string name="app_version_name" translatable="false">\"Wyna\"</string>
     <string name="action_add_bookmark">Add bookmark</string>
     <string name="action_add_to_homescreen">Add to home screen</string>
     <string name="action_allow">Allow</string>
