@@ -4,25 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:title="@string/settings_extensions">
-
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="block_cookies"
-            android:icon="@drawable/ic_cookie_remove"
-            android:summary="@string/force_zoom_summary"
-            android:title="@string/cookie_category" />
-
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="amp"
-            android:icon="@drawable/ic_amp_stories_24"
-            android:summary="@string/force_zoom_summary"
-            android:title="@string/amp_to_html" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:title="@string/scripts">
 
         <Preference

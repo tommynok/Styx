@@ -59,7 +59,6 @@
     <string name="algorithm">Algorithm</string>
     <string name="allow_javascript">Allow JavaScript for this site</string>
     <string name="android_open_source_project">Android Open Source Project</string>
-    <string name="amp_to_html">AMP to HTML (Beta)</string>
     <string name="apache">Apache License 2.0</string>
     <string name="app_restart">Please restart the app to apply the changes</string>
     <string name="black_theme">Black (AMOLED)</string>
@@ -99,7 +98,6 @@
     <string name="close_tab">Close current tab</string>
     <string name="color_mode">Enable color mode</string>
     <string name="cookies">Enable cookies</string>
-    <string name="cookie_category">Cookie dialog block (Beta)</string>
     <string name="dark_theme">Dark</string>
     <string name="default_theme">Follow System</string>
     <string name="delete_all_bookmarks">Delete all bookmarks?</string>

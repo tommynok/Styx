@@ -383,11 +383,6 @@ class UserPreferences @Inject constructor(
     var desktopWidthInLandscape by preferences.intPreference(R.string.pref_key_landscape_desktop_width, BrowserApp.instance.resources.getInteger(R.integer.pref_default_landscape_desktop_width))
 
     /**
-     * Redirect from AMP websites to HTML
-     */
-    var noAmp by preferences.booleanPreference(NO_AMP, false)
-
-    /**
      * True if dark mode should be enabled by default for new tabs, false otherwise.
      */
     var darkModeDefault by preferences.booleanPreference(R.string.pref_key_dark_mode_default, false)
@@ -415,11 +410,6 @@ class UserPreferences @Inject constructor(
      * Always in Incognito mode
      */
     var incognito by preferences.booleanPreference(ALWAYS_INCOGNITO, false)
-
-    /**
-     * Cookie Dialog Blocker
-     */
-    var cookieBlockEnabled by preferences.booleanPreference(COOKIE_BLOCK, false)
 
     /**
      * SSL Warn Dialog
@@ -478,14 +468,12 @@ private const val SEARCH_SUGGESTIONS = "searchSuggestionsChoice"
 private const val HOSTS_SOURCE = "hostsSource"
 private const val HOSTS_LOCAL_FILE = "hostsLocalFile"
 private const val HOSTS_REMOTE_FILE = "hostsRemoteFile"
-private const val NO_AMP = "noAmp"
 private const val USE_JS_BLOCK = "useJSblock"
 private const val BLOCK_JS = "blockJS"
 private const val USE_SITE_BLOCK = "useSiteBlock"
 private const val BLOCK_MALWARE = "blockMalware"
 private const val FORCE_ZOOM = "forcezoom"
 private const val ALWAYS_INCOGNITO = "alwaysincognito"
-private const val COOKIE_BLOCK = "blockCookieDialogs"
 private const val SSL = "ssl"
 private const val SECOND_BAR = "secondBar"
 private const val LAST_TAB = "lastTab"

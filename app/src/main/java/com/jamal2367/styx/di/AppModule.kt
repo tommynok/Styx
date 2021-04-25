@@ -191,13 +191,7 @@ class AppModule {
     fun providesInvertPage(): InvertPage = MezzanineGenerator.InvertPage()
 
     @Provides
-    fun providesCookieBlock(): CookieBlock = MezzanineGenerator.CookieBlock()
-
-    @Provides
     fun providesSetMetaViewport(): SetMetaViewport = MezzanineGenerator.SetMetaViewport()
-
-    @Provides
-    fun providesAmpBlock(): BlockAMP = MezzanineGenerator.BlockAMP()
 
 }
 

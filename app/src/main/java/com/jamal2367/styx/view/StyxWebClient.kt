@@ -83,8 +83,6 @@ class StyxWebClient(
     @Inject internal lateinit var invertPageJs: InvertPage
     @Inject internal lateinit var setMetaViewport: SetMetaViewport
     @Inject internal lateinit var homePageFactory: HomePageFactory
-    @Inject internal lateinit var noAMP: BlockAMP
-    @Inject internal lateinit var cookieBlock: CookieBlock
     @Inject internal lateinit var javascriptRepository: JavaScriptRepository
     @Inject @field:DatabaseScheduler internal lateinit var databaseScheduler: Scheduler
 
@@ -262,14 +260,6 @@ class StyxWebClient(
 
     override fun onLoadResource(view: WebView, url: String?) {
         super.onLoadResource(view, url)
-        if(userPreferences.noAmp){
-            view.evaluateJavascript(noAMP.provideJs(), null)
-            if (url != null) {
-                if(url.contains("&ampcf=1")){
-                    view.evaluateJavascript("window.location.replace(\"" + url.replace("&ampcf=1", "") + "\");", null)
-                }
-            }
-        }
         if (styxView.desktopMode) {
             // That's needed for desktop mode support
             // See: https://stackoverflow.com/a/60621350/3969362
@@ -334,10 +324,6 @@ class StyxWebClient(
             dialog.show()
         }
 
-        if (userPreferences.cookieBlockEnabled){
-            view.evaluateJavascript(cookieBlock.provideJs(), null)
-        }
-
         var jsList = emptyList<JavaScriptDatabase.JavaScriptEntry>()
         javascriptRepository.lastHundredVisitedJavaScriptEntries()
             .subscribe { list ->
@@ -400,10 +386,6 @@ class StyxWebClient(
 
         // Try to fetch meta theme color a few times
         styxView.fetchMetaThemeColorTries = KFetchMetaThemeColorTries
-
-        if (userPreferences.cookieBlockEnabled){
-            view.evaluateJavascript(cookieBlock.provideJs(), null)
-        }
 
         if (userPreferences.javaScriptChoice === JavaScriptChoice.BLACKLIST) {
             if (userPreferences.javaScriptBlocked !== "" && userPreferences.javaScriptBlocked !== " ") {

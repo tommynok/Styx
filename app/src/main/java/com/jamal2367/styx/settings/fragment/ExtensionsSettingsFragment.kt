@@ -35,16 +35,6 @@ class ExtensionsSettingsFragment : AbstractSettingsFragment() {
 
         injector.inject(this)
 
-        switchPreference(
-                preference = BLOCK_COOKIES,
-                isChecked = userPreferences.cookieBlockEnabled,
-                onCheckChange = { userPreferences.cookieBlockEnabled = it }
-        )
-        switchPreference(
-                preference = AMP,
-                isChecked = userPreferences.noAmp,
-                onCheckChange = { userPreferences.noAmp = it }
-        )
         clickablePreference(
                 preference = SCRIPT_UNINSTALL,
                 onClick = ::uninstallUserScript
@@ -52,7 +42,7 @@ class ExtensionsSettingsFragment : AbstractSettingsFragment() {
 
     }
 
-    fun uninstallUserScript(){
+    private fun uninstallUserScript(){
         val builderSingle = MaterialAlertDialogBuilder(requireContext())
         builderSingle.setTitle(resources.getString(R.string.action_remove) + ":")
         val arrayAdapter = ArrayAdapter<String>(requireContext(), R.layout.userscript_choise)
@@ -80,8 +70,6 @@ class ExtensionsSettingsFragment : AbstractSettingsFragment() {
     }
 
     companion object {
-        private const val BLOCK_COOKIES = "block_cookies"
-        private const val AMP = "amp"
         private const val SCRIPT_UNINSTALL = "remove_userscript"
     }
 }
