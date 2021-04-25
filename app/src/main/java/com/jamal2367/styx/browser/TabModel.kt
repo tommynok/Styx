@@ -24,13 +24,16 @@ open class TabModel (
                 it.putBoolean(KEY_DESKTOP_MODE, desktopMode)
                 it.putBoolean(KEY_DARK_MODE, darkMode)
                 favicon?.apply {
-                    // Using PNG instead of WEBP as it is hopefully lossless
-                    // Using WEBP results in the quality degrading reload after reload
-                    // Maybe consider something like: https://stackoverflow.com/questions/8065050/convert-bitmap-to-byte-array-without-compress-method-in-android
-                    val stream = ByteArrayOutputStream()
-                    compress(Bitmap.CompressFormat.PNG, 100, stream)
-                    val byteArray = stream.toByteArray()
-                    it.putByteArray(TAB_FAVICON_KEY, byteArray)
+                    if (!isRecycled)
+                    {
+                        // Using PNG instead of WEBP as it is hopefully lossless
+                        // Using WEBP results in the quality degrading reload after reload
+                        // Maybe consider something like: https://stackoverflow.com/questions/8065050/convert-bitmap-to-byte-array-without-compress-method-in-android
+                        val stream = ByteArrayOutputStream()
+                        compress(Bitmap.CompressFormat.PNG, 100, stream)
+                        val byteArray = stream.toByteArray()
+                        it.putByteArray(TAB_FAVICON_KEY, byteArray)
+                    }
                 }
                 it
             }
