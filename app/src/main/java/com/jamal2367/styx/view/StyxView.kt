@@ -165,6 +165,15 @@ class StyxView(
     /**
      *
      */
+    var darkMode = false
+        set(aDarkMode) {
+            field = aDarkMode
+            applyDarkMode();
+        }
+
+    /**
+     *
+     */
     private val webViewHandler = WebViewHandler(this)
 
     /**
@@ -290,12 +299,14 @@ class StyxView(
             createWebView()
             initializeContent(tabInitializer)
             desktopMode = userPreferences.desktopModeDefault
+            darkMode = userPreferences.darkModeDefault
         } else {
             // Our WebView will only be created whenever our tab goes to the foreground
             latentTabInitializer = tabInitializer
             titleInfo.setTitle(tabInitializer.tabModel.title)
             titleInfo.setFavicon(tabInitializer.tabModel.favicon)
             desktopMode = tabInitializer.tabModel.desktopMode
+            darkMode = tabInitializer.tabModel.darkMode
         }
 
         networkDisposable = networkConnectivityModel.connectivity()
@@ -399,10 +410,6 @@ class StyxView(
             || userPreferences.saveDataEnabled
             || userPreferences.removeIdentifyingHeadersEnabled
 
-        if (userPreferences.darkModeExtension && WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
-            WebSettingsCompat.setForceDark(webView!!.settings, WebSettingsCompat.FORCE_DARK_ON)
-        }
-
         if (userPreferences.doNotTrackEnabled) {
             requestHeaders[HEADER_DNT] = "1"
         } else {
@@ -468,6 +475,31 @@ class StyxView(
 
         CookieManager.getInstance().setAcceptThirdPartyCookies(webView,
             !userPreferences.blockThirdPartyCookiesEnabled)
+
+        applyDarkMode();
+    }
+
+    /**
+     *
+     */
+    private fun applyDarkMode() {
+        val settings = webView?.settings ?: return
+
+        // TODO: Have a settings option to have dark mode use specified render mode instead of WebView dark mode
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            if (darkMode) {
+                WebSettingsCompat.setForceDark(settings,WebSettingsCompat.FORCE_DARK_ON)
+            } else {
+                WebSettingsCompat.setForceDark(settings,WebSettingsCompat.FORCE_DARK_OFF)
+            }
+        } else {
+            // Fallback to that then
+            if (darkMode) {
+                setColorMode(RenderingMode.INVERTED_GRAYSCALE)
+            } else {
+                setColorMode(userPreferences.renderingMode)
+            }
+        }
     }
 
     /**
@@ -479,6 +511,10 @@ class StyxView(
         settings.apply {
             // That needs to be false for WebRTC to work at all, don't ask me why
             mediaPlaybackRequiresUserGesture = false
+
+            if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK_STRATEGY)) {
+                WebSettingsCompat.setForceDarkStrategy(settings,WebSettingsCompat.DARK_STRATEGY_PREFER_WEB_THEME_OVER_USER_AGENT_DARKENING)
+            }
 
             if (!isIncognito) {
                 mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
@@ -531,6 +567,14 @@ class StyxView(
     }
 
     /**
+     *
+     */
+    fun toggleDarkMode() {
+        // Toggle dark mode
+        darkMode = !darkMode
+    }
+
+    /**
      * This method is used to toggle the user agent between desktop and the current preference of
      * the user.
      */
@@ -560,7 +604,7 @@ class StyxView(
      * Save the state of this tab and return it as a [Bundle].
      */
     fun saveState(): Bundle {
-        return TabModel(url,title,desktopMode,favicon,webViewState()).toBundle()
+        return TabModel(url, title, desktopMode, darkMode, favicon, webViewState()).toBundle()
     }
     /**
      * Pause the current WebView instance.
@@ -635,14 +679,12 @@ class StyxView(
                 // SL: enabled that and the performance gain is very noticeable on  F(x)tec Pro1
                 // Notably on: https://www.bbc.com/worklife
                 setHardwareRendering()
-                invertPage = false
             }
             RenderingMode.INVERTED -> {
                 val filterInvert = ColorMatrixColorFilter(
                     negativeColorArray)
                 paint.colorFilter = filterInvert
                 setHardwareRendering()
-
                 invertPage = true
             }
             RenderingMode.GRAYSCALE -> {

@@ -193,6 +193,19 @@
                     app:drawableEndCompat="?android:attr/listChoiceIndicatorMultiple"
                     app:drawableStartCompat="@drawable/ic_desktop" />
 
+                <CheckBox
+                    android:id="@+id/menuItemDarkMode"
+                    style="@style/BrowserTextMenuItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="@string/dark_theme"
+                    android:gravity="center_vertical"
+                    android:enabled="true"
+                    android:background="?attr/selectableItemBackground"
+                    app:drawableEndCompat="?android:attr/listChoiceIndicatorMultiple"
+                    app:drawableStartCompat="@drawable/ic_dark_mode" />
+
                 <TextView
                     android:id="@+id/divider3"
                     android:layout_width="match_parent"

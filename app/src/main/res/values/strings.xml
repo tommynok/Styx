@@ -100,7 +100,6 @@
     <string name="color_mode">Enable color mode</string>
     <string name="cookies">Enable cookies</string>
     <string name="cookie_category">Cookie dialog block (Beta)</string>
-    <string name="dark_mode">Dark mode for webpages</string>
     <string name="dark_theme">Dark</string>
     <string name="default_theme">Follow System</string>
     <string name="delete_all_bookmarks">Delete all bookmarks?</string>
@@ -339,10 +338,12 @@
     <string name="settings_reseted">All settings restored</string>
     <string name="settings_security">Security</string>
     <string name="settings_summary_apps">Enable third-party apps</string>
+    <string name="settings_summary_dark_mode_default">Define if new tabs use force dark mode by default</string>
     <string name="settings_summary_desktop_mode_default">Define if new tabs use desktop mode by default</string>
     <string name="settings_summary_vertical_tab_bar">Disable it to use tabs in navigation drawer</string>
     <string name="settings_title_apps">Apps</string>
     <string name="settings_title_debug">Debug</string>
+    <string name="settings_title_dark_mode_default">Force dark mode</string>
     <string name="settings_title_desktop_mode_default">Desktop mode</string>
     <string name="settings">Settings</string>
     <string name="seven">Seven (7)</string>
@@ -494,6 +495,7 @@
     <string name="pref_key_browser_text_size" translatable="false">pref_key_browser_text_size</string>
     <string name="pref_key_cookies" translatable="false">pref_key_cookies</string>
     <string name="pref_key_cookies_incognito" translatable="false">pref_key_cookies_incognito</string>
+    <string name="pref_key_dark_mode_default" translatable="false">pref_key_dark_mode_default</string>
     <string name="pref_key_default_text_encoding" translatable="false">pref_key_default_text_encoding</string>
     <string name="pref_key_desktop_mode_default" translatable="false">pref_key_desktop_mode_default</string>
     <string name="pref_key_homepage_in_new_tab">pref_key_homepage_in_new_tab</string>

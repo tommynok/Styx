@@ -9,6 +9,7 @@ import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 import com.jamal2367.styx.BrowserApp
 import com.jamal2367.styx.constant.FILE
+import com.jamal2367.styx.constant.Schemes
 import com.jamal2367.styx.constant.Uris
 import com.jamal2367.styx.html.bookmark.BookmarkPageFactory
 import com.jamal2367.styx.html.download.DownloadPageFactory
@@ -89,11 +90,28 @@ fun String?.isHistoryUri(): Boolean =
  */
 fun String?.isSpecialUrl(): Boolean =
     this != null
-        && this.startsWith(FILE + BrowserApp.instance.filesDir)
+        && (this.startsWith(FILE + BrowserApp.instance.filesDir)
         && (this.endsWith(BookmarkPageFactory.FILENAME)
         || this.endsWith(DownloadPageFactory.FILENAME)
         || this.endsWith(HistoryPageFactory.FILENAME)
         || this.endsWith(HomePageFactory.FILENAME))
+        // TODO: That's somehow causing History page to be restored as Home page
+        /*|| this.startsWith(Schemes.Styx + "://")*/)
+
+/**
+ * Check if this URL is using the specified scheme.
+ */
+fun String?.isScheme(aScheme: String): Boolean =
+        this != null
+        && this.startsWith("$aScheme:")
+
+
+/**
+ * Check if this URL is using any application specific schemes.
+ */
+fun String?.isAppScheme(): Boolean =
+        isScheme(Schemes.Styx)
+        || isScheme(Schemes.About)
 
 /**
  * Determines if the url is a url for the bookmark page.

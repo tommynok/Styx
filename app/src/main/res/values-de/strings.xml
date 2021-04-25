@@ -99,7 +99,6 @@
     <string name="color_mode">Farbmodus</string>
     <string name="cookies">Cookies erlauben</string>
     <string name="cookie_category">Cookie-Dialogblocker (Beta)</string>
-    <string name="dark_mode">Dunkel-Modus für Webseiten</string>
     <string name="dark_theme">Dunkles Design</string>
     <string name="default_theme">Systemstandard</string>
     <string name="developer">Entwickler</string>
@@ -338,9 +337,11 @@
     <string name="settings_reseted">Alle Einstellungen wiederhergestellt</string>
     <string name="settings_security">Sicherheit</string>
     <string name="settings_summary_apps">Anwendungen von Drittanbietern</string>
+    <string name="settings_summary_dark_mode_default">Neue Tabs standardmäßig im Dunkel Modus verwenden</string>
     <string name="settings_summary_desktop_mode_default">Neue Tabs standardmäßig im Desktop Modus verwenden</string>
     <string name="settings_summary_vertical_tab_bar">Ausschalten um Desktop Tab-Drawer zu nutzen</string>
     <string name="settings_title_apps">Apps</string>
+    <string name="settings_title_dark_mode_default">Dunkel-Modus für Webseiten</string>
     <string name="settings_title_desktop_mode_default">Desktop-Modus</string>
     <string name="settings">Einstellungen</string>
     <string name="seven">Sieben (7)</string>

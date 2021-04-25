@@ -3,7 +3,6 @@ package com.jamal2367.styx.settings.fragment
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
 import com.jamal2367.styx.database.javascript.JavaScriptDatabase
@@ -11,7 +10,6 @@ import com.jamal2367.styx.database.javascript.JavaScriptRepository
 import com.jamal2367.styx.di.DatabaseScheduler
 import com.jamal2367.styx.di.MainScheduler
 import com.jamal2367.styx.di.injector
-import com.jamal2367.styx.extensions.snackbar
 import com.jamal2367.styx.preference.UserPreferences
 import javax.inject.Inject
 
@@ -37,11 +35,6 @@ class ExtensionsSettingsFragment : AbstractSettingsFragment() {
 
         injector.inject(this)
 
-        switchPreference(
-                preference = DARK_MODE,
-                isChecked = userPreferences.darkModeExtension,
-                onCheckChange = { userPreferences.darkModeExtension = it; (activity as AppCompatActivity).snackbar(R.string.app_restart)}
-        )
         switchPreference(
                 preference = BLOCK_COOKIES,
                 isChecked = userPreferences.cookieBlockEnabled,
@@ -87,7 +80,6 @@ class ExtensionsSettingsFragment : AbstractSettingsFragment() {
     }
 
     companion object {
-        private const val DARK_MODE = "dark_mode"
         private const val BLOCK_COOKIES = "block_cookies"
         private const val AMP = "amp"
         private const val SCRIPT_UNINSTALL = "remove_userscript"
