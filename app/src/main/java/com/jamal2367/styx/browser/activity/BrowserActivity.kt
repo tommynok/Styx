@@ -2146,7 +2146,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         }
         // Define what to do once our drawer it opened
         //iBinding.drawerLayout.onceOnDrawerOpened {
-        iBinding.drawerLayout.findViewById<RecyclerView>(R.id.recycler_view_bookmarks)?.apply {
+        iBinding.drawerLayout.findViewById<RecyclerView>(R.id.list_bookmarks)?.apply {
             // Focus first item in our list
             findViewHolderForAdapterPosition(0)?.itemView?.requestFocus()
         }
