@@ -11,6 +11,8 @@ import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.browser.activity.ThemedBrowserActivity
 import com.jamal2367.styx.browser.bookmarks.BookmarksAdapter
 import com.jamal2367.styx.browser.bookmarks.BookmarksDrawerView
+import com.jamal2367.styx.browser.sessions.SessionsPopupWindow
+import com.jamal2367.styx.browser.tabs.TabsDrawerView
 import com.jamal2367.styx.device.BuildInfo
 import com.jamal2367.styx.dialog.StyxDialogBuilder
 import com.jamal2367.styx.download.StyxDownloadListener
@@ -84,9 +86,13 @@ interface AppComponent {
 
     fun inject(popupMenu: BrowserPopupMenu)
 
+    fun inject(popupMenu: SessionsPopupWindow)
+
     fun inject(appsSettingsFragment: AppsSettingsFragment)
 
     fun inject(themedActivity: ThemedActivity)
+
+    fun inject(tabsDrawerView: TabsDrawerView)
 
     fun inject(bookmarksAdapter: BookmarksAdapter)
 

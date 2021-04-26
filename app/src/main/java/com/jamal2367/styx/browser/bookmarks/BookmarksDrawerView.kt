@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.ahmadaghazadeh.editor.widget.CodeEditor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jamal2367.styx.R
@@ -56,6 +57,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
     @Inject internal lateinit var allowListModel: AllowListModel
     @Inject internal lateinit var bookmarksDialogBuilder: StyxDialogBuilder
     @Inject internal lateinit var faviconModel: FaviconModel
+    @Inject lateinit var userPreferences: UserPreferences
     @Inject @field:DatabaseScheduler internal lateinit var databaseScheduler: Scheduler
     @Inject @field:NetworkScheduler internal lateinit var networkScheduler: Scheduler
     @Inject @field:MainScheduler internal lateinit var mainScheduler: Scheduler
@@ -110,9 +112,11 @@ class BookmarksDrawerView @JvmOverloads constructor(
                 ::openBookmark
         )
 
-        iBinding.listBookmarks.let {
-            it.layoutManager = LinearLayoutManager(context)
-            it.adapter = iAdapter
+        iBinding.listBookmarks.apply {
+            // Reverse layout if using bottom tool bars
+            // LinearLayoutManager.setReverseLayout is also adjusted from BrowserActivity.setupToolBar
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, userPreferences.toolbarsBottom)
+            adapter = iAdapter
         }
 
         // Enable drag & drop but not swipe

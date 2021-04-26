@@ -34,7 +34,9 @@
                     android:clipChildren="true"
                     android:animateLayoutChanges="true" />
 
-                <include layout="@layout/search_interface" />
+                <include
+                    android:id="@+id/findInPageInclude"
+                    layout="@layout/search_interface" />
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottom_navigation"

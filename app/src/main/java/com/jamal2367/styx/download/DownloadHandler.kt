@@ -1,5 +1,6 @@
 package com.jamal2367.styx.download
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.app.DownloadManager
@@ -12,6 +13,7 @@ import android.net.Uri
 import android.os.Environment
 import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
 import android.webkit.CookieManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -37,16 +39,19 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
 /**
  * Handle download requests
  */
 @Singleton
-class DownloadHandler @Inject constructor (private val downloadsRepository: DownloadsRepository,
-                                          private val downloadManager: DownloadManager,
-                                          @param:DatabaseScheduler private val databaseScheduler: Scheduler,
-                                          @param:NetworkScheduler private val networkScheduler: Scheduler,
-                                          @param:MainScheduler private val mainScheduler: Scheduler,
-                                          private val logger: Logger) {
+class DownloadHandler @Inject constructor(
+        private val downloadsRepository: DownloadsRepository,
+        private val downloadManager: DownloadManager,
+        @param:DatabaseScheduler private val databaseScheduler: Scheduler,
+        @param:NetworkScheduler private val networkScheduler: Scheduler,
+        @param:MainScheduler private val mainScheduler: Scheduler,
+        private val logger: Logger,
+) {
     fun legacyDownloadStart(context: AppCompatActivity, manager: UserPreferences, url: String, userAgent: String, contentDisposition: String?, mimeType: String, contentSize: String) {
 
         logger.log(TAG, "DOWNLOAD: Trying to download from URL: $url")
@@ -107,8 +112,11 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
      * @param contentSize        The size of the content
      */
     /* package */
-    private fun onDownloadStartNoStream(context: Activity, preferences: UserPreferences,
-            url: String, userAgent: String, contentDisposition: String?, mimetype: String?, contentSize: String) {
+    @SuppressLint("CheckResult")
+    private fun onDownloadStartNoStream(
+            context: Activity, preferences: UserPreferences,
+            url: String, userAgent: String, contentDisposition: String?, mimetype: String?, contentSize: String,
+    ) {
         val filename = guessFileName(contentDisposition, null, url, mimetype)
 
         // Check to see if we have an SDCard
@@ -142,7 +150,7 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
             // This only happens for very bad urls, we want to catch the
             // exception here
             logger.log(TAG, "Exception while trying to parse url '$url'", e)
-            (context as AppCompatActivity).snackbar(R.string.problem_download)
+            context.snackbar(R.string.problem_download, Gravity.BOTTOM)
             return
         }
         val addressString = webAddress.toString()
@@ -150,7 +158,7 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
         val request: DownloadManager.Request = try {
             DownloadManager.Request(uri)
         } catch (e: IllegalArgumentException) {
-            (context as AppCompatActivity).snackbar(R.string.cannot_download)
+            context.snackbar(R.string.cannot_download, Gravity.BOTTOM)
             return
         }
 
@@ -161,7 +169,7 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
         location = FileUtils.addNecessarySlashes(location)
         val downloadFolder = Uri.parse(location)
         if (!isWriteAccessAvailable(downloadFolder)) {
-            (context as AppCompatActivity).snackbar(R.string.problem_location_download)
+            context.snackbar(R.string.problem_location_download, Gravity.BOTTOM)
             return
         }
         request.setDestinationUri(Uri.parse(FILE + location + filename))
@@ -190,9 +198,9 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
                     .observeOn(mainScheduler)
                     .subscribe { result: FetchUrlMimeType.Result? ->
                 when (result) {
-                    FetchUrlMimeType.Result.FAILURE_ENQUEUE -> (context as AppCompatActivity).snackbar(R.string.cannot_download)
-                    FetchUrlMimeType.Result.FAILURE_LOCATION -> (context as AppCompatActivity).snackbar(R.string.problem_location_download)
-                    FetchUrlMimeType.Result.SUCCESS -> (context as AppCompatActivity).snackbar(R.string.download_pending)
+                    FetchUrlMimeType.Result.FAILURE_ENQUEUE -> context.snackbar(R.string.cannot_download, Gravity.BOTTOM)
+                    FetchUrlMimeType.Result.FAILURE_LOCATION -> context.snackbar(R.string.problem_location_download, Gravity.BOTTOM)
+                    FetchUrlMimeType.Result.SUCCESS -> context.snackbar(R.string.download_pending, Gravity.BOTTOM)
                 }
             }
         } else {
@@ -202,13 +210,12 @@ class DownloadHandler @Inject constructor (private val downloadsRepository: Down
             } catch (e: IllegalArgumentException) {
                 // Probably got a bad URL or something
                 logger.log(TAG, "Unable to enqueue request", e)
-                (context as AppCompatActivity).snackbar(R.string.cannot_download)
+                context.snackbar(R.string.cannot_download, Gravity.BOTTOM)
             } catch (e: SecurityException) {
-                // TODO write a download utility that downloads files rather than rely on the system
                 // because the system can only handle Environment.getExternal... as a path
-                (context as AppCompatActivity).snackbar(R.string.problem_location_download)
+                context.snackbar(R.string.problem_location_download, Gravity.BOTTOM)
             }
-            (context as AppCompatActivity).snackbar(context.getString(R.string.download_pending) + ' ' + filename)
+            context.snackbar(context.getString(R.string.download_pending) + ' ' + filename, Gravity.BOTTOM)
         }
 
         // save download in database

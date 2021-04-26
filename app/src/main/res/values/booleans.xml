@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <bool name="const_true">true</bool>
-    <bool name="pref_default_locked_drawers">false</bool>
-    <bool name="pref_default_use_bottom_sheets">false</bool>
-    <bool name="pref_default_tab_list_item_show_close_button">true</bool>
-    <bool name="pref_default_portrait_pull_to_refresh">true</bool>
-    <bool name="pref_default_landscape_pull_to_refresh">true</bool>
-    <bool name="pref_default_webrtc">false</bool>
-    <bool name="pref_default_search_in_new_tab">false</bool>
-    <bool name="pref_default_url_in_new_tab">false</bool>
-    <bool name="pref_default_homepage_in_new_tab">false</bool>
     <bool name="pref_default_bookmark_in_new_tab">true</bool>
-    <integer name="pref_default_portrait_desktop_width">1024</integer>
+    <bool name="pref_default_homepage_in_new_tab">false</bool>
+    <bool name="pref_default_landscape_pull_to_refresh">true</bool>
+    <bool name="pref_default_locked_drawers">false</bool>
+    <bool name="pref_default_portrait_pull_to_refresh">true</bool>
+    <bool name="pref_default_search_in_new_tab">false</bool>
+    <bool name="pref_default_tab_list_item_show_close_button">true</bool>
+    <bool name="pref_default_toolbars_bottom">false</bool>
+    <bool name="pref_default_url_in_new_tab">false</bool>
+    <bool name="pref_default_use_bottom_sheets">false</bool>
+    <bool name="pref_default_webrtc">false</bool>
     <integer name="pref_default_landscape_desktop_width">1440</integer>
+    <integer name="pref_default_portrait_desktop_width">1024</integer>
 </resources>

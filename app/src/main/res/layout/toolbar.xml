@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -10,15 +10,13 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="5dp"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/tabBarContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:id="@+id/toolbar"
@@ -29,9 +27,6 @@
             android:paddingBottom="0dp"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabBarContainer"
             android:orientation="horizontal" />
 
         <com.jamal2367.styx.view.ProgressBar
@@ -40,10 +35,8 @@
             android:layout_height="2dp"
             android:background="@color/transparent"
             app:bidirectionalAnimate="false"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:progressColor="?attr/colorAccent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </layout>

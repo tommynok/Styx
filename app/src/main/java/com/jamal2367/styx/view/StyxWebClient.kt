@@ -13,6 +13,7 @@ import android.net.http.SslError
 import android.os.Message
 import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.webkit.*
 import android.widget.CheckBox
@@ -65,7 +66,7 @@ import kotlin.math.abs
 
 class StyxWebClient(
         private val activity: AppCompatActivity,
-        private val styxView: StyxView
+        private val styxView: StyxView,
 ) : WebViewClient() {
 
     private val uiController: UIController
@@ -341,8 +342,7 @@ class StyxWebClient(
                                     .replace("""/"""", """"""")
                                     .replace("""//"""", """/"""")
                                     .replace("""\\'""", """\'""")
-                                    .replace("""\\""""", """\""""")
-                            , null)
+                                    .replace("""\\""""", """\"""""), null)
                     break
                 }
             }
@@ -443,7 +443,7 @@ class StyxWebClient(
             view: WebView,
             handler: HttpAuthHandler,
             host: String,
-            realm: String
+            realm: String,
     ) {
         MaterialAlertDialogBuilder(activity).apply {
             val dialogView = LayoutInflater.from(activity).inflate(R.layout.dialog_auth_request, null)
@@ -525,9 +525,11 @@ class StyxWebClient(
         }
         val alertMessage = activity.getString(R.string.message_insecure_connection, stringBuilder.toString())
 
+        val ba = activity as BrowserActivity
+
         if (!userPreferences.ssl) {
             handler.proceed()
-            (activity)snackbar(errorCodeMessageCodes[0])
+            ba.snackbar(errorCodeMessageCodes[0])
             return
         }
 

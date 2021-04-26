@@ -12,9 +12,12 @@ import com.jamal2367.styx.browser.TabsView
 import com.jamal2367.styx.browser.activity.BrowserActivity
 import com.jamal2367.styx.controller.UIController
 import com.jamal2367.styx.databinding.TabDrawerViewBinding
+import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.extensions.inflater
+import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
 import com.jamal2367.styx.view.StyxView
+import javax.inject.Inject
 
 /**
  * A view which displays tabs in a vertical [RecyclerView].
@@ -25,14 +28,19 @@ class TabsDrawerView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr), TabsView {
 
+    @Inject lateinit var userPreferences: UserPreferences
+
     private val uiController = context as UIController
     private val tabsAdapter: TabsDrawerAdapter
 
     private var mItemTouchHelper: ItemTouchHelper? = null
 
-    private var iBinding: TabDrawerViewBinding
+    var iBinding: TabDrawerViewBinding
 
     init {
+
+        context.injector.inject(this)
+
         orientation = VERTICAL
         isClickable = true
         isFocusable = true
@@ -47,7 +55,9 @@ class TabsDrawerView @JvmOverloads constructor(
             //setLayerType(View.LAYER_TYPE_NONE, null)
             // We don't want that morphing animation for now
             (itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            // Reverse layout if using bottom tool bars
+            // LinearLayoutManager.setReverseLayout is also adjusted from BrowserActivity.setupToolBar
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, userPreferences.toolbarsBottom)
             adapter = tabsAdapter
             setHasFixedSize(false)
         }

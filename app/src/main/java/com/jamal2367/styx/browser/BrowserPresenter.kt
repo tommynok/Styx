@@ -153,7 +153,7 @@ class BrowserPresenter(
             }
 
             // Must come late as it needs a webview
-            view.updateSslState(newTab.currentSslState() ?: SslState.None)
+            view.updateSslState(newTab.currentSslState())
             sslStateSubscription?.dispose()
             sslStateSubscription = newTab
                     .sslStateObservable()
@@ -182,16 +182,7 @@ class BrowserPresenter(
      * SL: That's not quite working for some reason.
      * Close all tabs
      */
-    fun closeAllTabs() {
-        // That should never be the case though
-        if (tabsModel.allTabs.count()==0) return
 
-        while (tabsModel.allTabs.count() > 1) {
-            deleteTab(tabsModel.last())
-        }
-
-        //deleteTab(tabsModel.last())
-    }
 
     private fun mapHomepageToCurrentUrl(): String = when (val homepage = userPreferences.homepage) {
         Uris.AboutHome -> "$FILE${homePageFactory.createHomePage()}"

@@ -21,9 +21,11 @@ import com.jamal2367.styx.databinding.SessionListBinding
 import com.jamal2367.styx.di.injector
 import com.jamal2367.styx.dialog.BrowserDialog
 import com.jamal2367.styx.extensions.toast
+import com.jamal2367.styx.preference.UserPreferences
 import com.jamal2367.styx.utils.FileNameInputFilter
 import com.jamal2367.styx.utils.ItemDragDropSwipeHelper
 import com.jamal2367.styx.utils.Utils
+import javax.inject.Inject
 
 
 class SessionsPopupWindow : PopupWindow {
@@ -34,9 +36,13 @@ class SessionsPopupWindow : PopupWindow {
     var iAnchor: View? = null
     private var iItemTouchHelper: ItemTouchHelper? = null
 
+    @Inject lateinit var userPreferences: UserPreferences
+
     constructor(layoutInflater: LayoutInflater,
                 aBinding: SessionListBinding = SessionListBinding.inflate(layoutInflater))
             : super(aBinding.root, WRAP_CONTENT, WRAP_CONTENT, true) {
+
+        aBinding.root.context.injector.inject(this)
 
         // Needed to make sure our bottom sheet shows below our session pop-up
         PopupWindowCompat.setWindowLayoutType(this, WindowManager.LayoutParams.FIRST_SUB_WINDOW + 5);
@@ -157,7 +163,9 @@ class SessionsPopupWindow : PopupWindow {
 
                 // Just close and reopen our menu as our layout change animation is really ugly
                 dismiss()
-                (iUiController as BrowserActivity).mainHandler.post { show(iAnchor,!editModeEnabled,false) }
+                iAnchor?.let {
+                    (iUiController as BrowserActivity).mainHandler.post { show(it,!editModeEnabled,false) }
+                }
                 // We still broadcast the change above and do a post to avoid getting some items caught not fully animated, even though animations are disabled.
                 // Android layout animation crap, just don't ask, sometimes it's a blessing other times it's a nightmare...
             }
@@ -197,7 +205,7 @@ class SessionsPopupWindow : PopupWindow {
     /**
      *
      */
-    fun show(aAnchor: View?, aEdit: Boolean = false, aShowCurrent: Boolean = true) {
+    fun show(aAnchor: View, aEdit: Boolean = false, aShowCurrent: Boolean = true) {
         // Disable edit mode when showing our menu
         iAdapter.iEditModeEnabledObservable.onNext(aEdit)
         if (aEdit) {
@@ -211,13 +219,16 @@ class SessionsPopupWindow : PopupWindow {
 
         // Get our anchor location
         val anchorLoc = IntArray(2)
-        aAnchor?.getLocationInWindow(anchorLoc)
+        aAnchor.getLocationInWindow(anchorLoc)
+        //
+        val gravity = if (userPreferences.toolbarsBottom) Gravity.BOTTOM or Gravity.RIGHT else Gravity.TOP or Gravity.RIGHT
+        val yOffset = if (userPreferences.toolbarsBottom) (contentView.context as BrowserActivity).iBinding.root.height - anchorLoc[1] else anchorLoc[1]+aAnchor.height
         // Show our popup menu from the right side of the screen below our anchor
-        showAtLocation(aAnchor, Gravity.TOP or Gravity.RIGHT,
+        showAtLocation(aAnchor, gravity,
                 // Offset from the right screen edge
                 Utils.dpToPx(10F),
                 // Below our anchor
-                anchorLoc[1]+aAnchor?.height!!)
+                yOffset)
 
         //dimBehind()
         // Show our sessions

@@ -32,14 +32,14 @@ class BrowserPopupMenu
 
         animationStyle = R.style.AnimationMenu
 
-        aBinding.menuItemCloseIncognito.visibility = View.GONE
+        aBinding.menuItemCloseIncognito.visibility = GONE
 
         setBackgroundDrawable(ColorDrawable())
 
         if ((aBinding.root.context as BrowserActivity).isIncognito()) {
-            aBinding.menuItemIncognito.visibility = View.GONE
+            aBinding.menuItemIncognito.visibility = GONE
             // No sessions in incognito mode
-            aBinding.menuItemSessions.visibility = View.GONE
+            aBinding.menuItemSessions.visibility = GONE
             // Show close incognito mode button
             aBinding.menuItemCloseIncognito.visibility = View.VISIBLE
         }
@@ -92,13 +92,13 @@ class BrowserPopupMenu
         aAnchor.getLocationInWindow(anchorLoc)
 
         // Show our popup menu from the right side of the screen below our anchor
-        showAtLocation(aAnchor, Gravity.TOP or Gravity.END,
-
+        val gravity = if (userPreferences.toolbarsBottom) Gravity.BOTTOM or Gravity.RIGHT else Gravity.TOP or Gravity.RIGHT
+        val yOffset = if (userPreferences.toolbarsBottom) (contentView.context as BrowserActivity).iBinding.root.height - anchorLoc[1] - aAnchor.height else anchorLoc[1]
+        showAtLocation(aAnchor, gravity,
         // Offset from the right screen edge
         Utils.dpToPx(10F),
-
         // Above our anchor
-        anchorLoc[1])
+        yOffset)
     }
 
     companion object {

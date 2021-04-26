@@ -214,7 +214,9 @@ class SuggestionsAdapter(
                 val historyCount = choice - bookmarkCount.coerceAtMost(bookmarks.size) - 1.coerceAtMost(searches.size)
                 val searchCount = choice - bookmarkCount.coerceAtMost(bookmarks.size) - historyCount.coerceAtMost(history.size)
 
-                bookmarks.take(bookmarkCount) + history.take(historyCount) + searches.take(searchCount)
+                val results = bookmarks.take(bookmarkCount) + history.take(historyCount) + searches.take(searchCount)
+                // Reverse results if needed
+                if (userPreferences.toolbarsBottom) results.reversed() else results
         }
 
     private class SearchFilter(

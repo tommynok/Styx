@@ -193,6 +193,11 @@
         <item name="android:windowExitAnimation">@anim/menu_close</item>
     </style>
 
+    <style name="AnimationMenuBottom">
+        <item name="android:windowEnterAnimation">@anim/menu_open_bottom</item>
+        <item name="android:windowExitAnimation">@anim/menu_close_bottom</item>
+    </style>
+
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
         <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle.Light</item>

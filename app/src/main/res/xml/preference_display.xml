@@ -130,6 +130,12 @@
             app:icon="@drawable/ic_desktop" />
 
         <SwitchPreferenceCompat
+            android:key="@string/pref_key_portrait_toolbars_bottom"
+            android:title="@string/settings_title_toolbars_bottom"
+            android:defaultValue="@bool/pref_default_toolbars_bottom"
+            app:icon="@drawable/ic_bottom" />
+
+        <SwitchPreferenceCompat
             app:key="@string/pref_key_portrait_hide_status_bar"
             app:title="@string/pref_title_hide_status_bar"
             app:defaultValue="false"
@@ -170,6 +176,12 @@
             android:title="@string/tabs_in_drawer"
             android:summary="@string/settings_summary_vertical_tab_bar"
             app:icon="@drawable/ic_desktop" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/pref_key_landscape_toolbars_bottom"
+            android:title="@string/settings_title_toolbars_bottom"
+            android:defaultValue="@bool/pref_default_toolbars_bottom"
+            app:icon="@drawable/ic_bottom" />
 
         <SwitchPreferenceCompat
             app:key="@string/pref_key_landscape_hide_status_bar"
