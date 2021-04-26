@@ -73,6 +73,7 @@ class BrowserPopupMenu
                 iBinding.menuItemDarkMode.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) GONE else View.VISIBLE
                 iBinding.divider2.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) GONE else View.VISIBLE
                 iBinding.divider3.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) GONE else View.VISIBLE
+                iBinding.divider4.visibility = if (tab.url.isSpecialUrl() or tab.url.isHomeUri() or tab.url.isBookmarkUri() or tab.url.isHistoryUri()) GONE else View.VISIBLE
             }
 
             if (userPreferences.navbar) {

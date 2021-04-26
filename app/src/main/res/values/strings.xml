@@ -98,6 +98,7 @@
     <string name="close_tab">Close current tab</string>
     <string name="color_mode">Enable color mode</string>
     <string name="cookies">Enable cookies</string>
+    <string name="dark_mode">Dark Mode</string>
     <string name="dark_theme">Dark</string>
     <string name="default_theme">Follow System</string>
     <string name="delete_all_bookmarks">Delete all bookmarks?</string>

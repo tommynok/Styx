@@ -21,16 +21,6 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageButton
-                android:id="@+id/menuShortcutRefresh"
-                style="?android:attr/actionButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="@string/action_reload"
-                app:tooltipText="@{@string/action_reload}"
-                app:srcCompat="@drawable/ic_action_refresh" />
-
-            <ImageButton
                 android:id="@+id/menuShortcutBack"
                 style="?android:attr/actionButtonStyle"
                 android:layout_width="wrap_content"
@@ -49,6 +39,16 @@
                 android:contentDescription="@string/action_forward"
                 app:tooltipText="@{@string/action_forward}"
                 app:srcCompat="@drawable/ic_action_forward" />
+
+            <ImageButton
+                android:id="@+id/menuShortcutRefresh"
+                style="?android:attr/actionButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/action_reload"
+                app:tooltipText="@{@string/action_reload}"
+                app:srcCompat="@drawable/ic_action_refresh" />
 
             <ImageButton
                 android:id="@+id/menuShortcutBookmarks"
@@ -180,6 +180,12 @@
                     app:drawableStartCompat="@drawable/ic_add_to_home_screen"
                     android:text="@string/action_add_to_homescreen" />
 
+                <TextView
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
                 <CheckBox
                     android:id="@+id/menuItemDesktopMode"
                     style="@style/BrowserTextMenuItem"
@@ -199,7 +205,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:text="@string/dark_theme"
+                    android:text="@string/dark_mode"
                     android:gravity="center_vertical"
                     android:enabled="true"
                     android:background="?attr/selectableItemBackground"
@@ -207,7 +213,7 @@
                     app:drawableStartCompat="@drawable/ic_dark_mode" />
 
                 <TextView
-                    android:id="@+id/divider3"
+                    android:id="@+id/divider4"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="?android:attr/listDivider" />

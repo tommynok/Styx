@@ -97,6 +97,7 @@
     <string name="close_tab">Aktuellen Tab schließen</string>
     <string name="color_mode">Farbmodus</string>
     <string name="cookies">Cookies erlauben</string>
+    <string name="dark_mode">Dunkelmodus</string>
     <string name="dark_theme">Dunkles Design</string>
     <string name="default_theme">Systemstandard</string>
     <string name="developer">Entwickler</string>
