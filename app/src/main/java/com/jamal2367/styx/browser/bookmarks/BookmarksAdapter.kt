@@ -23,7 +23,7 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
-class BookmarksAdapter(
+class  BookmarksAdapter(
         val context: Context,
         val uiController: UIController,
         private val faviconModel: FaviconModel,
