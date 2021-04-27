@@ -1,16 +1,16 @@
-# 🌍Styx Browser
+# :earth_americas:Styx Browser
 
 [![GitHub license](https://img.shields.io/github/license/jamal2362/Styx)](https://github.com/jamal2362/Styx/blob/main/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/jamal2362/Styx)](https://github.com/jamal2362/Styx/issues) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/jamal2362/Styx)](https://github.com/jamal2362/Styx/releases) [![GitHub all releases](https://img.shields.io/github/downloads/jamal2362/Styx/total)](https://github.com/jamal2362/Styx/releases)
 
 
-## 🗺️Help to Translate
+## :sound:Help to Translate
 To help us translate Styx, press the image below.  
 We would be very happy if you help us with the translation.  
 [<img src="https://user-images.githubusercontent.com/15986930/116214291-d8b19c80-a746-11eb-86fe-288332d9b06d.png" alt="Crowdin" height="60">](https://crowdin.com/project/styx-browser)  
 [![Crowdin](https://badges.crowdin.net/styx-browser/localized.svg)](https://crowdin.com/project/styx-browser)
 
 
-## 🔧Features
+## :wrench:Features
 * Sessions.
 * Tabs manager.
 * Bookmarks.
@@ -43,7 +43,7 @@ We would be very happy if you help us with the translation.
 * and much more...
 
 
-## ⌨️Keyboard shortcuts
+## :computer:Keyboard shortcuts
 * Ctrl + TAB : next tab.
 * Ctrl + Shift + TAB : previous tab.
 * Ctrl + Fn + TAB : previous tab.
@@ -68,7 +68,7 @@ We would be very happy if you help us with the translation.
 * F11 : Toggle tool bar and focus menu bolt button.
 
 
-## 📃Permissions
+## :memo:Permissions
 ### Automatically granted
 * `INTERNET`: necessary to access the internet.
 * `ACCESS_NETWORK_STATE`: used by the browser to stop loading resources when network access is lost.
@@ -84,7 +84,7 @@ We would be very happy if you help us with the translation.
 * `REQUEST_INSTALL_PACKAGES`: needed to support APK install, after download is finished.
 
 
-## 🤝License
+## :information_source:License
 ```
 © Copyright 2021 Jamal Rothfuchs
 © Copyright 2021 Stéphane Lenclud
