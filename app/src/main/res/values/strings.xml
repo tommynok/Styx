@@ -40,8 +40,8 @@
     <string name="action_save_session">Save session as</string>
     <string name="action_sessions">Sessions</string>
     <string name="action_share">Share</string>
-    <string name="action_show_homepage">Show homepage</string>
-    <string name="action_webpage">Webpage</string>
+    <string name="action_show_homepage">Homepage</string>
+    <string name="action_webpage">Website</string>
     <string name="action_yes">Yes</string>
     <string name="ad_block_load_failure">Failed to load hosts from ad blocking source.</string>
     <string name="ad_server_list">AdGuard Ad-Server List</string>
@@ -96,7 +96,7 @@
     <string name="close_on_last_tab">Close browser with last tab</string>
     <string name="close_other_tabs">Close other tabs</string>
     <string name="close_tab">Close current tab</string>
-    <string name="color_mode">Enable color mode</string>
+    <string name="color_mode">Color mode</string>
     <string name="cookies">Enable cookies</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="dark_theme">Dark</string>
@@ -365,7 +365,7 @@
     <string name="start_incognito">Permanently behave as if in incognito mode</string>
     <string name="stop_tts">Stop reading</string>
     <string name="success">Success</string>
-    <string name="suggest">Suggestion amount</string>
+    <string name="suggest">Search suggestions (number)</string>
     <string name="suggestion">Search for</string>
     <string name="swap_bookmarks_and_tabs">Swap bookmark and tab drawers</string>
     <string name="tabs_in_drawer">Show tabs in navigation drawer</string>
