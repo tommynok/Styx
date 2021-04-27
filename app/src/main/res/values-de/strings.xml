@@ -270,6 +270,8 @@
     <string name="pref_title_tab_list_item_show_close_button">Tab schließen Schaltfläche anzeigen</string>
     <string name="pref_title_use_bottom_sheets">Bottom Sheets verwenden</string>
     <string name="pref_title_webrtc">WebRTC Unterstützung</string>
+    <string name="pref_translation_summary">Hilf uns, die App zu übersetzen</string>
+    <string name="pref_translation_title">Übersetzung</string>
     <string name="problem_download">Ungültige URL, Download nicht möglich!</string>
     <string name="problem_location_download">Download in dieses Verzeichns nicht möglich!</string>
     <string name="reading_mode_image_caption">Bild mit Beschriftung</string>
@@ -332,6 +334,7 @@
     <string name="settings_exported">Einstellungen exportiert nach:</string>
     <string name="settings_extensions">Erweiterungen</string>
     <string name="settings_general">Allgemein</string>
+    <string name="settings_help_us">Hilf uns</string>
     <string name="settings_imported">Einstellungen wurden importiert</string>
     <string name="settings_malware">Malware</string>
     <string name="settings_other">Sonstiges</string>

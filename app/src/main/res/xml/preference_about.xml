@@ -24,20 +24,38 @@
             app:icon="@drawable/ic_settings">
         </Preference>
 
-        <Preference
-            android:summary="@string/pref_report_issue_summary"
-            android:title="@string/pref_report_issue_title"
-            app:icon="@drawable/ic_github">
+        <PreferenceCategory
+            android:title="@string/settings_help_us">
 
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://github.com/jamal2362/Styx">
-                <extra
-                    android:name="SOURCE"
-                    android:value="SELF" />
-            </intent>
+            <Preference
+                android:summary="@string/pref_translation_summary"
+                android:title="@string/pref_translation_title"
+                app:icon="@drawable/ic_translate">
 
-        </Preference>
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="https://crowdin.com/project/styx-browser">
+                    <extra
+                        android:name="SOURCE"
+                        android:value="SELF" />
+                </intent>
+            </Preference>
+
+            <Preference
+                android:summary="@string/pref_report_issue_summary"
+                android:title="@string/pref_report_issue_title"
+                app:icon="@drawable/ic_github">
+
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="https://github.com/jamal2362/Styx">
+                    <extra
+                        android:name="SOURCE"
+                        android:value="SELF" />
+                </intent>
+            </Preference>
+
+        </PreferenceCategory>
 
     </PreferenceCategory>
 
@@ -56,7 +74,6 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
-
         </Preference>
 
         <Preference
@@ -71,7 +88,6 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
-
         </Preference>
 
         <Preference
@@ -86,7 +102,6 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
-
         </Preference>
 
         <Preference
@@ -101,7 +116,6 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
-
         </Preference>
 
         <Preference
@@ -116,7 +130,6 @@
                     android:name="SOURCE"
                     android:value="SELF" />
             </intent>
-
         </Preference>
 
     </PreferenceCategory>

@@ -271,6 +271,8 @@
     <string name="pref_title_tab_list_item_show_close_button">Show close tab button</string>
     <string name="pref_title_use_bottom_sheets">Use bottom sheets</string>
     <string name="pref_title_webrtc">WebRTC Support</string>
+    <string name="pref_translation_summary">Help us translate the app</string>
+    <string name="pref_translation_title">Translation</string>
     <string name="problem_download">Invalid URL encountered, cannot download</string>
     <string name="problem_location_download">Cannot download to the specified location</string>
     <string name="reading_mode_image_caption">Image with caption</string>
@@ -333,6 +335,7 @@
     <string name="settings_exported">Settings exported to:</string>
     <string name="settings_extensions">Extensions</string>
     <string name="settings_general">General</string>
+    <string name="settings_help_us">Help us</string>
     <string name="settings_imported">Settings from backup imported</string>
     <string name="settings_malware">Malware</string>
     <string name="settings_other">Other</string>
