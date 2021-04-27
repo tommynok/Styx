@@ -7,22 +7,23 @@
 * Tabs manager.
 * Bookmarks.
 * History.
-* Google search suggestions.
+* Some search suggestions.
 * Keyboard support.
 * Webpage theming.
 * Desktop rendering.
-* Text To Speech (TTS)
 * Print mode.
-* Page-Tools.
+* Page-Tools with useful Tools.
 * Page source text editor.
 * 3rd party app forwarding.
 * Android desktop support (Samsung Dex, EMUI Desktop). 
 * Multiple search engines (Google, Bing, Yahoo, StartPage, DuckDuckGo, Mojeek, Searx etc.).
 * Incognito mode.
-* Orbot Proxy support and I2P support.
+* Orbot Proxy and I2P support.
 * Ad-blocker.
 * Malware blocker.
-* Reader mode.
+* Reader mode with Text To Speech (TTS).
+* Dark Mode for Websites.
+* Backup/Restore for Settings and Bookmarks.
 * Various rendering mode: inverted, high contrast, grayscale.
 * Specific look & feel settings for portrait and landscape.
 * Optional pull-to-refresh.
@@ -57,11 +58,6 @@
 * F10 : Toggle status bar.
 * F11 : Toggle tool bar and focus menu bolt button.
 
-## Touch control
-* Swipe right on a tab in the list to close it.
-* Long press to drag and drop tabs in your list.
-* Long press on icon buttons to show tool tip.
-
 ## Permissions
 
 ### Automatically granted
@@ -80,9 +76,9 @@
 
 ## License
 ```
-Copyright 2021 Jamal Rothfuchs
-Copyright 2021 Stéphane Lenclud
-Copyright 2014 Anthony Restaino
+© Copyright 2021 Jamal Rothfuchs
+© Copyright 2021 Stéphane Lenclud
+© Copyright 2014 Anthony Restaino
 
 Styx Browser
 Fulguris Browser
