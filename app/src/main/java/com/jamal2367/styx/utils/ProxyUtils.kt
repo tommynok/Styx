@@ -51,7 +51,7 @@ class ProxyUtils @Inject constructor(
             val builder = MaterialAlertDialogBuilder(activity)
             if (orbotInstalled && i2pInstalled) {
                 val proxyChoices = activity.resources.getStringArray(R.array.proxy_choices_array)
-                val values = Arrays.asList(ProxyChoice.NONE, ProxyChoice.ORBOT, ProxyChoice.I2P)
+                val values = listOf(ProxyChoice.NONE, ProxyChoice.ORBOT, ProxyChoice.I2P)
                 val list: MutableList<Pair<ProxyChoice, String>> = ArrayList()
                 for (proxyChoice in values) {
                     list.add(Pair(proxyChoice, proxyChoices[proxyChoice.value]))
@@ -68,7 +68,7 @@ class ProxyUtils @Inject constructor(
                     }
                 }
             } else {
-                val dialogClickListener = DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
+                val dialogClickListener = DialogInterface.OnClickListener { _: DialogInterface?, which: Int ->
                     when (which) {
                         DialogInterface.BUTTON_POSITIVE -> {
                             userPreferences.proxyChoice = if (orbotInstalled) ProxyChoice.ORBOT else ProxyChoice.I2P
