@@ -175,7 +175,6 @@ object ThemeUtils {
     @JvmStatic
     private fun getVectorDrawable(context: Context, drawableId: Int): Drawable {
         val drawable = ContextCompat.getDrawable(context, drawableId)
-        Preconditions.checkNonNull(drawable)
         return drawable!!
     }
 

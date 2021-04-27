@@ -10,7 +10,6 @@ import androidx.annotation.WorkerThread;
 
 import com.jamal2367.styx.database.Bookmark;
 import com.jamal2367.styx.database.WebPageKt;
-import com.jamal2367.styx.utils.Preconditions;
 import com.jamal2367.styx.utils.Utils;
 
 import org.json.JSONException;
@@ -102,7 +101,6 @@ public final class BookmarkExporter {
     public static Completable exportBookmarksToFile(@NonNull final List<Bookmark.Entry> bookmarkList,
                                                     @NonNull final File file) {
         return Completable.fromAction(() -> {
-            Preconditions.checkNonNull(bookmarkList);
             BufferedWriter bookmarkWriter = null;
             try {
                 //noinspection IOResourceOpenedButNotSafelyClosed
