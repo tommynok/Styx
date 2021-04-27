@@ -281,7 +281,7 @@
     <string name="recommended">Recommended</string>
     <string name="reflow">Enable text reflow</string>
     <string name="remove_identifying_headers">Remove identifying headers</string>
-    <string name="remove_userscript_description">Möchten Sie dieses UserScript entfernen?</string>
+    <string name="remove_userscript_description">Do you want to remove this UserScript?</string>
     <string name="remove_userscript">Remove UserScript</string>
     <string name="rendering_mode">Rendering mode</string>
     <string name="reopening_recent_tab">Tab recovered</string>
