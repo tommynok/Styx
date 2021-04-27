@@ -489,15 +489,14 @@
     </string-array>
 
     <!-- No Translated Strings -->
-    <string name="new_tab_position_after_value" translatable="false">AFTER_CURRENT_TAB</string>
     <string name="new_tab_position_before_value" translatable="false">BEFORE_CURRENT_TAB</string>
     <string name="new_tab_position_end_value" translatable="false">END_OF_TAB_LIST</string>
     <string name="new_tab_position_start_value" translatable="false">START_OF_TAB_LIST</string>
     <string name="pref_key_black_status_bar" translatable="false">pref_key_black_status_bar</string>
     <string name="pref_key_bookmark_in_new_tab">pref_key_bookmark_in_new_tab</string>
     <string name="pref_key_browser_text_size" translatable="false">pref_key_browser_text_size</string>
-    <string name="pref_key_cookies" translatable="false">pref_key_cookies</string>
     <string name="pref_key_cookies_incognito" translatable="false">pref_key_cookies_incognito</string>
+    <string name="pref_key_cookies" translatable="false">pref_key_cookies</string>
     <string name="pref_key_dark_mode_default" translatable="false">pref_key_dark_mode_default</string>
     <string name="pref_key_default_text_encoding" translatable="false">pref_key_default_text_encoding</string>
     <string name="pref_key_desktop_mode_default" translatable="false">pref_key_desktop_mode_default</string>
@@ -507,35 +506,36 @@
     <string name="pref_key_landscape_hide_status_bar" translatable="false">pref_key_landscape_hide_status_bar</string>
     <string name="pref_key_landscape_hide_tool_bar" translatable="false">pref_key_landscape_hide_tool_bar</string>
     <string name="pref_key_landscape_pull_to_refresh" translatable="false">pref_key_landscape_pull_to_refresh</string>
-    <string name="pref_key_landscape_tab_bar_vertical">pref_key_landscape_tab_bar_vertical</string>
-    <string name="pref_key_landscape_toolbars_bottom">pref_key_landscape_toolbars_bottom</string>
     <string name="pref_key_landscape_show_tool_bar_on_page_top" translatable="false">pref_key_landscape_show_tool_bar_on_page_top</string>
     <string name="pref_key_landscape_show_tool_bar_on_scroll_up" translatable="false">pref_key_landscape_show_tool_bar_when_scroll_up</string>
+    <string name="pref_key_landscape_tab_bar_vertical">pref_key_landscape_tab_bar_vertical</string>
+    <string name="pref_key_landscape_toolbars_bottom">pref_key_landscape_toolbars_bottom</string>
     <string name="pref_key_load_images" translatable="false">pref_key_load_images</string>
     <string name="pref_key_locked_drawers" translatable="false">pref_key_locked_drawers</string>
-    <string name="pref_key_tab_list_item_show_close_button" translatable="false">pref_key_tab_list_item_show_close_button</string>
     <string name="pref_key_new_tab_position" translatable="false">pref_key_new_tab_position</string>
     <string name="pref_key_overview_mode" translatable="false">pref_key_overview_mode</string>
     <string name="pref_key_portrait_desktop_width" translatable="false">pref_key_portrait_desktop_width</string>
     <string name="pref_key_portrait_hide_status_bar" translatable="false">pref_key_portrait_hide_status_bar</string>
     <string name="pref_key_portrait_hide_tool_bar" translatable="false">pref_key_portrait_hide_tool_bar</string>
     <string name="pref_key_portrait_pull_to_refresh" translatable="false">pref_key_portrait_pull_to_refresh</string>
-    <string name="pref_key_portrait_tab_bar_vertical">pref_key_portrait_tab_bar_vertical</string>
-    <string name="pref_key_portrait_toolbars_bottom">pref_key_portrait_toolbars_bottom</string>
     <string name="pref_key_portrait_show_tool_bar_on_page_top" translatable="false">pref_key_portrait_show_tool_bar_on_page_top</string>
     <string name="pref_key_portrait_show_tool_bar_on_scroll_up" translatable="false">pref_key_portrait_show_tool_bar_when_scroll_up</string>
+    <string name="pref_key_portrait_tab_bar_vertical">pref_key_portrait_tab_bar_vertical</string>
+    <string name="pref_key_portrait_toolbars_bottom">pref_key_portrait_toolbars_bottom</string>
     <string name="pref_key_rendering_mode" translatable="false">pref_key_rendering_mode</string>
     <string name="pref_key_request_save_data" translatable="false">pref_key_request_save_data</string>
     <string name="pref_key_restore_tabs_on_startup" translatable="false">pref_key_restore_tabs_on_startup</string>
     <string name="pref_key_search_in_new_tab" translatable="false">pref_key_search_in_new_tab</string>
     <string name="pref_key_support_multiple_window" translatable="false">pref_key_support_multiple_window</string>
     <string name="pref_key_swap_tabs_and_bookmarks" translatable="false">pref_key_swap_tabs_and_bookmarks</string>
+    <string name="pref_key_tab_list_item_show_close_button" translatable="false">pref_key_tab_list_item_show_close_button</string>
     <string name="pref_key_text_reflow" translatable="false">pref_key_text_reflow</string>
     <string name="pref_key_theme" translatable="false">pref_key_theme</string>
     <string name="pref_key_tool_bar_text_display" translatable="false">pref_key_tool_bar_text_display</string>
     <string name="pref_key_url_in_new_tab" translatable="false">pref_key_url_in_new_tab</string>
     <string name="pref_key_use_bottom_sheets">pref_key_use_bottom_sheets</string>
-    <string name="pref_key_webrtc" translatable="false">pref_key_webrtc</string>
     <string name="pref_key_web_page_theme" translatable="false">pref_key_web_page_theme</string>
+    <string name="pref_key_webrtc" translatable="false">pref_key_webrtc</string>
     <string name="pref_key_wide_viewport" translatable="false">pref_key_wide_viewport</string>
+    <string name="new_tab_position_after_value" translatable="false">AFTER_CURRENT_TAB</string>
 </resources>
