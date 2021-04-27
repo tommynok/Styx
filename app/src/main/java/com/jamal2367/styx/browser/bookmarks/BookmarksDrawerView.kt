@@ -133,7 +133,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
         bookmarksSubscription?.dispose()
         bookmarkUpdateSubscription?.dispose()
 
-        iAdapter?.cleanupSubscriptions()
+        iAdapter.cleanupSubscriptions()
     }
 
     private fun getTabsManager(): TabsManager = uiController.getTabModel()
@@ -154,7 +154,7 @@ class BookmarksDrawerView @JvmOverloads constructor(
 
     override fun handleBookmarkDeleted(bookmark: Bookmark) = when (bookmark) {
         is Bookmark.Folder -> setBookmarksShown(null, false)
-        is Bookmark.Entry -> iAdapter.deleteItem(BookmarksViewModel(bookmark)) ?: Unit
+        is Bookmark.Entry -> iAdapter.deleteItem(BookmarksViewModel(bookmark))
     }
 
     /**

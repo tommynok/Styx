@@ -658,7 +658,7 @@ class TabsManager @Inject constructor(
         // TODO: consider running recovery even when our session list was loaded
         if (iSessions.isNullOrEmpty()) {
             // Search for session files
-            val files = application.filesDir?.let{it.listFiles { d, name -> name.startsWith(FILENAME_SESSION_PREFIX) }}
+            val files = application.filesDir?.let{it.listFiles { _, name -> name.startsWith(FILENAME_SESSION_PREFIX) }}
             // Add recovered sessions to our collection
             files?.forEach { f -> iSessions.add(Session(f.name.substring(FILENAME_SESSION_PREFIX.length), -1)) }
             // Set the first one as current one
@@ -680,7 +680,7 @@ class TabsManager @Inject constructor(
                 bundle.keySet()
                         .filter { it.startsWith(TAB_KEY_PREFIX) }
                         .mapNotNull { bundleKey ->
-                            bundle.getBundle(bundleKey)?.let {TabModelFromBundle(it) as TabModel }
+                            bundle.getBundle(bundleKey)?.let { TabModelFromBundle(it) as TabModel }
                         }
             }
             .doOnNext { logger.log(TAG, "Restoring previous WebView state now") }

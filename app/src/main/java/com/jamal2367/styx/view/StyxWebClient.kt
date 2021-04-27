@@ -1,5 +1,6 @@
 package com.jamal2367.styx.view
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
@@ -141,6 +142,7 @@ class StyxWebClient(
     var description: String? = null
     val include = ArrayList<Pattern>(0)
 
+    @SuppressLint("CheckResult")
     private fun installExtension(text: String){
         val tx = text.replace("""\"""", """"""")
                 .replace("\\n", System.lineSeparator())

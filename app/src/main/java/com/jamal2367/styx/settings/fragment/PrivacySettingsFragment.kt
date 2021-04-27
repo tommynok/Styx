@@ -167,7 +167,7 @@ class PrivacySettingsFragment : AbstractSettingsFragment() {
         }
     }
 
-    fun deleteDir(dir: File?): Boolean {
+    private fun deleteDir(dir: File?): Boolean {
         return if (dir != null && dir.isDirectory) {
             val children = dir.list()
             for (i in children.indices) {

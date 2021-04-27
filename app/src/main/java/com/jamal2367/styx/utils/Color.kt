@@ -12,14 +12,13 @@ fun foregroundColorFromBackgroundColor(color: Int) :Int {
     //val c: Color = Color.valueOf(color);
 
     //
-    val a = (color shr 24 and 0xff)
     val r = (color shr 16 and 0xff)
     val g = (color shr 8 and 0xff)
     val b = (color and 0xff)
 
     //val c: Color = Color.argb(a,r,g,b);
 
-    val luminance = computeLuminance(r, g, b);
+    val luminance = computeLuminance(r, g, b)
 
     // Mix with original color?
     //return (luminance<140?0xFFFFFFFF:0xFF000000)

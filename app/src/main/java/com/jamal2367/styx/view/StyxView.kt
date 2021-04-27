@@ -883,9 +883,9 @@ class StyxView(
                 }
             } else if (currentUrl.isDownloadsUrl()) {
                 if (url != null) {
-                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController, url)
+                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController)
                 } else if (newUrl != null) {
-                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController, newUrl)
+                    dialogBuilder.showLongPressedDialogForDownloadUrl(activity, uiController)
                 }
             }
         } else {

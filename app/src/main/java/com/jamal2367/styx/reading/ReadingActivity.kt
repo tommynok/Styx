@@ -46,7 +46,7 @@ import java.net.URL
 import java.util.*
 import javax.inject.Inject
 
-class ReadingActivity : ThemedSettingsActivity(), TextToSpeech.OnInitListener {
+open class ReadingActivity : ThemedSettingsActivity(), TextToSpeech.OnInitListener {
 
     var mTitle: TextView? = null
     var mBody: TextView? = null
@@ -205,14 +205,14 @@ class ReadingActivity : ThemedSettingsActivity(), TextToSpeech.OnInitListener {
         strBuilder.removeSpan(span)
     }
 
-    protected fun setTextViewHTML(text: TextView, html: String?) {
+    private fun setTextViewHTML(text: TextView, html: String?) {
         val sequence: CharSequence = Html.fromHtml(html)
         val strBuilder = SpannableStringBuilder(sequence)
         val urls: Array<URLSpan> = strBuilder.getSpans(0, sequence.length, URLSpan::class.java)
         for (span in urls) {
             makeLinkClickable(strBuilder, span)
         }
-        text.setText(strBuilder)
+        text.text = strBuilder
         text.movementMethod = LinkMovementMethod.getInstance()
     }
 
@@ -381,11 +381,11 @@ class ReadingActivity : ThemedSettingsActivity(), TextToSpeech.OnInitListener {
                 snackbar(R.string.no_tts)
             }
 
-            iTtsEngine.setOnUtteranceCompletedListener(TextToSpeech.OnUtteranceCompletedListener {
+            iTtsEngine.setOnUtteranceCompletedListener {
                 runOnUiThread {
                     invalidateOptionsMenu()
                 }
-            })
+            }
 
         } else {
             snackbar(R.string.tts_initilization_failed)

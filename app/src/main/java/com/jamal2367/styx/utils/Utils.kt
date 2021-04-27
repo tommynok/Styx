@@ -77,7 +77,7 @@ object Utils {
         builder.setMessage(message)
                 .setCancelable(true)
                 .setPositiveButton(activity.resources.getString(R.string.action_ok)
-                ) { dialog: DialogInterface?, id: Int -> }
+                ) { _: DialogInterface?, _: Int -> }
         val alert = builder.create()
         alert.show()
         setDialogSize(activity, alert)
@@ -373,7 +373,7 @@ object Utils {
         }
     }
 
-    fun adjustBottomSheet(aDialog : BottomSheetDialog) {
+    fun adjustBottomSheet() {
         // Get our private class
         val classEdgeToEdgeCallback = Class.forName("com.google.android.material.bottomsheet.BottomSheetDialog\$EdgeToEdgeCallback")
         // Get our private method

@@ -192,17 +192,16 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
                     SuggestionNumChoice.SIX -> stringArray[3]
                     SuggestionNumChoice.SEVEN -> stringArray[4]
                     SuggestionNumChoice.EIGHT -> stringArray[5]
-                    else -> stringArray[2]
                 })
             }
             withSingleChoiceItems(values, userPreferences.suggestionChoice) {
-                updateSearchNum(it, activity as AppCompatActivity, summaryUpdater)
+                updateSearchNum(it, summaryUpdater)
             }
             setPositiveButton(R.string.action_ok, null)
         }
     }
 
-    private fun updateSearchNum(choice: SuggestionNumChoice, activity: Activity, summaryUpdater: SummaryUpdater) {
+    private fun updateSearchNum(choice: SuggestionNumChoice, summaryUpdater: SummaryUpdater) {
         val stringArray = resources.getStringArray(R.array.suggestion_name_array)
 
         userPreferences.suggestionChoice = choice
@@ -566,7 +565,6 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
         // Limit the number of characters since the port needs to be of type int
         // Use input filters to limit the EditText length and determine the max
         // length by using length of integer MAX_VALUE
-        val maxCharacters = Integer.MAX_VALUE.toString().length
 
         blockedSites.text = userPreferences.javaScriptBlocked
 

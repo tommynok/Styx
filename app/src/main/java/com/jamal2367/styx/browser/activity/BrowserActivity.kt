@@ -282,7 +282,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 if (tabsDialog.isShowing) {
                     // Upon session switch we need to do that otherwise our status bar padding could be wrong
                     mainHandler.postDelayed({
-                        adjustBottomSheet(tabsDialog)
+                        adjustBottomSheet()
                     }, 100 )
                 }
             }
@@ -374,7 +374,7 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             // This is designed so that callbacks are cancelled unless our timeout expires
             // That avoids spamming adjustBottomSheet while our view is animated our dragged
             mainHandler.removeCallbacks(onSizeChangeRunnable)
-            onSizeChangeRunnable = Runnable {adjustBottomSheet(dialog)}
+            onSizeChangeRunnable = Runnable {adjustBottomSheet() }
             mainHandler.postDelayed(onSizeChangeRunnable, 100)
         }
 
