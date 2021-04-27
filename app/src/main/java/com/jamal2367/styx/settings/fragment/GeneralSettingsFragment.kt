@@ -244,7 +244,7 @@ class GeneralSettingsFragment : AbstractSettingsFragment() {
             showManualProxyPicker(activity, summaryUpdater)
         }
 
-        userPreferences.proxyChoice = sanitizedChoice
+        userPreferences.proxyChoice = sanitizedChoice!!
         summaryUpdater.updateSummary(sanitizedChoice.toSummary())
     }
 
