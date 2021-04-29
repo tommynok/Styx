@@ -12,7 +12,7 @@ android {
         targetSdkVersion 29
         versionCode 90
         versionName '9.0.0'
-        resConfigs 'en', 'de', 'it', 'ru'
+        resConfigs 'en', 'ar', 'cs', 'de', 'el', 'es', 'fr', 'hu', 'it', 'iw', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-rBR', 'ro', 'ru', 'sr', 'sv', 'tr', 'uk', 'vi', 'zh-rCN', 'zh-rTW'
         setProperty("archivesBaseName", 'Styx_v' + versionName)
     }
 
