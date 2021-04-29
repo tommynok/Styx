@@ -21,7 +21,7 @@
     <string name="action_folder">Директория</string>
     <string name="action_forward">Вперёд</string>
     <string name="action_history">История</string>
-    <string name="action_homepage">Домой</string>
+    <string name="action_homepage">Домашняя</string>
     <string name="action_incognito">Инкогнито-вкладка</string>
     <string name="action_message_canceled">Действие отменено.</string>
     <string name="action_more">Больше</string>
@@ -126,7 +126,7 @@
     <string name="dialog_title_third_party_app">Стороннее приложение доступно</string>
     <string name="dialog_toggle_desktop">Вкл/выкл агент пользователя рабочего стола</string>
     <string name="dialog_tools_title">Инструменты</string>
-    <string name="do_not_track">Запрашивать \'Do Not Track\'</string>
+    <string name="do_not_track">Запрашивать \'Не отслеживать, DNT\'</string>
     <string name="domain">Домен</string>
     <string name="dont_ask_again">Больше не спрашивать</string>
     <string name="download_channel">Загрузки</string>
@@ -230,8 +230,8 @@
     <string name="name">Jamal2367</string>
     <string name="new_tab_position_after">После текущей вкладки</string>
     <string name="new_tab_position_before">Перед текущей вкладкой</string>
-    <string name="new_tab_position_end">Конец списка вкладок</string>
-    <string name="new_tab_position_start">Начало списка вкладок</string>
+    <string name="new_tab_position_end">В конце списка вкладок</string>
+    <string name="new_tab_position_start">В начале списка вкладок</string>
     <string name="new_tab_position">Положение новой вкладки</string>
     <string name="no_tts">Язык не поддерживается</string>
     <string name="no">Нет</string>
@@ -247,9 +247,9 @@
     <string name="pagespeed_error">Этот сайт использует PageSpeed. Редактирование исходного кода может работать не так, как ожидалось.</string>
     <string name="password">Сохранять пароли</string>
     <string name="port">Порт:</string>
-    <string name="powered_by_baidu">Используя Baidu</string>
-    <string name="powered_by_duck">Используя DuckDuckGo</string>
-    <string name="powered_by_google">Используя Google</string>
+    <string name="powered_by_baidu">Поиск Baidu</string>
+    <string name="powered_by_duck">Поиск DuckDuckGo</string>
+    <string name="powered_by_google">Поиск Google</string>
     <string name="powered_by_naver">На базе Naver</string>
     <string name="pref_app_version_summary">Версия:</string>
     <string name="pref_category_general">Общие</string>
@@ -312,8 +312,8 @@
     <string name="search_homepage">Поиск</string>
     <string name="search_in_new_tab">Поиск в новой вкладке</string>
     <string name="search_insert_suggestion">Вставить предложенное</string>
-    <string name="search_suggestions_off">Нет поисковых подсказок</string>
-    <string name="search_suggestions">Подсказки поиска</string>
+    <string name="search_suggestions_off">Без поисковых подсказок</string>
+    <string name="search_suggestions">Поисковые подсказки</string>
     <string name="search">Поисковая система</string>
     <string name="session_already_exists">Сессия с таким именем уже существует!</string>
     <string name="session_cant_delete_current">Невозможно удалить текущую сессию!</string>
@@ -325,7 +325,7 @@
     <string name="settings_about_explain">Информация о версии, авторах и лицензиях</string>
     <string name="settings_about">О программе</string>
     <string name="settings_adblock">Настройки блокировки рекламы</string>
-    <string name="settings_admalwareblocker">Блокировщик рекламы и вредоносных ресурсов</string>
+    <string name="settings_admalwareblocker">Блокировка рекламы и вредоносных ресурсов</string>
     <string name="settings_advanced">Дополнительно</string>
     <string name="settings_app_prefix">app_for_</string>
     <string name="settings_black_status_bar">Тёмная строка состояния</string>
@@ -349,7 +349,7 @@
     <string name="settings_title_dark_mode_default">Принудительно использовать темную тему</string>
     <string name="settings_title_debug">Отладка</string>
     <string name="settings_title_desktop_mode_default">Режим рабочего стола</string>
-    <string name="settings_title_toolbars_bottom">Панели инструментов внизу</string>
+    <string name="settings_title_toolbars_bottom">Панель инструментов внизу</string>
     <string name="settings">Настройки</string>
     <string name="seven">Семь (7)</string>
     <string name="shortcut_message_failed_to_add">К сожалению, ваш лаунчер не поддерживает ярлыки.</string>
@@ -377,7 +377,7 @@
     <string name="third_party">Блокировать куки со сторонних сайтов</string>
     <string name="three">Три (3)</string>
     <string name="title_chooser">Выберите файл</string>
-    <string name="title_clear_cookies">Очистить куки</string>
+    <string name="title_clear_cookies">Очистить cookie</string>
     <string name="title_clear_history">Очистить историю</string>
     <string name="title_custom_homepage">Введите адрес</string>
     <string name="title_download_location">Путь загрузки</string>
