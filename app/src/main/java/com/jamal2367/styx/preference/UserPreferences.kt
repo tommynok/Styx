@@ -37,74 +37,74 @@ class UserPreferences @Inject constructor(
     /**
      * True if the browser should block ads, false otherwise.
      */
-    var adBlockEnabled by preferences.booleanPreference(BLOCK_ADS, false)
+    var adBlockEnabled by preferences.booleanPreference(R.string.pref_key_block_ads, R.bool.pref_default_block_ads)
 
     /**
      * True if the browser should block images from being loaded, false otherwise.
      */
-    var loadImages by preferences.booleanPreference(R.string.pref_key_load_images, true)
+    var loadImages by preferences.booleanPreference(R.string.pref_key_load_images, R.bool.pref_default_load_images)
 
     /**
      * True if the browser should clear the browser cache when the app is exited, false otherwise.
      */
-    var clearCacheExit by preferences.booleanPreference(CLEAR_CACHE_EXIT, false)
+    var clearCacheExit by preferences.booleanPreference(R.string.pref_key_clear_cache_exit, R.bool.pref_default_clear_cache_exit)
 
     /**
      * True if the browser should allow websites to store and access cookies, false otherwise.
      */
-    var cookiesEnabled by preferences.booleanPreference(R.string.pref_key_cookies, true)
+    var cookiesEnabled by preferences.booleanPreference(R.string.pref_key_cookies, R.bool.pref_default_cookies)
 
     /**
      * True if cookies should be enabled in incognito mode, false otherwise.
      *
      * WARNING: Cookies will be shared between regular and incognito modes if this is enabled.
      */
-    var incognitoCookiesEnabled by preferences.booleanPreference(R.string.pref_key_cookies_incognito, false)
+    var incognitoCookiesEnabled by preferences.booleanPreference(R.string.pref_key_cookies_incognito, R.bool.pref_default_cookies_incognito)
 
     /**
      * The folder into which files will be downloaded.
      */
-    var downloadDirectory by preferences.stringPreference(DOWNLOAD_DIRECTORY, FileUtils.DEFAULT_DOWNLOAD_PATH)
+    var downloadDirectory by preferences.stringPreference(R.string.pref_key_download_directory, FileUtils.DEFAULT_DOWNLOAD_PATH)
 
     /**
      * True if the browser should hide the navigation bar when scrolling, false if it should be
      * immobile.
      */
-    var hideToolBarInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_hide_tool_bar, false)
+    var hideToolBarInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_hide_tool_bar, R.bool.pref_default_portrait_hide_tool_bar)
 
     /**
      * True if the browser should hide the navigation bar when scrolling, false if it should be
      * immobile.
      */
-    var hideToolBarInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_hide_tool_bar, true)
+    var hideToolBarInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_hide_tool_bar, R.bool.pref_default_landscape_hide_tool_bar)
 
     /**
      */
-    var showToolBarOnScrollUpInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_show_tool_bar_on_scroll_up, true)
+    var showToolBarOnScrollUpInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_show_tool_bar_on_scroll_up, R.bool.pref_default_portrait_show_tool_bar_on_scroll_up)
 
     /**
      */
-    var showToolBarOnScrollUpInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_show_tool_bar_on_scroll_up, false)
+    var showToolBarOnScrollUpInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_show_tool_bar_on_scroll_up, R.bool.pref_default_landscape_show_tool_bar_on_scroll_up)
 
     /**
      */
-    var showToolBarOnPageTopInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_show_tool_bar_on_page_top, false)
+    var showToolBarOnPageTopInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_show_tool_bar_on_page_top, R.bool.pref_default_portrait_show_tool_bar_on_page_top)
 
     /**
      */
-    var showToolBarOnPageTopInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_show_tool_bar_on_page_top, true)
-
-    /**
-     * True if the system status bar should be hidden throughout the app, false if it should be
-     * visible.
-     */
-    var hideStatusBarInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_hide_status_bar, false)
+    var showToolBarOnPageTopInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_show_tool_bar_on_page_top, R.bool.pref_default_landscape_show_tool_bar_on_page_top)
 
     /**
      * True if the system status bar should be hidden throughout the app, false if it should be
      * visible.
      */
-    var hideStatusBarInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_hide_status_bar, true)
+    var hideStatusBarInPortrait by preferences.booleanPreference(R.string.pref_key_portrait_hide_status_bar, R.bool.pref_default_portrait_hide_status_bar)
+
+    /**
+     * True if the system status bar should be hidden throughout the app, false if it should be
+     * visible.
+     */
+    var hideStatusBarInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_hide_status_bar, R.bool.pref_default_landscape_hide_status_bar)
 
     /**
      * Defines if a new tab should be opened when user is doing a new search.
@@ -137,64 +137,64 @@ class UserPreferences @Inject constructor(
     /**
      * True if desktop mode should be enabled by default for new tabs, false otherwise.
      */
-    var desktopModeDefault by preferences.booleanPreference(R.string.pref_key_desktop_mode_default, false)
+    var desktopModeDefault by preferences.booleanPreference(R.string.pref_key_desktop_mode_default, R.bool.pref_default_desktop_mode_default)
 
     /**
      * The URL of the selected homepage.
      */
-    var homepage by preferences.stringPreference(HOMEPAGE, Uris.AboutHome)
+    var homepage by preferences.stringPreference(R.string.pref_key_homepage, Uris.AboutHome)
 
     /**
      * True if the browser should allow execution of javascript, false otherwise.
      */
-    var javaScriptEnabled by preferences.booleanPreference(R.string.pref_key_javascript, true)
+    var javaScriptEnabled by preferences.booleanPreference(R.string.pref_key_javascript, R.bool.pref_default_javascript)
 
     /**
      * True if the device location should be accessible by websites, false otherwise.
      *
      * NOTE: If this is enabled, permission will still need to be granted on a per-site basis.
      */
-    var locationEnabled by preferences.booleanPreference(LOCATION, false)
+    var locationEnabled by preferences.booleanPreference(R.string.pref_key_location, R.bool.pref_default_location)
 
     /**
      * True if the browser should load pages zoomed out instead of zoomed in so that the text is
      * legible, false otherwise.
      */
-    var overviewModeEnabled by preferences.booleanPreference(R.string.pref_key_overview_mode, true)
+    var overviewModeEnabled by preferences.booleanPreference(R.string.pref_key_overview_mode, R.bool.pref_default_overview_mode)
 
     /**
      * True if the browser should allow websites to open new windows, false otherwise.
      */
-    var popupsEnabled by preferences.booleanPreference(R.string.pref_key_support_multiple_window, true)
+    var popupsEnabled by preferences.booleanPreference(R.string.pref_key_support_multiple_window, R.bool.pref_default_support_multiple_window)
 
     /**
      * True if the app should remember which browser tabs were open and restore them if the browser
      * is automatically closed by the system.
      */
-    var restoreTabsOnStartup by preferences.booleanPreference(R.string.pref_key_restore_tabs_on_startup, true)
+    var restoreTabsOnStartup by preferences.booleanPreference(R.string.pref_key_restore_tabs_on_startup, R.bool.pref_default_restore_tabs_on_startup)
 
     /**
      * True if the browser should save form input, false otherwise.
      */
-    var savePasswordsEnabled by preferences.booleanPreference(SAVE_PASSWORDS, true)
+    var savePasswordsEnabled by preferences.booleanPreference(R.string.pref_key_save_passwords, R.bool.pref_default_save_passwords)
 
     /**
      * The index of the chosen search engine.
      *
      * @see SearchEngineProvider
      */
-    var searchChoice by preferences.intPreference(SEARCH, 1)
+    var searchChoice by preferences.intPreference(R.string.pref_key_search, 1)
 
     /**
      * The custom URL which should be used for making searches.
      */
-    var searchUrl by preferences.stringPreference(SEARCH_URL, GoogleSearch().queryUrl)
+    var searchUrl by preferences.stringPreference(R.string.pref_key_search_url, GoogleSearch().queryUrl)
 
     /**
      * True if the browser should attempt to reflow the text on a web page after zooming in or out
      * of the page.
      */
-    var textReflowEnabled by preferences.booleanPreference(R.string.pref_key_text_reflow, false)
+    var textReflowEnabled by preferences.booleanPreference(R.string.pref_key_text_reflow, R.bool.pref_default_text_reflow)
 
     /**
      * The index of the text size that should be used in the browser.
@@ -205,29 +205,29 @@ class UserPreferences @Inject constructor(
     /**
      * True if the browser should fit web pages to the view port, false otherwise.
      */
-    var useWideViewPortEnabled by preferences.booleanPreference(R.string.pref_key_wide_viewport, true)
+    var useWideViewPortEnabled by preferences.booleanPreference(R.string.pref_key_wide_viewport, R.bool.pref_default_wide_viewport)
 
     /**
      * The index of the user agent choice that should be used by the browser.
      *
      * @see UserPreferences.userAgent
      */
-    var userAgentChoice by preferences.intPreference(USER_AGENT, 1)
+    var userAgentChoice by preferences.intPreference(R.string.pref_key_user_agent, 1)
 
     /**
      * The custom user agent that should be used by the browser.
      */
-    var userAgentString by preferences.stringPreference(USER_AGENT_STRING, "")
+    var userAgentString by preferences.stringPreference(R.string.pref_key_user_agent_string, "")
 
     /**
      * True if the browser should clear the navigation history on app exit, false otherwise.
      */
-    var clearHistoryExitEnabled by preferences.booleanPreference(CLEAR_HISTORY_EXIT, false)
+    var clearHistoryExitEnabled by preferences.booleanPreference(R.string.pref_key_clear_history_exit, R.bool.pref_default_clear_history_exit)
 
     /**
      * True if the browser should clear the browser cookies on app exit, false otherwise.
      */
-    var clearCookiesExitEnabled by preferences.booleanPreference(CLEAR_COOKIES_EXIT, false)
+    var clearCookiesExitEnabled by preferences.booleanPreference(R.string.pref_key_clear_cookies_exit, R.bool.pref_default_clear_cookies_exit)
 
     /**
      * The index of the rendering mode that should be used by the browser.
@@ -238,7 +238,7 @@ class UserPreferences @Inject constructor(
      * True if third party cookies should be disallowed by the browser, false if they should be
      * allowed.
      */
-    var blockThirdPartyCookiesEnabled by preferences.booleanPreference(BLOCK_THIRD_PARTY, false)
+    var blockThirdPartyCookiesEnabled by preferences.booleanPreference(R.string.pref_key_block_third_party, R.bool.pref_default_block_third_party)
 
     /**
      * True if the browser should extract the theme color from a website and color the UI with it,
@@ -257,12 +257,12 @@ class UserPreferences @Inject constructor(
      * True if the browser should invert the display colors of the web page content, false
      * otherwise.
      */
-    var invertColors by preferences.booleanPreference(INVERT_COLORS, false)
+    var invertColors by preferences.booleanPreference(R.string.pref_key_invert_colors, R.bool.pref_default_invert_colors)
 
     /**
      * The index of the reading mode text size.
      */
-    var readingTextSize by preferences.intPreference(READING_TEXT_SIZE, 2)
+    var readingTextSize by preferences.intPreference(R.string.pref_key_reading_text_size, 2)
 
     /**
      * The index of the theme used by the application.
@@ -277,7 +277,7 @@ class UserPreferences @Inject constructor(
     /**
      * True if the web page storage should be cleared when the app exits, false otherwise.
      */
-    var clearWebStorageExitEnabled by preferences.booleanPreference(CLEAR_WEB_STORAGE_EXIT, false)
+    var clearWebStorageExitEnabled by preferences.booleanPreference(R.string.pref_key_clear_web_storage_exit, R.bool.pref_default_clear_web_storage_exit)
 
     /**
      * True if the app should use the navigation drawer UI, false if it should use the traditional
@@ -300,7 +300,7 @@ class UserPreferences @Inject constructor(
         get() = toolbarsBottom()
         private set
 
-    fun toolbarsBottom(aConf: Configuration=Resources.getSystem().configuration) : Boolean {
+    private fun toolbarsBottom(aConf: Configuration=Resources.getSystem().configuration) : Boolean {
         return if (aConf.orientation == Configuration.ORIENTATION_PORTRAIT) toolbarsBottomInPortrait else toolbarsBottomInLandscape
     }
 
@@ -308,25 +308,25 @@ class UserPreferences @Inject constructor(
      * True if the browser should send a do not track (DNT) header with every GET request, false
      * otherwise.
      */
-    var doNotTrackEnabled by preferences.booleanPreference(DO_NOT_TRACK, false)
+    var doNotTrackEnabled by preferences.booleanPreference(R.string.pref_key_do_not_track, R.bool.pref_default_do_not_track)
 
     /**
      * True if the browser should save form data, false otherwise.
      */
-    var saveDataEnabled by preferences.booleanPreference(R.string.pref_key_request_save_data, false)
+    var saveDataEnabled by preferences.booleanPreference(R.string.pref_key_request_save_data, R.bool.pref_default_request_save_data)
 
     /**
      * True if the browser should attempt to remove identifying headers in GET requests, false if
      * the default headers should be left along.
      */
-    var removeIdentifyingHeadersEnabled by preferences.booleanPreference(IDENTIFYING_HEADERS, false)
+    var removeIdentifyingHeadersEnabled by preferences.booleanPreference(R.string.pref_key_identifying_headers, R.bool.pref_default_identifying_headers)
 
     /**
      * True if the bookmarks tab should be on the opposite side of the screen, false otherwise. If
      * the navigation drawer UI is used, the tab drawer will be displayed on the opposite side as
      * well.
      */
-    var bookmarksAndTabsSwapped by preferences.booleanPreference(R.string.pref_key_swap_tabs_and_bookmarks, false)
+    var bookmarksAndTabsSwapped by preferences.booleanPreference(R.string.pref_key_swap_tabs_and_bookmarks, R.bool.pref_default_swap_tabs_and_bookmarks)
 
     /**
      * Disable gesture actions on drawer.
@@ -345,58 +345,52 @@ class UserPreferences @Inject constructor(
     var pullToRefreshInLandscape by preferences.booleanPreference(R.string.pref_key_landscape_pull_to_refresh, R.bool.pref_default_landscape_pull_to_refresh)
 
     /**
-     * Not an actual user preference. Just used to communicate between settings and browser activity.
-     * Don't ask :)
-     */
-    var bookmarksChanged by preferences.booleanPreference(BOOKMARKS_CHANGED, false)
-
-    /**
      * True if the status bar of the app should always be high contrast, false if it should follow
      * the theme of the app.
      */
-    var useBlackStatusBar by preferences.booleanPreference(R.string.pref_key_black_status_bar, false)
+    var useBlackStatusBar by preferences.booleanPreference(R.string.pref_key_black_status_bar, R.bool.pref_default_black_status_bar)
 
     /**
      * The index of the proxy choice.
      */
-    var proxyChoice by preferences.enumPreference(PROXY_CHOICE, ProxyChoice.NONE)
+    var proxyChoice by preferences.enumPreference(R.string.pref_key_proxy_choice, ProxyChoice.NONE)
 
     /**
      * The proxy host used when [proxyChoice] is [ProxyChoice.MANUAL].
      */
-    var proxyHost by preferences.stringPreference(USE_PROXY_HOST, "localhost")
+    var proxyHost by preferences.stringPreference(R.string.pref_key_proxy_host, "localhost")
 
     /**
      * The proxy port used when [proxyChoice] is [ProxyChoice.MANUAL].
      */
-    var proxyPort by preferences.intPreference(USE_PROXY_PORT, 8118)
+    var proxyPort by preferences.intPreference(R.string.pref_key_use_proxy_port, 8118)
 
     /**
      * The index of the search suggestion choice.
      *
      * @see SearchEngineProvider
      */
-    var searchSuggestionChoice by preferences.intPreference(SEARCH_SUGGESTIONS, 1)
+    var searchSuggestionChoice by preferences.intPreference(R.string.pref_key_search_suggestions, 1)
 
     /**
      * The index of the ad blocking hosts file source.
      */
-    var hostsSource by preferences.intPreference(HOSTS_SOURCE, 0)
+    var hostsSource by preferences.intPreference(R.string.pref_key_hosts_source, 0)
 
     /**
      * The local file from which ad blocking hosts should be read, depending on the [hostsSource].
      */
-    var hostsLocalFile by preferences.nullableStringPreference(HOSTS_LOCAL_FILE)
+    var hostsLocalFile by preferences.nullableStringPreference(R.string.pref_key_hosts_local_file)
 
     /**
      * The remote URL from which ad blocking hosts should be read, depending on the [hostsSource].
      */
-    var hostsRemoteFile by preferences.nullableStringPreference(HOSTS_REMOTE_FILE)
+    var hostsRemoteFile by preferences.nullableStringPreference(R.string.pref_key_hosts_remote_file)
 
     /**
      * Toggle visibility of close tab button on drawer tab list items.
      */
-    var showCloseTabButton by preferences.booleanPreference(R.string.pref_key_tab_list_item_show_close_button, if (screenSize.isTablet())  R.bool.const_true else R.bool.pref_default_tab_list_item_show_close_button)
+    var showCloseTabButton by preferences.booleanPreference(R.string.pref_key_tab_list_item_show_close_button, if (screenSize.isTablet())  R.bool.pref_default_tab_list_item_show_close_buttons else R.bool.pref_default_tab_list_item_show_close_button)
 
     /**
      * Define viewport width for desktop mode in portrait
@@ -411,98 +405,56 @@ class UserPreferences @Inject constructor(
     /**
      * True if dark mode should be enabled by default for new tabs, false otherwise.
      */
-    var darkModeDefault by preferences.booleanPreference(R.string.pref_key_dark_mode_default, false)
+    var darkModeDefault by preferences.booleanPreference(R.string.pref_key_dark_mode_default, R.bool.pref_default_dark_mode_default)
 
     /**
      * Block JavaScript for Websites
      */
-    var javaScriptChoice by preferences.enumPreference(USE_JS_BLOCK, JavaScriptChoice.NONE)
+    var javaScriptChoice by preferences.enumPreference(R.string.pref_key_use_js_block, JavaScriptChoice.NONE)
 
-    var javaScriptBlocked by preferences.stringPreference(BLOCK_JS, "")
+    var javaScriptBlocked by preferences.stringPreference(R.string.pref_key_block_js, "")
 
-    var siteBlockNames by preferences.stringPreference(USE_SITE_BLOCK, "")
+    var siteBlockNames by preferences.stringPreference(R.string.pref_key_use_site_block, "")
 
     /**
      * Malware blocker
      */
-    var blockMalwareEnabled by preferences.booleanPreference(BLOCK_MALWARE, true)
+    var blockMalwareEnabled by preferences.booleanPreference(R.string.pref_key_block_malware, R.bool.pref_default_block_malware)
 
     /**
      * Force Zoom for Websites
      */
-    var forceZoom by preferences.booleanPreference(FORCE_ZOOM, false)
+    var forceZoom by preferences.booleanPreference(R.string.pref_key_force_zoom, R.bool.pref_default_force_zoom)
 
     /**
      * Always in Incognito mode
      */
-    var incognito by preferences.booleanPreference(ALWAYS_INCOGNITO, false)
+    var incognito by preferences.booleanPreference(R.string.pref_key_always_incognito, R.bool.pref_default_always_incognito)
 
     /**
      * SSL Warn Dialog
      */
-    var ssl by preferences.booleanPreference(SSL, true)
+    var ssl by preferences.booleanPreference(R.string.pref_key_ssl_dialog, R.bool.pref_default_ssl_dialog)
 
     /**
      * Show second navbar at the bottom of the screen
      */
-    var navbar by preferences.booleanPreference(SECOND_BAR, false)
+    var navbar by preferences.booleanPreference(R.string.pref_key_second_nav_bar, R.bool.pref_default_second_nav_bar)
 
     /**
      * Define close on last tab
      */
-    var closeOnLastTab by preferences.booleanPreference(LAST_TAB, true)
+    var closeOnLastTab by preferences.booleanPreference(R.string.pref_key_close_on_last_tab, R.bool.pref_default_close_on_last_tab)
 
-    var imageUrlString by preferences.stringPreference(IMAGE_URL, "")
+    var imageUrlString by preferences.stringPreference(R.string.pref_key_image_url, "")
 
     /**
      * Define Suggestion number Choice
      */
-    var suggestionChoice by preferences.enumPreference(SEARCH_SUGGESTIONS_NUM, SuggestionNumChoice.FIVE)
+    var suggestionChoice by preferences.enumPreference(R.string.pref_key_search_suggestions_number, SuggestionNumChoice.FIVE)
 
     /**
      * Show download dialog before downloading a file
      */
-    var showDownloadConfirmation by preferences.booleanPreference(SHOW_DOWNLOAD_CONFIRMATION, true)
+    var showDownloadConfirmation by preferences.booleanPreference(R.string.pref_key_show_download_confirmation, R.bool.pref_default_show_download_confirmation)
 }
-
-// SL: Looks like those are the actual shared property keys thus overriding what ever was defined in our XML
-// TODO: That does not make sense, we need to sort this out
-private const val WEB_RTC = "webRtc"
-private const val BLOCK_ADS = "AdBlock"
-private const val CLEAR_CACHE_EXIT = "cache"
-private const val DOWNLOAD_DIRECTORY = "downloadLocation"
-private const val HOMEPAGE = "home"
-private const val LOCATION = "location"
-private const val SAVE_PASSWORDS = "passwords"
-private const val SEARCH = "search"
-private const val SEARCH_URL = "searchurl"
-private const val USER_AGENT = "agentchoose"
-private const val USER_AGENT_STRING = "userAgentString"
-private const val CLEAR_HISTORY_EXIT = "clearHistoryExit"
-private const val CLEAR_COOKIES_EXIT = "clearCookiesExit"
-private const val BLOCK_THIRD_PARTY = "thirdParty"
-private const val INVERT_COLORS = "invertColors"
-private const val READING_TEXT_SIZE = "readingTextSize"
-private const val CLEAR_WEB_STORAGE_EXIT = "clearWebStorageExit"
-private const val DO_NOT_TRACK = "doNotTrack"
-private const val IDENTIFYING_HEADERS = "removeIdentifyingHeaders"
-private const val BOOKMARKS_CHANGED = "bookmarksChanged"
-private const val PROXY_CHOICE = "proxyChoice"
-private const val USE_PROXY_HOST = "useProxyHost"
-private const val USE_PROXY_PORT = "useProxyPort"
-private const val SEARCH_SUGGESTIONS = "searchSuggestionsChoice"
-private const val HOSTS_SOURCE = "hostsSource"
-private const val HOSTS_LOCAL_FILE = "hostsLocalFile"
-private const val HOSTS_REMOTE_FILE = "hostsRemoteFile"
-private const val USE_JS_BLOCK = "useJSblock"
-private const val BLOCK_JS = "blockJS"
-private const val USE_SITE_BLOCK = "useSiteBlock"
-private const val BLOCK_MALWARE = "blockMalware"
-private const val FORCE_ZOOM = "forcezoom"
-private const val ALWAYS_INCOGNITO = "alwaysincognito"
-private const val SSL = "ssl"
-private const val SECOND_BAR = "secondBar"
-private const val LAST_TAB = "lastTab"
-private const val IMAGE_URL = "imageUrl"
-private const val SEARCH_SUGGESTIONS_NUM = "suggNum"
-private const val SHOW_DOWNLOAD_CONFIRMATION = "showDownloadConfirmation"
