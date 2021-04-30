@@ -1062,11 +1062,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
             if (userPreferences.toolbarsBottom) {
                 // Move toolbar to the bottom
                 root.removeFromParent()?.addView(root)
-                // Move search in page to top
-                iBinding.findInPageInclude.root.let {
-                    it.removeFromParent()?.addView(it,0)
-                }
-
                 // Rearrange it so that it is upside down
                 // Put tab bar at the bottom
                 tabBarContainer.removeFromParent()?.addView(tabBarContainer)
@@ -1101,11 +1096,6 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
                 // Move toolbar to the top
                 root.removeFromParent()?.addView(root, 0)
                 //iBinding.uiLayout.addView(root, 0)
-                // Move search in page to bottom
-                iBinding.findInPageInclude.root.let {
-                    it.removeFromParent()?.addView(it)
-                    //iBinding.uiLayout.addView(it)
-                }
                 // Rearrange it so that it is the right way up
                 // Put tab bar at the bottom
                 tabBarContainer.removeFromParent()?.addView(tabBarContainer,0)
