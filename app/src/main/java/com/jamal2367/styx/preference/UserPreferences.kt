@@ -244,7 +244,7 @@ class UserPreferences @Inject constructor(
      * True if the browser should extract the theme color from a website and color the UI with it,
      * false otherwise.
      */
-    var colorModeEnabled by preferences.booleanPreference(R.string.pref_key_web_page_theme, true)
+    var colorModeEnabled by preferences.booleanPreference(R.string.pref_key_web_page_theme, R.bool.pref_default_color_mode)
 
     /**
      * The index of the URL/search box display choice/
