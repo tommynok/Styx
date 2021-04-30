@@ -28,7 +28,8 @@
             android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:focusable="false" />
+            android:focusable="false"
+            android:contentDescription="@null" />
 
         <com.jamal2367.styx.view.SearchView
             android:id="@+id/search"
