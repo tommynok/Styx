@@ -59,7 +59,7 @@
                 android:background="?android:attr/colorBackground"
                 android:fitsSystemWindows="true"
                 android:weightSum="1"
-                android:layout_marginLeft="-64dp" />
+                android:layout_marginStart="-64dp" />
 
             <FrameLayout
                 android:id="@+id/right_drawer"
@@ -69,7 +69,7 @@
                 android:background="?android:attr/colorBackground"
                 android:fitsSystemWindows="true"
                 android:weightSum="1"
-                android:layout_marginLeft="-64dp" />
+                android:layout_marginStart="-64dp" />
         </androidx.drawerlayout.widget.DrawerLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

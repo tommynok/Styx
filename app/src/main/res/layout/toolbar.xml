@@ -27,7 +27,9 @@
             android:paddingBottom="0dp"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            android:paddingEnd="0dp"
+            android:paddingStart="0dp" />
 
         <com.jamal2367.styx.view.ProgressBar
             android:id="@+id/progress_view"

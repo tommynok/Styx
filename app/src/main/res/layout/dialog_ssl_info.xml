@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/ssl_info_issued_by"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         android:textStyle="bold" />
 
     <TextView
@@ -18,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:paddingStart="8dp"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         tools:text="Test Cert Authority" />
 
     <TextView
@@ -28,6 +29,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/ssl_info_issued_to"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         android:textStyle="bold" />
 
     <TextView
@@ -35,8 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:paddingStart="8dp"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         tools:text="Test Company" />
 
     <TextView
@@ -45,6 +47,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/ssl_info_issued_on"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         android:textStyle="bold" />
 
     <TextView
@@ -52,8 +55,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:paddingStart="8dp"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         tools:text="today" />
 
     <TextView
@@ -62,6 +65,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/ssl_info_expires_on"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         android:textStyle="bold" />
 
     <TextView
@@ -69,17 +73,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:paddingStart="8dp"
         android:textAppearance="?attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         tools:text="tomorrow" />
 
     <TextView
         android:id="@+id/algorithm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/algorithm"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         android:textStyle="bold" />
 
     <TextView
@@ -87,8 +92,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:paddingStart="8dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textDirection="locale"
         tools:text="tomorrow" />
 
 </LinearLayout>
