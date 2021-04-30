@@ -10,8 +10,8 @@ android {
         applicationId 'com.jamal2367.styx'
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 91
-        versionName '9.1.0'
+        versionCode 92
+        versionName '9.2.0'
         resConfigs 'en', 'ar', 'cs', 'de', 'el', 'es', 'fr', 'hu', 'it', 'iw', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-rBR', 'ro', 'ru', 'sr', 'sv', 'tr', 'uk', 'vi', 'zh-rCN', 'zh-rTW'
         setProperty("archivesBaseName", 'Styx_v' + versionName)
     }
