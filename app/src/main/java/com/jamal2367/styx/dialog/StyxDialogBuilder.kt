@@ -259,9 +259,9 @@ class StyxDialogBuilder @Inject constructor(
                                     .observeOn(mainScheduler)
                                     .subscribe(uiController::handleBookmarksChange)
                         }
+                        (activity).snackbar(R.string.action_bookmark_edited)
                     }
                     editBookmarkDialog.resizeAndShow()
-                    (activity).snackbar(R.string.action_bookmark_edited)
                 }
     }
 
