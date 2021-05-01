@@ -303,6 +303,8 @@
     <string name="search_engine_google">Google</string>
     <string name="search_engine_mojeek">Mojeek</string>
     <string name="search_engine_naver">Naver</string>
+    <string name="search_engine_qwant">Qwant</string>
+    <string name="search_engine_qwant_lite">Qwant Lite</string>
     <string name="search_engine_searx">Searx</string>
     <string name="search_engine_startpage_mobile">StartPage Mobile</string>
     <string name="search_engine_startpage">StartPage</string>

@@ -55,12 +55,14 @@ class SearchEngineProvider @Inject constructor(
 			10 -> EkoruSearch()
             11 -> MojeekSearch()
             12 -> NaverSearch()
-            13 -> SearxSearch()
-            14 -> StartPageSearch()
-            15 -> StartPageMobileSearch()
-            16 -> YahooSearch()
-            17 -> YahooNoJSSearch()
-            18 -> YandexSearch()
+            13 -> QwantSearch()
+            14 -> QwantLiteSearch()
+            15 -> SearxSearch()
+            16 -> StartPageSearch()
+            17 -> StartPageMobileSearch()
+            18 -> YahooSearch()
+            19 -> YahooNoJSSearch()
+            20 -> YandexSearch()
             else -> GoogleSearch()
         }
 
@@ -82,12 +84,14 @@ class SearchEngineProvider @Inject constructor(
 			is EkoruSearch -> 10
             is MojeekSearch -> 11
             is NaverSearch -> 12
-            is SearxSearch -> 13
-            is StartPageSearch -> 14
-            is StartPageMobileSearch -> 15
-            is YahooSearch -> 16
-            is YahooNoJSSearch -> 17
-            is YandexSearch -> 18
+            is QwantSearch -> 13
+            is QwantLiteSearch -> 14
+            is SearxSearch -> 15
+            is StartPageSearch -> 16
+            is StartPageMobileSearch -> 17
+            is YahooSearch -> 18
+            is YahooNoJSSearch -> 19
+            is YandexSearch -> 20
             else -> throw UnsupportedOperationException("Unknown search engine provided: " + searchEngine.javaClass)
         }
 
@@ -108,6 +112,8 @@ class SearchEngineProvider @Inject constructor(
 		EkoruSearch(),
         MojeekSearch(),
         NaverSearch(),
+        QwantSearch(),
+        QwantLiteSearch(),
         SearxSearch(),
         StartPageSearch(),
         StartPageMobileSearch(),
