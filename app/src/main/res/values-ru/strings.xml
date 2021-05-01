@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
     <string name="app_name">Styx</string>
     <string name="action_add_bookmark">Добавить закладку</string>
@@ -221,7 +221,7 @@
     <string name="message_permission_request">%1$s\n\nхотел бы использовать:\n\n%2$s</string>
     <string name="message_web_storage_cleared">Интернет-хранилище очищено</string>
     <string name="mit_license">MIT лицензия</string>
-    <string name="mpl_license">Mozilla Public License v. 2.0</string>
+    <string name="mpl_license">Mozilla Public License v2.0</string>
     <string name="name_grayscale">Оттенки серого</string>
     <string name="name_increase_contrast">Повышенный контраст</string>
     <string name="name_inverted_grayscale">Инвертированные оттенки серого</string>
@@ -287,7 +287,7 @@
     <string name="reset_settings">Сброс настроек</string>
     <string name="restore_tabs_on_startup">Восстановление предыдущей сессии</string>
     <string name="save_data">Запрос «Сохранение данных»</string>
-    <string name="scripts_store">Хранилище UserScript</string>
+    <string name="scripts_store">Магазин UserScripts</string>
     <string name="scripts">UserScripts</string>
     <string name="search_engine_ask">Ask</string>
     <string name="search_engine_baidu">Baidu</string>
@@ -302,6 +302,8 @@
     <string name="search_engine_google">Google</string>
     <string name="search_engine_mojeek">Mojeek</string>
     <string name="search_engine_naver">Naver</string>
+    <string name="search_engine_qwant">Qwant</string>
+    <string name="search_engine_qwant_lite">Qwant Lite</string>
     <string name="search_engine_searx">Searx</string>
     <string name="search_engine_startpage_mobile">StartPage Mobile</string>
     <string name="search_engine_startpage">StartPage</string>
