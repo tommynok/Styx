@@ -735,6 +735,11 @@ abstract class BrowserActivity : ThemedBrowserActivity(), BrowserView, UIControl
         if (userPreferences.navbar && !userPreferences.verticalTabBar) {
             iBindingToolbarContent.homeButton.isVisible = false
         }
+
+        iBindingToolbarContent.tabsButton.setOnLongClickListener {
+            presenter?.newTab(homePageInitializer, true)
+            true
+        }
     }
 
     /**
