@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Styx</string>
     <string name="action_add_bookmark">Lesezeichen hinzufügen</string>
@@ -6,7 +6,7 @@
     <string name="action_allow">Erlauben</string>
     <string name="action_back">Zurück</string>
     <string name="action_blank">Leere Seite</string>
-    <string name="action_bookmark_edited">Lesezeichen bearbeitet</string>
+    <string name="action_bookmark_edited">Lesezeichen gespeichert</string>
     <string name="action_bookmarks">Lesezeichen</string>
     <string name="action_cancel">Abbrechen</string>
     <string name="action_close_all_other_tabs">Alle anderen Tabs schließen</string>
@@ -17,7 +17,7 @@
     <string name="action_download">Herunterladen</string>
     <string name="action_downloads">Downloads</string>
     <string name="action_edit_sessions">Sitzungen bearbeiten</string>
-    <string name="action_find">Auf Seite suchen</string>
+    <string name="action_find">Seite durchsuchen</string>
     <string name="action_folder">Ordner</string>
     <string name="action_forward">Weiter</string>
     <string name="action_history">Verlauf</string>
@@ -39,7 +39,7 @@
     <string name="action_save_session">Sitzung speichern als</string>
     <string name="action_sessions">Sitzungen</string>
     <string name="action_share">Teilen</string>
-    <string name="action_show_homepage">Homepage anzeigen</string>
+    <string name="action_show_homepage">Startseite</string>
     <string name="action_webpage">Webseite</string>
     <string name="action_yes">Ja</string>
     <string name="ad_block_load_failure">Das Laden der Online-Hosts ist fehlgeschlagen.</string>
@@ -80,7 +80,7 @@
     <string name="bookmark_in_new_tab">Lesezeichen in neuem Tab öffnen</string>
     <string name="bookmark_restore">Lesezeichen wurden zurückgesetzt</string>
     <string name="bookmark_settings">Lesezeichen</string>
-    <string name="busy">Besetzt, versuchen Sie es in Kürze wieder."</string>
+    <string name="busy">Besetzt, versuchen Sie es in Kürze wieder.</string>
     <string name="cache">Cache beim Beenden löschen</string>
     <string name="cannot_download">Herunterladen nur bei \"http\" oder \"https\" URLs möglich!</string>
     <string name="clean_settings">Hiermit werden alle Daten gelöscht, die Styx auf Ihrem Gerät gespeichert hat! Die App wird nach der Bestätigung beendet.</string>
@@ -201,7 +201,7 @@
     <string name="manual">Manuell</string>
     <string name="message_added_to_homescreen">Verknüpfung wurde zum Startbildschirm hinzugefügt</string>
     <string name="message_blocked_local">Lokale Datei wurde beim Laden blockiert</string>
-    <string name="message_bookmark_added">Lesezeichen gespeichert</string>
+    <string name="message_bookmark_added">Lesezeichen hinzugefügt</string>
     <string name="message_bookmark_not_added">Lesezeichen bereits vorhanden</string>
     <string name="message_cache_cleared">Cache gelöscht</string>
     <string name="message_certificate_date_invalid">Datum des Zertifikats ungültig</string>
@@ -347,6 +347,7 @@
     <string name="settings_summary_vertical_tab_bar">Ausschalten um Desktop Tab-Drawer zu nutzen</string>
     <string name="settings_title_apps">Apps</string>
     <string name="settings_title_dark_mode_default">Dunkel-Modus für Webseiten</string>
+    <string name="settings_title_debug">Debug</string>
     <string name="settings_title_desktop_mode_default">Desktop-Modus</string>
     <string name="settings_title_toolbars_bottom">Suchleiste nach unten</string>
     <string name="settings">Einstellungen</string>
