@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_gravity="bottom"
-                    android:background="?attr/colorPrimary"
+                    android:background="?attr/haloColor"
                     app:itemIconTint="@drawable/toolbar_color"
                     app:itemTextColor="?attr/colorControlNormal"
                     app:elevation="8dp"

@@ -38,7 +38,7 @@
     </style>
 
     <style name="Theme.App.Light" parent="Theme.MaterialComponents.Light">
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/md_red_500</item>
         <item name="colorPrimaryVariant">@color/md_grey_300</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/md_red_500</item>
@@ -55,6 +55,7 @@
         <item name="appColorControlSelected">?attr/colorOnPrimary</item>
         <item name="appColorControlDisabled">@color/md_grey_400</item>
         <item name="colorControlNormal">@color/state_color_control</item>
+        <item name="haloColor">@color/white</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">false</item>
@@ -78,7 +79,7 @@
     </style>
 
     <style name="Theme.App.Dark" parent="Theme.MaterialComponents">
-        <item name="colorPrimary">@color/md_grey_900</item>
+        <item name="colorPrimary">@color/md_red_300</item>
         <item name="colorPrimaryVariant">@color/md_grey_850</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/md_red_300</item>
@@ -96,6 +97,7 @@
         <item name="appColorControlSelected">?attr/colorOnPrimary</item>
         <item name="appColorControlDisabled">@color/md_grey_600</item>
         <item name="colorControlNormal">@color/state_color_control</item>
+        <item name="haloColor">@color/md_grey_900</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog.Dark</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">false</item>
@@ -119,7 +121,7 @@
 </style>
 
     <style name="Theme.App.Black" parent="Theme.MaterialComponents">
-        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimary">@color/md_red_300</item>
         <item name="colorPrimaryVariant">@color/md_grey_900</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/md_red_300</item>
@@ -136,6 +138,7 @@
         <item name="appColorControlSelected">?attr/colorOnPrimary</item>
         <item name="appColorControlDisabled">@color/md_grey_600</item>
         <item name="colorControlNormal">@color/state_color_control</item>
+        <item name="haloColor">@color/black</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog.Black</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">false</item>
@@ -262,6 +265,7 @@
         <item name="checkedIconSize">6dp</item>
         <item name="checkedIcon">@drawable/ic_circle</item>
         <item name="checkedIconTint">?attr/colorSecondary</item>
+        <item name="cardForegroundColor">@color/card_view_foreground</item>
     </style>
 
     <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">

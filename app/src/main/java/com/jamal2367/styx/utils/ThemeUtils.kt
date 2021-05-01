@@ -26,7 +26,7 @@ object ThemeUtils {
     @JvmStatic
     @ColorInt
     fun getPrimaryColor(context: Context): Int {
-        return getColor(context, R.attr.colorPrimary)
+        return getColor(context, R.attr.haloColor)
     }
 
     /**
@@ -50,7 +50,7 @@ object ThemeUtils {
     @JvmStatic
     @ColorInt
     fun getSurfaceColor(context: Context): Int {
-        return getColor(context, R.attr.colorPrimary)
+        return getColor(context, R.attr.haloColor)
     }
 
     /**

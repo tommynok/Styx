@@ -7,6 +7,7 @@
             name="uiController"
             type="com.jamal2367.styx.controller.UIController"/>
     </data>
+
     <merge
         android:layout_width="match_parent"
         android:layout_height="42dp"
@@ -16,10 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout android:orientation="horizontal"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/colorPrimary">
+                android:background="?attr/haloColor">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/tabs_list"

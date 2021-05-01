@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/haloColor"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -24,7 +24,7 @@
                 android:id="@+id/bookmark_title_layout"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="?attr/haloColor"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -32,7 +32,7 @@
                     android:id="@+id/bookmark_back_button"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
-                    android:background="?attr/colorPrimary"
+                    android:background="?attr/haloColor"
                     android:scaleType="center"
                     android:focusable="false"
                     android:clickable="false"
@@ -68,7 +68,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/haloColor"
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="1">

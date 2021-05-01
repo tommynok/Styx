@@ -87,7 +87,7 @@ class TabsDesktopAdapter(
                     // or if our theme color is different than our UI color, i.e. using favicon color instead of meta theme
                     || tab.themeColor!=uiController.getUiColor()) {
 
-                val backgroundColor = ThemeUtils.getColor(viewHolder.iCardView.context, R.attr.colorSurface)
+                val backgroundColor = ThemeUtils.getColor(viewHolder.iCardView.context, R.attr.haloColor)
 
                 // Pick our color according to settings and states
                 foregroundTabColor = if (uiController.isColorMode())

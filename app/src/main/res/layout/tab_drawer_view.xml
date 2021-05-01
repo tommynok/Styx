@@ -13,7 +13,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
+    android:background="?attr/haloColor"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,7 +23,7 @@
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/haloColor"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
